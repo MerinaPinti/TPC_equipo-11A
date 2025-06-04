@@ -7,3 +7,12 @@ C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.Core
 C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.Up2Date
 C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.dll
 C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.pdb
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Negocio.dll
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Negocio.pdb
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Dominio.dll
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Dominio.pdb
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.Up2Date
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.dll
+D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.pdb

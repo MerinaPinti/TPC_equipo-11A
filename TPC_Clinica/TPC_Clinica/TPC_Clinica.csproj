@@ -74,6 +74,7 @@
     <Content Include="Especialidad.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ModificarTurno.aspx" />
+    <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +131,13 @@
       <DependentUpon>ModificarTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarPaciente.aspx.cs">
+      <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarPaciente.aspx.designer.cs">
+      <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
