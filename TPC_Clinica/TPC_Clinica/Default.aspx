@@ -69,9 +69,8 @@
             <label class="form-check-label" for="recordarUsuario">Recordar usuario</label>
         </div>
 
-        <button type="submit" class="btn w-100" style="background-color: #17a2b8; color: white; font-weight: bold; border-radius: 25px;">
-        Ingresar
-        </button>
+        
+        <asp:Button Text ="Ingresar" ID="btnIngresar" runat="server" CssClass ="btn btn-primary" CommandArgument = '<%Eval("Id")%>' CommandName ="ArticuloId" OnClick ="btnIngresar_Click" />
 
       
     </div>
