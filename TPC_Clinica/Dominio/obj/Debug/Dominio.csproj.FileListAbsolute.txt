@@ -1,0 +1,6 @@
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Dominio\bin\Debug\Dominio.dll
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Dominio\bin\Debug\Dominio.pdb
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Dominio\obj\Debug\Dominio.dll
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\Dominio\obj\Debug\Dominio.pdb
