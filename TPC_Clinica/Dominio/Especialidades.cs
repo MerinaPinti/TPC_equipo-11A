@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class Especialidades
     {
-        
+        //commit de prueba
             public int ID { get; set; }
             public string Nombre { get; set; }
         
