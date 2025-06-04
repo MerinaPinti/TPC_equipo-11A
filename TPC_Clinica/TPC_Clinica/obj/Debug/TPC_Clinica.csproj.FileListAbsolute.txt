@@ -116,3 +116,7 @@ C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.csp
 C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clin.B0B5140E.Up2Date
 C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.dll
 C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.pdb
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\bin\Dominio.dll
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\bin\Negocio.dll
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\bin\Dominio.pdb
+C:\TP FINAL TPC\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\bin\Negocio.pdb

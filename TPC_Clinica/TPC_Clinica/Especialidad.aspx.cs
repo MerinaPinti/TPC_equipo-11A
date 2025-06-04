@@ -9,7 +9,7 @@ using Dominio;
 
 namespace TPC_Clinica
 {
-    public partial class Master : System.Web.UI.MasterPage
+    public partial class Especialidad : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
