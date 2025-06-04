@@ -3,11 +3,39 @@
   "WorkspaceRootPath": "C:\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\agendas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\agendas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\medicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\medicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\tiposusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\tiposusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\historiasclinicas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\historiasclinicas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\turnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\turnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\pacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\pacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\dominio\\especialidades.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\especialidades.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\registrarpaciente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\registrarpaciente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\registrarpaciente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
@@ -18,24 +46,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TiposUsuarios.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TiposUsuarios.cs",
+              "RelativeDocumentMoniker": "Dominio\\TiposUsuarios.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TiposUsuarios.cs",
+              "RelativeToolTip": "Dominio\\TiposUsuarios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T20:09:19.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Usuarios.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Usuarios.cs",
+              "RelativeDocumentMoniker": "Dominio\\Usuarios.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Usuarios.cs",
+              "RelativeToolTip": "Dominio\\Usuarios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T20:01:40.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HistoriasClinicas.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\HistoriasClinicas.cs",
+              "RelativeDocumentMoniker": "Dominio\\HistoriasClinicas.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\HistoriasClinicas.cs",
+              "RelativeToolTip": "Dominio\\HistoriasClinicas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T20:00:57.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Agendas.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Agendas.cs",
+              "RelativeDocumentMoniker": "Dominio\\Agendas.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Agendas.cs",
+              "RelativeToolTip": "Dominio\\Agendas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T20:00:38.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Turnos.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Turnos.cs",
+              "RelativeDocumentMoniker": "Dominio\\Turnos.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Turnos.cs",
+              "RelativeToolTip": "Dominio\\Turnos.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAgwBMAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T19:53:39.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Medicos.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Medicos.cs",
+              "RelativeDocumentMoniker": "Dominio\\Medicos.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Medicos.cs",
+              "RelativeToolTip": "Dominio\\Medicos.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAwA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T19:50:52.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Pacientes.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Pacientes.cs",
+              "RelativeDocumentMoniker": "Dominio\\Pacientes.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Pacientes.cs",
+              "RelativeToolTip": "Dominio\\Pacientes.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAwBEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T19:46:07.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Especialidades.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Especialidades.cs",
               "RelativeDocumentMoniker": "Dominio\\Especialidades.cs",
               "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Especialidades.cs",
               "RelativeToolTip": "Dominio\\Especialidades.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-04T19:38:21.371Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "RegistrarPaciente.aspx",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\RegistrarPaciente.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\RegistrarPaciente.aspx",
@@ -43,8 +162,7 @@
               "RelativeToolTip": "TPC_Clinica\\RegistrarPaciente.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-04T02:27:22.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T02:27:22.946Z"
             }
           ]
         }

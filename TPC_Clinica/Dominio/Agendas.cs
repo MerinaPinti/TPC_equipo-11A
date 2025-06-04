@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Especialidades
+    internal class Agendas
     {
-            public int ID { get; set; }
-            public string Nombre { get; set; }
-        
     }
 }
