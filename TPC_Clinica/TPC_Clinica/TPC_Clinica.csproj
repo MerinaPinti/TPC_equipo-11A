@@ -71,7 +71,6 @@
     <Content Include="CancelarTurno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="EleccionTurno.aspx" />
-    <Content Include="Especialidad.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ModificarTurno.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
@@ -105,13 +104,6 @@
     </Compile>
     <Compile Include="EleccionTurno.aspx.designer.cs">
       <DependentUpon>EleccionTurno.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Especialidad.aspx.cs">
-      <DependentUpon>Especialidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Especialidad.aspx.designer.cs">
-      <DependentUpon>Especialidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
