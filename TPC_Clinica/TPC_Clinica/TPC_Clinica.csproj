@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AMEspecialidad.aspx" />
     <Content Include="AsignarTurno.aspx" />
     <Content Include="CancelarTurno.aspx" />
     <Content Include="Default.aspx" />
@@ -77,6 +78,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AMEspecialidad.aspx.cs">
+      <DependentUpon>AMEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AMEspecialidad.aspx.designer.cs">
+      <DependentUpon>AMEspecialidad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AsignarTurno.aspx.cs">
       <DependentUpon>AsignarTurno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
