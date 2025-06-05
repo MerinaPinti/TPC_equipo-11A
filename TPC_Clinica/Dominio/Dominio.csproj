@@ -43,11 +43,9 @@
   <ItemGroup>
     <Compile Include="Agenda.cs" />
     <Compile Include="Especialidad.cs" />
-    <Compile Include="HistoriaClinica.cs" />
     <Compile Include="Medico.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TipoUsuario.cs" />
     <Compile Include="Turno.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
