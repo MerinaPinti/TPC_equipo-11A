@@ -67,17 +67,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaMedico.aspx" />
     <Content Include="AMEspecialidad.aspx" />
     <Content Include="AsignarTurno.aspx" />
     <Content Include="CancelarTurno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="EleccionTurno.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="ModificarMedico.aspx" />
     <Content Include="ModificarTurno.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaMedico.aspx.cs">
+      <DependentUpon>AltaMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaMedico.aspx.designer.cs">
+      <DependentUpon>AltaMedico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AMEspecialidad.aspx.cs">
       <DependentUpon>AMEspecialidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -122,6 +131,13 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarMedico.aspx.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarMedico.aspx.designer.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarTurno.aspx.cs">
       <DependentUpon>ModificarTurno.aspx</DependentUpon>

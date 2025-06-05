@@ -16,3 +16,12 @@ D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csp
 D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.Up2Date
 D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.dll
 D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.pdb
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Negocio.dll
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Negocio.pdb
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Dominio.dll
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Dominio.pdb
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.Up2Date
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.dll
+C:\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.pdb
