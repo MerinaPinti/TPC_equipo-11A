@@ -32,8 +32,8 @@ namespace TPC_Clinica
                 // Cargar especialidades solo si aún no está cargado
                 if (ddlEspecialidad.Items.Count == 0)
                 {
-                    EspecialidadesNegocio negocio = new EspecialidadesNegocio();
-                    List<Especialidades> lista = negocio.Listar();
+                    EspecialidadNegocio negocio = new EspecialidadNegocio();
+                    List<Dominio.Especialidad> lista = negocio.Listar();
 
                     ddlEspecialidad.DataSource = lista;
                     ddlEspecialidad.DataTextField = "Nombre";

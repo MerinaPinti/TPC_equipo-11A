@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-   public class EspecialidadesNegocio
+   public class EspecialidadNegocio
     {
-        public List<Especialidades> Listar()
+        public List<Especialidad> Listar()
         {
-            List<Especialidades> lista = new List<Especialidades>();
+            List<Especialidad> lista = new List<Especialidad>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -20,7 +20,7 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Especialidades esp = new Especialidades();
+                    Especialidad esp = new Especialidad();
                     esp.ID = (int)datos.Lector["ID"];
                     esp.Nombre = (string)datos.Lector["Nombre"];
 
