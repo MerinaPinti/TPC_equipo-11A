@@ -17,5 +17,5 @@ namespace Dominio
         public string Email { get; set; }
         public int NroHC { get; set; }
 
-}
+    }
 }

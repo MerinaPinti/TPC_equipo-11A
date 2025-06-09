@@ -15,6 +15,6 @@ namespace Dominio
         public List<Especialidad> Especialidad { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-    //public string Turno { get; set; } turno de trabajo
-}
+        //public string Turno { get; set; } turno de trabajo
+    }
 }
