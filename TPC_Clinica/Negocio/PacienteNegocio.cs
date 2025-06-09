@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Negocio;
 
 namespace Negocio
 {
@@ -43,7 +44,7 @@ namespace Negocio
 
             try
             {
-                //datos.setearConsulta();
+                datos.setearConsulta("Update Pacientes set Nombre = @Nombre, Apellido = @Apellido, Fecha_Nacimiento = @Fecha_Nacimiento, Telefono = @Telefono, Email = @Email, Direccion = @Direccion");
 
                 datos.setearParametros("@DNI", paciente.DNI);
                 datos.setearParametros("@Nombre", paciente.Nombre);
@@ -66,5 +67,20 @@ namespace Negocio
             }
         }
 
+        /*public Paciente existePaciente (Paciente paciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        */
     }
 }
