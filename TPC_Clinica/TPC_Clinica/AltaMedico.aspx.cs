@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
 
 namespace TPC_Clinica
 {
@@ -26,6 +27,26 @@ namespace TPC_Clinica
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            MedicoNegocio negocio = new MedicoNegocio();
+
+            try
+            {
+                Medico nuevo = new Medico();
+
+                nuevo.Matricula = txtMatricula.Text;
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Apellido = txtApellido.Text;
+                //nuevo.Especialidad = ;
+                nuevo.Email = txtEmail.Text;
+                nuevo.Telefono = txtTelefono.Text;
+
+                negocio.agregarMedico(nuevo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
     }

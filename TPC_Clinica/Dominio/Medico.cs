@@ -7,7 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Dominio
 {
-    internal class Medico
+    public class Medico
     {
         public string Matricula { get; set; }
         public string Nombre { get; set; }
