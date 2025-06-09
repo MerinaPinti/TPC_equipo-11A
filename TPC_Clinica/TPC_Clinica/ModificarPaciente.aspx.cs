@@ -18,7 +18,7 @@ namespace TPC_Clinica
 
         protected void btnGuardarPaciente_Click(object sender, EventArgs e)
         {
-           /* PacienteNegocio negocio = new PacienteNegocio();
+            PacienteNegocio negocio = new PacienteNegocio();
 
             try
             {
@@ -41,7 +41,7 @@ namespace TPC_Clinica
             {
 
                 throw ex;
-            }*/
+            }
 
         }
     }

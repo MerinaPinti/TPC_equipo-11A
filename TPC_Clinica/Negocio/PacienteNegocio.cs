@@ -44,7 +44,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Update Pacientes set Nombre = @Nombre, Apellido = @Apellido, Fecha_Nacimiento = @Fecha_Nacimiento, Telefono = @Telefono, Email = @Email, Direccion = @Direccion");
+                datos.setearConsulta("Update Pacientes set Nombre = @Nombre, Apellido = @Apellido, Fecha_Nacimiento = @Fecha_Nacimiento, Telefono = @Telefono, Email = @Email, Direccion = @Direccion WHERE DNI = @DNI");
 
                 datos.setearParametros("@DNI", paciente.DNI);
                 datos.setearParametros("@Nombre", paciente.Nombre);
