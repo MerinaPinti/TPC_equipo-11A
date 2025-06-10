@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+
         .login-card {
             max-width: 400px;
             margin: 50px auto;
@@ -46,6 +47,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="asd">
     <div class="login-card">
         <h2 class="text-center">Iniciar sesión</h2>
 
@@ -68,9 +70,10 @@
             <input type="checkbox" class="form-check-input" id="recordarUsuario" />
             <label class="form-check-label" for="recordarUsuario">Recordar usuario</label>
         </div>
+        <asp:Button Text ="Ingresar" ID="btnIngresar" runat="server" CssClass ="btn btn-primary" CommandArgument = '<%Eval("Id")%>' CommandName ="ArticuloId" OnClick ="btnIngresar_Click" />
+        </div>
 
         
-        <asp:Button Text ="Ingresar" ID="btnIngresar" runat="server" CssClass ="btn btn-primary" CommandArgument = '<%Eval("Id")%>' CommandName ="ArticuloId" OnClick ="btnIngresar_Click" />
 
       
     </div>

@@ -15,14 +15,25 @@
 
     <style>
         .main {
-            height: 90vh;
+            flex: 1;
         }
 
-        .wrapper {
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /*.wrapper {
             min-height: 100%;
             display: flex;
             flex-direction: column;
-        }
+        }*/
 
         .main-content {
             flex: 1;
@@ -37,11 +48,17 @@
         }
 
         footer {
-            background-color: #f8f9fa;
+            /*background-color: #f8f9fa;
             text-align: center;
             padding: 15px 0;
             font-size: 0.9rem;
-            color: #6c757d;
+            color: #6c757d;*/
+
+            flex-shrink: 0;
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
         }
     </style>
 
@@ -79,7 +96,6 @@
             <div class="wrapper">
                 <div class="container main-content mt-4">
                     <h1 class="titulo-principal">Central de Turnos</h1>
-
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
                 </div>
 
