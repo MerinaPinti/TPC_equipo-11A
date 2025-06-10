@@ -22,7 +22,7 @@ namespace TPC_Clinica
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AMEspecialidad.aspx", false);
+            Response.Redirect("AltaEspecialidad.aspx", false);
         }
     }
 }

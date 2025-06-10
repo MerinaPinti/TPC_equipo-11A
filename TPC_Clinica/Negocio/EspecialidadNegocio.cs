@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-   public class EspecialidadNegocio
+    public class EspecialidadNegocio
     {
         public List<Especialidad> Listar()
         {
@@ -15,15 +15,14 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("SELECT ID, Nombre FROM ESPECIALIDADES ORDER BY Nombre");
+                datos.setearConsulta("SELECT idEspecialidad as Id, descripcion FROM ESPECIALIDAD");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Especialidad esp = new Especialidad();
-                    esp.ID = (int)datos.Lector["ID"];
-                    esp.Nombre = (string)datos.Lector["Nombre"];
-
+                    esp.Id = (int)datos.Lector["Id"];
+                    esp.Descripcion = (string)datos.Lector["descripcion"];
                     lista.Add(esp);
                 }
 
@@ -38,6 +37,29 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void agregarEspecialidad(List<Especialidad> nuevo)
+        {
+            AccesoDatos datos;
+            foreach (Especialidad item in nuevo)
+            {
+                datos = new AccesoDatos();
+                try
+                {
+                    datos.setearConsulta("INSERT INTO Especialidad (descripcion) VALUES (@descripcion)");
+                    datos.setearParametros("@descripcion", item.Descripcion);
+                    datos.ejecutarAccion();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+            }
+        }
     }
-    }
+}
 

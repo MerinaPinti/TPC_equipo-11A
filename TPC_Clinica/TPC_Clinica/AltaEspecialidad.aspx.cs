@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace TPC_Clinica
 {
@@ -22,7 +23,7 @@ namespace TPC_Clinica
         protected void btnAgregarEspecialiad_Click(object sender, EventArgs e)
         {
             List<Especialidad> especialidades = (List<Especialidad>)Session["especialidades"];
-            especialidades.Add(new Especialidad { Nombre = txtEspecialidad.Text });
+            especialidades.Add(new Especialidad { Descripcion = txtEspecialidad.Text });
             dgvEspecialidades.DataSource = especialidades;
             dgvEspecialidades.DataBind();
             txtEspecialidad.Text = null;
@@ -51,7 +52,9 @@ namespace TPC_Clinica
 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EleccionTurno.aspx");
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            negocio.agregarEspecialidad((List<Especialidad>)Session["especialidades"]);
+            Response.Redirect("ListadoEspecialidades.aspx");
         }
     }
 }

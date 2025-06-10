@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AMEspecialidad.aspx.cs" Inherits="TPC_Clinica.AMEspecialidad" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaEspecialidad.aspx.cs" Inherits="TPC_Clinica.AMEspecialidad" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -23,7 +23,7 @@
                                         <%# Container.DataItemIndex + 1 %>
                                     </itemtemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField HeaderText="Especialidad" DataField="nombre" />
+                                <asp:BoundField HeaderText="Especialidad" DataField="descripcion" />
 
                                 <%--<asp:CommandField ShowDeleteButton="true" />--%>
                                 <asp:TemplateField>

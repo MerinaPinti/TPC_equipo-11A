@@ -15,7 +15,7 @@
                 <asp:GridView ID="dgvEspecialidad" runat="server" AutoGenerateColumns="false" CssClass="table mt-3">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="ID" />
-                        <asp:BoundField DataField="Nombre" HeaderText="Categoria" />
+                        <asp:BoundField DataField="descripcion" HeaderText="Categoria" />
                     </Columns>
                 </asp:GridView>
             </div>
