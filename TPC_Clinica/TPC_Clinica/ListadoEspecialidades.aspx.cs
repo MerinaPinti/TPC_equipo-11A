@@ -15,14 +15,30 @@ namespace TPC_Clinica
             if (!IsPostBack)
             {
                 EspecialidadNegocio especialidad = new EspecialidadNegocio();
-                dgvEspecialidad.DataSource = especialidad.Listar();
-                dgvEspecialidad.DataBind();
+                dgvEspecialidades.DataSource = especialidad.Listar();
+                dgvEspecialidades.DataBind();
             }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("AltaEspecialidad.aspx", false);
+        }
+
+        protected void dgvEspecialidades_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            int id = Convert.ToInt32(dgvEspecialidades.DataKeys[index].Value);
+
+            if (e.CommandName == "Delete")
+            {
+                Label1.Text = "Eliminando: " + id;
+            }
+
+            if (e.CommandName == "Edit")
+            {
+                Label1.Text = "Editando: " + id;
+            }
         }
     }
 }
