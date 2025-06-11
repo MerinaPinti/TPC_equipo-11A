@@ -38,13 +38,13 @@
                             <ItemTemplate>
                                 <asp:ImageButton ID="btnModificar" runat="server"
                                     ImageUrl="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png"
-                                    CommandName="Edit"
+                                    CommandName="Editar"
                                     ToolTip="Editar"
                                     CommandArgument='<%# Container.DataItemIndex %>'
                                     Style="width: 17px; height: 17px; margin:0 4px"/>
                                 <asp:ImageButton ID="btnEliminar" runat="server"
                                     ImageUrl="https://cdn3.iconfinder.com/data/icons/font-awesome-solid/512/trash-can-256.png"
-                                    CommandName="Delete"
+                                    CommandName="Eliminar"
                                     ToolTip="Eliminar"
                                     CommandArgument='<%# Container.DataItemIndex %>'
                                     Style="width: 17px; height: 17px; margin:0 4px;"/>

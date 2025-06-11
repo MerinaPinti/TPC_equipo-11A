@@ -17,6 +17,16 @@ namespace TPC_Clinica
             {
                 List<Especialidad> especialidades = new List<Especialidad>();
                 Session.Add("especialidades", especialidades);
+
+                if (Session["IdModificar"] != null)
+                {
+                    int id = (int)Session["IdModificar"];
+                    EspecialidadNegocio negocio = new EspecialidadNegocio();
+                    Especialidad modificar = negocio.ListarConId(id);
+                    txtBoxIdMod.Text = modificar.Id.ToString();
+                    txtBoxDescrMod.Text = modificar.Descripcion.ToString();
+
+                }
             }
         }
 
@@ -24,9 +34,9 @@ namespace TPC_Clinica
         {
             List<Especialidad> especialidades = (List<Especialidad>)Session["especialidades"];
             especialidades.Add(new Especialidad { Descripcion = txtEspecialidad.Text });
+            txtEspecialidad.Text = null;
             dgvEspecialidades.DataSource = especialidades;
             dgvEspecialidades.DataBind();
-            txtEspecialidad.Text = null;
             Session["especialidades"] = especialidades;
             btnContinuar.Visible = true;
 
@@ -54,7 +64,15 @@ namespace TPC_Clinica
         {
             EspecialidadNegocio negocio = new EspecialidadNegocio();
             negocio.agregarEspecialidad((List<Especialidad>)Session["especialidades"]);
+            Session.Remove("especialidades");
             Response.Redirect("ListadoEspecialidades.aspx");
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            Especialidad modificar = new Especialidad { Id = Convert.ToInt32(txtBoxIdMod), Descripcion = txtBoxDescrMod.ToString()};
+            negocio.modificarEspecialidad(modificar);
         }
     }
 }

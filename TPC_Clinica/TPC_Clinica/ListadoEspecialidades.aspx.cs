@@ -22,7 +22,8 @@ namespace TPC_Clinica
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AltaEspecialidad.aspx", false);
+            Session.Remove("IdModificar");
+            Response.Redirect("AltaEspecialidad.aspx", true);
         }
 
         protected void dgvEspecialidades_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -30,14 +31,16 @@ namespace TPC_Clinica
             int index = Convert.ToInt32(e.CommandArgument);
             int id = Convert.ToInt32(dgvEspecialidades.DataKeys[index].Value);
 
-            if (e.CommandName == "Delete")
+            if (e.CommandName == "Eliminar")
             {
                 Label1.Text = "Eliminando: " + id;
+
             }
 
-            if (e.CommandName == "Edit")
+            if (e.CommandName == "Editar")
             {
-                Label1.Text = "Editando: " + id;
+                Session.Add("IdModificar", id);
+                Response.Redirect("AltaEspecialidad.aspx", true);
             }
         }
     }
