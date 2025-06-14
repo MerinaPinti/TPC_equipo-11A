@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
@@ -15,15 +16,14 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO PACIENTES (DNI, Nombre, Apellido, Fecha_Nacimiento, Telefono, Email, Direccion, NroHC) values (@DNI, @Nombre, @Apellido, @Fecha_Nacimiento, @Telefono, @Email, @Direccion, @NroHC)");
+                datos.setearConsulta("INSERT INTO Paciente (DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion) values (@DNI, @Nombre, @Apellido, @FechaNac, @Telefono, @Email, @Direccion)");
                 datos.setearParametros("@DNI", nuevo.DNI);
                 datos.setearParametros("@Nombre", nuevo.Nombre);
                 datos.setearParametros("@Apellido", nuevo.Apellido);
-                datos.setearParametros("@Fecha_Nacimiento", nuevo.Fecha_Nacimiento);
+                datos.setearParametros("@FechaNac", nuevo.FechaNac);
                 datos.setearParametros("@Telefono", nuevo.Telefono);
                 datos.setearParametros("@Email", nuevo.Email);
                 datos.setearParametros("@Direccion", nuevo.Direccion);
-                datos.setearParametros("@NroHC", nuevo.NroHC);
 
                 datos.ejecutarAccion();
             }
@@ -44,16 +44,15 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Update Pacientes set Nombre = @Nombre, Apellido = @Apellido, Fecha_Nacimiento = @Fecha_Nacimiento, Telefono = @Telefono, Email = @Email, Direccion = @Direccion WHERE DNI = @DNI");
+                datos.setearConsulta("Update Paciente set Nombre = @Nombre, Apellido = @Apellido, FechaNac = @FechaNac, Telefono = @Telefono, Email = @Email, Direccion = @Direccion WHERE DNI = @DNI");
 
                 datos.setearParametros("@DNI", paciente.DNI);
                 datos.setearParametros("@Nombre", paciente.Nombre);
                 datos.setearParametros("@Apellido", paciente.Apellido);
-                datos.setearParametros("@Fecha_Nacimiento", paciente.Fecha_Nacimiento);
+                datos.setearParametros("@FechaNac", paciente.FechaNac);
                 datos.setearParametros("@Telefono", paciente.Telefono);
                 datos.setearParametros("@Email", paciente.Email);
                 datos.setearParametros("@Direccion", paciente.Direccion);
-                datos.setearParametros("@NroHC", paciente.NroHC);
 
                 datos.ejecutarAccion();
             }
@@ -67,20 +66,39 @@ namespace Negocio
             }
         }
 
-        /*public Paciente existePaciente (Paciente paciente)
+        public Paciente existePaciente (string DNI)
         {
             AccesoDatos datos = new AccesoDatos();
-            
+            Paciente paciente = null;
+
             try
             {
+                datos.setearConsulta("SELECT DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion FROM Paciente WHERE DNI = @DNI");
+                datos.setearParametros("@DNI", DNI);
+                datos.ejecutarLectura();
 
+                if (datos.Lector.Read())
+                {
+                    paciente = new Paciente();
+                    paciente.DNI = datos.Lector["DNI"].ToString();
+                    paciente.Nombre = datos.Lector["Nombre"].ToString();
+                    paciente.Apellido = datos.Lector["Apellido"].ToString();
+                    paciente.FechaNac = (DateTime)datos.Lector["FechaNac"];
+                    paciente.Telefono = datos.Lector["Telefono"].ToString();
+                    paciente.Email = datos.Lector["Email"].ToString();
+                    paciente.Direccion = datos.Lector["Direccion"].ToString();
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return paciente;
         }
-        */
     }
 }

@@ -11,11 +11,10 @@ namespace Dominio
         public string DNI { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public DateTime Fecha_Nacimiento { get; set; }
+        public DateTime FechaNac { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
-        public int NroHC { get; set; }
 
     }
 }
