@@ -15,7 +15,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("INSERT INTO Medicos (Matricula, Nombre, Apellido, Especialidad, Email, Telefono) values (@Matricula, @Nombre, @Apellido, @Especialidad, @Email, @Telefono)");
+                datos.setearConsulta("INSERT INTO Medico (Matricula, Nombre, Apellido, Especialidad, Email, Telefono) values (@Matricula, @Nombre, @Apellido, @Especialidad, @Email, @Telefono)");
 
                 datos.setearParametros("@Matricula", nuevo.Matricula);
                 datos.setearParametros("@Nombre ", nuevo.Nombre);
@@ -43,8 +43,9 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Update Medicos set Nombre = @Nombre, Apellido = @Apellido, Especialidad = @Especialidad, Email = @Email, Telefono = @Telefono where Matricula = @Matricula");
+                datos.setearConsulta("Update Medico set Nombre = @Nombre, Apellido = @Apellido, Especialidad = @Especialidad, Email = @Email, Telefono = @Telefono where Matricula = @Matricula");
 
+                datos.setearParametros("@Matricula", medico.Matricula);
                 datos.setearParametros("@Nombre", medico.Nombre);
                 datos.setearParametros("@Apellido", medico.Apellido);
                 datos.setearParametros("@Especialidad", medico.Especialidad);
@@ -62,6 +63,38 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public Medico existeMedico(string Matricula)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Medico medico = null;
+
+            try
+            {
+                datos.setearConsulta("SELECT Matricula, Nombre, Apellido, Telefono, Email, idEspecialidad FROM Medico WHERE Matricula = @Matricula");
+                datos.setearParametros("@Matricula", Matricula);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    medico = new Medico();
+                    medico.Matricula = datos.Lector["Matricula"].ToString();
+                    medico.Nombre = datos.Lector["Nombre"].ToString();
+                    medico.Apellido = datos.Lector["Apellido"].ToString();
+                    medico.Telefono = datos.Lector["Telefono"].ToString();
+                    medico.Email = datos.Lector["Email"].ToString();
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return medico;
         }
 
     }

@@ -35,11 +35,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="card-alta">
-        <h2>Alta de Médico</h2>
+        <h2>Datos del Médico</h2>
 
         <div class="mb-3">
-            <label for="txtMatricula" class="form-label">Matrícula</label>
-            <asp:TextBox ID="txtMatricula" runat="server" CssClass="form-control" placeholder="M.N.: 12345" />
+            <label for="txtMatricula" class="form-label">N° Matricula</label>
+            <div class="d-flex gap-2">
+                <asp:TextBox ID="txtMatricula" runat="server" CssClass="form-control" placeholder="123456" />
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" OnClick="btnBuscar_Click" />
+            </div>
         </div>
 
         <div class="mb-3">
