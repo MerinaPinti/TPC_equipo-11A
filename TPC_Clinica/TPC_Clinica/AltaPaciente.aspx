@@ -34,16 +34,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="card-alta">
-        <h2>Alta de Paciente</h2>
-
-        <div class="mb-3">
-            <label for="txtHistoriaClinica" class="form-label">N° Historia Clínica</label>
-            <asp:TextBox ID="txtHistoriaClinica" runat="server" CssClass="form-control" placeholder="123456" />
-        </div>
+        <h2>Datos del Paciente</h2>
 
         <div class="mb-3">
             <label for="txtDNI" class="form-label">DNI</label>
-            <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="40123456" />
+            <div class="d-flex gap-2">
+                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="40123456" />
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" OnClick="btnBuscar_Click" />
+            </div>
         </div>
 
         <div class="mb-3">
@@ -57,8 +55,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="txtFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" TextMode="Date" />
+            <label for="txtFechaNac" class="form-label">Fecha de Nacimiento</label>
+            <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control" TextMode="Date" />
         </div>
 
         <div class="mb-3">

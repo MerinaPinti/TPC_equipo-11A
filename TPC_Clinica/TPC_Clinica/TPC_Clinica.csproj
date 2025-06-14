@@ -79,7 +79,6 @@
     <Content Include="ListadoMedicos.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="ModificarMedico.aspx" />
-    <Content Include="ModificarPaciente.aspx" />
     <Content Include="ModificarTurno.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Web.config" />
@@ -171,13 +170,6 @@
     </Compile>
     <Compile Include="ModificarMedico.aspx.designer.cs">
       <DependentUpon>ModificarMedico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ModificarPaciente.aspx.cs">
-      <DependentUpon>ModificarPaciente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ModificarPaciente.aspx.designer.cs">
-      <DependentUpon>ModificarPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarTurno.aspx.cs">
       <DependentUpon>ModificarTurno.aspx</DependentUpon>

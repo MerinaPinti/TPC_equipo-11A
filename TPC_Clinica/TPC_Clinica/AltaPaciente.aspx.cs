@@ -19,28 +19,61 @@ namespace TPC_Clinica
         protected void btnGuardarPaciente_Click(object sender, EventArgs e)
         {
             PacienteNegocio negocio = new PacienteNegocio();
+            Paciente nuevo = negocio.existePaciente(txtDNI.Text);
 
             try
             {
-                Paciente nuevo = new Paciente();
+                if (nuevo == null)
+                {
+                    nuevo = new Paciente();
 
-                nuevo.DNI = txtDNI.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Apellido = txtApellido.Text;
-                nuevo.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimiento.Text);
-                nuevo.Telefono = txtTelefono.Text;
-                nuevo.Email = txtEmail.Text;
-                nuevo.Direccion = txtDireccion.Text;
-                nuevo.NroHC = Int32.Parse(txtHistoriaClinica.Text);
+                    nuevo.DNI = txtDNI.Text;
+                    nuevo.Nombre = txtNombre.Text;
+                    nuevo.Apellido = txtApellido.Text;
+                    nuevo.FechaNac = DateTime.Parse(txtFechaNac.Text);
+                    nuevo.Telefono = txtTelefono.Text;
+                    nuevo.Email = txtEmail.Text;
+                    nuevo.Direccion = txtDireccion.Text;
 
 
-                negocio.agregarPaciente(nuevo);
+                    negocio.agregarPaciente(nuevo);
+                }
+                else
+                {
 
+                    nuevo.Nombre = txtNombre.Text;
+                    nuevo.Apellido = txtApellido.Text;
+                    nuevo.FechaNac = DateTime.Parse(txtFechaNac.Text);
+                    nuevo.Telefono = txtTelefono.Text;
+                    nuevo.Email = txtEmail.Text;
+                    nuevo.Direccion = txtDireccion.Text;
+
+                    negocio.modificarPaciente(nuevo);
+                }
             }
             catch (Exception ex)
             {
 
                 throw ex;
+            }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente paciente = new Paciente();
+
+            paciente = negocio.existePaciente(txtDNI.Text);
+
+            if (paciente != null)
+            {
+                txtNombre.Text = paciente.Nombre;
+                txtApellido.Text = paciente.Apellido;
+                txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
+                txtTelefono.Text = paciente.Telefono;
+                txtEmail.Text = paciente.Email;
+                txtDireccion.Text = paciente.Direccion;
+
             }
         }
     }
