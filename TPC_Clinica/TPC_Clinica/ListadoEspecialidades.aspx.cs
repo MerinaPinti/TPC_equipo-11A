@@ -33,7 +33,6 @@ namespace TPC_Clinica
 
             if (e.CommandName == "Eliminar")
             {
-                Label1.Text = "Eliminando: " + id;
 
             }
 

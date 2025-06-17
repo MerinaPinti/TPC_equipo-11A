@@ -23,22 +23,35 @@ namespace TPC_Clinica
                     int id = (int)Session["IdModificar"];
                     EspecialidadNegocio negocio = new EspecialidadNegocio();
                     Especialidad modificar = negocio.ListarConId(id);
-                    txtBoxIdMod.Text = modificar.Id.ToString();
-                    txtBoxDescrMod.Text = modificar.Descripcion.ToString();
 
+                    lblIdMod.Visible = true;
+                    txtBoxIdMod.Visible = true;
+                    txtBoxIdMod.Text = modificar.Id.ToString();
+                    txtEspecialidad.Text = modificar.Descripcion.ToString();
+                    btnAgregarEspecialiad.Text = "Modificar";
                 }
             }
         }
 
         protected void btnAgregarEspecialiad_Click(object sender, EventArgs e)
         {
-            List<Especialidad> especialidades = (List<Especialidad>)Session["especialidades"];
-            especialidades.Add(new Especialidad { Descripcion = txtEspecialidad.Text });
-            txtEspecialidad.Text = null;
-            dgvEspecialidades.DataSource = especialidades;
-            dgvEspecialidades.DataBind();
-            Session["especialidades"] = especialidades;
-            btnContinuar.Visible = true;
+            if (Session["IdModificar"] == null)
+            {
+                List<Especialidad> especialidades = (List<Especialidad>)Session["especialidades"];
+                especialidades.Add(new Especialidad { Descripcion = txtEspecialidad.Text });
+                dgvEspecialidades.DataSource = especialidades;
+                dgvEspecialidades.DataBind();
+                txtEspecialidad.Text = null;
+                Session["especialidades"] = especialidades;
+                btnContinuar.Visible = true;
+            }
+            else
+            {
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                Especialidad modificar = new Especialidad { Descripcion = txtEspecialidad.Text, Id = Convert.ToInt32(txtBoxIdMod.Text) };
+                negocio.modificarEspecialidad(modificar);
+                Response.Redirect("ListadoEspecialidades.aspx", true);
+            }
 
         }
 
@@ -66,13 +79,6 @@ namespace TPC_Clinica
             negocio.agregarEspecialidad((List<Especialidad>)Session["especialidades"]);
             Session.Remove("especialidades");
             Response.Redirect("ListadoEspecialidades.aspx");
-        }
-
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            Especialidad modificar = new Especialidad { Id = Convert.ToInt32(txtBoxIdMod), Descripcion = txtBoxDescrMod.ToString()};
-            negocio.modificarEspecialidad(modificar);
         }
     }
 }

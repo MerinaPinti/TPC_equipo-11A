@@ -24,13 +24,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
-    <%if (Session["IdModificar"] == null)
-        { %>
+   
     <div class="especialidad-alta">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <div class="row">
                     <div class="col-3">
+                        <asp:Label ID="lblIdMod" runat="server" Visible="false" CssClass="form-label mt-3" Text="ID"></asp:Label>
+                        <asp:TextBox ID="txtBoxIdMod" Visible="false" CssClass="form-control" runat="server" disabled></asp:TextBox>
                         <label for="exampleFormControlInput1" class="form-label mt-3">Especialidad</label>
                         <asp:TextBox ID="txtEspecialidad" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:Button ID="btnAgregarEspecialiad" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Agregar" OnClick="btnAgregarEspecialiad_Click" />
@@ -69,23 +70,5 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-    <%}
-        else
-        { %>
-    <div class="especialidad-modificar">
-        <asp:UpdatePanel runat="server">
-            <ContentTemplate>
-                <div class="row">
-                    <div class="col">
-                        <label for="exampleFormControlInput1" class="form-label mt-3">ID</label>
-                        <asp:TextBox ID="txtBoxIdMod" CssClass="form-control" runat="server" disabled></asp:TextBox>
-                        <label for="exampleFormControlInput1" class="form-label mt-3">Especialidad</label>
-                        <asp:TextBox ID="txtBoxDescrMod" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:Button ID="btnModificar" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
-                    </div>
-                </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </div>
-    <%} %>
+    
 </asp:Content>
