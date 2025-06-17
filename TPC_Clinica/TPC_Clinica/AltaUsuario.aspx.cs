@@ -72,6 +72,7 @@ namespace TPC_Clinica
             Response.Redirect("ListadoUsuarios.aspx");
         }
 
+
         protected void dgvUsuarios_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
            

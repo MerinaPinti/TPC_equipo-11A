@@ -19,15 +19,16 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT idTipoUsuario, usuario, contraseña, activo FROM Usuario WHERE activo = 1");
+                datos.setearConsulta("SELECT idUsuario AS Id, usuario, contraseña, idTipoUsuario, activo FROM Usuario WHERE activo = 1");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Usuario user = new Usuario();
-                    user.TipoUsuario = datos.Lector["idTipoUsuario"].ToString();
+                    user.Id = (int)datos.Lector["Id"];  // Esta línea es la clave
                     user.UserName = (string)datos.Lector["usuario"];
                     user.Password = (string)datos.Lector["contraseña"];
+                    user.TipoUsuario = datos.Lector["idTipoUsuario"].ToString();
                     user.Activo = (bool)datos.Lector["activo"];
 
                     lista.Add(user);
