@@ -70,6 +70,7 @@
     <Content Include="AltaMedico.aspx" />
     <Content Include="AltaPaciente.aspx" />
     <Content Include="AltaEspecialidad.aspx" />
+    <Content Include="AltaUsuario.aspx" />
     <Content Include="AsignarTurno.aspx" />
     <Content Include="CancelarTurno.aspx" />
     <Content Include="Default.aspx" />
@@ -103,6 +104,13 @@
     </Compile>
     <Compile Include="AltaEspecialidad.aspx.designer.cs">
       <DependentUpon>AltaEspecialidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaUsuario.aspx.cs">
+      <DependentUpon>AltaUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaUsuario.aspx.designer.cs">
+      <DependentUpon>AltaUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="AsignarTurno.aspx.cs">
       <DependentUpon>AsignarTurno.aspx</DependentUpon>
