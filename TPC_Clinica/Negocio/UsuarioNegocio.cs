@@ -48,11 +48,10 @@ namespace Negocio
 
         public void agregarUsuario(List<Usuario> lista)
         {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
+            foreach (Usuario usuario in lista)
             {
-                foreach (Usuario usuario in lista)
+                AccesoDatos datos = new AccesoDatos(); // Instancia dentro del foreach
+                try
                 {
                     datos.setearConsulta("INSERT INTO Usuario (usuario, contraseña, idTipoUsuario) VALUES (@user, @pass, @tipo)");
                     datos.setearParametros("@user", usuario.UserName);
@@ -60,14 +59,14 @@ namespace Negocio
                     datos.setearParametros("@tipo", int.Parse(usuario.TipoUsuario));
                     datos.ejecutarAccion();
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
+                catch (Exception ex)
+                {
+                    throw ex; // Podés loguearlo o mostrarlo también
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
             }
         }
 
