@@ -19,5 +19,7 @@ namespace Dominio
         public DateTime FinTurno { get; set; }
         public DateTime UltimaModificacion { get; set; }
 
+        public bool Activo { get; set; }
+
     }
 }

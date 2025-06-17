@@ -16,5 +16,6 @@ namespace Dominio
         public string Email { get; set; }
         public string Telefono { get; set; }
         //public string Turno { get; set; } turno de trabajo
+        public bool Activo { get; set; }
     }
 }
