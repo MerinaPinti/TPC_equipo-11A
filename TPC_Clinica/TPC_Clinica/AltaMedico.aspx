@@ -61,8 +61,7 @@
 
         <div class="mb-3">
             <label for="ddlEspecialidad" class="form-label">Especialidad</label>
-            <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-select">
-            </asp:DropDownList>
+            <asp:CheckBoxList ID="chkEspecialidades" runat="server" RepeatLayout="Table" RepeatColumns="2"></asp:CheckBoxList>
         </div>
 
         <div class="mb-3">

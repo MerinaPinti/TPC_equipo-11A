@@ -78,13 +78,13 @@ namespace TPC_Clinica
         protected global::System.Web.UI.WebControls.Label lblApellido;
 
         /// <summary>
-        /// Control ddlEspecialidad.
+        /// Control chkEspecialidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkEspecialidades;
 
         /// <summary>
         /// Control txtEmail.

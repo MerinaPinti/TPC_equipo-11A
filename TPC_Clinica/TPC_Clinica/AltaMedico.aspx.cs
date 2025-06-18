@@ -13,20 +13,40 @@ namespace TPC_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            List<Dominio.Especialidad> lista = negocio.Listar();
+            if (!IsPostBack)
+            {
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                List<Dominio.Especialidad> lista = negocio.Listar();
 
-            ddlEspecialidad.DataSource = lista;
-            ddlEspecialidad.DataTextField = "Descripcion";
-            ddlEspecialidad.DataValueField = "ID";
-            ddlEspecialidad.DataBind();
-
-            ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione una especialidad --", ""));
+                chkEspecialidades.DataSource = lista;
+                chkEspecialidades.DataTextField = "Descripcion";
+                chkEspecialidades.DataValueField = "Id";
+                chkEspecialidades.DataBind();
+            }
 
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            List<Especialidad> seleccionadas = new List<Especialidad>();
+
+            foreach (ListItem item in chkEspecialidades.Items)
+            {
+                if (item.Selected)
+                {
+                    seleccionadas.Add(new Especialidad
+                    {
+                        Id = int.Parse(item.Value),
+                        Descripcion = item.Text
+                    });
+                }
+            }
+
+            Medico nuevoMedico = new Medico();
+            nuevoMedico.Especialidad = seleccionadas;
+
+
+
             /* MedicoNegocio negocio = new MedicoNegocio();
              Medico nuevo = negocio.existeMedico(txtMatricula.Text);
             bool hayerror = false;
