@@ -1,34 +1,148 @@
-﻿using System;
+﻿using Dominio;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Dominio;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Negocio
 {
     public class MedicoNegocio
     {
-        public void agregarMedico(Medico nuevo)
+
+
+
+        public List<Medico> listar() //1. Metodo para que lea los registros de la base de datos
+        {
+            List<Medico> lista = new List<Medico>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearConsulta("SELECT M.email, M.telefono, M.nombre, M.apellido, M.matricula, EM.IDMEDICO, EM.IDESPECIALIDAD, E.descripcion FROM MEDICO as M INNER JOIN ESPECIALIDADES_MEDICOS AS EM ON EM.IDMEDICO = M.idMedico INNER JOIN ESPECIALIDAD AS E ON E.idEspecialidad = EM.idEspecialidad WHERE M.activo = 1;");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    int idMedico = (int)datos.Lector["IDMEDICO"];
+                    Medico existente = lista.FirstOrDefault(a => a.IdMedico == idMedico); //devuelve el primero que encuentra, si no encuentra devuelve null 
+
+                    if (existente == null)
+                    {
+                        Medico aux = new Medico();
+                        aux.IdMedico = idMedico;
+                        aux.Matricula = (string)datos.Lector["matricula"];
+                        aux.Nombre = (string)datos.Lector["nombre"];
+                        aux.Apellido = (string)datos.Lector["apellido"];
+                        aux.Email = (string)datos.Lector["email"];
+                        aux.Telefono = (string)datos.Lector["telefono"];
+
+
+                        //aux.Imagen = new Imagen();
+                        //aux.Imagen.Url = datos.Lector["ImagenUrl"] != DBNull.Value ? datos.Lector["ImagenUrl"].ToString() : "";
+                        aux.Especialidad = new List<Especialidad>();
+                        //ID ESPECIALIDAD DE LA INTERMEDIA
+                        if (datos.Lector["IDESPECIALIDAD"] != DBNull.Value)
+                        {
+                            aux.Especialidad.Add(new Especialidad
+                            {
+                                Id = (int)datos.Lector["IDESPECIALIDAD"],
+                                Descripcion = (string)datos.Lector["descripcion"]
+                            });
+                        }
+                        lista.Add(aux);
+                    }
+
+                    else
+                    {
+                        if (datos.Lector["IDESPECIALIDAD"] != DBNull.Value)
+                        {
+                            existente.Especialidad.Add(new Especialidad
+                            {
+                                Id = (int)datos.Lector["IDESPECIALIDAD"],
+                                Descripcion = (string)datos.Lector["descripcion"]
+                            });
+                        }
+
+                    }
+
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
+
+
+        public void agregarMedico(Medico nuevo, List<int> idEspecialidades)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("INSERT INTO Medico (Matricula, Nombre, Apellido, Especialidad, Email, Telefono) values (@Matricula, @Nombre, @Apellido, @Especialidad, @Email, @Telefono)");
-
+                // Insert en la tabla Medico
+                datos.setearConsulta("INSERT INTO Medico (Matricula, Nombre, Apellido, Email, Telefono) OUTPUT INSERTED.IDMedico VALUES (@Matricula, @Nombre, @Apellido, @Email, @Telefono)");
                 datos.setearParametros("@Matricula", nuevo.Matricula);
-                datos.setearParametros("@Nombre ", nuevo.Nombre);
-                datos.setearParametros("@Apellido ", nuevo.Apellido);
-                datos.setearParametros("@Especialidad ", nuevo.Especialidad);
-                datos.setearParametros("@Email ", nuevo.Email);
-                datos.setearParametros("@Telefono ", nuevo.Telefono);
-
+                datos.setearParametros("@Nombre", nuevo.Nombre);
+                datos.setearParametros("@Apellido", nuevo.Apellido);
+                datos.setearParametros("@Email", nuevo.Email);
+                datos.setearParametros("@Telefono", nuevo.Telefono);
                 datos.ejecutarAccion();
+
+                int idMedico = (int)datos.ejecutarScalar(); // Obtener el ID generado
+
+                cargarIntermedia(idMedico, idEspecialidades);
+
+
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
+        public void cargarIntermedia(int idMedico, List<int> idEspecialidades)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try
+            {
+
+                // Insertar en tabla intermedia ESPECIALIDADES_MEDICO
+                foreach (int idEsp in idEspecialidades)
+                {
+                    datos = new AccesoDatos();
+                    datos.setearConsulta("INSERT INTO ESPECIALIDADES_MEDICOS (IDEspecialidad, IDMedico) VALUES (@idEspecialidad, @idMedico)");
+                    datos.setearParametros("@idEspecialidad", idEsp);
+                    datos.setearParametros("@idMedico", idMedico);
+                    datos.ejecutarAccion();
+                }
+            }
+
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally
