@@ -44,6 +44,14 @@ namespace TPC_Clinica
                 return;
             }
 
+            if(txtEspecialidad.Text.Length > 50)
+            {
+                lblValidacion.Text = "El campo debe tener máximo 50 caracteres";
+                txtEspecialidad.CssClass = "form-control is-invalid";
+                lblValidacion.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
             if (Session["IdModificarEspecialidad"] == null)
             {
                 List<Especialidad> especialidades = (List<Especialidad>)Session["especialidades"];

@@ -18,16 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -36,7 +28,7 @@
               "RelativeDocumentMoniker": "TPC_Clinica\\AltaEspecialidad.aspx.cs",
               "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaEspecialidad.aspx.cs",
               "RelativeToolTip": "TPC_Clinica\\AltaEspecialidad.aspx.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAuwDkAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwDQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T17:47:52.3Z",
               "EditorCaption": ""
