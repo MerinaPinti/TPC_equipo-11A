@@ -70,6 +70,7 @@
     <Content Include="AltaMedico.aspx" />
     <Content Include="AltaPaciente.aspx" />
     <Content Include="AltaEspecialidad.aspx" />
+    <Content Include="AltaTipoUsuario.aspx" />
     <Content Include="AltaUsuario.aspx" />
     <Content Include="AsignarTurno.aspx" />
     <Content Include="CancelarTurno.aspx" />
@@ -79,6 +80,7 @@
     <Content Include="ListadoEspecialidades.aspx" />
     <Content Include="ListadoMedicos.aspx" />
     <Content Include="ListadoPaciente.aspx" />
+    <Content Include="ListadoTipoUsuario.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="ModificarTurno.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
@@ -105,6 +107,13 @@
     </Compile>
     <Compile Include="AltaEspecialidad.aspx.designer.cs">
       <DependentUpon>AltaEspecialidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaTipoUsuario.aspx.cs">
+      <DependentUpon>AltaTipoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaTipoUsuario.aspx.designer.cs">
+      <DependentUpon>AltaTipoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="AltaUsuario.aspx.cs">
       <DependentUpon>AltaUsuario.aspx</DependentUpon>
@@ -164,6 +173,13 @@
     </Compile>
     <Compile Include="ListadoPaciente.aspx.designer.cs">
       <DependentUpon>ListadoPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoTipoUsuario.aspx.cs">
+      <DependentUpon>ListadoTipoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoTipoUsuario.aspx.designer.cs">
+      <DependentUpon>ListadoTipoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoUsuarios.aspx.cs">
       <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
