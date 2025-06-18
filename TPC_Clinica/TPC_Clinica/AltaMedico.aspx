@@ -41,18 +41,22 @@
             <label for="txtMatricula" class="form-label">N° Matricula</label>
             <div class="d-flex gap-2">
                 <asp:TextBox ID="txtMatricula" runat="server" CssClass="form-control" placeholder="123456" />
+                <asp:Label ID="lblMatricula" runat="server" CssClass="form-text" />
+
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" OnClick="btnBuscar_Click" />
             </div>
         </div>
 
         <div class="mb-3">
             <label for="txtNombre" class="form-label">Nombre</label>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Juan Carlos"/>
+            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Juan Carlos" />
+            <asp:Label ID="lblNombre" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
             <label for="txtApellido" class="form-label">Apellido</label>
-            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Perez"/>
+            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Perez" />
+            <asp:Label ID="lblApellido" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
@@ -63,12 +67,14 @@
 
         <div class="mb-3">
             <label for="txtEmail" class="form-label">Email</label>
-            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="nombre@mail.com"/>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="nombre@mail.com" />
+            <asp:Label ID="lblEmail" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
             <label for="txtTelefono" class="form-label">Teléfono</label>
             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" TextMode="Phone" placeholder="+54 9 11 1234-5678" />
+            <asp:Label ID="lblTelefono" runat="server" CssClass="form-text" />
         </div>
 
         <asp:Button 
