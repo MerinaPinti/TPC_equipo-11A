@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\listadousuarios.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\listadousuarios.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altaespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altaespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\listadoespecialidades.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\listadoespecialidades.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\listadousuarios.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\listadousuarios.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altausuario.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altausuario.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altaespecialidad.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altaespecialidad.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,67 +30,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AltaUsuario.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaUsuario.aspx.cs",
-              "RelativeDocumentMoniker": "TPC_Clinica\\AltaUsuario.aspx.cs",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaUsuario.aspx.cs",
-              "RelativeToolTip": "TPC_Clinica\\AltaUsuario.aspx.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwEYAAAAuAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AltaEspecialidad.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaEspecialidad.aspx.cs",
+              "RelativeDocumentMoniker": "TPC_Clinica\\AltaEspecialidad.aspx.cs",
+              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaEspecialidad.aspx.cs",
+              "RelativeToolTip": "TPC_Clinica\\AltaEspecialidad.aspx.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAuwDkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T17:40:45.377Z",
+              "WhenOpened": "2025-06-18T17:47:52.3Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ListadoEspecialidades.aspx",
-              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoEspecialidades.aspx",
-              "RelativeDocumentMoniker": "TPC_Clinica\\ListadoEspecialidades.aspx",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoEspecialidades.aspx",
-              "RelativeToolTip": "TPC_Clinica\\ListadoEspecialidades.aspx",
+              "Title": "AltaEspecialidad.aspx",
+              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaEspecialidad.aspx",
+              "RelativeDocumentMoniker": "TPC_Clinica\\AltaEspecialidad.aspx",
+              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaEspecialidad.aspx",
+              "RelativeToolTip": "TPC_Clinica\\AltaEspecialidad.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-18T17:37:37.724Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListadoUsuarios.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoUsuarios.aspx.cs",
-              "RelativeDocumentMoniker": "TPC_Clinica\\ListadoUsuarios.aspx.cs",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoUsuarios.aspx.cs",
-              "RelativeToolTip": "TPC_Clinica\\ListadoUsuarios.aspx.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCgAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T17:36:47.897Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ListadoUsuarios.aspx",
-              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoUsuarios.aspx",
-              "RelativeDocumentMoniker": "TPC_Clinica\\ListadoUsuarios.aspx",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoUsuarios.aspx*",
-              "RelativeToolTip": "TPC_Clinica\\ListadoUsuarios.aspx*",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-18T17:36:28.958Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsuarioNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\UsuarioNegocio.cs",
-              "RelativeDocumentMoniker": "Negocio\\UsuarioNegocio.cs",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\UsuarioNegocio.cs",
-              "RelativeToolTip": "Negocio\\UsuarioNegocio.cs",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAkwKQAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T17:34:31.407Z",
+              "WhenOpened": "2025-06-18T17:47:49.316Z",
               "EditorCaption": ""
             }
           ]

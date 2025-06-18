@@ -35,6 +35,15 @@ namespace TPC_Clinica
 
         protected void btnAgregarEspecialiad_Click(object sender, EventArgs e)
         {
+
+            if (String.IsNullOrEmpty(txtEspecialidad.Text))
+            {
+                lblValidacion.Text = "Por favor ingrese una especialidad";
+                txtEspecialidad.CssClass = "form-control is-invalid";
+                lblValidacion.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
             if (Session["IdModificarEspecialidad"] == null)
             {
                 List<Especialidad> especialidades = (List<Especialidad>)Session["especialidades"];
@@ -43,6 +52,8 @@ namespace TPC_Clinica
                 dgvEspecialidades.DataBind();
                 txtEspecialidad.Text = null;
                 Session["especialidades"] = especialidades;
+                lblValidacion.Text = null;
+                txtEspecialidad.CssClass = "form-control";
                 btnContinuar.Visible = true;
             }
             else
@@ -52,6 +63,7 @@ namespace TPC_Clinica
                 negocio.modificarEspecialidad(modificar);
                 Response.Redirect("ListadoEspecialidades.aspx", true);
             }
+
 
         }
 
