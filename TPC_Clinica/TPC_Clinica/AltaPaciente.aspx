@@ -39,7 +39,9 @@
         <div class="mb-3">
             <label for="txtDNI" class="form-label">DNI</label>
             <div class="d-flex gap-2">
-                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="40123456" />
+                <asp:TextBox ID="txtDNI" runat="server" AutoPostBack="true" CssClass="form-control" placeholder="40123456" />
+                <asp:Label ID="lblDNI" runat="server" CssClass="form-text" />
+                
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" OnClick="btnBuscar_Click" />
             </div>
         </div>
@@ -47,31 +49,37 @@
         <div class="mb-3">
             <label for="txtNombre" class="form-label">Nombre</label>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Juan" />
+            <asp:Label ID="lblNombre" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
             <label for="txtApellido" class="form-label">Apellido</label>
             <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Pérez" />
+            <asp:Label ID="lblApellido" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
             <label for="txtFechaNac" class="form-label">Fecha de Nacimiento</label>
             <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control" TextMode="Date" />
+            <asp:Label ID="lblFechaNac" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
             <label for="txtTelefono" class="form-label">Teléfono</label>
             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" TextMode="Phone" placeholder="+54 9 11 1234-5678" />
+            <asp:Label ID="lblTelefono" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
             <label for="txtDireccion" class="form-label">Dirección</label>
             <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Calle 123" />
+            <asp:Label ID="lblDireccion" runat="server" CssClass="form-text" />
         </div>
 
         <div class="mb-3">
             <label for="txtEmail" class="form-label">Email</label>
             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="correo@mail.com" />
+            <asp:Label ID="lblEmail" runat="server" CssClass="form-text" />
         </div>
 
         <asp:Button 

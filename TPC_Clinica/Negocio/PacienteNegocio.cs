@@ -100,5 +100,76 @@ namespace Negocio
 
             return paciente;
         }
+
+        public List<Paciente> listarPacientes()
+        {
+            List<Paciente> lista = new List<Paciente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion FROM Paciente");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Paciente paciente = new Paciente();
+                    paciente.DNI = datos.Lector["DNI"].ToString();
+                    paciente.Nombre = datos.Lector["Nombre"].ToString();
+                    paciente.Apellido = datos.Lector["Apellido"].ToString();
+                    paciente.FechaNac = (DateTime)datos.Lector["FechaNac"];
+                    paciente.Telefono = datos.Lector["Telefono"].ToString();
+                    paciente.Email = datos.Lector["Email"].ToString();
+                    paciente.Direccion = datos.Lector["Direccion"].ToString();
+
+                    lista.Add(paciente);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminarLogico(string DNI)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+
+                datos.setearConsulta("UPDATE FROM Paciente set Activo = 0 WHERE DNI = @DNI");
+
+                datos.setearParametros("DNI", DNI);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void eliminarFisico(string DNI)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("DELETE FROM Paciente WHERE DNI = @DNI");
+
+                datos.setearParametros("DNI", DNI);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
