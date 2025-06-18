@@ -7,21 +7,24 @@ GO
 
 CREATE TABLE TipoUsuario (
 	idTipoUsuario INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	descripcion varchar(50) NOT NULL
+	descripcion varchar(50) NOT NULL,
+	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
 );
 
 GO
 
 CREATE TABLE Especialidad(
 	idEspecialidad INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	descripcion varchar(50) NOT NULL
+	descripcion varchar(50) NOT NULL,
+	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
 );
 
 GO
 
 CREATE TABLE Estado(
 	idEstado INT PRIMARY KEY NOT NULL IDENTITY(1,1),
-	descripcion varchar(30) NOT NULL
+	descripcion varchar(30) NOT NULL,
+	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
 );
 
 GO
@@ -34,7 +37,8 @@ CREATE TABLE Paciente(
 	fechaNac DATE,
 	telefono VARCHAR(15),
 	direccion VARCHAR(60) NOT NULL,
-	email VARCHAR(100) NOT NULL
+	email VARCHAR(100) NOT NULL,
+	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
 );
 
 GO
@@ -43,7 +47,8 @@ CREATE TABLE Usuario(
 	idUsuario INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	idTipoUsuario INT NOT NULL FOREIGN KEY REFERENCES TipoUsuario(idTipoUsuario),
 	usuario VARCHAR(15) NOT NULL,
-	contraseña VARCHAR(255) NOT NULL
+	contraseÃ±a VARCHAR(255) NOT NULL,
+	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva, 
 );
 
 GO
@@ -56,7 +61,8 @@ CREATE TABLE Medico(
 	apellido VARCHAR(100),
 	matricula VARCHAR(90) NOT NULL UNIQUE,
 	idEspecialidad INT FOREIGN KEY REFERENCES Especialidad(idEspecialidad),
-	idUsuario INT UNIQUE FOREIGN KEY REFERENCES Usuario(idUsuario)
+	idUsuario INT UNIQUE FOREIGN KEY REFERENCES Usuario(idUsuario),
+	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
 );
 
 GO
@@ -71,7 +77,8 @@ CREATE TABLE Turno(
 	observaciones VARCHAR(200),
 	diagnostico VARCHAR(200),
 	fechaAlta DATE,
-	ultimaModificacion DATE
+	ultimaModificacion DATE, 
+	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
 );
 
 GO
@@ -79,11 +86,11 @@ GO
 -- Tabla TipoUsuario
 INSERT INTO TipoUsuario (Descripcion) VALUES
 ('Administrador'),
-('Médico'),
+('MÃ©dico'),
 ('Recepcionista');
 
 -- Tabla Usuario
-INSERT INTO Usuario (idTipoUsuario, Usuario, Contraseña) VALUES
+INSERT INTO Usuario (idTipoUsuario, Usuario, ContraseÃ±a) VALUES
 (1, 'admin01', 'passAdmin123'),
 (2, 'medico01', 'passMedico123'),
 (3, 'recep01', 'passRecep123');
@@ -94,31 +101,31 @@ INSERT INTO Estado (Descripcion) VALUES
 ('Confirmado'),
 ('Reprogramado'),
 ('Cancelado'),
-('No Asistió'),
+('No AsistiÃ³'),
 ('Cerrado');
 
 -- Tabla Especialidad
 INSERT INTO Especialidad (Descripcion) VALUES
-('Cardiología'),
-('Dermatología'),
-('Endocrinología'),
-('Ginecología'),
-('Hematología'),
-('Nefrología'),
+('CardiologÃ­a'),
+('Dermatologpia'),
+('EndocrinologÃ­a'),
+('GinecologÃ­a'),
+('HematologÃ­a'),
+('NefrologÃ­a'),
 ('Obstetricia'),
-('Oftalmología'),
-('Otorrinolaringología'),
-('Pediatría'),
-('Traumatología');
+('OftalmologÃ­a'),
+('OtorrinolaringologÃ­a'),
+('PediatrÃ­a'),
+('TraumatologÃ­a');
 
 -- Tabla Paciente
 INSERT INTO Paciente (Nombre, Apellido, DNI, FechaNac, Telefono, Direccion, Email) VALUES
-('Juan', 'Pérez', '12345678', '1980-05-12', '1122334455', 'Av. Siempre Viva 123', 'juan.perez@mail.com'),
-('María', 'González', '87654321', '1990-10-25', '1144556677', 'Calle Falsa 456', 'maria.gonzalez@mail.com'),
-('Carlos', 'López', '11223344', '1975-03-08', '1133557799', 'Pasaje 123', 'carlos.lopez@mail.com');
+('Juan', 'PÃ©rez', '12345678', '1980-05-12', '1122334455', 'Av. Siempre Viva 123', 'juan.perez@mail.com'),
+('MarÃ­a', 'GonzÃ¡lez', '87654321', '1990-10-25', '1144556677', 'Calle Falsa 456', 'maria.gonzalez@mail.com'),
+('Carlos', 'LÃ³pez', '11223344', '1975-03-08', '1133557799', 'Pasaje 123', 'carlos.lopez@mail.com');
 
 -- Tabla Medico
 INSERT INTO Medico (Email, Telefono, Nombre, Apellido, Matricula, idEspecialidad, idUsuario) VALUES
 ('alejandro.ramos@clinica.com', '1199887766', 'Alejandro', 'Ramos', '654321', 1, 1),
-('laura.sanchez@clinica.com', '1177665544', 'Laura', 'Sánchez', '765432', 2, 2),
-('fernando.martinez@clinica.com', '1166554433', 'Fernando', 'Martínez', '876543', 3, 3);
+('laura.sanchez@clinica.com', '1177665544', 'Laura', 'SÃ¡nchez', '765432', 2, 2),
+('fernando.martinez@clinica.com', '1166554433', 'Fernando', 'MartÃ­nez', '876543', 3, 3);
