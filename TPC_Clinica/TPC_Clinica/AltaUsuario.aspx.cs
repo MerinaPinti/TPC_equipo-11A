@@ -18,9 +18,9 @@ namespace TPC_Clinica
                 List<Usuario> usuarios = new List<Usuario>();
                 Session.Add("usuarios", usuarios);
 
-                if (Session["IdModificar"] != null)
+                if (Session["IdModificarUsuario"] != null)
                 {
-                    int id = (int)Session["IdModificar"];
+                    int id = (int)Session["IdModificarUsuario"];
                     UsuarioNegocio negocio = new UsuarioNegocio();
                     Usuario modificar = negocio.ListarConId(id);
 
@@ -37,7 +37,7 @@ namespace TPC_Clinica
 
         protected void btnAgregarUsuario_Click(object sender, EventArgs e)
         {
-            if (Session["IdModificar"] == null)
+            if (Session["IdModificarUsuario"] == null)
             {
                 List<Usuario> usuarios = (List<Usuario>)Session["usuarios"];
                 usuarios.Add(new Usuario
@@ -68,7 +68,7 @@ namespace TPC_Clinica
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
             negocio.agregarUsuario((List<Usuario>)Session["usuarios"]);
-            Session.Remove("usuarios");
+            Session.Remove("idModificarUsuario");
             Response.Redirect("ListadoUsuarios.aspx");
         }
 

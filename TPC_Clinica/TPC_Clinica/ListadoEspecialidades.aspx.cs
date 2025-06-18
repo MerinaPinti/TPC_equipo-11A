@@ -43,7 +43,7 @@ namespace TPC_Clinica
 
             if (e.CommandName == "Editar")
             {
-                Session.Add("IdModificar", id);
+                Session.Add("IdModificarEspecialidad", id);
                 Response.Redirect("AltaEspecialidad.aspx", true);
             }
         }

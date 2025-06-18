@@ -19,6 +19,39 @@ namespace Negocio
 
             try
             {
+                datos.setearConsulta("SELECT idUsuario AS Id, usuario, contraseña, idTipoUsuario, activo FROM Usuario");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario user = new Usuario();
+                    user.Id = (int)datos.Lector["Id"];  // Esta línea es la clave
+                    user.UserName = (string)datos.Lector["usuario"];
+                    user.Password = (string)datos.Lector["contraseña"];
+                    user.TipoUsuario = datos.Lector["idTipoUsuario"].ToString();
+                    user.Activo = (bool)datos.Lector["activo"];
+
+                    lista.Add(user);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<Usuario> ListarActivos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
                 datos.setearConsulta("SELECT idUsuario AS Id, usuario, contraseña, idTipoUsuario, activo FROM Usuario WHERE activo = 1");
                 datos.ejecutarLectura();
 
@@ -89,10 +122,6 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-
-
-
-
         }
 
         public Usuario ListarConId(int id)
@@ -114,6 +143,26 @@ namespace Negocio
                 }
 
                 return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void EliminarUsuario(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Usuario SET Activo = 0 WHERE idUsuario = @id");
+                datos.setearParametros("@id", usuario.Id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

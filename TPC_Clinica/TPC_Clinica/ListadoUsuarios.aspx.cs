@@ -10,13 +10,12 @@ namespace TPC_Clinica
 {
     public partial class ListadoUsuarios : System.Web.UI.Page
     {
-
+        private UsuarioNegocio Negocio = new UsuarioNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                UsuarioNegocio negocio = new UsuarioNegocio();
-                dgvUsuarios.DataSource = negocio.Listar();
+                dgvUsuarios.DataSource = Negocio.ListarActivos();
                 dgvUsuarios.DataBind();
             }
         }
@@ -37,12 +36,14 @@ namespace TPC_Clinica
 
             if (e.CommandName == "Eliminar")
             {
-
+                Negocio.EliminarUsuario(Negocio.ListarConId(id));
+                dgvUsuarios.DataSource = Negocio.ListarActivos();
+                dgvUsuarios.DataBind();
             }
 
             if (e.CommandName == "Editar")
             {
-                Session.Add("IdModificar", id);
+                Session.Add("IdModificarUsuario", id);
                 Response.Redirect("AltaUsuario.aspx", true);
             }
         }

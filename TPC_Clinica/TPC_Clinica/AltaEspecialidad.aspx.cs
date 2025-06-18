@@ -18,9 +18,9 @@ namespace TPC_Clinica
                 List<Especialidad> especialidades = new List<Especialidad>();
                 Session.Add("especialidades", especialidades);
 
-                if (Session["IdModificar"] != null)
+                if (Session["IdModificarEspecialidad"] != null)
                 {
-                    int id = (int)Session["IdModificar"];
+                    int id = (int)Session["IdModificarEspecialidad"];
                     EspecialidadNegocio negocio = new EspecialidadNegocio();
                     Especialidad modificar = negocio.ListarConId(id);
 
@@ -35,7 +35,7 @@ namespace TPC_Clinica
 
         protected void btnAgregarEspecialiad_Click(object sender, EventArgs e)
         {
-            if (Session["IdModificar"] == null)
+            if (Session["IdModificarEspecialidad"] == null)
             {
                 List<Especialidad> especialidades = (List<Especialidad>)Session["especialidades"];
                 especialidades.Add(new Especialidad { Descripcion = txtEspecialidad.Text });
