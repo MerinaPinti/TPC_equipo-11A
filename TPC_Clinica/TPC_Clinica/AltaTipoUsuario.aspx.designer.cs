@@ -24,6 +24,33 @@ namespace TPC_Clinica
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// Control UpdatePanel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
+        /// Control lblIdModTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIdModTipo;
+
+        /// <summary>
+        /// Control txtBoxIdModTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxIdModTipo;
+
+        /// <summary>
         /// Control txtTipoUsuario.
         /// </summary>
         /// <remarks>
@@ -31,6 +58,15 @@ namespace TPC_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTipoUsuario;
+
+        /// <summary>
+        /// Control lblValidacionTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidacionTipo;
 
         /// <summary>
         /// Control btnAgregarTipoUsuario.
@@ -42,30 +78,21 @@ namespace TPC_Clinica
         protected global::System.Web.UI.WebControls.Button btnAgregarTipoUsuario;
 
         /// <summary>
-        /// Control txtIdTipoUsuario.
+        /// Control dgvTiposUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdTipoUsuario;
+        protected global::System.Web.UI.WebControls.GridView dgvTiposUsuario;
 
         /// <summary>
-        /// Control txtDescripcionTipoUsuario.
+        /// Control btnContinuar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcionTipoUsuario;
-
-        /// <summary>
-        /// Control btnModificarTipoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarTipoUsuario;
+        protected global::System.Web.UI.WebControls.Button btnContinuar;
     }
 }
