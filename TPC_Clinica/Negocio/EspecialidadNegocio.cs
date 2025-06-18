@@ -38,6 +38,35 @@ namespace Negocio
             }
         }
 
+        public List<Especialidad> ListarActivos()
+        {
+            List<Especialidad> lista = new List<Especialidad>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT idEspecialidad as Id, descripcion FROM ESPECIALIDAD WHERE activo = 1");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Especialidad esp = new Especialidad();
+                    esp.Id = (int)datos.Lector["Id"];
+                    esp.Descripcion = (string)datos.Lector["descripcion"];
+                    lista.Add(esp);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public Especialidad ListarConId(int id)
         {
             Especialidad lista = new Especialidad();
@@ -110,6 +139,27 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void eliminarEspecialidad(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Especialidad set Activo = 0 WHERE idEspecialidad = @id");
+
+                datos.setearParametros("@id", especialidad.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
+
 }
 

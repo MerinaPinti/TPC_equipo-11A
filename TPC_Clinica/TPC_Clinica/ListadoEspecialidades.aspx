@@ -47,8 +47,8 @@
                                     CommandName="Eliminar"
                                     ToolTip="Eliminar"
                                     CommandArgument='<%# Container.DataItemIndex %>'
-                                    Style="width: 17px; height: 17px; margin:0 4px;"/>
-                                <%--OnClientClick="return confirm('¿Estás seguro que querés eliminar este ítem?');"--%>
+                                    Style="width: 17px; height: 17px; margin:0 4px;"
+                                    OnClientClick="return confirm('¿Estás seguro que querés eliminar esta especialidad?');"/>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
