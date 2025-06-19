@@ -104,11 +104,7 @@ namespace Negocio
                 datos.setearParametros("@Apellido", nuevo.Apellido);
                 datos.setearParametros("@Email", nuevo.Email);
                 datos.setearParametros("@Telefono", nuevo.Telefono);
-                if (string.IsNullOrWhiteSpace(nuevo.Matricula))
-                    throw new Exception("Matrícula es NULL o vacía");
-
-                if (string.IsNullOrWhiteSpace(nuevo.Nombre))
-                    throw new Exception("Nombre es NULL o vacío");
+                
 
                 int idMedico = (int)datos.ejecutarScalar(); // Obtener el ID generado
                 nuevo.IdMedico = idMedico;
