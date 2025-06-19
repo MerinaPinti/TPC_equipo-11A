@@ -22,7 +22,7 @@ namespace TPC_Clinica
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Session.Remove("IdModificar");
+            Session.Remove("IdModificarMedico");
             Response.Redirect("AltaMedico.aspx");
         }
 

@@ -16,12 +16,38 @@ namespace TPC_Clinica
             if (!IsPostBack)
             {
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
-                List<Dominio.Especialidad> lista = negocio.Listar();
-
+                List<Especialidad> lista = negocio.Listar();
                 chkEspecialidades.DataSource = lista;
                 chkEspecialidades.DataTextField = "Descripcion";
                 chkEspecialidades.DataValueField = "Id";
                 chkEspecialidades.DataBind();
+
+                if (Session["IdModificarMedico"] != null)
+                {
+                    MedicoNegocio negocioMed = new MedicoNegocio();
+                    Medico medico = negocioMed.existeMedico((int)Session["IdModificarMedico"]);
+                    txtApellido.Text = medico.Apellido;
+                    txtEmail.Text = medico.Email;
+                    txtMatricula.Text = medico.Matricula;
+                    txtNombre.Text = medico.Nombre;
+                    txtTelefono.Text = medico.Telefono;
+
+                    List<int> idsSeleccionados = new List<int>();
+                    foreach (Especialidad obj in medico.Especialidad)
+                    {
+                        idsSeleccionados.Add(obj.Id);
+                    }
+
+                    //List<int> idsSeleccionados = medico.Especialidad.Select(esp => esp.Id).ToList();
+                    foreach (ListItem item in chkEspecialidades.Items)
+                    {
+                        if (idsSeleccionados.Contains(int.Parse(item.Value)))
+                        {
+                            item.Selected = true;
+                        }
+                    }
+
+                }
             }
 
         }
@@ -52,7 +78,7 @@ namespace TPC_Clinica
 
             MedicoNegocio negocio = new MedicoNegocio();
             negocio.agregarMedico(nuevoMedico);
-
+            Response.Redirect("ListadoMedicos.aspx");
 
             /* MedicoNegocio negocio = new MedicoNegocio();
              Medico nuevo = negocio.existeMedico(txtMatricula.Text);
