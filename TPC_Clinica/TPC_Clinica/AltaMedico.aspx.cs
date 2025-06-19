@@ -44,7 +44,14 @@ namespace TPC_Clinica
 
             Medico nuevoMedico = new Medico();
             nuevoMedico.Especialidad = seleccionadas;
+            nuevoMedico.Matricula = txtMatricula.Text;
+            nuevoMedico.Apellido = txtApellido.Text;
+            nuevoMedico.Nombre = txtNombre.Text;
+            nuevoMedico.Email = txtEmail.Text;
+            nuevoMedico.Telefono = txtTelefono.Text;
 
+            MedicoNegocio negocio = new MedicoNegocio();
+            negocio.agregarMedico(nuevoMedico);
 
 
             /* MedicoNegocio negocio = new MedicoNegocio();

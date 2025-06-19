@@ -91,7 +91,7 @@ namespace Negocio
 
 
 
-        public void agregarMedico(Medico nuevo, List<int> idEspecialidades)
+        public void agregarMedico(Medico nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -104,11 +104,15 @@ namespace Negocio
                 datos.setearParametros("@Apellido", nuevo.Apellido);
                 datos.setearParametros("@Email", nuevo.Email);
                 datos.setearParametros("@Telefono", nuevo.Telefono);
-                datos.ejecutarAccion();
+                if (string.IsNullOrWhiteSpace(nuevo.Matricula))
+                    throw new Exception("Matrícula es NULL o vacía");
+
+                if (string.IsNullOrWhiteSpace(nuevo.Nombre))
+                    throw new Exception("Nombre es NULL o vacío");
 
                 int idMedico = (int)datos.ejecutarScalar(); // Obtener el ID generado
-
-                cargarIntermedia(idMedico, idEspecialidades);
+                nuevo.IdMedico = idMedico;
+                cargarIntermedia(nuevo);
 
 
             }
@@ -122,7 +126,7 @@ namespace Negocio
             }
         }
 
-        public void cargarIntermedia(int idMedico, List<int> idEspecialidades)
+        public void cargarIntermedia(Medico medico)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -131,12 +135,12 @@ namespace Negocio
             {
 
                 // Insertar en tabla intermedia ESPECIALIDADES_MEDICO
-                foreach (int idEsp in idEspecialidades)
+                foreach (Especialidad esp in medico.Especialidad)
                 {
                     datos = new AccesoDatos();
                     datos.setearConsulta("INSERT INTO ESPECIALIDADES_MEDICOS (IDEspecialidad, IDMedico) VALUES (@idEspecialidad, @idMedico)");
-                    datos.setearParametros("@idEspecialidad", idEsp);
-                    datos.setearParametros("@idMedico", idMedico);
+                    datos.setearParametros("@idEspecialidad", esp.Id);
+                    datos.setearParametros("@idMedico", medico.IdMedico);
                     datos.ejecutarAccion();
                 }
             }
