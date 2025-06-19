@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,12 @@ namespace TPC_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                MedicoNegocio negocio = new MedicoNegocio();
+                GridView1.DataSource = negocio.listar(); 
+                GridView1.DataBind();
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)

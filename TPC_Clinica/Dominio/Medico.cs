@@ -19,5 +19,23 @@ namespace Dominio
         public string Telefono { get; set; }
         //public string Turno { get; set; } turno de trabajo
         public bool Activo { get; set; }
+
+
+
+        public string NombreCompleto
+        {
+            get { return $"{Nombre} {Apellido}"; }
+        }
+
+
+        public string EspecialidadesTexto
+        {
+            get
+            {
+                if (Especialidad == null || Especialidad.Count == 0)
+                    return "-";
+                return string.Join(", ", Especialidad.Select(e => e.Descripcion));
+            }
+        }
     }
 }
