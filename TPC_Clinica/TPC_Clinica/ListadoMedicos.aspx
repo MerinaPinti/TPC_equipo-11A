@@ -12,13 +12,36 @@
         <div class="row">
             <div class="col">
                 <asp:Button ID="btnAgregar" CssClass="btn btn-success" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="table table-striped">
+                
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" OnRowCommand="GridView1_RowCommand" DataKeyNames="IdMedico">
                     <Columns>
                         <asp:BoundField HeaderText="Matrícula" DataField="Matricula" />
                         <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" />
                         <asp:BoundField HeaderText="Email" DataField="Email" />
                         <asp:BoundField HeaderText="Teléfono" DataField="Telefono" />
                         <asp:BoundField HeaderText="Especialidades" DataField="EspecialidadesTexto" />
+
+                        
+                        
+                        <asp:TemplateField>
+                            <ItemStyle HorizontalAlign="Right" />
+                            <ItemTemplate>
+                                <asp:ImageButton ID="btnModificar" runat="server"
+                                    ImageUrl="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png"
+                                    CommandName="Editar"
+                                    ToolTip="Editar"
+                                    CommandArgument='<%# Container.DataItemIndex %>'
+                                    Style="width: 17px; height: 17px; margin:0 4px" />
+                                
+                                <asp:ImageButton ID="btnEliminar" runat="server"
+                                    ImageUrl="https://cdn3.iconfinder.com/data/icons/font-awesome-solid/512/trash-can-256.png"
+                                    CommandName="Eliminar"
+                                    ToolTip="Eliminar"
+                                    CommandArgument='<%# Container.DataItemIndex %>'
+                                    Style="width: 17px; height: 17px; margin:0 4px;"
+                                    OnClientClick="return confirm('¿Estás seguro que querés eliminar este médico?');" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>

@@ -21,13 +21,13 @@ namespace Dominio
         public bool Activo { get; set; }
 
 
-
+        //Para mostrar nombre en el listado
         public string NombreCompleto
         {
             get { return $"{Nombre} {Apellido}"; }
         }
 
-
+        //Para mostrar una lista string de especialidades en el listado
         public string EspecialidadesTexto
         {
             get

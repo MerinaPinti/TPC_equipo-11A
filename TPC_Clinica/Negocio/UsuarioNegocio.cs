@@ -25,7 +25,7 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Usuario user = new Usuario();
-                    user.Id = (int)datos.Lector["Id"];  // Esta línea es la clave
+                    user.Id = (int)datos.Lector["Id"];  
                     user.UserName = (string)datos.Lector["usuario"];
                     user.Password = (string)datos.Lector["contraseña"];
                     user.TipoUsuario = datos.Lector["idTipoUsuario"].ToString();
@@ -58,7 +58,7 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Usuario user = new Usuario();
-                    user.Id = (int)datos.Lector["Id"];  // Esta línea es la clave
+                    user.Id = (int)datos.Lector["Id"];  
                     user.UserName = (string)datos.Lector["usuario"];
                     user.Password = (string)datos.Lector["contraseña"];
                     user.TipoUsuario = datos.Lector["idTipoUsuario"].ToString();
@@ -94,7 +94,7 @@ namespace Negocio
                 }
                 catch (Exception ex)
                 {
-                    throw ex; // Podés loguearlo o mostrarlo también
+                    throw ex; 
                 }
                 finally
                 {
@@ -139,7 +139,7 @@ namespace Negocio
                     usuario.Id = (int)datos.Lector["Id"];
                     usuario.UserName = (string)datos.Lector["usuario"];
                     usuario.Password = (string)datos.Lector["contraseña"];
-                    usuario.TipoUsuario = datos.Lector["idTipoUsuario"].ToString(); // guardás como string
+                    usuario.TipoUsuario = datos.Lector["idTipoUsuario"].ToString(); 
                 }
 
                 return usuario;

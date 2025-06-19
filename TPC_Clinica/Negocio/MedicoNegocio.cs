@@ -157,20 +157,38 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Update Medico set Nombre = @Nombre, Apellido = @Apellido, Especialidad = @Especialidad, Email = @Email, Telefono = @Telefono where Matricula = @Matricula");
+                // Actualizar datos del médico 
+                datos.setearConsulta("UPDATE Medico SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Telefono = @Telefono WHERE IdMedico = @IdMedico");
 
-                datos.setearParametros("@Matricula", medico.Matricula);
+                datos.setearParametros("@IdMedico", medico.IdMedico);
                 datos.setearParametros("@Nombre", medico.Nombre);
                 datos.setearParametros("@Apellido", medico.Apellido);
-                datos.setearParametros("@Especialidad", medico.Especialidad);
                 datos.setearParametros("@Email", medico.Email);
                 datos.setearParametros("@Telefono", medico.Telefono);
 
                 datos.ejecutarAccion();
+                datos.cerrarConexion();
+
+                // Eliminar especialidades actuales del médico
+                datos = new AccesoDatos();
+                datos.setearConsulta("DELETE FROM ESPECIALIDADES_MEDICOS WHERE IDMEDICO = @IdMedico");
+                datos.setearParametros("@IdMedico", medico.IdMedico);
+                datos.ejecutarAccion();
+                datos.cerrarConexion();
+
+                //  Insertar las nuevas especialidades seleccionadas
+                foreach (Especialidad esp in medico.Especialidad)
+                {
+                    datos = new AccesoDatos();
+                    datos.setearConsulta("INSERT INTO ESPECIALIDADES_MEDICOS (IDEspecialidad, IDMedico) VALUES (@idEspecialidad, @idMedico)");
+                    datos.setearParametros("@idEspecialidad", esp.Id);
+                    datos.setearParametros("@idMedico", medico.IdMedico);
+                    datos.ejecutarAccion();
+                    datos.cerrarConexion();
+                }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -209,6 +227,36 @@ namespace Negocio
             }
 
             return medico;
+        }
+
+        public void eliminarMedico(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                // Borramos de manera lógica la tabla intermedia que asocia ID médico con especialidades
+                datos.setearConsulta("UPDATE Medico SET Activo = 0 WHERE IdMedico = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarAccion();
+                datos.cerrarConexion();
+
+                // Borramos de manera lógica la tabla intermedia que asocia ID médico con especialidades
+                datos = new AccesoDatos();
+                datos.setearConsulta("UPDATE ESPECIALIDADES_MEDICOS SET Activo = 0 WHERE IdMedico = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarAccion();
+
+                //EN EL FUTURO DEBERÍAMOS BORRAR LOS TURNOS ASIGNADOS TAMBIÉN. 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
     }
