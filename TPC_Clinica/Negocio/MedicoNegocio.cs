@@ -99,8 +99,8 @@ namespace Negocio
             {
                 // Insert en la tabla Medico
                 datos.setearConsulta("INSERT INTO Medico (Matricula, Nombre, Apellido, Email, Telefono) OUTPUT INSERTED.IDMedico VALUES (@Matricula, @Nombre, @Apellido, @Email, @Telefono)");
-                datos.setearParametros("@Matricula", nuevo.Matricula);
-                datos.setearParametros("@Nombre", nuevo.Nombre);
+                datos.setearParametros("@Matricula", nuevo.Matricula); 
+                datos.setearParametros("@Nombre", nuevo.Nombre);       
                 datos.setearParametros("@Apellido", nuevo.Apellido);
                 datos.setearParametros("@Email", nuevo.Email);
                 datos.setearParametros("@Telefono", nuevo.Telefono);
