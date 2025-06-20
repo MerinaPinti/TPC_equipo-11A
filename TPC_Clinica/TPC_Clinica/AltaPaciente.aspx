@@ -46,6 +46,8 @@
             </div>
         </div>
 
+         <asp:HiddenField ID="hdnActivarPaciente" runat="server" Value="false" />
+
         <div class="mb-3">
             <label for="txtNombre" class="form-label">Nombre</label>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Juan" />

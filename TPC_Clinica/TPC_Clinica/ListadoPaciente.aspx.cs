@@ -24,5 +24,31 @@ namespace TPC_Clinica
             dgvPacientes.DataSource = negocio.listarPacientes();
             dgvPacientes.DataBind();
         }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Session.Remove("DniModificarPaciente");
+            Response.Redirect("AltaPaciente.aspx", true);
+        }
+
+        protected void dgvPacientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            string dni = dgvPacientes.DataKeys[index].Value.ToString();
+
+            PacienteNegocio negocio = new PacienteNegocio();
+
+            if (e.CommandName == "Eliminar")
+            {
+                negocio.eliminarLogico(dni);
+                cargarPacientes();
+            }
+
+            if (e.CommandName == "Editar")
+            {
+                Session.Add("DniModificarPaciente", dni);
+                Response.Redirect("AltaPaciente.aspx", true);
+            }
+        }
     }
 }

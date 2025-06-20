@@ -13,7 +13,85 @@ namespace TPC_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (string.IsNullOrWhiteSpace(txtDNI.Text))
+                {
+                    txtNombre.Text = string.Empty;
+                    txtApellido.Text = string.Empty;
+                    txtFechaNac.Text = string.Empty;
+                    txtTelefono.Text = string.Empty;
+                    txtEmail.Text = string.Empty;
+                    txtDireccion.Text = string.Empty;
 
+                    lblNombre.Text = "";
+                    lblApellido.Text = "";
+                    lblFechaNac.Text = "";
+                    lblTelefono.Text = "";
+                    lblEmail.Text = "";
+                    lblDNI.Text = "";
+                }
+            }
+
+            if (hdnActivarPaciente.Value == "true")
+            {
+                hdnActivarPaciente.Value = "false";
+                string dniParaActivar = Session["DniPacienteInactivoParaActivar"] as string;
+
+                if (!string.IsNullOrEmpty(dniParaActivar))
+                {
+                    PacienteNegocio negocio = new PacienteNegocio();
+                    Paciente paciente = negocio.existePaciente(dniParaActivar);
+
+                    if (paciente != null)
+                    {
+                        paciente.Activo = true;
+                        negocio.modificarPaciente(paciente);
+
+                        txtDNI.Text = paciente.DNI;
+                        txtNombre.Text = paciente.Nombre;
+                        txtApellido.Text = paciente.Apellido;
+                        txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
+                        txtTelefono.Text = paciente.Telefono;
+                        txtEmail.Text = paciente.Email;
+                        txtDireccion.Text = paciente.Direccion;
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "activacionExito", "alert('Paciente activado y datos cargados exitosamente.');", true);
+
+                        Session.Remove("DniPacienteInactivoParaActivar");
+                        Response.Redirect("ListadoPaciente.aspx", false);
+                        return;
+                    }
+
+                    Session.Remove("DniPacienteInactivoParaActivar");
+                }
+            }
+
+            if (Session["DniModificarPaciente"] != null)
+            {
+                string dniRecibido = Session["DniModificarPaciente"].ToString();
+                PacienteNegocio negocio = new PacienteNegocio();
+                Paciente paciente = negocio.existePaciente(dniRecibido);
+
+                if (paciente != null)
+                {
+                    txtDNI.Text = paciente.DNI;
+                    txtNombre.Text = paciente.Nombre;
+                    txtApellido.Text = paciente.Apellido;
+                    txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
+                    txtTelefono.Text = paciente.Telefono;
+                    txtEmail.Text = paciente.Email;
+                    txtDireccion.Text = paciente.Direccion;
+
+                    txtDNI.Enabled = false;
+                    btnBuscar.Enabled = false;
+
+                    lblDNI.ForeColor = System.Drawing.Color.Blue;
+                    lblDNI.Text = "Modificando paciente existente.";
+                }
+
+                Session.Remove("DniModificarPaciente");
+            }
         }
 
         protected void btnGuardarPaciente_Click(object sender, EventArgs e)
@@ -226,6 +304,7 @@ namespace TPC_Clinica
 
                     negocio.agregarPaciente(nuevo);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Registro exitoso!');", true);
+                    Response.Redirect("ListadoPaciente.aspx", false);
                 }
                 else
                 {
@@ -239,6 +318,7 @@ namespace TPC_Clinica
 
                     negocio.modificarPaciente(nuevo);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Datos actualizados!');", true);
+                    Response.Redirect("ListadoPaciente.aspx", false);
                 }
             }
             catch (Exception ex)
@@ -257,12 +337,21 @@ namespace TPC_Clinica
 
             if (paciente != null)
             {
-                txtNombre.Text = paciente.Nombre;
-                txtApellido.Text = paciente.Apellido;
-                txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
-                txtTelefono.Text = paciente.Telefono;
-                txtEmail.Text = paciente.Email;
-                txtDireccion.Text = paciente.Direccion;
+                if(paciente.Activo)
+                { 
+                    txtNombre.Text = paciente.Nombre;
+                    txtApellido.Text = paciente.Apellido;
+                    txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
+                    txtTelefono.Text = paciente.Telefono;
+                    txtEmail.Text = paciente.Email;
+                    txtDireccion.Text = paciente.Direccion;
+                }
+                else
+                {
+                    Session["DniPacienteInactivoParaActivar"] = paciente.DNI;
+                    string script = "if (confirm('El paciente con DNI " + paciente.DNI + " existe pero está inactivo. ¿Desea activarlo y cargar sus datos?')) { document.getElementById('" + hdnActivarPaciente.ClientID + "').value = 'true'; " + Page.ClientScript.GetPostBackEventReference(btnBuscar, "") + "; } else { window.location.href = 'ListadoPaciente.aspx'; }";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ConfirmacionActivar", script, true);
+                }
 
             }
             else

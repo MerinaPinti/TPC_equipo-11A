@@ -44,7 +44,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Update Paciente set Nombre = @Nombre, Apellido = @Apellido, FechaNac = @FechaNac, Telefono = @Telefono, Email = @Email, Direccion = @Direccion WHERE DNI = @DNI");
+                datos.setearConsulta("Update Paciente set Nombre = @Nombre, Apellido = @Apellido, FechaNac = @FechaNac, Telefono = @Telefono, Email = @Email, Direccion = @Direccion, Activo = 1 WHERE DNI = @DNI");
 
                 datos.setearParametros("@DNI", paciente.DNI);
                 datos.setearParametros("@Nombre", paciente.Nombre);
@@ -66,7 +66,7 @@ namespace Negocio
             }
         }
 
-        public Paciente existePaciente (string DNI)
+        public Paciente existePaciente(string DNI)
         {
             AccesoDatos datos = new AccesoDatos();
             Paciente paciente = null;
@@ -108,7 +108,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion FROM Paciente");
+                datos.setearConsulta("SELECT DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion, Activo FROM Paciente WHERE Activo = 1");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -121,6 +121,7 @@ namespace Negocio
                     paciente.Telefono = datos.Lector["Telefono"].ToString();
                     paciente.Email = datos.Lector["Email"].ToString();
                     paciente.Direccion = datos.Lector["Direccion"].ToString();
+                    paciente.Activo = (bool)datos.Lector["Activo"];
 
                     lista.Add(paciente);
                 }
@@ -143,24 +144,7 @@ namespace Negocio
             {
                 AccesoDatos datos = new AccesoDatos();
 
-                datos.setearConsulta("UPDATE FROM Paciente set Activo = 0 WHERE DNI = @DNI");
-
-                datos.setearParametros("DNI", DNI);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
-        public void eliminarFisico(string DNI)
-        {
-            try
-            {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("DELETE FROM Paciente WHERE DNI = @DNI");
+                datos.setearConsulta("UPDATE Paciente set Activo = 0 WHERE DNI = @DNI");
 
                 datos.setearParametros("DNI", DNI);
                 datos.ejecutarAccion();
