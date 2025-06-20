@@ -23,12 +23,12 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("SELECT M.email, M.telefono, M.nombre, M.apellido, M.matricula, EM.IDMEDICO, EM.IDESPECIALIDAD, E.descripcion FROM MEDICO as M LEFT JOIN ESPECIALIDADES_MEDICOS AS EM ON EM.IDMEDICO = M.idMedico LEFT JOIN ESPECIALIDAD AS E ON E.idEspecialidad = EM.idEspecialidad WHERE M.activo = 1;");
+                datos.setearConsulta("SELECT M.idMedico, M.email, M.telefono, M.nombre, M.apellido, M.matricula, EM.IDMEDICO, EM.IDESPECIALIDAD, E.descripcion FROM MEDICO as M LEFT JOIN ESPECIALIDADES_MEDICOS AS EM ON EM.IDMEDICO = M.idMedico LEFT JOIN ESPECIALIDAD AS E ON E.idEspecialidad = EM.idEspecialidad WHERE M.activo = 1;");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    int idMedico = (int)datos.Lector["IDMEDICO"];
+                    int idMedico = (int)datos.Lector["idMedico"];
                     Medico existente = lista.FirstOrDefault(a => a.IdMedico == idMedico); //devuelve el primero que encuentra, si no encuentra devuelve null 
 
                     if (existente == null)
@@ -174,16 +174,16 @@ namespace Negocio
                 datos.ejecutarAccion();
                 datos.cerrarConexion();
 
-                //  Insertar las nuevas especialidades seleccionadas
-                //foreach (Especialidad esp in medico.Especialidad)
-                //{
-                //    datos = new AccesoDatos();
-                //    datos.setearConsulta("INSERT INTO ESPECIALIDADES_MEDICOS (IDEspecialidad, IDMedico) VALUES (@idEspecialidad, @idMedico)");
-                //    datos.setearParametros("@idEspecialidad", esp.Id);
-                //    datos.setearParametros("@idMedico", medico.IdMedico);
-                //    datos.ejecutarAccion();
-                //    datos.cerrarConexion();
-                //}
+                //Insertar las nuevas especialidades seleccionadas
+                foreach (Especialidad esp in medico.Especialidad)
+                {
+                    datos = new AccesoDatos();
+                    datos.setearConsulta("INSERT INTO ESPECIALIDADES_MEDICOS (IDEspecialidad, IDMedico) VALUES (@idEspecialidad, @idMedico)");
+                    datos.setearParametros("@idEspecialidad", esp.Id);
+                    datos.setearParametros("@idMedico", medico.IdMedico);
+                    datos.ejecutarAccion();
+                    datos.cerrarConexion();
+                }
             }
             catch (Exception ex)
             {
@@ -234,7 +234,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT M.idMedico, M.Matricula, M.Nombre, M.Apellido, M.Telefono, M.Email, EM.IDESPECIALIDAD, E.descripcion FROM Medico M INNER JOIN ESPECIALIDADES_MEDICOS EM ON M.idMedico = EM.IDMEDICO INNER JOIN Especialidad E ON E.idEspecialidad = EM.IDESPECIALIDAD WHERE M.idMedico = @Id");
+                datos.setearConsulta("SELECT M.idMedico, M.Matricula, M.Nombre, M.Apellido, M.Telefono, M.Email, EM.IDESPECIALIDAD, E.descripcion FROM Medico M LEFT JOIN ESPECIALIDADES_MEDICOS EM ON M.idMedico = EM.IDMEDICO LEFT JOIN Especialidad E ON E.idEspecialidad = EM.IDESPECIALIDAD WHERE M.idMedico = @Id");
                 datos.setearParametros("@Id", Id);
                 datos.ejecutarLectura();
 
@@ -252,13 +252,17 @@ namespace Negocio
                         medico.Especialidad = new List<Especialidad>();
                     }
 
-                    Especialidad esp = new Especialidad
-                    {
-                        Id = (int)datos.Lector["IDESPECIALIDAD"],
-                        Descripcion = datos.Lector["descripcion"].ToString()
-                    };
 
-                    medico.Especialidad.Add(esp);
+                    if (datos.Lector["IDESPECIALIDAD"] != DBNull.Value)
+                    {
+                        Especialidad esp = new Especialidad
+                        {
+                            Id = (int)datos.Lector["IDESPECIALIDAD"],
+                            Descripcion = datos.Lector["descripcion"].ToString()
+                        };
+
+                        medico.Especialidad.Add(esp);
+                    }
                 }
                 return medico;
             }
