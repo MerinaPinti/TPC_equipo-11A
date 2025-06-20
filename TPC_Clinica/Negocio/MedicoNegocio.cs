@@ -23,7 +23,7 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("SELECT M.email, M.telefono, M.nombre, M.apellido, M.matricula, EM.IDMEDICO, EM.IDESPECIALIDAD, E.descripcion FROM MEDICO as M INNER JOIN ESPECIALIDADES_MEDICOS AS EM ON EM.IDMEDICO = M.idMedico INNER JOIN ESPECIALIDAD AS E ON E.idEspecialidad = EM.idEspecialidad WHERE M.activo = 1;");
+                datos.setearConsulta("SELECT M.email, M.telefono, M.nombre, M.apellido, M.matricula, EM.IDMEDICO, EM.IDESPECIALIDAD, E.descripcion FROM MEDICO as M LEFT JOIN ESPECIALIDADES_MEDICOS AS EM ON EM.IDMEDICO = M.idMedico LEFT JOIN ESPECIALIDAD AS E ON E.idEspecialidad = EM.idEspecialidad WHERE M.activo = 1;");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -165,9 +165,7 @@ namespace Negocio
                 datos.setearParametros("@Apellido", medico.Apellido);
                 datos.setearParametros("@Email", medico.Email);
                 datos.setearParametros("@Telefono", medico.Telefono);
-
                 datos.ejecutarAccion();
-                datos.cerrarConexion();
 
                 // Eliminar especialidades actuales del médico
                 datos = new AccesoDatos();
@@ -177,15 +175,15 @@ namespace Negocio
                 datos.cerrarConexion();
 
                 //  Insertar las nuevas especialidades seleccionadas
-                foreach (Especialidad esp in medico.Especialidad)
-                {
-                    datos = new AccesoDatos();
-                    datos.setearConsulta("INSERT INTO ESPECIALIDADES_MEDICOS (IDEspecialidad, IDMedico) VALUES (@idEspecialidad, @idMedico)");
-                    datos.setearParametros("@idEspecialidad", esp.Id);
-                    datos.setearParametros("@idMedico", medico.IdMedico);
-                    datos.ejecutarAccion();
-                    datos.cerrarConexion();
-                }
+                //foreach (Especialidad esp in medico.Especialidad)
+                //{
+                //    datos = new AccesoDatos();
+                //    datos.setearConsulta("INSERT INTO ESPECIALIDADES_MEDICOS (IDEspecialidad, IDMedico) VALUES (@idEspecialidad, @idMedico)");
+                //    datos.setearParametros("@idEspecialidad", esp.Id);
+                //    datos.setearParametros("@idMedico", medico.IdMedico);
+                //    datos.ejecutarAccion();
+                //    datos.cerrarConexion();
+                //}
             }
             catch (Exception ex)
             {
