@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaUsuario.aspx.cs" Inherits="TPC_Clinica.AltaUsuario" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .usuario-alta {
@@ -38,8 +39,8 @@
                         <label for="txtPassword" class="form-label mt-3">Contraseña</label>
                         <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
 
-                        <label for="txtTipoUsuario" class="form-label mt-3">Tipo Usuario (ID)</label>
-                        <asp:TextBox ID="txtTipoUsuario" CssClass="form-control" runat="server"></asp:TextBox>
+                        <label for="txtTipoUsuario" class="form-label mt-3">Tipo Usuario</label>
+                        <asp:DropDownList ID="ddlTipoUsuario" runat="server"></asp:DropDownList>
 
                         <asp:Button ID="btnAgregarUsuario" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Agregar" OnClick="btnAgregarUsuario_Click" />
                     </div>
@@ -53,7 +54,11 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:BoundField HeaderText="Tipo Usuario (ID)" DataField="TipoUsuario" />
+                                <asp:TemplateField HeaderText="Tipo de Usuario">
+                                    <ItemTemplate>
+                                        <%# Eval("TipoUsuario.Descripcion") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:BoundField HeaderText="Usuario" DataField="UserName" />
                                 <asp:BoundField HeaderText="Contraseña" DataField="Password" />
 

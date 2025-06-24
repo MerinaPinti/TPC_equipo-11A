@@ -17,6 +17,12 @@ namespace TPC_Clinica
             {
                 List<Usuario> usuarios = new List<Usuario>();
                 Session.Add("usuarios", usuarios);
+                TipoUsuarioNegocio negocioUsuario = new TipoUsuarioNegocio();
+                List<TipoUsuario> lista = negocioUsuario.Listar();
+                ddlTipoUsuario.DataSource = lista;
+                ddlTipoUsuario.DataTextField = "Descripcion";
+                ddlTipoUsuario.DataValueField = "Id";
+                ddlTipoUsuario.DataBind();
 
                 if (Session["IdModificarUsuario"] != null)
                 {
@@ -29,7 +35,7 @@ namespace TPC_Clinica
                     txtBoxIdMod.Text = modificar.Id.ToString();
                     txtUsuario.Text = modificar.UserName;
                     txtPassword.Text = modificar.Password;
-                    txtTipoUsuario.Text = modificar.TipoUsuario;
+                    ddlTipoUsuario.SelectedValue = modificar.TipoUsuario.Id.ToString();
                     btnAgregarUsuario.Text = "Modificar";
                 }
             }
@@ -44,14 +50,14 @@ namespace TPC_Clinica
                 {
                     UserName = txtUsuario.Text,
                     Password = txtPassword.Text,
-                    TipoUsuario = txtTipoUsuario.Text
+                    TipoUsuario = new TipoUsuario{Id = Convert.ToInt32(ddlTipoUsuario.SelectedValue), Descripcion = ddlTipoUsuario.SelectedItem.Text}
                 });
+                Session["usuarios"] = usuarios;
                 dgvUsuarios.DataSource = usuarios;
                 dgvUsuarios.DataBind();
                 txtUsuario.Text = null;
                 txtPassword.Text = null;
-                txtTipoUsuario.Text = null;
-                Session["usuarios"] = usuarios;
+                ddlTipoUsuario.SelectedIndex = 0;
                 btnContinuar.Visible = true;
             }
             else
@@ -69,7 +75,7 @@ namespace TPC_Clinica
             UsuarioNegocio negocio = new UsuarioNegocio();
             negocio.agregarUsuario((List<Usuario>)Session["usuarios"]);
             Session.Remove("idModificarUsuario");
-            Response.Redirect("ListadoUsuarios.aspx");
+            Response.Redirect("ListadoUsuarios.aspx", true);
         }
 
 

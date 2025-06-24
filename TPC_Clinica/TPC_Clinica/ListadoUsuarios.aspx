@@ -33,7 +33,11 @@
                 <asp:GridView ID="dgvUsuarios" DataKeyNames="Id" OnRowCommand="dgvUsuarios_RowCommand" runat="server" AutoGenerateColumns="false" CssClass="table">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" />
-                        <asp:BoundField HeaderText="Tipo Usuario" DataField="TipoUsuario" />
+                        <asp:TemplateField HeaderText="Tipo de Usuario">
+                            <ItemTemplate>
+                                <%# Eval("TipoUsuario.Descripcion") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField HeaderText="Usuario" DataField="UserName" />
                         <asp:BoundField HeaderText="Contraseña" DataField="Password" />
 
@@ -51,8 +55,8 @@
                                     CommandName="Eliminar"
                                     ToolTip="Eliminar"
                                     CommandArgument='<%# Container.DataItemIndex %>'
-                                    Style="width: 17px; height: 17px; margin: 0 4px;" 
-                                    OnClientClick="return confirm('¿Estás seguro que querés eliminar este usuario?');"/>
+                                    Style="width: 17px; height: 17px; margin: 0 4px;"
+                                    OnClientClick="return confirm('¿Estás seguro que querés eliminar este usuario?');" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

@@ -15,8 +15,8 @@ namespace TPC_Clinica
             if (!IsPostBack)
             {
                 MedicoNegocio negocio = new MedicoNegocio();
-                GridView1.DataSource = negocio.listar(); 
-                GridView1.DataBind();
+                gvMedico.DataSource = negocio.listar();
+                gvMedico.DataBind();
             }
         }
 
@@ -29,7 +29,7 @@ namespace TPC_Clinica
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            int id = Convert.ToInt32(GridView1.DataKeys[index].Value);
+            int id = Convert.ToInt32(gvMedico.DataKeys[index].Value);
 
             if (e.CommandName == "Eliminar")
             {
@@ -37,8 +37,8 @@ namespace TPC_Clinica
                 negocio.eliminarMedico(id); 
 
                 // RECARGA EL GRID
-                GridView1.DataSource = negocio.listar();
-                GridView1.DataBind();
+                gvMedico.DataSource = negocio.listar();
+                gvMedico.DataBind();
             }
 
             if (e.CommandName == "Editar")

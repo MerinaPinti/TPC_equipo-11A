@@ -13,7 +13,7 @@
             <div class="col">
                 <asp:Button ID="btnAgregar" CssClass="btn btn-success" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
                 
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" OnRowCommand="GridView1_RowCommand" DataKeyNames="IdMedico">
+                <asp:GridView ID="gvMedico" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" OnRowCommand="GridView1_RowCommand" DataKeyNames="IdMedico">
                     <Columns>
                         <asp:BoundField HeaderText="Matrícula" DataField="Matricula" />
                         <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" />
