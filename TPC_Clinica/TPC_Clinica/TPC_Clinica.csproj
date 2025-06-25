@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaEstado.aspx" />
     <Content Include="AltaMedico.aspx" />
     <Content Include="AltaPaciente.aspx" />
     <Content Include="AltaEspecialidad.aspx" />
@@ -87,6 +88,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaEstado.aspx.cs">
+      <DependentUpon>AltaEstado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaEstado.aspx.designer.cs">
+      <DependentUpon>AltaEstado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaMedico.aspx.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

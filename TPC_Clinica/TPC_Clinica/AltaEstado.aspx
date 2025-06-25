@@ -1,0 +1,82 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaEstado.aspx.cs" Inherits="TPC_Clinica.AltaEstado" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .especialidad-alta {
+            max-width: 70vw;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .especialidad-modificar {
+            max-width: 20vw;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+    </style>
+    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+
+    <div class="especialidad-alta">
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col">
+                                <asp:Label ID="lblIdMod" runat="server" Visible="false" CssClass="form-label mt-3" Text="ID"></asp:Label>
+                                <asp:TextBox ID="txtBoxIdMod" Visible="false" CssClass="form-control" runat="server" disabled></asp:TextBox>
+                                <label for="exampleFormControlInput1" class="form-label mt-3">Estado</label>
+                                <asp:TextBox ID="txtEstado" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblValidacion" runat="server" Text=" " CssClass="form-label"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <asp:Button ID="btnAgregarEstado" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Agregar" OnClick="btnAgregarEstado_Click" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <table class="table table-striped">
+                        </table>
+                        <asp:GridView ID="dgvEstados" OnRowDeleting="dgvEstados_RowDeleting" runat="server" AutoGenerateColumns="false" CssClass="table">
+                            <Columns>
+                                <asp:TemplateField HeaderText="#">
+                                    <ItemTemplate>
+                                        <%# Container.DataItemIndex + 1 %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="Estado" DataField="descripcion" />
+
+                                <%--<asp:CommandField ShowDeleteButton="true" />--%>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <itemstyle horizontalalign="Right" />
+                                        <asp:ImageButton ID="btnEliminar" runat="server"
+                                            ImageUrl="https://cdn3.iconfinder.com/data/icons/font-awesome-solid/512/trash-can-256.png"
+                                            CommandName="Delete"
+                                            ToolTip="Eliminar"
+                                            Style="width: 20px; height: 20px;" />
+                                        <%--OnClientClick="return confirm('¿Estás seguro que querés eliminar este ítem?');"--%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <asp:Button ID="btnContinuar" CssClass="btn btn-primary mt-2" runat="server" Visible="false" Text="Continuar" OnClick="btnContinuar_Click" />
+                        </div>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+</asp:Content>
