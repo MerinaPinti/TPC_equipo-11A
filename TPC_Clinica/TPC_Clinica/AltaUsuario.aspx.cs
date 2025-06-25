@@ -63,7 +63,17 @@ namespace TPC_Clinica
             else
             {
                 UsuarioNegocio negocio = new UsuarioNegocio();
-                Usuario modificar = new Usuario { Password = txtPassword.Text, Id = Convert.ToInt32(txtBoxIdMod.Text) };
+                Usuario modificar;
+                if (!string.IsNullOrEmpty(txtPassword.Text))
+                {
+                    modificar = new Usuario { Password = txtPassword.Text, Id = Convert.ToInt32(txtBoxIdMod.Text) };
+                }
+                else
+                {
+                    string pass = negocio.ListarConId((int)Session["IdModificarUsuario"]).Password;
+                    modificar = new Usuario { Password = pass, Id = Convert.ToInt32(txtBoxIdMod.Text) };
+                }
+                modificar.TipoUsuario = new TipoUsuario { Descripcion = ddlTipoUsuario.SelectedItem.Text, Id = Convert.ToInt32(ddlTipoUsuario.SelectedValue) };
                 negocio.modificarUsuario(modificar);
                 Response.Redirect("ListadoUsuarios.aspx", true);
             }

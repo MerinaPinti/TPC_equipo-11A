@@ -119,9 +119,10 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("UPDATE Usuario SET contraseña = @password WHERE idUsuario = @id");
+                datos.setearConsulta("UPDATE Usuario SET contraseña = @password, idTipoUsuario = @idTipo WHERE idUsuario = @id");
                 datos.setearParametros("@id", usuario.Id);
                 datos.setearParametros("@password", usuario.Password);
+                datos.setearParametros("@idTipo", usuario.TipoUsuario.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -140,7 +141,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("SELECT idUsuario as Id, usuario, contraseña pass, idTipoUsuario FROM Usuario WHERE idUsuario = @id");
+                datos.setearConsulta("SELECT idUsuario as Id, usuario, contraseña, idTipoUsuario FROM Usuario WHERE idUsuario = @id");
                 datos.setearParametros("@id", id);
                 datos.ejecutarLectura();
 
@@ -148,7 +149,7 @@ namespace Negocio
                 {
                     usuario.Id = (int)datos.Lector["Id"];
                     usuario.UserName = (string)datos.Lector["usuario"];
-                    usuario.Password = (string)datos.Lector["pass"];
+                    usuario.Password = (string)datos.Lector["contraseña"];
                     usuario.TipoUsuario = new TipoUsuario();
                     usuario.TipoUsuario.Id = (int)datos.Lector["idTipoUsuario"]; 
                 }
