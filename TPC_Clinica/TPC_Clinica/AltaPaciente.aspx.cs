@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,6 +33,30 @@ namespace TPC_Clinica
                     lblTelefono.Text = "";
                     lblEmail.Text = "";
                     lblDNI.Text = "";
+                }
+
+                if (Session["DniModificarPaciente"] != null)
+                {
+                    string dniRecibido = Session["DniModificarPaciente"].ToString();
+                    PacienteNegocio negocio = new PacienteNegocio();
+                    Paciente paciente = negocio.existePaciente(dniRecibido);
+
+                    if (paciente != null)
+                    {
+                        txtDNI.Text = paciente.DNI;
+                        txtNombre.Text = paciente.Nombre;
+                        txtApellido.Text = paciente.Apellido;
+                        txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
+                        txtTelefono.Text = paciente.Telefono;
+                        txtEmail.Text = paciente.Email;
+                        txtDireccion.Text = paciente.Direccion;
+                        txtDNI.Enabled = false;
+                        btnBuscar.Enabled = false;
+                        lblDNI.ForeColor = System.Drawing.Color.Blue;
+                        btnBuscar.Visible = false;
+                    }
+
+                    Session.Remove("DniModificarPaciente");
                 }
             }
 
@@ -66,30 +92,6 @@ namespace TPC_Clinica
 
                     Session.Remove("DniPacienteInactivoParaActivar");
                 }
-            }
-
-            if (Session["DniModificarPaciente"] != null)
-            {
-                string dniRecibido = Session["DniModificarPaciente"].ToString();
-                PacienteNegocio negocio = new PacienteNegocio();
-                Paciente paciente = negocio.existePaciente(dniRecibido);
-
-                if (paciente != null)
-                {
-                    txtDNI.Text = paciente.DNI;
-                    txtNombre.Text = paciente.Nombre;
-                    txtApellido.Text = paciente.Apellido;
-                    txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
-                    txtTelefono.Text = paciente.Telefono;
-                    txtEmail.Text = paciente.Email;
-                    txtDireccion.Text = paciente.Direccion;
-                    txtDNI.Enabled = false;
-                    btnBuscar.Enabled = false;
-                    lblDNI.ForeColor = System.Drawing.Color.Blue;
-                    btnBuscar.Visible = false;
-                }
-
-                Session.Remove("DniModificarPaciente");
             }
         }
 
@@ -152,8 +154,8 @@ namespace TPC_Clinica
 
             if (paciente != null)
             {
-                if(paciente.Activo)
-                { 
+                if (paciente.Activo)
+                {
                     txtNombre.Text = paciente.Nombre;
                     txtApellido.Text = paciente.Apellido;
                     txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
@@ -181,6 +183,9 @@ namespace TPC_Clinica
         {
             int documento;
             bool validator = true;
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente paciente = negocio.existePaciente(txtDNI.Text);
+
             if (string.IsNullOrEmpty(txtDNI.Text))
             {
                 lblDNI.ForeColor = System.Drawing.Color.Red;
@@ -199,6 +204,13 @@ namespace TPC_Clinica
             {
                 lblDNI.ForeColor = System.Drawing.Color.Red;
                 lblDNI.Text = "El DNI solo debe contener números";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (paciente != null)
+            {
+                lblDNI.ForeColor = System.Drawing.Color.Red;
+                lblDNI.Text = "DNI ya registrado.";
                 txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
                 validator = false;
             }
@@ -269,6 +281,13 @@ namespace TPC_Clinica
                     {
                         lblFechaNac.ForeColor = System.Drawing.Color.Red;
                         lblFechaNac.Text = "El año no puede ser menor a 1905";
+                        txtFechaNac.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                        validator = false;
+                    }
+                    else if (fechaNacimiento.Year >= DateTime.Now.Year)
+                    {
+                        lblFechaNac.ForeColor = System.Drawing.Color.Red;
+                        lblFechaNac.Text = "Debe ingresar una fecha válida";
                         txtFechaNac.CssClass = "form-control form-control-lg mx-auto is-invalid";
                         validator = false;
                     }
@@ -360,9 +379,27 @@ namespace TPC_Clinica
                 lblEmail.Text = "✓ Campo válido.";
                 txtEmail.CssClass = "form-control form-control-lg mx-auto is-valid";
             }
-            if(validator)
-            return true;
+            if (validator)
+                return true;
             else return false;
+        }
+
+        protected void txtDNI_DataBinding(object sender, EventArgs e)
+        {
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente paciente = negocio.existePaciente(txtDNI.Text);
+            if (paciente != null)
+            {
+                lblDNI.ForeColor = System.Drawing.Color.Red;
+                lblDNI.Text = "DNI ya registrado.";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+            }
+            else
+            {
+                lblDNI.ForeColor = System.Drawing.Color.Green;
+                lblDNI.Text = "✓ Campo válido.";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-valid";
+            }
         }
     }
 }

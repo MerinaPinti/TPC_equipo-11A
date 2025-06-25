@@ -42,7 +42,7 @@
                 <div class="mb-3">
                     <label for="txtDNI" class="form-label">DNI</label>
                     <div class="d-flex gap-2">
-                        <asp:TextBox ID="txtDNI" runat="server" AutoPostBack="true" CssClass="form-control" placeholder="40123456" />
+                        <asp:TextBox ID="txtDNI" runat="server" AutoPostBack="true" OnTextChanged="txtDNI_DataBinding" CssClass="form-control" placeholder="40123456" />
                         <asp:Label ID="lblDNI" runat="server" CssClass="form-text" />
 
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" OnClick="btnBuscar_Click" />
