@@ -83,10 +83,8 @@ namespace TPC_Clinica
                     txtTelefono.Text = paciente.Telefono;
                     txtEmail.Text = paciente.Email;
                     txtDireccion.Text = paciente.Direccion;
-
                     txtDNI.Enabled = false;
                     btnBuscar.Enabled = false;
-
                     lblDNI.ForeColor = System.Drawing.Color.Blue;
                     btnBuscar.Visible = false;
                 }

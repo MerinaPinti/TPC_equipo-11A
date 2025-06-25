@@ -32,8 +32,8 @@
                     <div class="col-3">
                         <div class="row">
                             <div class="col">
-                                <asp:Label ID="lblIdModTipo" runat="server" Visible="false" CssClass="form-label mt-3" Text="ID"></asp:Label>
-                                <asp:TextBox ID="txtBoxIdModTipo" Visible="false" CssClass="form-control" runat="server" ></asp:TextBox>
+                                <asp:Label ID="lblIdModTipo" runat="server" Visible="false" CssClass="form-label mt-3" Text="ID" ></asp:Label>
+                                <asp:TextBox ID="txtBoxIdModTipo" Visible="false" CssClass="form-control" runat="server" disabled></asp:TextBox>
                                 
                                 <label for="txtTipoUsuario" class="form-label mt-3">Tipo de Usuario</label>
                                 <asp:TextBox ID="txtTipoUsuario" CssClass="form-control" runat="server"></asp:TextBox>
