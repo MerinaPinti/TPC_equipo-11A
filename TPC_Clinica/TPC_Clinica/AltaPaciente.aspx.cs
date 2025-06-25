@@ -186,7 +186,7 @@ namespace TPC_Clinica
             PacienteNegocio negocio = new PacienteNegocio();
             Paciente paciente = negocio.existePaciente(txtDNI.Text);
 
-            if (string.IsNullOrEmpty(txtDNI.Text))
+            if (string.IsNullOrWhiteSpace(txtDNI.Text))
             {
                 lblDNI.ForeColor = System.Drawing.Color.Red;
                 lblDNI.Text = "Campo obligatorio";
@@ -264,7 +264,7 @@ namespace TPC_Clinica
                 txtApellido.CssClass = "form-control form-control-lg mx-auto is-valid";
             }
             //validar FechaNac
-            if (string.IsNullOrEmpty(txtFechaNac.Text))
+            if (string.IsNullOrWhiteSpace(txtFechaNac.Text))
             {
                 lblFechaNac.ForeColor = System.Drawing.Color.Red;
                 lblFechaNac.Text = "Campo obligatorio";
@@ -308,7 +308,7 @@ namespace TPC_Clinica
             }
 
             //validar Telefono
-            if (string.IsNullOrEmpty(txtTelefono.Text))
+            if (string.IsNullOrWhiteSpace(txtTelefono.Text))
             {
                 lblTelefono.ForeColor = System.Drawing.Color.Red;
                 lblTelefono.Text = "Campo obligatorio";
@@ -330,7 +330,7 @@ namespace TPC_Clinica
             }
 
             //validar Direccion
-            if (string.IsNullOrEmpty(txtDireccion.Text))
+            if (string.IsNullOrWhiteSpace(txtDireccion.Text))
             {
                 lblDireccion.ForeColor = System.Drawing.Color.Red;
                 lblDireccion.Text = "Campo obligatorio";
@@ -352,7 +352,7 @@ namespace TPC_Clinica
             }
 
             //validar Email
-            if (string.IsNullOrEmpty(txtEmail.Text))
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 lblEmail.ForeColor = System.Drawing.Color.Red;
                 lblEmail.Text = "Campo obligatorio";
