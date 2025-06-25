@@ -36,21 +36,7 @@ namespace TPC_Clinica
         protected void btnAgregarEspecialiad_Click(object sender, EventArgs e)
         {
 
-            if (String.IsNullOrEmpty(txtEspecialidad.Text))
-            {
-                lblValidacion.Text = "Por favor ingrese una especialidad";
-                txtEspecialidad.CssClass = "form-control is-invalid";
-                lblValidacion.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-
-            if(txtEspecialidad.Text.Length > 50)
-            {
-                lblValidacion.Text = "El campo debe tener máximo 50 caracteres";
-                txtEspecialidad.CssClass = "form-control is-invalid";
-                lblValidacion.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
+            if (!validar()) { return; }
 
             if (Session["IdModificarEspecialidad"] == null)
             {
@@ -99,6 +85,27 @@ namespace TPC_Clinica
             negocio.agregarEspecialidad((List<Especialidad>)Session["especialidades"]);
             Session.Remove("especialidades");
             Response.Redirect("ListadoEspecialidades.aspx");
+        }
+
+        protected bool validar()
+        {
+            if (String.IsNullOrEmpty(txtEspecialidad.Text))
+            {
+                lblValidacion.Text = "Por favor ingrese una especialidad";
+                txtEspecialidad.CssClass = "form-control is-invalid";
+                lblValidacion.ForeColor = System.Drawing.Color.Red;
+                return false;
+            }
+
+            if (txtEspecialidad.Text.Length > 50)
+            {
+                lblValidacion.Text = "Máximo 50 caractéres";
+                txtEspecialidad.CssClass = "form-control is-invalid";
+                lblValidacion.ForeColor = System.Drawing.Color.Red;
+                return false;
+            }
+
+            return true;
         }
     }
 }
