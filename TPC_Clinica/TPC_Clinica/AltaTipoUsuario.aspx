@@ -38,7 +38,7 @@
                                 <label for="txtTipoUsuario" class="form-label mt-3">Tipo de Usuario</label>
                                 <asp:TextBox ID="txtTipoUsuario" CssClass="form-control" runat="server"></asp:TextBox>
                                 
-                                <asp:Label ID="lblValidacionTipo" runat="server" Text=" " CssClass="form-label"></asp:Label>
+                                <asp:Label ID="lblValidacion" runat="server" Text=" " CssClass="form-label"></asp:Label>
                             </div>
                         </div>
                         <div class="row">

@@ -37,21 +37,7 @@ namespace TPC_Clinica
 
         protected void btnAgregarTipoUsuario_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtTipoUsuario.Text))
-            {
-                lblValidacionTipo.Text = "Por favor ingrese un Tipo de Usuario";
-                txtTipoUsuario.CssClass = "form-control is-invalid";
-                lblValidacionTipo.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-
-            if (txtTipoUsuario.Text.Length > 50)
-            {
-                lblValidacionTipo.Text = "El campo debe tener máximo 50 caracteres";
-                txtTipoUsuario.CssClass = "form-control is-invalid";
-                lblValidacionTipo.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
+            if (!validar()) { return; }
 
             if (Session["IdModificarTipoUsuario"] == null)
             {
@@ -62,7 +48,7 @@ namespace TPC_Clinica
                 dgvTiposUsuario.DataBind();
                 txtTipoUsuario.Text = null;
                 Session["listaTiposUsuario"] = listaTiposUsuario;
-                lblValidacionTipo.Text = null;
+                lblValidacion.Text = null;
                 txtTipoUsuario.CssClass = "form-control";
                 btnContinuar.Visible = true;
             }
@@ -100,6 +86,27 @@ namespace TPC_Clinica
             negocio.agregarTipoUsuario((List<TipoUsuario>)Session["listaTiposUsuario"]);
             Session.Remove("listaTiposUsuario");
             Response.Redirect("ListadoTipoUsuario.aspx");
+        }
+
+        protected bool validar()
+        {
+            if (String.IsNullOrWhiteSpace(txtTipoUsuario.Text))
+            {
+                lblValidacion.Text = "Por favor ingrese una especialidad";
+                txtTipoUsuario.CssClass = "form-control is-invalid";
+                lblValidacion.ForeColor = System.Drawing.Color.Red;
+                return false;
+            }
+
+            if (txtTipoUsuario.Text.Length > 50)
+            {
+                lblValidacion.Text = "Máximo 50 caractéres";
+                txtTipoUsuario.CssClass = "form-control is-invalid";
+                lblValidacion.ForeColor = System.Drawing.Color.Red;
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -89,7 +89,7 @@ namespace TPC_Clinica
 
         protected bool validar()
         {
-            if (String.IsNullOrEmpty(txtEspecialidad.Text))
+            if (String.IsNullOrWhiteSpace(txtEspecialidad.Text))
             {
                 lblValidacion.Text = "Por favor ingrese una especialidad";
                 txtEspecialidad.CssClass = "form-control is-invalid";
