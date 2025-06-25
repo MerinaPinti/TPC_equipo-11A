@@ -55,7 +55,7 @@ namespace TPC_Clinica
                 EstadoNegocio negocio = new EstadoNegocio();
                 Estado modificar = new Estado { Descripcion = txtEstado.Text, Id = Convert.ToInt32(txtBoxIdMod.Text) };
                 negocio.modificarEstado(modificar);
-                Response.Redirect("ListadoEstadoes.aspx", true);
+                Response.Redirect("ListadoEstados.aspx", true);
             }
 
 

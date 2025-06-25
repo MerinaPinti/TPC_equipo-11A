@@ -4,14 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
 using Negocio;
 
 namespace TPC_Clinica
 {
-    public partial class ListadoEspecialidades : System.Web.UI.Page
+    public partial class ListadoEstados : System.Web.UI.Page
     {
-        private EspecialidadNegocio Negocio = new EspecialidadNegocio();
+        private EstadoNegocio Negocio = new EstadoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,19 +22,19 @@ namespace TPC_Clinica
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Session.Remove("IdModificarEspecialidad");
-            Response.Redirect("AltaEspecialidad.aspx", true);
+            Session.Remove("IdModificarEstado");
+            Response.Redirect("AltaEstado.aspx", true);
         }
 
         protected void dgvEspecialidades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            
+
             int index = Convert.ToInt32(e.CommandArgument);
             int id = Convert.ToInt32(dgvEspecialidades.DataKeys[index].Value);
 
             if (e.CommandName == "Eliminar")
             {
-                Negocio.eliminarEspecialidad(Negocio.ListarConId(id));
+                Negocio.eliminarEstado(Negocio.ListarConId(id));
                 dgvEspecialidades.DataSource = Negocio.ListarActivos();
                 dgvEspecialidades.DataBind();
 
@@ -43,8 +42,8 @@ namespace TPC_Clinica
 
             if (e.CommandName == "Editar")
             {
-                Session.Add("IdModificarEspecialidad", id);
-                Response.Redirect("AltaEspecialidad.aspx", true);
+                Session.Add("IdModificarEstado", id);
+                Response.Redirect("AltaEstado.aspx", true);
             }
         }
     }
