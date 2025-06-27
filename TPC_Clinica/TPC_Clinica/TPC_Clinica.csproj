@@ -74,6 +74,7 @@
     <Content Include="AltaTipoUsuario.aspx" />
     <Content Include="AltaUsuario.aspx" />
     <Content Include="AsignarTurno.aspx" />
+    <Content Include="AsignarTurno2.aspx" />
     <Content Include="CancelarTurno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="EleccionTurno.aspx" />
@@ -86,6 +87,8 @@
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="ModificarTurno.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
+    <Content Include="SeleccionarEspecialidad.aspx" />
+    <Content Include="SeleccionarProfesional.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +140,13 @@
     </Compile>
     <Compile Include="AsignarTurno.aspx.designer.cs">
       <DependentUpon>AsignarTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AsignarTurno2.aspx.cs">
+      <DependentUpon>AsignarTurno2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AsignarTurno2.aspx.designer.cs">
+      <DependentUpon>AsignarTurno2.aspx</DependentUpon>
     </Compile>
     <Compile Include="CancelarTurno.aspx.cs">
       <DependentUpon>CancelarTurno.aspx</DependentUpon>
@@ -225,6 +235,20 @@
     </Compile>
     <Compile Include="RegistrarPaciente.aspx.designer.cs">
       <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarEspecialidad.aspx.cs">
+      <DependentUpon>SeleccionarEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionarEspecialidad.aspx.designer.cs">
+      <DependentUpon>SeleccionarEspecialidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarProfesional.aspx.cs">
+      <DependentUpon>SeleccionarProfesional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionarProfesional.aspx.designer.cs">
+      <DependentUpon>SeleccionarProfesional.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
