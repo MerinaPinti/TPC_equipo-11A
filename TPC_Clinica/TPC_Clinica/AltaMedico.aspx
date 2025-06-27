@@ -11,13 +11,13 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .card-alta h2 {
-            font-size: 1.8rem;
-            color: #198754;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 25px;
-        }
+            .card-alta h2 {
+                font-size: 1.8rem;
+                color: #198754;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 25px;
+            }
 
         .btn-alta {
             background-color: #198754;
@@ -27,9 +27,9 @@
             border: none;
         }
 
-        .btn-alta:hover {
-            background-color: #157347;
-        }
+            .btn-alta:hover {
+                background-color: #157347;
+            }
     </style>
 </asp:Content>
 
@@ -75,8 +75,17 @@
             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" TextMode="Phone" placeholder="+54 9 11 1234-5678" />
             <asp:Label ID="lblTelefono" runat="server" CssClass="form-text" />
         </div>
+        <div class="alert alert-info" role="alert">
+            <strong>¡Aviso!</strong> Al crear un médico, también se generará automáticamente un usuario asociado.
+            <br />
+            Para ingresar al sistema:<br />
+            - <strong>Usuario:</strong> número de DNI del médico<br />
+            - <strong>Contraseña inicial:</strong> mismo número de DNI<br />
+            <em>Se recomienda cambiar la contraseña en el primer ingreso.</em>
+        </div>
 
-        <asp:Button 
-            ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-alta w-100" OnClick="btnGuardar_Click" />
+
+    <asp:Button
+        ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-alta w-100" OnClick="btnGuardar_Click" />
     </div>
 </asp:Content>

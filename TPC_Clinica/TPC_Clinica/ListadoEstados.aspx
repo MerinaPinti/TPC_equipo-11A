@@ -16,7 +16,7 @@
     <div class="especialidad-list">
         <div class="row">
             <div class="col">
-                <h2>Listado de Especialidades</h2>
+                <h2>Listado de Estados</h2>
             </div>
         </div>
         <div class="row">
