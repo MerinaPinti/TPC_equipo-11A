@@ -113,6 +113,32 @@ namespace Negocio
             }
         }
 
+
+        public void agregarUsuarioMedico(Usuario usuario)
+        {
+            
+                AccesoDatos datos = new AccesoDatos();
+                try
+                {
+                    datos.setearConsulta("INSERT INTO Usuario (usuario, contraseña, idTipoUsuario) VALUES (@user, @pass, @tipo)");
+                    datos.setearParametros("@user", usuario.UserName);
+                    datos.setearParametros("@pass", usuario.Password);
+                    datos.setearParametros("@tipo", usuario.TipoUsuario.Id);
+                    datos.ejecutarAccion();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+            
+        }
+
+
+
         public void modificarUsuario(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -110,6 +110,16 @@ namespace Negocio
                 nuevo.IdMedico = idMedico;
                 cargarIntermedia(nuevo);
 
+                // Luego de guardar el médico, creamos su usuario Usuario y Contra = a la Matrícula. 
+                Usuario nuevoUsuario = new Usuario();
+                nuevoUsuario.UserName = nuevo.Matricula.ToString();
+                nuevoUsuario.Password = nuevo.Matricula.ToString();
+                nuevoUsuario.TipoUsuario = new TipoUsuario();
+                nuevoUsuario.TipoUsuario.Id = 3; // ID de tipo Médico
+
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                usuarioNegocio.agregarUsuarioMedico(nuevoUsuario);
+
 
             }
             catch (Exception ex)
