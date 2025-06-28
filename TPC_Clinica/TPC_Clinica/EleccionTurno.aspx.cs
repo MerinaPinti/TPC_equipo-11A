@@ -18,7 +18,7 @@ namespace TPC_Clinica
 
         protected void btnAsignar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AsignarTurno.aspx");
+            Response.Redirect("AsignarTurno2.aspx");
 
         }
 

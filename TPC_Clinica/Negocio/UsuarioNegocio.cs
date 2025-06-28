@@ -192,6 +192,42 @@ namespace Negocio
             }
         }
 
+
+        public Usuario Login(string username, string password)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario usuario = null;
+
+            try
+            {
+                datos.setearConsulta("SELECT idUsuario AS Id, usuario, contraseña, idTipoUsuario, activo FROM Usuario WHERE usuario = @user AND contraseña = @pass AND activo = 1");
+                datos.setearParametros("@user", username);
+                datos.setearParametros("@pass", password);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    usuario = new Usuario();
+                    usuario.Id = (int)datos.Lector["Id"];
+                    usuario.UserName = (string)datos.Lector["usuario"];
+                    usuario.Password = (string)datos.Lector["contraseña"];
+                    usuario.TipoUsuario = new TipoUsuario { Id = (int)datos.Lector["idTipoUsuario"] };
+                    usuario.Activo = (bool)datos.Lector["activo"];
+                }
+
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
         public void EliminarUsuario(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();

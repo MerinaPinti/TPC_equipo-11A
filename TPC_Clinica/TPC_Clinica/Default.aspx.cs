@@ -18,7 +18,21 @@ namespace TPC_Clinica
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EleccionTurno.aspx");
+            string user = txtusuario.Text;
+            string pass = txtpassword.Text;
+
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario logueado = negocio.Login(user, pass);
+
+            if (logueado != null)
+            {
+                Session["usuario"] = logueado;
+                Response.Redirect("EleccionTurno.aspx");
+            }
+            else
+            {
+                Response.Redirect("Error.aspx?msg=Usuario o contraseña incorrectos");
+            }
         }
     }
 }

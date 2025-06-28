@@ -53,13 +53,13 @@
 
         <div class="mb-3">
             <label for="usuario" class="form-label">Usuario</label>
-            <input type="text" class="form-control" id="usuario" placeholder="Ingresar usuario" />
+            <asp:TextBox ID="txtusuario" runat="server" CssClass="form-control" Placeholder="Ingresar usuario" />
         </div>
 
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
             <div class="input-group">
-                <input type="password" class="form-control" id="password" placeholder="Ingresar contraseña" />
+                <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control" TextMode="Password" Placeholder="Ingresar contraseña" />
                 <span class="input-group-text">
                     <i class="bi bi-eye"></i> 
                 </span>
