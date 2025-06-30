@@ -105,3 +105,46 @@ CREATE TABLE HorarioAtencion (
 	diaSemana TINYINT NOT NULL CHECK(diaSemana BETWEEN 1 AND 7), -- 1 = lunes, 7 = domingo
 	activo BIT NOT NULL DEFAULT 1
 );
+
+GO
+
+INSERT INTO TipoUsuario (descripcion) VALUES 
+('Administrador'), 
+('Recepcionista'), 
+('Medico');
+GO
+
+INSERT INTO Especialidad (descripcion) VALUES 
+('Clínico General'), 
+('Pediatra'), 
+('Cardiólogo'), 
+('Dermatólogo'), 
+('Odontólogo');
+GO
+
+INSERT INTO Estado (descripcion) VALUES 
+('Nuevo'), 
+('Reprogramado'), 
+('Cancelado'), 
+('No Asistió'), 
+('Cerrado');
+GO
+
+INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES 
+(1, 'admin', 'admin123'),         -- Administrador
+(2, 'recepcion1', 'recep123'),    -- Recepcionista
+(3, '30444555', '30444555');      -- Médico (DNI como usuario y contraseña)
+GO
+
+INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) VALUES 
+('juanperez@clinica.com', '1133445566', 'Juan', 'Pérez', 'MAT123456', 3);
+GO
+
+INSERT INTO Especialidades_Medicos (IDEspecialidad, IDMedico) VALUES 
+(1, 1),  -- Clínico General
+(3, 1);  -- Cardiólogo
+GO
+
+INSERT INTO Paciente (nombre, apellido, DNI, fechaNac, telefono, direccion, email) VALUES 
+('María', 'Gómez', '33444555', '1990-05-10', '1144556677', 'Av. Siempreviva 123', 'maria.gomez@mail.com');
+GO
