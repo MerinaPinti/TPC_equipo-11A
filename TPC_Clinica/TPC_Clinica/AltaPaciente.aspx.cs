@@ -134,7 +134,14 @@ namespace TPC_Clinica
                     nuevo.Direccion = txtDireccion.Text;
 
                     negocio.modificarPaciente(nuevo);
+
+                    //PRUEBA DE ENVIO DE MAIL
+                    EmailService emailService = new EmailService();
+                    emailService.armarCorreo(txtEmail.Text, "Te damos la bienvenida a Clinica", "Sus datos han sido cargados con exito!");
+                    emailService.enviarCorreo();
+
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Datos actualizados!');", true);
+                    
                     Response.Redirect("ListadoPaciente.aspx", false);
                 }
             }
