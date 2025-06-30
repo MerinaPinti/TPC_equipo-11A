@@ -267,5 +267,10 @@ namespace TPC_Clinica
                 txtTelefono.Text = medico.Telefono;
             }
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoMedicos.aspx", false);
+        }
     }
 }

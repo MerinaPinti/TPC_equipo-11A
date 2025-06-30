@@ -19,17 +19,12 @@
                 margin-bottom: 25px;
             }
 
-        .btn-alta {
-            background-color: #198754;
-            color: white;
+        .btn {
+
             font-weight: bold;
             border-radius: 25px;
-            border: none;
+    
         }
-
-            .btn-alta:hover {
-                background-color: #157347;
-            }
     </style>
 </asp:Content>
 
@@ -85,7 +80,8 @@
         </div>
 
 
-    <asp:Button
-        ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-alta w-100" OnClick="btnGuardar_Click" />
+        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success w-100" OnClick="btnGuardar_Click" />
+        <asp:Button
+            ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger w-100 mt-3" OnClick="btnCancelar_Click" />
     </div>
 </asp:Content>
