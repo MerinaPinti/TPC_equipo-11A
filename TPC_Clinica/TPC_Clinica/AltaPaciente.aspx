@@ -20,16 +20,10 @@
             }
 
         .btn-alta {
-            background-color: #0d6efd;
-            color: white;
             font-weight: bold;
             border-radius: 25px;
-            border: none;
         }
-
-            .btn-alta:hover {
-                background-color: #0b5ed7;
-            }
+  
     </style>
 </asp:Content>
 
@@ -87,8 +81,8 @@
                     <asp:Label ID="lblEmail" runat="server" CssClass="form-text" />
                 </div>
 
-                <asp:Button
-                    ID="btnGuardarPaciente" runat="server" Text="Guardar Paciente" CssClass="btn btn-alta w-100" OnClick="btnGuardarPaciente_Click" />
+                <asp:Button ID="btnGuardarPaciente" runat="server" Text="Guardar" CssClass="btn btn-success w-100" OnClick="btnGuardarPaciente_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger w-100 mt-3" OnClick="btnCancelar_Click" />
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

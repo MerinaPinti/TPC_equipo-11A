@@ -401,5 +401,10 @@ namespace TPC_Clinica
                 txtDNI.CssClass = "form-control form-control-lg mx-auto is-valid";
             }
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoPaciente.aspx", false);
+        }
     }
 }
