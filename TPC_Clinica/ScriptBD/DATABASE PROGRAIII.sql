@@ -68,10 +68,10 @@ CREATE TABLE Medico(
 GO
 
 CREATE TABLE Especialidades_Medicos (
-	idEspecialidad INT NOT NULL FOREIGN KEY REFERENCES Especialidad(idEspecialidad),
-    idMedico INT NOT NULL FOREIGN KEY REFERENCES Medico(idMedico),
+	IDESPECIALIDAD INT NOT NULL FOREIGN KEY REFERENCES Especialidad(idEspecialidad),
+    IDMEDICO INT NOT NULL FOREIGN KEY REFERENCES Medico(idMedico),
 	Activo bit NOT NULL DEFAULT 1,
-    PRIMARY KEY(idEspecialidad, idMedico)
+    PRIMARY KEY(IDESPECIALIDAD, IDMEDICO)
 );
 
 GO
