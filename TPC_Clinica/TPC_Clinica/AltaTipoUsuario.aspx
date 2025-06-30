@@ -44,6 +44,7 @@
                         <div class="row">
                             <div class="col">
                                 <asp:Button ID="btnAgregarTipoUsuario" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Agregar" OnClick="btnAgregarTipoUsuario_Click" />
+                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm mt-2" OnClick="btnCancelar_Click" />
                             </div>
                         </div>
                     </div>
