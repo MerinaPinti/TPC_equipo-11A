@@ -40,13 +40,14 @@
                         <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
 
                         <label for="txtTipoUsuario" class="form-label mt-3">Tipo Usuario</label>
-                        <asp:DropDownList ID="ddlTipoUsuario" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTipoUsuario" runat="server" CssClass="form-select"></asp:DropDownList>
 
                         <asp:Button ID="btnAgregarUsuario" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Agregar" OnClick="btnAgregarUsuario_Click" />
+                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm mt-2" OnClick="btnCancelar_Click" />
                     </div>
 
                     <div class="col">
-                        <asp:GridView ID="dgvUsuarios" OnRowDeleting="dgvUsuarios_RowDeleting" runat="server" AutoGenerateColumns="false" CssClass="table">
+                        <asp:GridView ID="dgvUsuarios" runat="server" AutoGenerateColumns="false" CssClass="table">
                             <Columns>
                                 <asp:TemplateField HeaderText="#">
                                     <ItemTemplate>
