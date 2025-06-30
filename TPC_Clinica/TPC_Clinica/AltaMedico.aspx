@@ -70,7 +70,7 @@
             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" TextMode="Phone" placeholder="+54 9 11 1234-5678" />
             <asp:Label ID="lblTelefono" runat="server" CssClass="form-text" />
         </div>
-        <div class="alert alert-info" role="alert">
+        <div ID="divMensaje" class="alert alert-info" role="alert" runat="server">
             <strong>¡Aviso!</strong> Al crear un médico, también se generará automáticamente un usuario asociado.
             <br />
             Para ingresar al sistema:<br />

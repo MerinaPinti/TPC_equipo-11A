@@ -186,39 +186,42 @@ namespace TPC_Clinica
             PacienteNegocio negocio = new PacienteNegocio();
             Paciente paciente = negocio.existePaciente(txtDNI.Text);
 
-            if (string.IsNullOrWhiteSpace(txtDNI.Text))
+            if (Session["DniModificarPaciente"] != null)
             {
-                lblDNI.ForeColor = System.Drawing.Color.Red;
-                lblDNI.Text = "Campo obligatorio";
-                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                validator = false;
-            }
-            else if (txtDNI.Text.Length > 8)
-            {
-                lblDNI.ForeColor = System.Drawing.Color.Red;
-                lblDNI.Text = "Excediste los caracteres permitidos.";
-                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                validator = false;
-            }
-            else if (!int.TryParse(txtDNI.Text, out documento)) //controla que el DNI solo tenga numeros
-            {
-                lblDNI.ForeColor = System.Drawing.Color.Red;
-                lblDNI.Text = "El DNI solo debe contener números";
-                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                validator = false;
-            }
-            else if (paciente != null)
-            {
-                lblDNI.ForeColor = System.Drawing.Color.Red;
-                lblDNI.Text = "DNI ya registrado.";
-                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                validator = false;
-            }
-            else
-            {
-                lblDNI.ForeColor = System.Drawing.Color.Green;
-                lblDNI.Text = "✓ Campo válido.";
-                txtDNI.CssClass = "form-control form-control-lg mx-auto is-valid";
+                if (string.IsNullOrWhiteSpace(txtDNI.Text))
+                {
+                    lblDNI.ForeColor = System.Drawing.Color.Red;
+                    lblDNI.Text = "Campo obligatorio";
+                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                    validator = false;
+                }
+                else if (txtDNI.Text.Length > 8)
+                {
+                    lblDNI.ForeColor = System.Drawing.Color.Red;
+                    lblDNI.Text = "Excediste los caracteres permitidos.";
+                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                    validator = false;
+                }
+                else if (!int.TryParse(txtDNI.Text, out documento)) //controla que el DNI solo tenga numeros
+                {
+                    lblDNI.ForeColor = System.Drawing.Color.Red;
+                    lblDNI.Text = "El DNI solo debe contener números";
+                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                    validator = false;
+                }
+                else if (paciente != null)
+                {
+                    lblDNI.ForeColor = System.Drawing.Color.Red;
+                    lblDNI.Text = "DNI ya registrado.";
+                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                    validator = false;
+                }
+                else
+                {
+                    lblDNI.ForeColor = System.Drawing.Color.Green;
+                    lblDNI.Text = "✓ Campo válido.";
+                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-valid";
+                }
             }
 
             //validar Nombre

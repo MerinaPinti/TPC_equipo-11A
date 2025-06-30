@@ -32,6 +32,7 @@ namespace TPC_Clinica
                     txtMatricula.Enabled = false;
                     txtNombre.Text = medico.Nombre;
                     txtTelefono.Text = medico.Telefono;
+                    divMensaje.Visible = false;
 
                     List<int> idsSeleccionados = new List<int>();
                     foreach (Especialidad obj in medico.Especialidad)

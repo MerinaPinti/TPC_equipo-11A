@@ -34,7 +34,9 @@ namespace TPC_Clinica
                     txtBoxIdMod.Visible = true;
                     txtBoxIdMod.Text = modificar.Id.ToString();
                     txtUsuario.Text = modificar.UserName;
-                    txtPassword.Text = modificar.Password;
+                    lblCambiarContraseña.Visible = true;
+                    txtPassword.Enabled = false;
+                    cboxPassword.Visible = true;
                     ddlTipoUsuario.SelectedValue = modificar.TipoUsuario.Id.ToString();
                     btnAgregarUsuario.Text = "Modificar";
                 }
@@ -50,7 +52,7 @@ namespace TPC_Clinica
                 {
                     UserName = txtUsuario.Text,
                     Password = txtPassword.Text,
-                    TipoUsuario = new TipoUsuario{Id = Convert.ToInt32(ddlTipoUsuario.SelectedValue), Descripcion = ddlTipoUsuario.SelectedItem.Text}
+                    TipoUsuario = new TipoUsuario { Id = Convert.ToInt32(ddlTipoUsuario.SelectedValue), Descripcion = ddlTipoUsuario.SelectedItem.Text }
                 });
                 Session["usuarios"] = usuarios;
                 dgvUsuarios.DataSource = usuarios;
@@ -93,5 +95,12 @@ namespace TPC_Clinica
             Response.Redirect("ListadoUsuarios.aspx", false);
         }
 
+        protected void cboxPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cboxPassword.Checked)
+            {
+                txtPassword.Enabled = true;
+            } else txtPassword.Enabled = false;
+        }
     }
 }

@@ -31,13 +31,16 @@
                 <div class="row">
                     <div class="col-3">
                         <asp:Label ID="lblIdMod" runat="server" Visible="false" CssClass="form-label mt-3" Text="ID"></asp:Label>
-                        <asp:TextBox ID="txtBoxIdMod" Visible="false" CssClass="form-control" runat="server" disabled></asp:TextBox>
+                        <asp:TextBox ID="txtBoxIdMod" Visible="false" CssClass="form-control mt-2" runat="server" disabled></asp:TextBox>
 
                         <label for="txtUsuario" class="form-label mt-3">Usuario</label>
-                        <asp:TextBox ID="txtUsuario" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtUsuario" CssClass="form-control mb-3" runat="server"></asp:TextBox>
 
-                        <label for="txtPassword" class="form-label mt-3">Contraseña</label>
-                        <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:Label ID="lblContraseña" runat="server" CssClass="form-label" Text="Contraseña"></asp:Label>
+                        <asp:TextBox ID="txtPassword" CssClass="form-control mt-2" runat="server" TextMode="Password"></asp:TextBox>
+
+                        <asp:Label ID="lblCambiarContraseña" runat="server" Text="Deseo cambiar la contraseña" CssClass="mr-2 pt-2" Visible="false"></asp:Label>
+                        <asp:CheckBox ID="cboxPassword" runat="server" AutoPostBack="true" OnCheckedChanged="cboxPassword_CheckedChanged" Visible="false" />
 
                         <label for="txtTipoUsuario" class="form-label mt-3">Tipo Usuario</label>
                         <asp:DropDownList ID="ddlTipoUsuario" runat="server" CssClass="form-select"></asp:DropDownList>
