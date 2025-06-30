@@ -103,5 +103,10 @@ namespace TPC_Clinica
 
             return true;
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoEstados.aspx", false);
+        }
     }
 }
