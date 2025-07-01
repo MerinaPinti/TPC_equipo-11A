@@ -32,7 +32,7 @@
                 <asp:GridView ID="dgvEspecialidades" DataKeyNames="Id" OnRowCommand="dgvEspecialidades_RowCommand" runat="server" AutoGenerateColumns="false" CssClass="table">
                     <columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" />
-                        <asp:BoundField HeaderText="Especialidad" DataField="descripcion" />
+                        <asp:BoundField HeaderText="Estado" DataField="descripcion" />
                         <asp:TemplateField>
                             <itemstyle horizontalalign="Right" />
                             <itemtemplate>
@@ -48,7 +48,7 @@
                                     ToolTip="Eliminar"
                                     CommandArgument='<%# Container.DataItemIndex %>'
                                     Style="width: 17px; height: 17px; margin: 0 4px;"
-                                    OnClientClick="return confirm('¿Estás seguro que querés eliminar esta especialidad?');" />
+                                    OnClientClick="return confirm('¿Estás seguro que querés eliminar este estado?');" />
                             </itemtemplate>
                         </asp:TemplateField>
                     </columns>

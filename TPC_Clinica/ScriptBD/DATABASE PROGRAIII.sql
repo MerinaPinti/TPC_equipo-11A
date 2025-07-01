@@ -59,7 +59,7 @@ CREATE TABLE Medico(
 	telefono VARCHAR(15),
 	nombre VARCHAR(100),
 	apellido VARCHAR(100),
-	matricula VARCHAR(90) NOT NULL UNIQUE, 
+	matricula VARCHAR(8) NOT NULL UNIQUE, 
 	idUsuario INT NULL, 
 	activo BIT NOT NULL DEFAULT 1,
 	FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
@@ -137,7 +137,7 @@ INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES
 GO
 
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) VALUES 
-('juanperez@clinica.com', '1133445566', 'Juan', 'Pérez', 'MAT123456', 3);
+('juanperez@clinica.com', '1133445566', 'Juan', 'Pérez', 'MN123456', 3);
 GO
 
 INSERT INTO Especialidades_Medicos (IDEspecialidad, IDMedico) VALUES 

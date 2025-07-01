@@ -74,13 +74,6 @@ namespace TPC_Clinica
                 txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
                 hayerror = true;
             }
-            else if (!int.TryParse(txtMatricula.Text, out matricula))
-            {
-                lblMatricula.ForeColor = System.Drawing.Color.Red;
-                lblMatricula.Text = "La Matricula solo debe contener números";
-                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
             else
             {
                 lblMatricula.ForeColor = System.Drawing.Color.Green;
