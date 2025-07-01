@@ -34,13 +34,7 @@ namespace TPC_Clinica
                     txtTelefono.Text = medico.Telefono;
                     divMensaje.Visible = false;
 
-                    List<int> idsSeleccionados = new List<int>();
-                    foreach (Especialidad obj in medico.Especialidad)
-                    {
-                        idsSeleccionados.Add(obj.Id);
-                    }
-
-                    //List<int> idsSeleccionados = medico.Especialidad.Select(esp => esp.Id).ToList();
+                    List<int> idsSeleccionados = medico.Especialidad.Select(esp => esp.Id).ToList();
                     foreach (ListItem item in chkEspecialidades.Items)
                     {
                         if (idsSeleccionados.Contains(int.Parse(item.Value)))

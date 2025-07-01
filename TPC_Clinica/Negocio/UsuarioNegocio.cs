@@ -200,7 +200,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT idUsuario AS Id, usuario, contraseña, idTipoUsuario, activo FROM Usuario WHERE usuario = @user AND contraseña = @pass AND activo = 1");
+                datos.setearConsulta("SELECT idUsuario AS Id, usuario, contraseña, U.idTipoUsuario, TU.descripcion, U.activo FROM Usuario U INNER JOIN TipoUsuario TU ON U.idTipoUsuario = TU.idTipoUsuario  WHERE U.usuario = @user AND U.contraseña = @pass AND U.activo = 1");
                 datos.setearParametros("@user", username);
                 datos.setearParametros("@pass", password);
                 datos.ejecutarLectura();
@@ -211,7 +211,7 @@ namespace Negocio
                     usuario.Id = (int)datos.Lector["Id"];
                     usuario.UserName = (string)datos.Lector["usuario"];
                     usuario.Password = (string)datos.Lector["contraseña"];
-                    usuario.TipoUsuario = new TipoUsuario { Id = (int)datos.Lector["idTipoUsuario"] };
+                    usuario.TipoUsuario = new TipoUsuario { Id = (int)datos.Lector["idTipoUsuario"], Descripcion = datos.Lector["descripcion"].ToString() };
                     usuario.Activo = (bool)datos.Lector["activo"];
                 }
 
