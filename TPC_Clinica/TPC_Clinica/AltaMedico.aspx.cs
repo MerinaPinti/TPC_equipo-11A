@@ -56,135 +56,7 @@ namespace TPC_Clinica
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            bool hayerror = false;
-
-            // validar Matricula 
-            int matricula;
-            if (string.IsNullOrEmpty(txtMatricula.Text))
-            {
-                lblMatricula.ForeColor = System.Drawing.Color.Red;
-                lblMatricula.Text = "Campo obligatorio";
-                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else if (txtMatricula.Text.Length > 8)
-            {
-                lblMatricula.ForeColor = System.Drawing.Color.Red;
-                lblMatricula.Text = "Excediste los caracteres permitidos.";
-                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else
-            {
-                lblMatricula.ForeColor = System.Drawing.Color.Green;
-                lblMatricula.Text = "✓ Campo válido.";
-                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-valid";
-            }
-
-            //validar Nombre
-            if (string.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                lblNombre.ForeColor = System.Drawing.Color.Red;
-                lblNombre.Text = "Campo obligatorio";
-                txtNombre.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else if (txtNombre.Text.Length > 60)
-            {
-                lblNombre.ForeColor = System.Drawing.Color.Red;
-                lblNombre.Text = "Excediste los caracteres permitidos.";
-                txtNombre.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else
-            {
-                lblNombre.ForeColor = System.Drawing.Color.Green;
-                lblNombre.Text = "✓ Campo válido.";
-                txtNombre.CssClass = "form-control form-control-lg mx-auto is-valid";
-            }
-            //validar Apellido
-            if (string.IsNullOrWhiteSpace(txtApellido.Text))
-            {
-                lblApellido.ForeColor = System.Drawing.Color.Red;
-                lblApellido.Text = "Campo obligatorio";
-                txtApellido.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else if (txtApellido.Text.Length > 60)
-            {
-                lblApellido.ForeColor = System.Drawing.Color.Red;
-                lblApellido.Text = "Excediste los caracteres permitidos.";
-                txtApellido.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else
-            {
-                lblApellido.ForeColor = System.Drawing.Color.Green;
-                lblApellido.Text = "✓ Campo válido.";
-                txtApellido.CssClass = "form-control form-control-lg mx-auto is-valid";
-            }
-
-            //validar Especialidad 
-
-            //validar Email
-            if (string.IsNullOrEmpty(txtEmail.Text))
-            {
-                lblEmail.ForeColor = System.Drawing.Color.Red;
-                lblEmail.Text = "Campo obligatorio";
-                txtEmail.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else if (txtEmail.Text.Length > 100)
-            {
-                lblEmail.ForeColor = System.Drawing.Color.Red;
-                lblEmail.Text = "Excediste los caracteres permitidos.";
-                txtEmail.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains(".com"))
-            {
-                lblEmail.ForeColor = System.Drawing.Color.Red;
-                lblEmail.Text = "Formato de mail incorreto.";
-                txtEmail.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else
-            {
-                lblEmail.ForeColor = System.Drawing.Color.Green;
-                lblEmail.Text = "✓ Campo válido.";
-                txtEmail.CssClass = "form-control form-control-lg mx-auto is-valid";
-            }
-
-            //validar Telefono
-            if (string.IsNullOrEmpty(txtTelefono.Text))
-            {
-                lblTelefono.ForeColor = System.Drawing.Color.Red;
-                lblTelefono.Text = "Campo obligatorio";
-                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else if (txtTelefono.Text.Length > 15)
-            {
-                lblTelefono.ForeColor = System.Drawing.Color.Red;
-                lblTelefono.Text = "Excediste los caracteres permitidos.";
-                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else if (!txtTelefono.Text.All(char.IsDigit))
-            {
-                lblTelefono.ForeColor = System.Drawing.Color.Red;
-                lblTelefono.Text = "El teléfono solo debe contener números.";
-                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                hayerror = true;
-            }
-            else
-            {
-                lblTelefono.ForeColor = System.Drawing.Color.Green;
-                lblTelefono.Text = "✓ Campo válido.";
-                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-valid";
-            }
-
-            if (hayerror)
+            if (!validar())
             {
                 return;
             }
@@ -214,7 +86,7 @@ namespace TPC_Clinica
                 MedicoNegocio negocio = new MedicoNegocio();
                 negocio.agregarMedico(nuevoMedico);
                 Response.Redirect("ListadoMedicos.aspx", true);
-                                
+
             }
             else
             {
@@ -240,7 +112,7 @@ namespace TPC_Clinica
                     }
                 }
                 negocioMed.modificarMedico(medico);
-                Response.Redirect("ListadoMedicos.aspx",true);
+                Response.Redirect("ListadoMedicos.aspx", true);
             }
         }
 
@@ -265,6 +137,138 @@ namespace TPC_Clinica
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListadoMedicos.aspx", false);
+        }
+
+        protected bool validar()
+        {
+            // validar Matricula 
+            bool validator = true;
+            if (string.IsNullOrEmpty(txtMatricula.Text))
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Red;
+                lblMatricula.Text = "Campo obligatorio";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtMatricula.Text.Length > 8)
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Red;
+                lblMatricula.Text = "Excediste los caracteres permitidos.";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Green;
+                lblMatricula.Text = "✓ Campo válido.";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-valid";
+            }
+
+            //validar Nombre
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                lblNombre.ForeColor = System.Drawing.Color.Red;
+                lblNombre.Text = "Campo obligatorio";
+                txtNombre.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtNombre.Text.Length > 60)
+            {
+                lblNombre.ForeColor = System.Drawing.Color.Red;
+                lblNombre.Text = "Excediste los caracteres permitidos.";
+                txtNombre.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblNombre.ForeColor = System.Drawing.Color.Green;
+                lblNombre.Text = "✓ Campo válido.";
+                txtNombre.CssClass = "form-control form-control-lg mx-auto is-valid";
+            }
+            //validar Apellido
+            if (string.IsNullOrWhiteSpace(txtApellido.Text))
+            {
+                lblApellido.ForeColor = System.Drawing.Color.Red;
+                lblApellido.Text = "Campo obligatorio";
+                txtApellido.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtApellido.Text.Length > 60)
+            {
+                lblApellido.ForeColor = System.Drawing.Color.Red;
+                lblApellido.Text = "Excediste los caracteres permitidos.";
+                txtApellido.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblApellido.ForeColor = System.Drawing.Color.Green;
+                lblApellido.Text = "✓ Campo válido.";
+                txtApellido.CssClass = "form-control form-control-lg mx-auto is-valid";
+            }
+
+            //validar Especialidad 
+
+            //validar Email
+            if (string.IsNullOrEmpty(txtEmail.Text))
+            {
+                lblEmail.ForeColor = System.Drawing.Color.Red;
+                lblEmail.Text = "Campo obligatorio";
+                txtEmail.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtEmail.Text.Length > 100)
+            {
+                lblEmail.ForeColor = System.Drawing.Color.Red;
+                lblEmail.Text = "Excediste los caracteres permitidos.";
+                txtEmail.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains(".com"))
+            {
+                lblEmail.ForeColor = System.Drawing.Color.Red;
+                lblEmail.Text = "Formato de mail incorreto.";
+                txtEmail.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblEmail.ForeColor = System.Drawing.Color.Green;
+                lblEmail.Text = "✓ Campo válido.";
+                txtEmail.CssClass = "form-control form-control-lg mx-auto is-valid";
+            }
+
+            //validar Telefono
+            if (string.IsNullOrEmpty(txtTelefono.Text))
+            {
+                lblTelefono.ForeColor = System.Drawing.Color.Red;
+                lblTelefono.Text = "Campo obligatorio";
+                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtTelefono.Text.Length > 15)
+            {
+                lblTelefono.ForeColor = System.Drawing.Color.Red;
+                lblTelefono.Text = "Excediste los caracteres permitidos.";
+                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (!txtTelefono.Text.All(char.IsDigit))
+            {
+                lblTelefono.ForeColor = System.Drawing.Color.Red;
+                lblTelefono.Text = "El teléfono solo debe contener números.";
+                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblTelefono.ForeColor = System.Drawing.Color.Green;
+                lblTelefono.Text = "✓ Campo válido.";
+                txtTelefono.CssClass = "form-control form-control-lg mx-auto is-valid";
+            }
+            if (validator)
+                return true;
+            else return false;
         }
     }
 }
