@@ -13,6 +13,13 @@ namespace TPC_Clinica
         private UsuarioNegocio Negocio = new UsuarioNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrEmpty((string)Session["usuario"]))
+            {
+                Session["error"] = "Debe iniciar sesión para acceder a esta página.";
+                Response.Redirect("Error.aspx", false);
+            }
+
             if (!IsPostBack)
             {
                 dgvUsuarios.DataSource = Negocio.ListarActivos();

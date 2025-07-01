@@ -18,8 +18,11 @@ namespace TPC_Clinica
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            string user = txtusuario.Text;
-            string pass = txtpassword.Text;
+            //string user = txtusuario.Text;
+            //string pass = txtpassword.Text;
+
+            string user = "admin";
+            string pass = "admin123";
 
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario logueado = negocio.Login(user, pass);
@@ -31,7 +34,8 @@ namespace TPC_Clinica
             }
             else
             {
-                Response.Redirect("Error.aspx?msg=Usuario o contraseña incorrectos");
+                Session.Add("error", "Usuario o contraseña incorrectos");
+                Response.Redirect("Error.aspx?",false);
             }
         }
     }

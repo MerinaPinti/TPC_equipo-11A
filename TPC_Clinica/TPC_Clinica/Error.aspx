@@ -16,10 +16,6 @@
             font-weight: bold;
         }
 
-        .btn-volver:hover {
-            background-color: #e3e3e3;
-        }
-
         .error-msg {
             font-weight: 500;
             color: #d50000;

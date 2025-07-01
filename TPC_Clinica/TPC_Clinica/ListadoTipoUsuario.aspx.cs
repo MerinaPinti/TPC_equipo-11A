@@ -14,6 +14,12 @@ namespace TPC_Clinica
         private TipoUsuarioNegocio Negocio = new TipoUsuarioNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty((string)Session["usuario"]))
+            {
+                Session["error"] = "Debe iniciar sesión para acceder a esta página.";
+                Response.Redirect("Error.aspx", false);
+            }
+
             if (!IsPostBack)
             {
                 dgvTiposUsuario.DataSource = Negocio.ListarActivos();

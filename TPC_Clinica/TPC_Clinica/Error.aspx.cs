@@ -13,9 +13,11 @@ namespace TPC_Clinica
         {
             if (!IsPostBack)
             {
-                string mensaje = Request.QueryString["msg"];
-                if (!string.IsNullOrEmpty(mensaje))
-                    lblMensaje.Text = Server.HtmlEncode(mensaje);
+                if (!string.IsNullOrEmpty((string)Session["error"]))
+                {
+                    lblMensaje.Text = Session["error"].ToString();
+                }
+                else lblMensaje.Text = "Erorr";
             }
         }
 
