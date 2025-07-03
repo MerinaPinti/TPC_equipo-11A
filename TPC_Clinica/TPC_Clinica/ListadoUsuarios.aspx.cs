@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace TPC_Clinica
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Session["usuario"] == null)
+            Usuario usuario = (Usuario)Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            if (usuario == null || usuario.TipoUsuario.Id == 3)
             {
-                Session["error"] = "Debe iniciar sesión para acceder a esta página.";
-                Response.Redirect("Error.aspx", false);
+                Session["error"] = "No tiene permiso para acceder a esta página.";
+                Response.Redirect("Error.aspx", true);
             }
+            Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
 
             if (!IsPostBack)
             {
@@ -36,7 +39,7 @@ namespace TPC_Clinica
         }
 
 
-            protected void dgvUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void dgvUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
             int id = Convert.ToInt32(dgvUsuarios.DataKeys[index].Value);
@@ -56,4 +59,4 @@ namespace TPC_Clinica
         }
 
     }
-    }
+}

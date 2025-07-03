@@ -34,7 +34,7 @@
     <div class="login-card text-center">
         <h2 class="error-msg">¡Acceso denegado!</h2>
         <asp:Label ID="lblMensaje" runat="server" CssClass="error-subtext d-block" />
-        <asp:Button ID="btnVolver" runat="server" Text="Volver al inicio" CssClass="btn btn-outline-primary btn-volver w-100" OnClick="btnVolver_Click" />
+        <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-outline-primary btn-volver w-100" OnClick="btnVolver_Click" />
     </div>
 </asp:Content>
 

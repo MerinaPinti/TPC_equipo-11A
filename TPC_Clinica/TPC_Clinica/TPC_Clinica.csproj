@@ -87,7 +87,6 @@
     <Content Include="ListadoTipoUsuario.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="ModificarTurno.aspx" />
-    <Content Include="RegistrarPaciente.aspx" />
     <Content Include="SeleccionarEspecialidad.aspx" />
     <Content Include="SeleccionarProfesional.aspx" />
     <Content Include="Web.config" />
@@ -237,13 +236,6 @@
       <DependentUpon>ModificarTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrarPaciente.aspx.cs">
-      <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RegistrarPaciente.aspx.designer.cs">
-      <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SeleccionarEspecialidad.aspx.cs">
       <DependentUpon>SeleccionarEspecialidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

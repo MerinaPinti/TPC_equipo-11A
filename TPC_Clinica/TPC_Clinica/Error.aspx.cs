@@ -16,6 +16,7 @@ namespace TPC_Clinica
                 if (!string.IsNullOrEmpty((string)Session["error"]))
                 {
                     lblMensaje.Text = Session["error"].ToString();
+                    Session.Remove("error");
                 }
                 else lblMensaje.Text = "Erorr";
             }
@@ -23,7 +24,8 @@ namespace TPC_Clinica
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx"); 
+            string urlVolver = Session["paginaAnterior"].ToString();
+            Response.Redirect(urlVolver); 
         }
     }
 }

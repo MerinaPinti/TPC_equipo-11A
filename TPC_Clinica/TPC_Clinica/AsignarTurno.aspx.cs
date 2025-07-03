@@ -21,8 +21,9 @@ namespace TPC_Clinica
             if (Session["usuario"] == null)
             {
                 Session["error"] = "Debe iniciar sesión para acceder a esta página.";
-                Response.Redirect("Error.aspx", false);
+                Response.Redirect("Error.aspx", true);
             }
+            Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
         }
 
         protected void btnBuscarPaciente_Click(object sender, EventArgs e)

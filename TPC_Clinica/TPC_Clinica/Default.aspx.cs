@@ -13,7 +13,7 @@ namespace TPC_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -21,8 +21,8 @@ namespace TPC_Clinica
             //string user = txtusuario.Text;
             //string pass = txtpassword.Text;
 
-            string user = "admin";
-            string pass = "admin123";
+            string user = "30444555";
+            string pass = "30444555";
 
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario logueado = negocio.Login(user, pass);
@@ -34,8 +34,9 @@ namespace TPC_Clinica
             }
             else
             {
+                Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
                 Session.Add("error", "Usuario o contraseña incorrectos");
-                Response.Redirect("Error.aspx?",false);
+                Response.Redirect("Error.aspx?", false);
             }
         }
     }
