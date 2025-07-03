@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using System.ComponentModel.DataAnnotations;
 
 namespace TPC_Clinica
 {
@@ -126,7 +127,7 @@ namespace TPC_Clinica
             // validar Matricula 
             bool validator = true;
             MedicoNegocio negocio = new MedicoNegocio();
-            Medico medico = negocio.existeMedico((int)Session["idModificarMedico"]);
+            Medico medico = negocio.existeMedico(txtMatricula.Text);
             if (string.IsNullOrEmpty(txtMatricula.Text))
             {
                 lblMatricula.ForeColor = System.Drawing.Color.Red;
@@ -144,8 +145,8 @@ namespace TPC_Clinica
             else if (medico != null && Session["idModificarMedico"] == null)
             {
                 lblMatricula.ForeColor = System.Drawing.Color.Red;
-                lblMatricula.Text = "DNI ya registrado.";
-                lblMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                lblMatricula.Text = "Matricula ya registrada.";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
                 validator = false;
             }
             else
@@ -258,6 +259,37 @@ namespace TPC_Clinica
                 txtTelefono.CssClass = "form-control form-control-lg mx-auto is-valid";
             }
             return validator;
+        }
+
+        protected void txtMatricula_TextChanged(object sender, EventArgs e)
+        {
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente paciente = negocio.existePaciente(txtMatricula.Text);
+            if (paciente != null)
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Red;
+                lblMatricula.Text = "Matricula ya registrada.";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
+            }
+            else if (string.IsNullOrEmpty(txtMatricula.Text))
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Red;
+                lblMatricula.Text = "Campo obligatorio";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
+            }
+            else if (txtMatricula.Text.Length > 8)
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Red;
+                lblMatricula.Text = "Excediste los caracteres permitidos.";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
+            }
+            else
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Green;
+                lblMatricula.Text = "✓ Campo válido.";
+                txtMatricula.CssClass = "form-control form-control-lg mx-auto is-valid";
+            }
+
         }
     }
 }

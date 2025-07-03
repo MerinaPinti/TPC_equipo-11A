@@ -212,26 +212,41 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT Matricula, Nombre, Apellido, Telefono, Email, idEspecialidad FROM Medico WHERE Matricula = @Matricula");
+                datos.setearConsulta("SELECT M.idMedico, M.Matricula, M.Nombre, M.Apellido, M.Telefono, M.Email, EM.IDESPECIALIDAD, E.descripcion FROM Medico M LEFT JOIN ESPECIALIDADES_MEDICOS EM ON M.idMedico = EM.IDMEDICO LEFT JOIN Especialidad E ON E.idEspecialidad = EM.IDESPECIALIDAD WHERE M.Matricula = @Matricula");
                 datos.setearParametros("@Matricula", Matricula);
                 datos.ejecutarLectura();
 
-                if (datos.Lector.Read())
+                while (datos.Lector.Read())
                 {
-                    medico = new Medico();
-                    medico.Matricula = datos.Lector["Matricula"].ToString();
-                    medico.Nombre = datos.Lector["Nombre"].ToString();
-                    medico.Apellido = datos.Lector["Apellido"].ToString();
-                    medico.Telefono = datos.Lector["Telefono"].ToString();
-                    medico.Email = datos.Lector["Email"].ToString();
+                    if (medico == null)
+                    {
+                        medico = new Medico();
+                        medico.Matricula = Matricula;
+                        medico.IdMedico = (int)datos.Lector["idMedico"];
+                        medico.Nombre = datos.Lector["Nombre"].ToString();
+                        medico.Apellido = datos.Lector["Apellido"].ToString();
+                        medico.Telefono = datos.Lector["Telefono"].ToString();
+                        medico.Email = datos.Lector["Email"].ToString();
+                        medico.Especialidad = new List<Especialidad>();
+                    }
 
-                }
 
+                    if (datos.Lector["IDESPECIALIDAD"] != DBNull.Value)
+                    {
+                        Especialidad esp = new Especialidad
+                        {
+                            Id = (int)datos.Lector["IDESPECIALIDAD"],
+                            Descripcion = datos.Lector["descripcion"].ToString()
+                        };
+
+                        medico.Especialidad.Add(esp);
+                    }
+                } 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
             return medico;

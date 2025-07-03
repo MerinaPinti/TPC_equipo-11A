@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altausuario.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altausuario.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altamedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altamedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altausuario.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altausuario.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altamedico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altamedico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,36 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AltaUsuario.aspx",
-              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaUsuario.aspx",
-              "RelativeDocumentMoniker": "TPC_Clinica\\AltaUsuario.aspx",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaUsuario.aspx",
-              "RelativeToolTip": "TPC_Clinica\\AltaUsuario.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-02T22:53:25.645Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AltaUsuario.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaUsuario.aspx.cs",
-              "RelativeDocumentMoniker": "TPC_Clinica\\AltaUsuario.aspx.cs",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaUsuario.aspx.cs",
-              "RelativeToolTip": "TPC_Clinica\\AltaUsuario.aspx.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAewLAAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T22:40:40.119Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -55,6 +27,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AltaMedico.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx.cs",
+              "RelativeDocumentMoniker": "TPC_Clinica\\AltaMedico.aspx.cs",
+              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx.cs",
+              "RelativeToolTip": "TPC_Clinica\\AltaMedico.aspx.cs",
+              "ViewState": "AgIAAP4AAAAAAAAAAAAmwCEBAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T00:32:29.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AltaMedico.aspx",
+              "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx",
+              "RelativeDocumentMoniker": "TPC_Clinica\\AltaMedico.aspx",
+              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx",
+              "RelativeToolTip": "TPC_Clinica\\AltaMedico.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-07-03T00:33:32.832Z",
+              "EditorCaption": ""
             }
           ]
         }
