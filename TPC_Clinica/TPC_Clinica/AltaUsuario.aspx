@@ -30,23 +30,32 @@
             <ContentTemplate>
                 <div class="row">
                     <div class="col-3">
-                        <asp:Label ID="lblIdMod" runat="server" Visible="false" CssClass="form-label mt-3" Text="ID"></asp:Label>
-                        <asp:TextBox ID="txtBoxIdMod" Visible="false" CssClass="form-control mt-2" runat="server" disabled></asp:TextBox>
+                        <div class="mb-3">
+                            <asp:Label ID="lblIdMod" runat="server" Visible="false" CssClass="form-label mt-3" Text="ID"></asp:Label>
+                            <asp:TextBox ID="txtBoxIdMod" Visible="false" CssClass="form-control mt-2" runat="server" disabled></asp:TextBox>
+                        </div>
 
-                        <label for="txtUsuario" class="form-label mt-3">Usuario</label>
-                        <asp:TextBox ID="txtUsuario" CssClass="form-control mb-3" runat="server"></asp:TextBox>
-
-                        <asp:Label ID="lblContraseña" runat="server" CssClass="form-label" Text="Contraseña"></asp:Label>
-                        <asp:TextBox ID="txtPassword" CssClass="form-control mt-2" runat="server" TextMode="Password"></asp:TextBox>
-
-                        <asp:Label ID="lblCambiarContraseña" runat="server" Text="Deseo cambiar la contraseña" CssClass="mr-2 pt-2" Visible="false"></asp:Label>
-                        <asp:CheckBox ID="cboxPassword" runat="server" AutoPostBack="true" OnCheckedChanged="cboxPassword_CheckedChanged" Visible="false" />
-
-                        <label for="txtTipoUsuario" class="form-label mt-3">Tipo Usuario</label>
+                        <div class="mb-3">
+                            <label for="txtUsuario" class="form-label mt-3">Usuario</label>
+                            <asp:TextBox ID="txtUsuario" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblUsuarioError" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="mb-3">
+                            <asp:Label ID="lblContraseña" runat="server" CssClass="form-label" Text="Contraseña"></asp:Label>
+                            <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:Label ID="lblContraseñaError" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="mb-3">
+                            <asp:Label ID="lblCambiarContraseña" runat="server" Text="Deseo cambiar la contraseña" CssClass="" Visible="false"></asp:Label>
+                            <asp:CheckBox ID="cboxPassword" runat="server" AutoPostBack="true" OnCheckedChanged="cboxPassword_CheckedChanged" Visible="false" />
+                        </div>
+                        <label for="txtTipoUsuario" class="form-label">Tipo Usuario</label>
                         <asp:DropDownList ID="ddlTipoUsuario" runat="server" CssClass="form-select"></asp:DropDownList>
 
-                        <asp:Button ID="btnAgregarUsuario" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Agregar" OnClick="btnAgregarUsuario_Click" />
-                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm mt-2" OnClick="btnCancelar_Click" />
+                        <div class="mt-3">
+                            <asp:Button ID="btnAgregarUsuario" CssClass="btn btn-outline-primary btn-sm mt-2" runat="server" Text="Agregar" OnClick="btnAgregarUsuario_Click" />
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm mt-2" OnClick="btnCancelar_Click" />
+                        </div>
                     </div>
 
                     <div class="col">

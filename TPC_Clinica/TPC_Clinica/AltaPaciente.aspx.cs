@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Web;
@@ -57,46 +58,8 @@ namespace TPC_Clinica
                         txtEmail.Text = paciente.Email;
                         txtDireccion.Text = paciente.Direccion;
                         txtDNI.Enabled = false;
-                        btnBuscar.Enabled = false;
                         lblDNI.ForeColor = System.Drawing.Color.Blue;
-                        btnBuscar.Visible = false;
                     }
-
-                    Session.Remove("DniModificarPaciente");
-                }
-            }
-
-            if (hdnActivarPaciente.Value == "true")
-            {
-                hdnActivarPaciente.Value = "false";
-                string dniParaActivar = Session["DniPacienteInactivoParaActivar"] as string;
-
-                if (!string.IsNullOrEmpty(dniParaActivar))
-                {
-                    PacienteNegocio negocio = new PacienteNegocio();
-                    Paciente paciente = negocio.existePaciente(dniParaActivar);
-
-                    if (paciente != null)
-                    {
-                        paciente.Activo = true;
-                        negocio.modificarPaciente(paciente);
-
-                        txtDNI.Text = paciente.DNI;
-                        txtNombre.Text = paciente.Nombre;
-                        txtApellido.Text = paciente.Apellido;
-                        txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
-                        txtTelefono.Text = paciente.Telefono;
-                        txtEmail.Text = paciente.Email;
-                        txtDireccion.Text = paciente.Direccion;
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "activacionExito", "alert('Paciente activado y datos cargados exitosamente.');", true);
-
-                        Session.Remove("DniPacienteInactivoParaActivar");
-                        Response.Redirect("ListadoPaciente.aspx", false);
-                        return;
-                    }
-
-                    Session.Remove("DniPacienteInactivoParaActivar");
                 }
             }
         }
@@ -147,7 +110,7 @@ namespace TPC_Clinica
                     emailService.enviarCorreo();
 
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Datos actualizados!');", true);
-                    
+
                     Response.Redirect("ListadoPaciente.aspx", false);
                 }
             }
@@ -158,40 +121,6 @@ namespace TPC_Clinica
             }
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            PacienteNegocio negocio = new PacienteNegocio();
-            Paciente paciente = new Paciente();
-
-            paciente = negocio.existePaciente(txtDNI.Text);
-
-            if (paciente != null)
-            {
-                if (paciente.Activo)
-                {
-                    txtNombre.Text = paciente.Nombre;
-                    txtApellido.Text = paciente.Apellido;
-                    txtFechaNac.Text = paciente.FechaNac.ToString("yyyy-MM-dd");
-                    txtTelefono.Text = paciente.Telefono;
-                    txtEmail.Text = paciente.Email;
-                    txtDireccion.Text = paciente.Direccion;
-                }
-                else
-                {
-                    Session["DniPacienteInactivoParaActivar"] = paciente.DNI;
-                    string script = "if (confirm('El paciente con DNI " + paciente.DNI + " existe pero está inactivo. ¿Desea activarlo y cargar sus datos?')) { document.getElementById('" + hdnActivarPaciente.ClientID + "').value = 'true'; " + Page.ClientScript.GetPostBackEventReference(btnBuscar, "") + "; } else { window.location.href = 'ListadoPaciente.aspx'; }";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ConfirmacionActivar", script, true);
-                }
-
-            }
-            else
-            {
-                lblDNI.ForeColor = System.Drawing.Color.Red;
-                lblDNI.Text = "DNI no encontrado";
-                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-            }
-        }
-
         protected bool validar()
         {
             int documento;
@@ -199,42 +128,41 @@ namespace TPC_Clinica
             PacienteNegocio negocio = new PacienteNegocio();
             Paciente paciente = negocio.existePaciente(txtDNI.Text);
 
-            if (Session["DniModificarPaciente"] != null)
+
+            if (string.IsNullOrWhiteSpace(txtDNI.Text))
             {
-                if (string.IsNullOrWhiteSpace(txtDNI.Text))
-                {
-                    lblDNI.ForeColor = System.Drawing.Color.Red;
-                    lblDNI.Text = "Campo obligatorio";
-                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                    validator = false;
-                }
-                else if (txtDNI.Text.Length > 8)
-                {
-                    lblDNI.ForeColor = System.Drawing.Color.Red;
-                    lblDNI.Text = "Excediste los caracteres permitidos.";
-                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                    validator = false;
-                }
-                else if (!int.TryParse(txtDNI.Text, out documento)) //controla que el DNI solo tenga numeros
-                {
-                    lblDNI.ForeColor = System.Drawing.Color.Red;
-                    lblDNI.Text = "El DNI solo debe contener números";
-                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                    validator = false;
-                }
-                else if (paciente != null)
-                {
-                    lblDNI.ForeColor = System.Drawing.Color.Red;
-                    lblDNI.Text = "DNI ya registrado.";
-                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
-                    validator = false;
-                }
-                else
-                {
-                    lblDNI.ForeColor = System.Drawing.Color.Green;
-                    lblDNI.Text = "✓ Campo válido.";
-                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-valid";
-                }
+                lblDNI.ForeColor = System.Drawing.Color.Red;
+                lblDNI.Text = "Campo obligatorio";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtDNI.Text.Length > 8)
+            {
+                lblDNI.ForeColor = System.Drawing.Color.Red;
+                lblDNI.Text = "Excediste los caracteres permitidos.";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (!int.TryParse(txtDNI.Text, out documento)) //controla que el DNI solo tenga numeros
+            {
+                lblDNI.ForeColor = System.Drawing.Color.Red;
+                lblDNI.Text = "El DNI solo debe contener números";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (paciente != null && (string)Session["DniModificarPaciente"] == null)
+            {
+                string hola = (string)Session["DniModificarPaciente"];
+                lblDNI.ForeColor = System.Drawing.Color.Red;
+                lblDNI.Text = "DNI ya registrado.";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblDNI.ForeColor = System.Drawing.Color.Green;
+                lblDNI.Text = "✓ Campo válido.";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-valid";
             }
 
             //validar Nombre
@@ -395,9 +323,7 @@ namespace TPC_Clinica
                 lblEmail.Text = "✓ Campo válido.";
                 txtEmail.CssClass = "form-control form-control-lg mx-auto is-valid";
             }
-            if (validator)
-                return true;
-            else return false;
+            return validator;
         }
 
         protected void txtDNI_DataBinding(object sender, EventArgs e)

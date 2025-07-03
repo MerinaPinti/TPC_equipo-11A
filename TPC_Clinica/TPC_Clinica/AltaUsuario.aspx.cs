@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -53,10 +54,15 @@ namespace TPC_Clinica
         {
             if (Session["IdModificarUsuario"] == null)
             {
+                if (!validar())
+                {
+                    return;
+                }
+
                 List<Usuario> usuarios = (List<Usuario>)Session["usuarios"];
                 usuarios.Add(new Usuario
                 {
-                    UserName = txtUsuario.Text,
+                    UserName = txtUsuario.Text.Trim(),
                     Password = txtPassword.Text,
                     TipoUsuario = new TipoUsuario { Id = Convert.ToInt32(ddlTipoUsuario.SelectedValue), Descripcion = ddlTipoUsuario.SelectedItem.Text }
                 });
@@ -106,7 +112,72 @@ namespace TPC_Clinica
             if (cboxPassword.Checked)
             {
                 txtPassword.Enabled = true;
-            } else txtPassword.Enabled = false;
+            }
+            else txtPassword.Enabled = false;
+        }
+
+        protected bool validar()
+        {
+            bool validator = true;
+            Regex regex = new Regex("^[a-zA-Z0-9._]+$");
+            //validaciones usuario
+            if (txtUsuario.Text.Length > 15)
+            {
+                lblUsuarioError.ForeColor = System.Drawing.Color.Red;
+                lblUsuarioError.Text = "No debe superar los 15 caracteres.";
+                txtUsuario.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtUsuario.Text.Length < 4)
+            {
+                lblUsuarioError.ForeColor = System.Drawing.Color.Red;
+                lblUsuarioError.Text = "Debe tener al menos de 4 caracteres.";
+                txtUsuario.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (!regex.IsMatch(txtUsuario.Text))
+            {
+                lblUsuarioError.ForeColor = System.Drawing.Color.Red;
+                lblUsuarioError.Text = "Solo puede contener letras, números, puntos y guiones bajos.";
+                txtUsuario.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtUsuario.Text.All(char.IsDigit))
+            {
+                lblUsuarioError.ForeColor = System.Drawing.Color.Red;
+                lblUsuarioError.Text = "El usuario no puede ser solo numérico.";
+                txtUsuario.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblUsuarioError.ForeColor = System.Drawing.Color.Green;
+                txtUsuario.CssClass = "form-control form-control-lg mx-auto is-valid";
+                lblUsuarioError.Text = "Campo válido.";
+            }
+
+             //Validaciones constraseña
+            if(txtPassword.Text.Length < 8)
+            {
+                lblContraseñaError.ForeColor = System.Drawing.Color.Red;
+                lblContraseñaError.Text = "Debe tener al menos 8 caracteres.";
+                txtPassword.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (txtPassword.Text.Length > 255)
+            {
+                lblContraseñaError.ForeColor = System.Drawing.Color.Red;
+                lblContraseñaError.Text = "No debe superar los 255 caracteres.";
+                txtPassword.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else
+            {
+                lblContraseñaError.ForeColor = System.Drawing.Color.Green;
+                txtPassword.CssClass = "form-control form-control-lg mx-auto is-valid";
+                lblContraseñaError.Text = "Campo válido.";
+            }
+            return validator;
         }
     }
 }

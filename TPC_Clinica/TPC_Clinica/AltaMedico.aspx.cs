@@ -116,24 +116,6 @@ namespace TPC_Clinica
             }
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            MedicoNegocio negocio = new MedicoNegocio();
-            Medico medico = new Medico();
-
-            medico = negocio.existeMedico(txtMatricula.Text);
-
-            if (medico != null)
-            {
-                txtMatricula.Text = medico.Matricula;
-                txtNombre.Text = medico.Nombre;
-                txtApellido.Text = medico.Apellido;
-                //Especialidad = medico.;
-                txtEmail.Text = medico.Email;
-                txtTelefono.Text = medico.Telefono;
-            }
-        }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListadoMedicos.aspx", false);
@@ -143,6 +125,8 @@ namespace TPC_Clinica
         {
             // validar Matricula 
             bool validator = true;
+            MedicoNegocio negocio = new MedicoNegocio();
+            Medico medico = negocio.existeMedico((int)Session["idModificarMedico"]);
             if (string.IsNullOrEmpty(txtMatricula.Text))
             {
                 lblMatricula.ForeColor = System.Drawing.Color.Red;
@@ -155,6 +139,13 @@ namespace TPC_Clinica
                 lblMatricula.ForeColor = System.Drawing.Color.Red;
                 lblMatricula.Text = "Excediste los caracteres permitidos.";
                 txtMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                validator = false;
+            }
+            else if (medico != null && Session["idModificarMedico"] == null)
+            {
+                lblMatricula.ForeColor = System.Drawing.Color.Red;
+                lblMatricula.Text = "DNI ya registrado.";
+                lblMatricula.CssClass = "form-control form-control-lg mx-auto is-invalid";
                 validator = false;
             }
             else
@@ -266,9 +257,7 @@ namespace TPC_Clinica
                 lblTelefono.Text = "✓ Campo válido.";
                 txtTelefono.CssClass = "form-control form-control-lg mx-auto is-valid";
             }
-            if (validator)
-                return true;
-            else return false;
+            return validator;
         }
     }
 }

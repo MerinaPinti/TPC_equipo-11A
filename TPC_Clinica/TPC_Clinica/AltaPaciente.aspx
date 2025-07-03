@@ -23,7 +23,6 @@
             font-weight: bold;
             border-radius: 25px;
         }
-  
     </style>
 </asp:Content>
 
@@ -33,17 +32,12 @@
         <h2>Datos del Paciente</h2>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+                <asp:HiddenField ID="hdnActivarPaciente" runat="server" Value="false" />
                 <div class="mb-3">
                     <label for="txtDNI" class="form-label">DNI</label>
-                    <div class="d-flex gap-2">
-                        <asp:TextBox ID="txtDNI" runat="server" AutoPostBack="true" OnTextChanged="txtDNI_DataBinding" CssClass="form-control" placeholder="40123456" />
-                        <asp:Label ID="lblDNI" runat="server" CssClass="form-text" />
-
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" OnClick="btnBuscar_Click" />
-                    </div>
+                    <asp:TextBox ID="txtDNI" runat="server" AutoPostBack="true" OnTextChanged="txtDNI_DataBinding" CssClass="form-control" placeholder="40123456" />
+                    <asp:Label ID="lblDNI" runat="server" CssClass="form-text" />
                 </div>
-
-                <asp:HiddenField ID="hdnActivarPaciente" runat="server" Value="false" />
 
                 <div class="mb-3">
                     <label for="txtNombre" class="form-label">Nombre</label>
