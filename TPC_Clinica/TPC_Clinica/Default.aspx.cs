@@ -18,11 +18,8 @@ namespace TPC_Clinica
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            //string user = txtusuario.Text;
-            //string pass = txtpassword.Text;
-
-            string user = "admin";
-            string pass = "admin123";
+            string user = txtusuario.Text.Trim();
+            string pass = txtpassword.Text.Trim();
 
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario logueado = negocio.Login(user, pass);
@@ -30,14 +27,30 @@ namespace TPC_Clinica
             if (logueado != null)
             {
                 Session["usuario"] = logueado;
+
+                // Verificamos si el tipo de usuario es Médico (ID 3)
+                if (logueado.TipoUsuario != null && logueado.TipoUsuario.Id == 3)
+                {
+                    MedicoNegocio medicoNegocio = new MedicoNegocio();
+                    Medico medicoLogueado = medicoNegocio.ObtenerPorIdUsuario(logueado.Id);
+
+                    if (medicoLogueado != null)
+                    {
+                        Session["idMedico"] = medicoLogueado.IdMedico;
+                    }
+                }
+
                 Response.Redirect("EleccionTurno.aspx");
             }
             else
             {
                 Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
                 Session.Add("error", "Usuario o contraseña incorrectos");
-                Response.Redirect("Error.aspx?", false);
+                Response.Redirect("Error.aspx", false);
             }
         }
+
+
+
     }
 }
