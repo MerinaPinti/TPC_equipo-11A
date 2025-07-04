@@ -13,14 +13,23 @@ namespace Negocio
         private MailMessage email;
         private SmtpClient server;
 
-        public EmailService()
+        public EmailService() //GMAIL
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("", "");
+            server.Credentials = new NetworkCredential("clinicamedicameraki@gmail.com", "yfsyxonjlbamovxg");
             server.EnableSsl = true;
             server.Port = 587;
             server.Host = "smtp.gmail.com";
         }
+        /*
+        public EmailService() //MAILTRAP
+        {
+            server = new SmtpClient("sandbox.smtp.mailtrap.io", 2525);
+            server.Credentials = new NetworkCredential("f8e02177848b48", "acbac658d54cae");
+            server.EnableSsl = true;
+            server.Port = 587;
+            server.Host = "sandbox.smtp.mailtrap.io";
+        }*/
 
         public void armarCorreo(string destino, string asunto, string cuerpo)
         {

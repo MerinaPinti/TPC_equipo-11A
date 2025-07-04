@@ -92,6 +92,15 @@ namespace TPC_Clinica
 
                     negocio.agregarPaciente(nuevo);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Registro exitoso!');", true);
+
+                    //ENVIO DE MAIL
+                    EmailService emailService = new EmailService();
+                    emailService.armarCorreo(
+                        txtEmail.Text,
+                        "Te damos la bienvenida a Clinica Meraki",
+                        "Hola " + txtNombre.Text + ". ¡Tus datos han sido actualizados con exito!"
+                    );
+
                     Response.Redirect("ListadoPaciente.aspx", false);
                 }
                 else
@@ -105,13 +114,16 @@ namespace TPC_Clinica
                     nuevo.Direccion = txtDireccion.Text;
 
                     negocio.modificarPaciente(nuevo);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Datos actualizados!');", true);
 
-                    //PRUEBA DE ENVIO DE MAIL
+                    //ENVIO DE MAIL
                     EmailService emailService = new EmailService();
-                    emailService.armarCorreo(txtEmail.Text, "Te damos la bienvenida a Clinica", "Sus datos han sido cargados con exito!");
+                    emailService.armarCorreo(
+                        txtEmail.Text, 
+                        "Te damos la bienvenida a Clinica Meraki",
+                        "Hola " + txtNombre.Text + " ¡Tus datos han sido cargados con exito!");
                     emailService.enviarCorreo();
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Datos actualizados!');", true);
 
                     Response.Redirect("ListadoPaciente.aspx", false);
                 }
