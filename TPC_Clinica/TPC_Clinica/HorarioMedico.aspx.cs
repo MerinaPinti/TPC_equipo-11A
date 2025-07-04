@@ -1,9 +1,12 @@
 ﻿using Dominio;
 using Negocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -87,6 +90,7 @@ namespace TPC_Clinica
             Response.Redirect("Default.aspx");
         }
 
+        //Genera una lista de 7 objetos DiaHorario, uno por cada día de la semana para completar el dgv 
         private void CargarDias()
         {
             List<DiaHorario> dias = new List<DiaHorario>
@@ -103,7 +107,7 @@ namespace TPC_Clinica
             gvHorarioMedico.DataSource = dias;
             gvHorarioMedico.DataBind();
         }
-
+        //CLASE LOCAL PARA GENERAR EL LISTADO DE DÍAS en el GRID 
         public class DiaHorario
         {
             public string Dia { get; set; }

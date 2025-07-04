@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\negocio\\horarioatencionnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\horarioatencionnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\dominio\\turnotrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\turnotrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\dominio\\horarioatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\horarioatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\horariomedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\horariomedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,18 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\negocio\\turnotrabajonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\turnotrabajonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\negocio\\horarioatencionnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\horarioatencionnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\dominio\\horarioatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\horarioatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\dominio\\turnotrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\turnotrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\negocio\\mediconegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,28 +74,92 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "HorarioAtencionNegocio.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\HorarioAtencionNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\HorarioAtencionNegocio.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\HorarioAtencionNegocio.cs",
-              "RelativeToolTip": "Negocio\\HorarioAtencionNegocio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\HorarioAtencionNegocio.cs*",
+              "RelativeToolTip": "Negocio\\HorarioAtencionNegocio.cs*",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAwBUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-04T20:21:18.329Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MedicoNegocio.cs",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\MedicoNegocio.cs",
-              "RelativeDocumentMoniker": "Negocio\\MedicoNegocio.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\MedicoNegocio.cs",
-              "RelativeToolTip": "Negocio\\MedicoNegocio.cs",
-              "ViewState": "AgIAADcBAAAAAAAAAAAuwEsBAAANAAAAAAAAAA==",
+              "DocumentIndex": 12,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Usuario.cs",
+              "RelativeDocumentMoniker": "Dominio\\Usuario.cs",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Usuario.cs",
+              "RelativeToolTip": "Dominio\\Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T18:53:37.874Z",
+              "WhenOpened": "2025-07-04T18:52:36.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HorarioMedico.aspx",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx",
+              "RelativeDocumentMoniker": "TPC_Clinica\\HorarioMedico.aspx",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx",
+              "RelativeToolTip": "TPC_Clinica\\HorarioMedico.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-07-04T17:58:27.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HorarioMedico.aspx.cs",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx.cs",
+              "RelativeDocumentMoniker": "TPC_Clinica\\HorarioMedico.aspx.cs",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx.cs*",
+              "RelativeToolTip": "TPC_Clinica\\HorarioMedico.aspx.cs*",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowGMAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T17:59:22.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TurnoTrabajoNegocio.cs",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoTrabajoNegocio.cs",
+              "RelativeDocumentMoniker": "Negocio\\TurnoTrabajoNegocio.cs",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoTrabajoNegocio.cs",
+              "RelativeToolTip": "Negocio\\TurnoTrabajoNegocio.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAADwv24AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T20:21:40.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HorarioAtencion.cs",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\HorarioAtencion.cs",
+              "RelativeDocumentMoniker": "Dominio\\HorarioAtencion.cs",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\HorarioAtencion.cs*",
+              "RelativeToolTip": "Dominio\\HorarioAtencion.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T20:19:25.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TurnoTrabajo.cs",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TurnoTrabajo.cs",
+              "RelativeDocumentMoniker": "Dominio\\TurnoTrabajo.cs",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TurnoTrabajo.cs",
+              "RelativeToolTip": "Dominio\\TurnoTrabajo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T20:18:46.55Z",
               "EditorCaption": ""
             },
             {
@@ -113,53 +177,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Usuario.cs",
-              "RelativeDocumentMoniker": "Dominio\\Usuario.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Usuario.cs",
-              "RelativeToolTip": "Dominio\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "MedicoNegocio.cs",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\MedicoNegocio.cs",
+              "RelativeDocumentMoniker": "Negocio\\MedicoNegocio.cs",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\MedicoNegocio.cs",
+              "RelativeToolTip": "Negocio\\MedicoNegocio.cs",
+              "ViewState": "AgIAADcBAAAAAAAAAAAuwEsBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T18:52:36.154Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HorarioMedico.aspx",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx",
-              "RelativeDocumentMoniker": "TPC_Clinica\\HorarioMedico.aspx",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx",
-              "RelativeToolTip": "TPC_Clinica\\HorarioMedico.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-04T17:58:27.218Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HorarioMedico.aspx.cs",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx.cs",
-              "RelativeDocumentMoniker": "TPC_Clinica\\HorarioMedico.aspx.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx.cs*",
-              "RelativeToolTip": "TPC_Clinica\\HorarioMedico.aspx.cs*",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAUwIkAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T17:59:22.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TurnoTrabajoNegocio.cs",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoTrabajoNegocio.cs",
-              "RelativeDocumentMoniker": "Negocio\\TurnoTrabajoNegocio.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoTrabajoNegocio.cs",
-              "RelativeToolTip": "Negocio\\TurnoTrabajoNegocio.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAADwv24AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T20:21:40.813Z",
+              "WhenOpened": "2025-07-04T18:53:37.874Z",
               "EditorCaption": ""
             },
             {
@@ -173,32 +199,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-07-04T19:20:14.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TurnoTrabajo.cs",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TurnoTrabajo.cs",
-              "RelativeDocumentMoniker": "Dominio\\TurnoTrabajo.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TurnoTrabajo.cs",
-              "RelativeToolTip": "Dominio\\TurnoTrabajo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T20:18:46.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HorarioAtencion.cs",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\HorarioAtencion.cs",
-              "RelativeDocumentMoniker": "Dominio\\HorarioAtencion.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\HorarioAtencion.cs",
-              "RelativeToolTip": "Dominio\\HorarioAtencion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T20:19:25.182Z",
               "EditorCaption": ""
             },
             {
