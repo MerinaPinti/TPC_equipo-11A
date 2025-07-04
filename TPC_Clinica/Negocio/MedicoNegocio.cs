@@ -332,5 +332,34 @@ namespace Negocio
             }
         }
 
+        public Medico ObtenerPorIdUsuario(int idUsuario)
+        {
+            Medico medico = null;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT idMedico FROM Medico WHERE idUsuario = @idUsuario AND activo = 1");
+                datos.setearParametros("@idUsuario", idUsuario);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    medico = new Medico();
+                    medico.IdMedico = (int)datos.Lector["idMedico"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return medico;
+        }
+
     }
 }
