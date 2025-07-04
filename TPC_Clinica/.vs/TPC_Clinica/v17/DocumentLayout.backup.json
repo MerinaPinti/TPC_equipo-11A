@@ -3,31 +3,15 @@
   "WorkspaceRootPath": "C:\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\templates\\emailmodificarmedico.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\templates\\emailmodificarmedico.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\templates\\emailmodificarpaciente.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\templates\\emailmodificarpaciente.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\templates\\emailconfirmarturno.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\templates\\emailconfirmarturno.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\templates\\emailaltamedico.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\templates\\emailaltamedico.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altamedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altamedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\altapaciente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\altapaciente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\TPC_equipo-11A\\TPC_Clinica\\negocio\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\negocio\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -38,97 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioNegocio.cs",
-              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\UsuarioNegocio.cs",
-              "RelativeDocumentMoniker": "Negocio\\UsuarioNegocio.cs",
-              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\UsuarioNegocio.cs",
-              "RelativeToolTip": "Negocio\\UsuarioNegocio.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T07:28:59.279Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EmailModificarPaciente.html",
-              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailModificarPaciente.html",
-              "RelativeDocumentMoniker": "TPC_Clinica\\Templates\\EmailModificarPaciente.html",
-              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailModificarPaciente.html",
-              "RelativeToolTip": "TPC_Clinica\\Templates\\EmailModificarPaciente.html",
-              "ViewState": "AgIAACgAAAAAAAAAAAAowC0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-07-04T06:56:20.084Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EmailModificarMedico.html",
-              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailModificarMedico.html",
-              "RelativeDocumentMoniker": "TPC_Clinica\\Templates\\EmailModificarMedico.html",
-              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailModificarMedico.html",
-              "RelativeToolTip": "TPC_Clinica\\Templates\\EmailModificarMedico.html",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowC0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-07-04T07:15:25.048Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AltaPaciente.aspx.cs",
-              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaPaciente.aspx.cs",
-              "RelativeDocumentMoniker": "TPC_Clinica\\AltaPaciente.aspx.cs",
-              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaPaciente.aspx.cs",
-              "RelativeToolTip": "TPC_Clinica\\AltaPaciente.aspx.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAowHAAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T07:10:37.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AltaMedico.aspx.cs",
-              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx.cs",
-              "RelativeDocumentMoniker": "TPC_Clinica\\AltaMedico.aspx.cs",
-              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx.cs",
-              "RelativeToolTip": "TPC_Clinica\\AltaMedico.aspx.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAowJcAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T07:10:14.72Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "EmailAltaMedico.html",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailAltaMedico.html",
               "RelativeDocumentMoniker": "TPC_Clinica\\Templates\\EmailAltaMedico.html",
               "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailAltaMedico.html",
               "RelativeToolTip": "TPC_Clinica\\Templates\\EmailAltaMedico.html",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADQAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowEIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-07-04T07:04:36.63Z",
+              "WhenOpened": "2025-07-04T07:42:11.501Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "EmailConfirmarTurno.html",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailConfirmarTurno.html",
+              "RelativeDocumentMoniker": "TPC_Clinica\\Templates\\EmailConfirmarTurno.html",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailConfirmarTurno.html",
+              "RelativeToolTip": "TPC_Clinica\\Templates\\EmailConfirmarTurno.html",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAowD0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-04T07:38:07.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "EmailService.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\EmailService.cs",
               "RelativeDocumentMoniker": "Negocio\\EmailService.cs",
               "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\EmailService.cs",
               "RelativeToolTip": "Negocio\\EmailService.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwCoAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T06:52:50.985Z",
+              "WhenOpened": "2025-07-04T07:36:16.044Z",
               "EditorCaption": ""
             }
           ]

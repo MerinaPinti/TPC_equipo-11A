@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+            color: #333333;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+            .details p {
+                margin: 5px 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Turno confirmado</h2>
+        </div>
+        <div class="content">
+            <p>Hola {{NOMBRE}},</p>
+
+            <p>Te confirmamos que tu turno ha sido reprogramado exitosamente en <strong>Clínica Médica Meraki</strong>.</p>
+
+            <div class="details">
+                <p><strong>Especialista:</strong> {{MEDICO}}</p>
+                <p><strong>Fecha:</strong> {{FECHA}}</p>
+                <p><strong>Hora:</strong> {{HORA}}</p>
+                <p><strong>Consultorio:</strong> {{CONSULTORIO}}</p>
+            </div>
+
+            <p>Te sugerimos llegar con al menos 10 minutos de anticipación. En caso de no poder asistir, por favor contactanos para reprogramar tu turno.</p>
+
+            <p>¡Gracias por confiar en nosotros!</p>
+
+            <p>Atentamente,<br><strong>Equipo de Clínica Médica Meraki</strong></p>
+        </div>
+        <div class="footer">
+            Este correo fue generado automáticamente por el sistema de gestión de turnos de Clínica Médica Meraki.
+        </div>
+    </div>
+</body>
+</html>
