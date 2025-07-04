@@ -11,8 +11,47 @@ namespace TPC_Clinica
 {
     public partial class Master : System.Web.UI.MasterPage
     {
+        public Usuario usuario;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] != null)
+            {
+                Usuario usuario = (Usuario)Session["usuario"];
+                int rol = usuario.TipoUsuario.Id;
+
+                switch (rol)
+                {
+                    case 1:
+                        hlEspecialidades.Visible = true;
+                        hlEstados.Visible = true;
+                        hlMedicos.Visible = true;
+                        hlPacientes.Visible = true;
+                        hlTipoUsuario.Visible = true;
+                        hlTurnos.Visible = true;
+                        hlUsuarios.Visible = true;
+                        break;
+                    case 2:
+                        hlEspecialidades.Visible = true;
+                        hlMedicos.Visible = true;
+                        hlPacientes.Visible = true;
+                        hlTurnos.Visible = true;
+                        break;
+                    case 3:
+                        hlTurnos.Visible = true;
+                        hlPacientes.Visible = true;
+                        break;
+                    default:
+                        hlEspecialidades.Visible = false;
+                        hlEstados.Visible = false;
+                        hlMedicos.Visible = false;
+                        hlPacientes.Visible = false;
+                        hlTipoUsuario.Visible = false;
+                        hlTurnos.Visible = false;
+                        hlUsuarios.Visible = false;
+                        break;
+                }
+
+            }
 
         }
     }

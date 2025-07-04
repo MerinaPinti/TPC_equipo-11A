@@ -18,7 +18,8 @@ namespace TPC_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+            Usuario usuario = (Usuario)Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            if (usuario == null)
             {
                 Session["error"] = "Debe iniciar sesión para acceder a esta página.";
                 Response.Redirect("Error.aspx", true);
