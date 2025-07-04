@@ -54,5 +54,12 @@ namespace TPC_Clinica
             }
 
         }
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("Default.aspx"); 
+        }
+
     }
 }
