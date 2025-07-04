@@ -38,26 +38,41 @@
             text-align: center;
             margin-top: 30px;
         }
+
+        .details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+            .details p {
+                margin: 5px 0;
+            }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h2>Actualización de datos exitosa</h2>
+            <h2>Turno confirmado</h2>
         </div>
         <div class="content">
-            <p>Estimado/a Dr/Dra {{NOMBRE}},</p>
+            <p>Hola {{NOMBRE}},</p>
 
-            <p>Sus datos han sido actualizados con exito.</p>
+            <p>Tu turno ha sido reservado exitosamente en <strong>Clínica Médica Meraki</strong>.</p>
 
-            <p>Le recordamos tambien cuenta con un usuario y contraseña de acceso nuestro sistema.</p>
+            <div class="details">
+                <p><strong>Especialista:</strong> {{MEDICO}}</p>
+                <p><strong>Fecha:</strong> {{FECHA}}</p>
+                <p><strong>Hora:</strong> {{HORA}}</p>
+                <p><strong>Consultorio:</strong> {{CONSULTORIO}}</p>
+            </div>
 
-            <p>Desde allí podrá gestionar sus horarios de atencion médica y revisar los turnos pendientes.</p>
+            <p>Te sugerimos llegar con al menos 10 minutos de anticipación. En caso de no poder asistir, por favor contactanos para reprogramar tu turno.</p>
 
-            <p>Ante cualquier duda o consulta estamos a su disposición.</p>
+            <p>¡Gracias por confiar en nosotros!</p>
 
             <p>Atentamente,<br><strong>Equipo de Clínica Médica Meraki</strong></p>
-
         </div>
         <div class="footer">
             Este correo fue generado automáticamente por el sistema de gestión de turnos de Clínica Médica Meraki.

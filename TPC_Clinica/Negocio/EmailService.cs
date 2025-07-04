@@ -15,7 +15,7 @@ namespace Negocio
         EmailAltaMedico,
         EmailModificarMedico,
         //TURNO
-        EmailConfirmacionTurno,
+        EmailConfirmarTurno,
         EmailCambiarTurno,
         EmailCancelarTurno,
     }
