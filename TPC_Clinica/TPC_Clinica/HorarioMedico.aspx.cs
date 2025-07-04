@@ -21,11 +21,11 @@ namespace TPC_Clinica
                 int idMedico = Convert.ToInt32(Session["idMedico"]);
                 if (Session["idMedico"] == null)
                 {
-                  Response.Redirect("Default.aspx");
-                return;
+                    Response.Redirect("Default.aspx");
+                    return;
                 }
+                Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
 
-                
                 cargarEspecialidades(idMedico);
                 CargarDias();
             }
@@ -45,7 +45,7 @@ namespace TPC_Clinica
             foreach (GridViewRow fila in gvHorarioMedico.Rows)
             {
                 string diaTexto = fila.Cells[0].Text.Trim();
-                int diaSemana = ObtenerNumeroDiaSemana(diaTexto); 
+                int diaSemana = ObtenerNumeroDiaSemana(diaTexto);
 
                 //Si está clickeado el check box sigue al siguiente 
                 CheckBox chkDiaLibre = (CheckBox)fila.FindControl("chkDiaLibre");
@@ -131,8 +131,8 @@ namespace TPC_Clinica
                     }
 
                     // Valor por defecto 
-                    ddlHoraInicio.SelectedValue = "00:00";
-                    ddlHoraFin.SelectedValue = "00:00";
+                    ddlHoraInicio.SelectedValue = "00";
+                    ddlHoraFin.SelectedValue = "00";
                 }
             }
         }

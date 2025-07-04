@@ -39,6 +39,9 @@ namespace TPC_Clinica
                     case 3:
                         hlTurnos.Visible = true;
                         hlPacientes.Visible = true;
+                        hlTurnos.Text = "Mis turnos";
+                        hlPacientes.Text = "Mis pacientes";
+                        hlHorarios.Visible = true;
                         break;
                     default:
                         hlEspecialidades.Visible = false;

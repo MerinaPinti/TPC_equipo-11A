@@ -40,7 +40,7 @@ namespace TPC_Clinica
                     }
                 }
 
-                Response.Redirect("EleccionTurno.aspx");
+                Response.Redirect("AsignarTurno2.aspx");
             }
             else
             {

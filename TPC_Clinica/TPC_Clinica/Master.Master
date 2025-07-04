@@ -57,7 +57,7 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
+                    <a class="navbar-brand" href="AsignarTurno2.aspx">MERAKI</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -70,6 +70,7 @@
                             <li class="nav-item"><asp:HyperLink ID="hlTurnos" CssClass="nav-link active" NavigateUrl="~/AsignarTurno2.aspx" Visible="false" runat="server">Turnos</asp:HyperLink></li>
                             <li class="nav-item"><asp:HyperLink ID="hlTipoUsuario" CssClass="nav-link active" NavigateUrl="~/ListadoTipoUsuario.aspx" Visible="false" runat="server">Tipo Usuario</asp:HyperLink></li>
                             <li class="nav-item"><asp:HyperLink ID="hlEstados" CssClass="nav-link active" NavigateUrl="~/ListadoEstados.aspx" Visible="false" runat="server">Estados</asp:HyperLink></li>
+                            <li class="nav-item"><asp:HyperLink ID="hlHorarios" CssClass="nav-link active" NavigateUrl="~/HorarioMedico.aspx" Visible="false" runat="server">Mis horarios</asp:HyperLink></li>
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item">
