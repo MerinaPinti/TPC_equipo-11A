@@ -93,13 +93,27 @@ namespace TPC_Clinica
                     negocio.agregarPaciente(nuevo);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Registro exitoso!');", true);
 
-                    //ENVIO DE MAIL
+                    //------------------------------ENVIO DE MAIL------------------------------
+                    string rutaPlantillas = Server.MapPath("~/Templates");
+
+                    var reemplazos = new Dictionary<string, string>
+                    {
+                        { "NOMBRE", nuevo.Nombre + " " + nuevo.Apellido },
+                        { "DNI", nuevo.DNI },
+                        { "EMAIL", nuevo.Email },
+                        { "CUERPO", "<p>Bienvenido/a al sistema de turnos de Clínica Médica Meraki.</p>" }
+                    };
+
                     EmailService emailService = new EmailService();
                     emailService.armarCorreo(
                         txtEmail.Text,
-                        "Te damos la bienvenida a Clinica Meraki",
-                        "Hola " + txtNombre.Text + ". ¡Tus datos han sido actualizados con exito!"
+                        "Te damos la bienvenida a Clínica Médica Meraki",
+                        reemplazos,
+                        TipoCorreo.AltaPaciente,
+                        rutaPlantillas
                     );
+                    emailService.enviarCorreo();
+                    //-------------------------------------------------------------------------
 
                     Response.Redirect("ListadoPaciente.aspx", false);
                 }
@@ -116,14 +130,9 @@ namespace TPC_Clinica
                     negocio.modificarPaciente(nuevo);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Datos actualizados!');", true);
 
-                    //ENVIO DE MAIL
-                    EmailService emailService = new EmailService();
-                    emailService.armarCorreo(
-                        txtEmail.Text, 
-                        "Te damos la bienvenida a Clinica Meraki",
-                        "Hola " + txtNombre.Text + " ¡Tus datos han sido cargados con exito!");
-                    emailService.enviarCorreo();
+                    //------------------------------ENVIO DE MAIL------------------------------
 
+                    //-------------------------------------------------------------------------
 
                     Response.Redirect("ListadoPaciente.aspx", false);
                 }
