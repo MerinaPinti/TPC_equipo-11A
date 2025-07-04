@@ -88,6 +88,26 @@ namespace TPC_Clinica
 
                 MedicoNegocio negocio = new MedicoNegocio();
                 negocio.agregarMedico(nuevoMedico);
+
+                //------------------------------ENVIO DE MAIL------------------------------
+                string rutaPlantillas = Server.MapPath("~/Templates");
+
+                var reemplazos = new Dictionary<string, string>
+                    {
+                        { "NOMBRE", nuevoMedico.Nombre + " " + nuevoMedico.Apellido }
+                    };
+
+                EmailService emailService = new EmailService();
+                emailService.armarCorreo(
+                    txtEmail.Text,
+                    "Te damos la bienvenida a Clínica Médica Meraki 💙",
+                    reemplazos,
+                    TipoCorreo.EmailAltaMedico,
+                    rutaPlantillas
+                );
+                emailService.enviarCorreo();
+                //-------------------------------------------------------------------------
+
                 Response.Redirect("ListadoMedicos.aspx", true);
 
             }
@@ -115,6 +135,26 @@ namespace TPC_Clinica
                     }
                 }
                 negocioMed.modificarMedico(medico);
+
+                //------------------------------ENVIO DE MAIL------------------------------
+                string rutaPlantillas = Server.MapPath("~/Templates");
+
+                var reemplazos = new Dictionary<string, string>
+                    {
+                        { "NOMBRE", medico.Nombre + " " + medico.Apellido }
+                    };
+
+                EmailService emailService = new EmailService();
+                emailService.armarCorreo(
+                    txtEmail.Text,
+                    "Información actualizada con éxito en Clínica Médica Meraki ✔️",
+                    reemplazos,
+                    TipoCorreo.EmailModificarMedico,
+                    rutaPlantillas
+                );
+                emailService.enviarCorreo();
+                //-------------------------------------------------------------------------
+
                 Response.Redirect("ListadoMedicos.aspx", true);
             }
         }

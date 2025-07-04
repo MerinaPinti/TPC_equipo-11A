@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+            color: #333333;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Alta registrada exitosamente</h2>
+        </div>
+        <div class="content">
+            <p>Estimado/a Dr/Dra {{NOMBRE}},</p>
+
+            <p>Sus datos han sido actualizados con exito.</p>
+
+            <p>Le recordamos tambien cuenta con un usuario y contraseña.</p>
+
+            <p>Desde allí podrá gestionar sus horarios de atencion médica y revisar los turnos pendientes.</p>
+
+            <p>Ante cualquier duda o consulta estamos a su disposición.</p>
+
+            <p>Atentamente,<br><strong>Equipo de Clínica Médica Meraki</strong></p>
+
+        </div>
+        <div class="footer">
+            Este correo fue generado automáticamente por el sistema de gestión de turnos de Clínica Médica Meraki.
+        </div>
+    </div>
+</body>
+</html>
