@@ -9,15 +9,15 @@ namespace Negocio
     public enum TipoCorreo
     {
         //PACIENTE
-        AltaPaciente,
-        ModificarPaciente,
+        EmailAltaPaciente,
+        EmailModificarPaciente,
         //MEDICO
-        AltaMedico,
-        ModificarMedico,
+        EmailAltaMedico,
+        EmailModificarMedico,
         //TURNO
-        ConfirmacionTurno,
-        CambiarTurno,
-        CancelarTurno,
+        EmailConfirmacionTurno,
+        EmailCambiarTurno,
+        EmailCancelarTurno,
     }
 
     public class EmailService

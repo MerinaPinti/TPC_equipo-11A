@@ -98,18 +98,15 @@ namespace TPC_Clinica
 
                     var reemplazos = new Dictionary<string, string>
                     {
-                        { "NOMBRE", nuevo.Nombre + " " + nuevo.Apellido },
-                        { "DNI", nuevo.DNI },
-                        { "EMAIL", nuevo.Email },
-                        { "CUERPO", "<p>Bienvenido/a al sistema de turnos de Clínica Médica Meraki.</p>" }
+                        { "NOMBRE", nuevo.Nombre + " " + nuevo.Apellido }
                     };
 
                     EmailService emailService = new EmailService();
                     emailService.armarCorreo(
                         txtEmail.Text,
-                        "Te damos la bienvenida a Clínica Médica Meraki",
+                        "Te damos la bienvenida a Clínica Médica Meraki 💙",
                         reemplazos,
-                        TipoCorreo.AltaPaciente,
+                        TipoCorreo.EmailAltaPaciente,
                         rutaPlantillas
                     );
                     emailService.enviarCorreo();
@@ -131,7 +128,22 @@ namespace TPC_Clinica
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "alert('¡Datos actualizados!');", true);
 
                     //------------------------------ENVIO DE MAIL------------------------------
+                    string rutaPlantillas = Server.MapPath("~/Templates");
 
+                    var reemplazos = new Dictionary<string, string>
+                    {
+                        { "NOMBRE", nuevo.Nombre + " " + nuevo.Apellido }
+                    };
+
+                    EmailService emailService = new EmailService();
+                    emailService.armarCorreo(
+                        txtEmail.Text,
+                        "Información actualizada con éxito en Clínica Médica Meraki ✔️",
+                        reemplazos,
+                        TipoCorreo.EmailModificarPaciente,
+                        rutaPlantillas
+                    );
+                    emailService.enviarCorreo();
                     //-------------------------------------------------------------------------
 
                     Response.Redirect("ListadoPaciente.aspx", false);

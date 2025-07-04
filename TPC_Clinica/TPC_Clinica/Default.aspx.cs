@@ -21,8 +21,8 @@ namespace TPC_Clinica
             //string user = txtusuario.Text;
             //string pass = txtpassword.Text;
 
-            string user = "30444555";
-            string pass = "30444555";
+            string user = "admin";
+            string pass = "admin123";
 
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario logueado = negocio.Login(user, pass);
