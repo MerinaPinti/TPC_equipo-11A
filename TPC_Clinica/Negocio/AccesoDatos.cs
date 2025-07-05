@@ -22,13 +22,13 @@ namespace Negocio
         {
             conexion = new SqlConnection(
             //CONEXIÓN MERI
-            //"server=.\\SQLEXPRESS01; database=CLINICA_DB; integrated security=true"
+            "server=.\\SQLEXPRESS01; database=CLINICA_DB; integrated security=true"
 
             //CONEXION NORMAL
             //"server=.\\SQLEXPRESS; database=CLINICA_DB; integrated security=true"
 
             //CONEXION JOHANN
-            "server=localhost,1433; database=CLINICA_DB; user id=sa; password=Johann123"
+            //"server=localhost,1433; database=CLINICA_DB; user id=sa; password=Johann123"
                 );
             comando = new SqlCommand();
         }

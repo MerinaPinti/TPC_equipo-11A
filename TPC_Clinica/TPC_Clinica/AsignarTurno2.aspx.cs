@@ -21,12 +21,12 @@ namespace TPC_Clinica
 
         protected void btnEspecialidad_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SeleccionarEspecialidad.aspx");
+            Response.Redirect("AsignarTurnoPorEspecialidad.aspx");
         }
 
         protected void btnProfesional_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SeleccionarProfesional.aspx");
+            Response.Redirect("AsignarTurnoPorMedico.aspx");
         }
     }
 }
