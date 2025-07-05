@@ -4,10 +4,14 @@
     <link href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    
-    <!-- FullCalendar v5 compatible -->
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+    <!-- FullCalendar v5 -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -34,35 +38,39 @@
             });
         });
 
-            function cargarCalendario(idMedico, idEspecialidad) {
-                console.log("Ejecutando cargarCalendario con:", idMedico, idEspecialidad); 
-
+        function cargarCalendario(idMedico, idEspecialidad) {
             $.ajax({
                 type: "POST",
-            url: "AsignarTurnoPorMedico.aspx/ObtenerTurnosDisponibles",
-            data: JSON.stringify({idMedico: idMedico, idEspecialidad: idEspecialidad }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                var eventos = response.d;
-            console.log("Eventos recibidos:", eventos);  
+                url: "AsignarTurnoPorMedico.aspx/ObtenerTurnosDisponibles",
+                data: JSON.stringify({ idMedico: idMedico, idEspecialidad: idEspecialidad }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var eventos = response.d;
 
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-            locale: 'es',
-            height: 600,
-            events: eventos
-                });
+                    var calendarEl = document.getElementById('calendar');
+                    calendarEl.innerHTML = ""; // Limpiar calendario anterior
 
-            calendar.render();
-            },
-            error: function (err) {
-                console.error("Error en AJAX:", err); 
-            }
-        });
-    }
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        locale: 'es',
+                        height: 600,
+                        events: eventos,
+                        eventClick: function (info) {
+                            var fechaSeleccionada = info.event.startStr;
+                            document.getElementById("<%= hfFechaSeleccionada.ClientID %>").value = fechaSeleccionada;
+                            var modal = new bootstrap.Modal(document.getElementById('modalTurno'));
+                            modal.show();
+                        }
+                    });
 
+                    calendar.render();
+                },
+                error: function (err) {
+                    console.error("Error en AJAX:", err);
+                }
+            });
+        }
     </script>
 </asp:Content>
 
@@ -81,15 +89,39 @@
         <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged" />
     </div>
 
+    <asp:HiddenField ID="hfFechaSeleccionada" runat="server" />
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:Panel ID="pnlCalendario" runat="server" CssClass="mt-4" Visible="true">
-    <h4>📅 Turnos disponibles</h4>
-    <div id="calendar"></div>
-</asp:Panel>
+                <h4>📅 Turnos disponibles</h4>
+                <div id="calendar"></div>
+            </asp:Panel>
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="ddlEspecialidades" EventName="SelectedIndexChanged" />
         </Triggers>
     </asp:UpdatePanel>
+
+    <!-- Modal Bootstrap para ingresar DNI -->
+    <div class="modal fade" id="modalTurno" tabindex="-1" aria-labelledby="modalTurnoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTurnoLabel">Asignar turno</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+    <div class="mb-3">
+        <label for="txtDniPaciente" class="form-label">DNI del paciente:</label>
+        <asp:TextBox ID="txtDniPaciente" runat="server" CssClass="form-control" />
+    </div>
+</div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnAsignarTurno" runat="server" CssClass="btn btn-primary" Text="Confirmar Turno" OnClick="btnAsignarTurno_Click" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

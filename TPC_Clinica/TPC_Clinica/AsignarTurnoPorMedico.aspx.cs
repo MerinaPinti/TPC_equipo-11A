@@ -140,6 +140,27 @@ namespace TPC_Clinica
                 default: return "Desconocido";
             }
         }
+
+        protected void btnAsignarTurno_Click(object sender, EventArgs e)
+        {
+            string dni = txtDniPaciente.Text;
+
+            if (string.IsNullOrWhiteSpace(dni))
+            {
+                // Podés mostrar un mensaje de error con JavaScript o literal si querés
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('Por favor, ingrese un DNI válido.');", true);
+                return;
+            }
+
+            // Acá deberías buscar si existe el paciente con ese DNI
+            // Y si existe, registrar el turno en la base de datos (lo implementamos después)
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ok", "alert('Turno asignado exitosamente (falta implementar lógica real).');", true);
+
+            // Cierre del modal opcional (desde JS)
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "cerrarModal", "$('#modalAsignarTurno').modal('hide');", true);
+        }
+
     }
 
 
