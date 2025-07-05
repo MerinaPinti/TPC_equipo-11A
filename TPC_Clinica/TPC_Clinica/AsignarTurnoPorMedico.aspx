@@ -4,6 +4,10 @@
     <link href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+    <!-- FullCalendar v5 compatible -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
     <script type="text/javascript">
         $(function () {
@@ -29,6 +33,36 @@
                 minLength: 2
             });
         });
+
+            function cargarCalendario(idMedico, idEspecialidad) {
+                console.log("Ejecutando cargarCalendario con:", idMedico, idEspecialidad); 
+
+            $.ajax({
+                type: "POST",
+            url: "AsignarTurnoPorMedico.aspx/ObtenerTurnosDisponibles",
+            data: JSON.stringify({idMedico: idMedico, idEspecialidad: idEspecialidad }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var eventos = response.d;
+            console.log("Eventos recibidos:", eventos);  
+
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+            locale: 'es',
+            height: 600,
+            events: eventos
+                });
+
+            calendar.render();
+            },
+            error: function (err) {
+                console.error("Error en AJAX:", err); 
+            }
+        });
+    }
+
     </script>
 </asp:Content>
 
@@ -39,8 +73,7 @@
         <label for="txtMedico" class="form-label fw-bold">Buscar médico:</label>
         <asp:TextBox ID="txtMedico" runat="server" CssClass="form-control" placeholder="Escriba el nombre del médico..." />
         <asp:HiddenField ID="hfIdMedico" runat="server" />
-        <asp:Button ID="btnCargarEspecialidades" runat="server" Text="Cargar Especialidades"
-            CssClass="btn btn-secondary mt-2" OnClick="btnCargarEspecialidades_Click" Style="display:none;" />
+        <asp:Button ID="btnCargarEspecialidades" runat="server" Text="Cargar Especialidades" CssClass="btn btn-secondary mt-2" OnClick="btnCargarEspecialidades_Click" Style="display:none;" />
     </div>
 
     <div class="mb-3">
@@ -50,10 +83,13 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <asp:Panel ID="pnlCalendario" runat="server" CssClass="mt-4" Visible="false">
-                <h4>📅 Turnos disponibles</h4>
-                <asp:Literal ID="litTurnosDisponibles" runat="server"></asp:Literal>
-            </asp:Panel>
+            <asp:Panel ID="pnlCalendario" runat="server" CssClass="mt-4" Visible="true">
+    <h4>📅 Turnos disponibles</h4>
+    <div id="calendar"></div>
+</asp:Panel>
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="ddlEspecialidades" EventName="SelectedIndexChanged" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
