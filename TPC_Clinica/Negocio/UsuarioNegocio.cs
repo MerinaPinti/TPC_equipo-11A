@@ -145,10 +145,11 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("UPDATE Usuario SET contraseña = @password, idTipoUsuario = @idTipo WHERE idUsuario = @id");
+                datos.setearConsulta("UPDATE Usuario SET contraseña = @password, usuario = @username, idTipoUsuario = @idTipo WHERE idUsuario = @id");
                 datos.setearParametros("@id", usuario.Id);
                 datos.setearParametros("@password", usuario.Password);
                 datos.setearParametros("@idTipo", usuario.TipoUsuario.Id);
+                datos.setearParametros("@username", usuario.UserName);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

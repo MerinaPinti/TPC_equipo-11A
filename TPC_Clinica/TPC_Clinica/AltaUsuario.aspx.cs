@@ -82,12 +82,12 @@ namespace TPC_Clinica
                 Usuario modificar;
                 if (!string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    modificar = new Usuario { Password = txtPassword.Text, Id = Convert.ToInt32(txtBoxIdMod.Text) };
+                    modificar = new Usuario { Password = txtPassword.Text, Id = Convert.ToInt32(txtBoxIdMod.Text), UserName = txtUsuario.Text };
                 }
                 else
                 {
                     string pass = negocio.ListarConId((int)Session["IdModificarUsuario"]).Password;
-                    modificar = new Usuario { Password = pass, Id = Convert.ToInt32(txtBoxIdMod.Text) };
+                    modificar = new Usuario { Password = pass, Id = Convert.ToInt32(txtBoxIdMod.Text), UserName = txtUsuario.Text };
                 }
                 modificar.TipoUsuario = new TipoUsuario { Descripcion = ddlTipoUsuario.SelectedItem.Text, Id = Convert.ToInt32(ddlTipoUsuario.SelectedValue) };
                 negocio.modificarUsuario(modificar);
