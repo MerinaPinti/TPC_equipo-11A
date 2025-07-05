@@ -75,6 +75,7 @@
     <Content Include="AltaUsuario.aspx" />
     <Content Include="AsignarTurno.aspx" />
     <Content Include="AsignarTurno2.aspx" />
+    <Content Include="AsignarTurnoPorMedico.aspx" />
     <Content Include="CancelarTurno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="EleccionTurno.aspx" />
@@ -88,8 +89,6 @@
     <Content Include="ListadoTipoUsuario.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="ModificarTurno.aspx" />
-    <Content Include="SeleccionarEspecialidad.aspx" />
-    <Content Include="SeleccionarProfesional.aspx" />
     <Content Include="Templates\EmailAltaMedico.html" />
     <Content Include="Templates\EmailAltaPaciente.html" />
     <Content Include="Templates\EmailCambiarTurno.html" />
@@ -155,6 +154,13 @@
     </Compile>
     <Compile Include="AsignarTurno2.aspx.designer.cs">
       <DependentUpon>AsignarTurno2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AsignarTurnoPorMedico.aspx.cs">
+      <DependentUpon>AsignarTurnoPorMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AsignarTurnoPorMedico.aspx.designer.cs">
+      <DependentUpon>AsignarTurnoPorMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="CancelarTurno.aspx.cs">
       <DependentUpon>CancelarTurno.aspx</DependentUpon>
@@ -251,20 +257,6 @@
       <DependentUpon>ModificarTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeleccionarEspecialidad.aspx.cs">
-      <DependentUpon>SeleccionarEspecialidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SeleccionarEspecialidad.aspx.designer.cs">
-      <DependentUpon>SeleccionarEspecialidad.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SeleccionarProfesional.aspx.cs">
-      <DependentUpon>SeleccionarProfesional.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SeleccionarProfesional.aspx.designer.cs">
-      <DependentUpon>SeleccionarProfesional.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
