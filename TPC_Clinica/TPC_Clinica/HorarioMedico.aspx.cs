@@ -26,8 +26,34 @@ namespace TPC_Clinica
                 }
                 Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
 
-                cargarEspecialidades(idMedico);
-                CargarDias();
+                HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
+                gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
+                gvHorarioMedico.DataBind();
+
+                List<String> dias = new List<String> { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+                List<String> horarios = new List<String>();
+                MedicoNegocio negocio = new MedicoNegocio();
+                Usuario usuario = (Usuario)Session["usuario"];
+                Medico medico = negocio.existeMedico(usuario);
+
+                for (int i = 0; i < 24; i++)
+                {
+                    horarios.Add(i.ToString() + ":00");
+                }
+                ddlDia.DataSource = dias;
+                ddlEspecialidad.DataSource = medico.Especialidad;
+                ddlEspecialidad.DataTextField = "Descripcion";
+                ddlEspecialidad.DataValueField = "Id";
+                ddlHoraFin.DataSource = horarios;
+                ddlHoraInicio.DataSource = horarios;
+                ddlDia.DataBind();
+                ddlEspecialidad.DataBind();
+                ddlHoraFin.DataBind();
+                ddlHoraInicio.DataBind();
+
+
+                //cargarEspecialidades(idMedico);
+                //CargarDias();
             }
         }
 
@@ -36,53 +62,62 @@ namespace TPC_Clinica
             //Id del login
             int idMedico = Convert.ToInt32(Session["idMedico"]);
             //id del desplegable
-            int idEspecialidad = int.Parse(ddlEspecialidades.SelectedValue);
+            int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
 
             TurnoTrabajoNegocio turnoNegocio = new TurnoTrabajoNegocio();
             HorarioAtencionNegocio horarioNegocio = new HorarioAtencionNegocio();
-
-            //verifica dato por dato de la grilla de horario
-            foreach (GridViewRow fila in gvHorarioMedico.Rows)
+            TimeSpan horarioInicio = TimeSpan.Parse(ddlHoraInicio.SelectedItem.Value);
+            TimeSpan horarioFin = TimeSpan.Parse(ddlHoraFin.SelectedItem.Value);
+            TurnoTrabajo turno = turnoNegocio.existeTurno(horarioInicio, horarioFin);
+            if (turno == null)
             {
-                string diaTexto = fila.Cells[0].Text.Trim();
-                int diaSemana = ObtenerNumeroDiaSemana(diaTexto);
-
-                //Si está clickeado el check box sigue al siguiente 
-                CheckBox chkDiaLibre = (CheckBox)fila.FindControl("chkDiaLibre");
-                if (chkDiaLibre != null && chkDiaLibre.Checked)
-                    continue;
-
-                DropDownList ddlInicio = (DropDownList)fila.FindControl("ddlHoraInicio");
-                DropDownList ddlFin = (DropDownList)fila.FindControl("ddlHoraFin");
-
-                string horaInicio = ddlInicio.SelectedValue;
-                string horaFin = ddlFin.SelectedValue;
-
-                if (!string.IsNullOrEmpty(horaInicio) && !string.IsNullOrEmpty(horaFin))
-                {
-                    // Verifica si existe el turno de trabajo seleccionado (Es decir los horarios). 
-                    int idTurnoTrabajo = turnoNegocio.ObtenerIdTurnoTrabajo(horaInicio, horaFin);
-
-                    // En caso de que no exista lo crea desde cero (rango horario). 
-                    if (idTurnoTrabajo == 0)
-                    {
-                        idTurnoTrabajo = turnoNegocio.InsertarTurnoTrabajo(
-                            "Turno " + horaInicio + " - " + horaFin,
-                            TimeSpan.Parse(horaInicio),
-                            TimeSpan.Parse(horaFin)
-                        );
-                    }
-
-                    // Hace un insert a la tabla HORARIO ATENCIÓN con los datos recolectados hasta acá 
-                    horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, idTurnoTrabajo, diaSemana);
-                }
+                turnoNegocio.InsertarTurnoTrabajo("Turno de " + horarioFin + " a " + horarioFin, horarioInicio, horarioFin);
+                turno = turnoNegocio.existeTurno(horarioInicio, horarioFin);
             }
 
+            horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, turno.IdTurnoTrabajo, ObtenerNumeroDiaSemana(ddlDia.SelectedItem.Value));
+            HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
+            gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
+            gvHorarioMedico.DataBind();
+            //verifica dato por dato de la grilla de horario
+            //foreach (GridViewRow fila in gvHorarioMedico.Rows)
+            //{
+            //    string diaTexto = fila.Cells[0].Text.Trim();
+            //    int diaSemana = ObtenerNumeroDiaSemana(diaTexto);
+
+            //    //Si está clickeado el check box sigue al siguiente 
+            //    CheckBox chkDiaLibre = (CheckBox)fila.FindControl("chkDiaLibre");
+            //    if (chkDiaLibre != null && chkDiaLibre.Checked)
+            //        continue;
+
+            //    DropDownList ddlInicio = (DropDownList)fila.FindControl("ddlHoraInicio");
+            //    DropDownList ddlFin = (DropDownList)fila.FindControl("ddlHoraFin");
+
+            //    string horaInicio = ddlInicio.SelectedValue;
+            //    string horaFin = ddlFin.SelectedValue;
+
+            //    if (!string.IsNullOrEmpty(horaInicio) && !string.IsNullOrEmpty(horaFin))
+            //    {
+            //        // Verifica si existe el turno de trabajo seleccionado (Es decir los horarios). 
+            //        int idTurnoTrabajo = turnoNegocio.ObtenerIdTurnoTrabajo(horaInicio, horaFin);
+
+            //        // En caso de que no exista lo crea desde cero (rango horario). 
+            //        if (idTurnoTrabajo == 0)
+            //        {
+            //            idTurnoTrabajo = turnoNegocio.InsertarTurnoTrabajo(
+            //                "Turno " + horaInicio + " - " + horaFin,
+            //                TimeSpan.Parse(horaInicio),
+            //                TimeSpan.Parse(horaFin)
+            //            );
+            //        }
+
+            //        // Hace un insert a la tabla HORARIO ATENCIÓN con los datos recolectados hasta acá 
+            //        horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, idTurnoTrabajo, diaSemana);
+            //    }
+            //}
+
             // Msj Exitoso. 
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Horario guardado correctamente'); window.location='HorarioMedico.aspx';", true);
         }
-
-
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -90,29 +125,22 @@ namespace TPC_Clinica
             Response.Redirect("Default.aspx");
         }
 
-        //Genera una lista de 7 objetos DiaHorario, uno por cada día de la semana para completar el dgv 
-        private void CargarDias()
+        public string ObtenerNombreDia(object dia)
         {
-            List<DiaHorario> dias = new List<DiaHorario>
-    {
-        new DiaHorario { Dia = "Lunes" },
-        new DiaHorario { Dia = "Martes" },
-        new DiaHorario { Dia = "Miércoles" },
-        new DiaHorario { Dia = "Jueves" },
-        new DiaHorario { Dia = "Viernes" },
-        new DiaHorario { Dia = "Sábado" },
-        new DiaHorario { Dia = "Domingo" }
-    };
+            int numero = Convert.ToInt32(dia);
 
-            gvHorarioMedico.DataSource = dias;
-            gvHorarioMedico.DataBind();
+            switch (numero)
+            {
+                case 1: return "Lunes";
+                case 2: return "Martes";
+                case 3: return "Miércoles";
+                case 4: return "Jueves";
+                case 5: return "Viernes";
+                case 6: return "Sábado";
+                case 7: return "Domingo";
+                default: return "Desconocido";
+            }
         }
-        //CLASE LOCAL PARA GENERAR EL LISTADO DE DÍAS en el GRID 
-        public class DiaHorario
-        {
-            public string Dia { get; set; }
-        }
-
 
         protected void gvHorarioMedico_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -156,17 +184,25 @@ namespace TPC_Clinica
             }
         }
 
-        private void cargarEspecialidades(int idMedico)
+        protected void gvHorarioMedico_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            List<Especialidad> lista = negocio.ListarPorMedico(idMedico);
+            int index = Convert.ToInt32(e.CommandArgument);
+            int id = Convert.ToInt32(gvHorarioMedico.DataKeys[index].Value);
+            HorarioAtencionNegocio negocio = new HorarioAtencionNegocio();
+            if (e.CommandName == "Eliminar")
+            {
+                negocio.eliminarLogico(id);
+                gvHorarioMedico.DataSource = negocio.listar();
+                gvHorarioMedico.DataBind();
 
-            ddlEspecialidades.DataSource = lista;
-            ddlEspecialidades.DataTextField = "Descripcion";
-            ddlEspecialidades.DataValueField = "Id";
-            ddlEspecialidades.DataBind();
+            }
 
-            ddlEspecialidades.Items.Insert(0, new ListItem("-- Seleccione una especialidad --", ""));
+            if (e.CommandName == "Editar")
+            {
+                Session.Add("IdModificarEspecialidad", id);
+                Response.Redirect("AltaEspecialidad.aspx", true);
+            }
+
         }
     }
 }

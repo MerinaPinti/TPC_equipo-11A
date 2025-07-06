@@ -112,6 +112,43 @@ namespace Negocio
             }
         }
 
+        public TurnoTrabajo existeTurno(TimeSpan horaInicio, TimeSpan horaFin)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT * FROM TurnoTrabajo WHERE horaInicio = @horaInicio AND horaFin = @horaFin");
+                datos.setearParametros("@horaInicio", horaInicio);
+                datos.setearParametros("@horaFin", horaFin);
+                datos.ejecutarLectura();
+
+                TurnoTrabajo turno = new TurnoTrabajo();
+                while (datos.Lector.Read())
+                {
+                    turno.IdTurnoTrabajo = (int)datos.Lector["idTurnoTrabajo"];
+                    turno.Descripcion = datos.Lector["descripcion"].ToString();
+                    turno.HoraInicio = TimeSpan.Parse(datos.Lector["horaInicio"].ToString());
+                    turno.HoraFin = TimeSpan.Parse(datos.Lector["horaFin"].ToString());
+                    return turno;
+                }
+
+                return null;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
 
     }
 }

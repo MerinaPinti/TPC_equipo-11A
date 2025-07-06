@@ -241,7 +241,7 @@ namespace Negocio
 
                         medico.Especialidad.Add(esp);
                     }
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -300,6 +300,53 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public Medico existeMedico(Usuario MedicoUser)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Medico medico = null;
+
+            try
+            {
+                datos.setearConsulta("SELECT M.idMedico, M.Matricula, M.Nombre, M.Apellido, M.Telefono, M.Email, EM.IDESPECIALIDAD, E.descripcion FROM Medico M LEFT JOIN ESPECIALIDADES_MEDICOS EM ON M.idMedico = EM.IDMEDICO LEFT JOIN Especialidad E ON E.idEspecialidad = EM.IDESPECIALIDAD WHERE M.idUsuario = @IdUser AND M.Activo = 1");
+                datos.setearParametros("@IdUser", MedicoUser.Id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    if (medico == null)
+                    {
+                        medico = new Medico();
+                        medico.Matricula = (string)datos.Lector["matricula"];
+                        medico.IdMedico = (int)datos.Lector["idMedico"];
+                        medico.Nombre = datos.Lector["Nombre"].ToString();
+                        medico.Apellido = datos.Lector["Apellido"].ToString();
+                        medico.Telefono = datos.Lector["Telefono"].ToString();
+                        medico.Email = datos.Lector["Email"].ToString();
+                        medico.Especialidad = new List<Especialidad>();
+                    }
+
+
+                    if (datos.Lector["IDESPECIALIDAD"] != DBNull.Value)
+                    {
+                        Especialidad esp = new Especialidad
+                        {
+                            Id = (int)datos.Lector["IDESPECIALIDAD"],
+                            Descripcion = datos.Lector["descripcion"].ToString()
+                        };
+
+                        medico.Especialidad.Add(esp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return medico;
         }
 
         public void eliminarMedico(int id)

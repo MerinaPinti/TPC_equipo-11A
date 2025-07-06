@@ -8,13 +8,12 @@ namespace Dominio
 {
     public class HorarioAtencion
     {
-        public int IdHorarioAtencion { get; set; }
-        public int IdMedico { get; set; }
-        public int IdEspecialidad { get; set; }
-        
-        public int DiaSemana { get; set; } 
-        public bool Activo { get; set; }
-
+        public int Id { get; set; }
+        public Medico Medico { get; set; }
+        public Especialidad Especialidad { get; set; }
+        public TimeSpan HorarioInicio { get; set; }
+        public TimeSpan HorarioFin { get; set; }
+        public int DiaSemana { get; set; }
         public TurnoTrabajo Turno { get; set; }
     }
 }
