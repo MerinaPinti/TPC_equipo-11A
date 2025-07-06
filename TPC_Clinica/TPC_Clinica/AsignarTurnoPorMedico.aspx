@@ -52,10 +52,13 @@
                     console.log("Eventos recibidos:", eventos);
 
                     var calendarEl = document.getElementById('calendar');
+                    calendarEl.innerHTML = ""; // Limpiar antes de renderizar
+
                     var calendar = new FullCalendar.Calendar(calendarEl, {
                         initialView: 'dayGridMonth',
                         locale: 'es',
                         height: 600,
+                        eventDisplay: 'block',
                         events: eventos,
                         eventClick: function (info) {
                             const fecha = info.event.start;
@@ -82,12 +85,12 @@
             console.error("Error en AJAX:", err);
         }
     });
-    }
+        }
     </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+    
 
     <div class="mb-3">
         <label for="txtMedico" class="form-label fw-bold">Buscar médico:</label>

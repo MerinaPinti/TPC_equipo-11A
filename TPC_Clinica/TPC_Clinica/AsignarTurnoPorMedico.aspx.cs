@@ -18,11 +18,11 @@ namespace TPC_Clinica
         {
             if (!IsPostBack)
             {
-                // Al inicio no cargamos nada porque usamos el buscador tipo autocomplete.
+                
             }
         }
 
-        // Botón para redirigir al calendario en otra página (por si se usa)
+        // Botón para redirigir al calendario en otra página 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(hfIdMedico.Value) || string.IsNullOrEmpty(ddlEspecialidades.SelectedValue))
@@ -63,7 +63,7 @@ namespace TPC_Clinica
             public string value { get; set; }
         }
 
-        // Botón oculto que se dispara desde JS para cargar especialidades
+        // Boton que dispara la carga de especialidades (está oculto)
         protected void btnCargarEspecialidades_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(hfIdMedico.Value))
@@ -78,7 +78,7 @@ namespace TPC_Clinica
             }
         }
 
-        // Evento al seleccionar una especialidad -> carga calendario
+        // Evento al seleccionar una especialidad que luego carga el  calendario
         protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(hfIdMedico.Value) && !string.IsNullOrEmpty(ddlEspecialidades.SelectedValue))
@@ -97,7 +97,7 @@ namespace TPC_Clinica
 
        
 
-        // (No se usa directamente ahora, pero útil si volvemos a mostrar una tabla en vez de calendario)
+        // No lo estoy usando aún. 
         private string ObtenerNombreDia(int numeroDia)
         {
             switch (numeroDia)
@@ -205,11 +205,11 @@ namespace TPC_Clinica
 
                             string estadoTexto = yaAsignado ? "Asignado" : "Disponible";
                             //Se crea un objeto anónimo para representar el evento del calendario.
-                              //title: muestra la hora y estado.
-                           // start: construye la fecha y hora completa en formato ISO(ToString("s")). allDay = false: indica que el evento tiene hora específica. Esto para poder independizar cada horario que aparece en el calendario
+                            //title: muestra la hora y estado.
+                            // start: construye la fecha y hora completa en formato ISO(ToString("s")). allDay = false: indica que el evento tiene hora específica. Esto para poder independizar cada horario que aparece en el calendario
                             eventos.Add(new
                             {
-                                title = $"{hora.ToString("D2")}:00 - {estadoTexto}",
+                                title = $"{hora:00}:00 - {estadoTexto}",
                                 start = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0).ToString("s"),
                                 allDay = false,
                                 backgroundColor = yaAsignado ? "green" : "lightblue",
@@ -217,7 +217,7 @@ namespace TPC_Clinica
                                 textColor = "white",
                                 extendedProps = new
                                 {
-                                    hora = hora.ToString("D2") + ":00",
+                                    hora = $"{hora:00}:00",
                                     estado = estadoTexto
                                 }
                             });
