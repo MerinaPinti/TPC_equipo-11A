@@ -7,23 +7,24 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    internal class TurnoNegocio
+    public class TurnoNegocio
     {
         public void agregarTurno(Turno nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"INSERT INTO Turno 
-                (idPaciente, idMedico, fecha, hora, idEstado, fechaAlta, ultimaModificacion)
-                VALUES 
-                (@idPaciente, @idMedico, @fecha, @hora, @idEstado, GETDATE(), GETDATE())");
+                datos.setearConsulta(@"
+            INSERT INTO Turno 
+            (idPaciente, idMedico, fecha, hora, idEstado, fechaAlta, ultimaModificacion, activo)
+            VALUES 
+            (@idPaciente, @idMedico, @fecha, @hora, @idEstado, GETDATE(), GETDATE(), 1)");
 
-                datos.setearParametros("@idPaciente", nuevo.Paciente);
-                datos.setearParametros("@idMedico", nuevo.Medico);
+                datos.setearParametros("@idPaciente", nuevo.Paciente.IdPaciente);
+                datos.setearParametros("@idMedico", nuevo.Medico.IdMedico);
                 datos.setearParametros("@fecha", nuevo.Fecha);
                 datos.setearParametros("@hora", nuevo.Hora);
-                datos.setearParametros("@idEstado", nuevo.Estado);
+                datos.setearParametros("@idEstado", 1); // Asignado
 
                 datos.ejecutarAccion();
             }
@@ -88,10 +89,13 @@ namespace Negocio
                 T.fechaAlta,
                 T.ultimaModificacion,
                 T.activo,
+                P.idPaciente,
                 P.nombre AS NombrePaciente,
                 P.apellido AS ApellidoPaciente,
+                M.idMedico,
                 M.nombre AS NombreMedico,
                 M.apellido AS ApellidoMedico,
+                E.idEstado,
                 E.descripcion AS EstadoDescripcion
             FROM Turno T
             INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
@@ -104,39 +108,45 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Turno t = new Turno();
-                    t.NroTurno = datos.Lector["idTurno"].ToString();
-
-                    t.Fecha = (DateTime)datos.Lector["fecha"];
-                    t.Hora = (int)datos.Lector["hora"];
-                    t.Observaciones = datos.Lector["observaciones"]?.ToString();
-                    t.Diagnostico = datos.Lector["diagnostico"]?.ToString();
+                    Turno turno = new Turno();
+                    turno.NroTurno = datos.Lector["idTurno"].ToString();
+                    turno.Fecha = (DateTime)datos.Lector["fecha"];
+                    turno.Hora = (TimeSpan)datos.Lector["hora"];
+                    turno.Observaciones = datos.Lector["observaciones"]?.ToString();
+                    turno.Diagnostico = datos.Lector["diagnostico"]?.ToString();
 
                     if (datos.Lector["fechaAlta"] != DBNull.Value)
-                        t.FinTurno = (DateTime)datos.Lector["fechaAlta"];
+                        turno.FinTurno = (DateTime)datos.Lector["fechaAlta"];
 
                     if (datos.Lector["ultimaModificacion"] != DBNull.Value)
-                        t.UltimaModificacion = (DateTime)datos.Lector["ultimaModificacion"];
+                        turno.UltimaModificacion = (DateTime)datos.Lector["ultimaModificacion"];
 
-                    t.Estado = datos.Lector["EstadoDescripcion"].ToString();
 
-                    // PACIENTE
-                    t.Paciente = new Paciente
+                    turno.Estado = new Estado
                     {
+                        Id = (int)datos.Lector["idEstado"],
+                        Descripcion = datos.Lector["EstadoDescripcion"].ToString()
+                    };
+
+
+                    turno.Paciente = new Paciente
+                    {
+                        IdPaciente = (int)datos.Lector["idPaciente"],
                         Nombre = datos.Lector["NombrePaciente"].ToString(),
                         Apellido = datos.Lector["ApellidoPaciente"].ToString()
                     };
 
-                    // MÉDICO
-                    t.Medico = new Medico
+
+                    turno.Medico = new Medico
                     {
+                        IdMedico = (int)datos.Lector["idMedico"],
                         Nombre = datos.Lector["NombreMedico"].ToString(),
                         Apellido = datos.Lector["ApellidoMedico"].ToString()
                     };
 
-                    t.Activo = (bool)datos.Lector["activo"];
+                    turno.Activo = (bool)datos.Lector["activo"];
 
-                    lista.Add(t);
+                    lista.Add(turno);
                 }
 
                 return lista;
@@ -171,6 +181,91 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+
+        public void cerrarTurno(int idTurno, string observaciones, string diagnostico)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+            UPDATE Turno SET 
+                observaciones = @obs,
+                diagnostico = @diag,
+                idEstado = 5, -- Cerrado
+                ultimaModificacion = GETDATE()
+            WHERE idTurno = @idTurno");
+
+                datos.setearParametros("@idTurno", idTurno);
+                datos.setearParametros("@obs", observaciones);
+                datos.setearParametros("@diag", diagnostico);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Listar turnos asignados para el calendario
+        public List<Turno> ListarTurnosAsignados(int idMedico)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+            SELECT T.idTurno, T.fecha, T.hora, T.idEstado
+            FROM Turno T
+            WHERE T.idMedico = @idMedico AND T.activo = 1
+        ");
+
+                datos.setearParametros("@idMedico", idMedico);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno turno = new Turno();
+                    turno.NroTurno = datos.Lector["idTurno"].ToString();
+                    turno.Fecha = (DateTime)datos.Lector["fecha"];
+                    turno.Hora = (TimeSpan)datos.Lector["hora"];
+
+
+                    // Carga Estado del turno
+                    turno.Estado = new Estado
+                    {
+                        Id = Convert.ToInt32(datos.Lector["idEstado"])
+                    };
+
+                    // Carga Id del médico
+                    turno.Medico = new Medico
+                    {
+                        IdMedico = idMedico
+                    };
+
+                    lista.Add(turno);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
 
     }
 }

@@ -12,8 +12,8 @@ namespace Dominio
         public Paciente Paciente { get; set; }
         public Medico Medico { get; set; }
         public DateTime Fecha { get; set; }
-        public int Hora { get; set; }
-        public string Estado { get; set; }
+        public TimeSpan Hora { get; set; }
+        public Estado Estado { get; set; }
         public string Observaciones { get; set; }
         public string Diagnostico { get; set; }
         public DateTime FinTurno { get; set; }

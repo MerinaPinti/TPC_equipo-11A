@@ -73,13 +73,14 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion FROM Paciente WHERE DNI = @DNI");
+                datos.setearConsulta("SELECT idPaciente, DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion FROM Paciente WHERE DNI = @DNI");
                 datos.setearParametros("@DNI", DNI);
                 datos.ejecutarLectura();
 
                 if (datos.Lector.Read())
                 {
                     paciente = new Paciente();
+                    paciente.IdPaciente = (int)datos.Lector["idPaciente"]; 
                     paciente.DNI = datos.Lector["DNI"].ToString();
                     paciente.Nombre = datos.Lector["Nombre"].ToString();
                     paciente.Apellido = datos.Lector["Apellido"].ToString();
@@ -155,5 +156,11 @@ namespace Negocio
                 throw ex;
             }
         }
+
+
+
+        
+
+
     }
 }

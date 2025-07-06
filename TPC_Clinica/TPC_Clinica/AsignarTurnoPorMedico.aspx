@@ -16,29 +16,31 @@
     <script type="text/javascript">
         $(function () {
             $("#<%= txtMedico.ClientID %>").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "AsignarTurnoPorMedico.aspx/BuscarMedico",
-                        method: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify({ prefix: request.term }),
-                        success: function (data) {
-                            response(data.d);
-                        }
-                    });
-                },
-                select: function (event, ui) {
-                    $("#<%= txtMedico.ClientID %>").val(ui.item.label);
-                    $("#<%= hfIdMedico.ClientID %>").val(ui.item.value);
-                    __doPostBack('<%= btnCargarEspecialidades.UniqueID %>', '');
-                    return false;
-                },
-                minLength: 2
-            });
+            source: function (request, response) {
+                $.ajax({
+                    url: "AsignarTurnoPorMedico.aspx/BuscarMedico",
+                    method: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify({ prefix: request.term }),
+                    success: function (data) {
+                        response(data.d);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#<%= txtMedico.ClientID %>").val(ui.item.label);
+                $("#<%= hfIdMedico.ClientID %>").val(ui.item.value);
+                __doPostBack('<%= btnCargarEspecialidades.UniqueID %>', '');
+                return false;
+            },
+            minLength: 2
         });
+    });
 
         function cargarCalendario(idMedico, idEspecialidad) {
+            console.log("Ejecutando cargarCalendario con:", idMedico, idEspecialidad);
+
             $.ajax({
                 type: "POST",
                 url: "AsignarTurnoPorMedico.aspx/ObtenerTurnosDisponibles",
@@ -47,30 +49,40 @@
                 dataType: "json",
                 success: function (response) {
                     var eventos = response.d;
+                    console.log("Eventos recibidos:", eventos);
 
                     var calendarEl = document.getElementById('calendar');
-                    calendarEl.innerHTML = ""; // Limpiar calendario anterior
-
                     var calendar = new FullCalendar.Calendar(calendarEl, {
                         initialView: 'dayGridMonth',
                         locale: 'es',
                         height: 600,
                         events: eventos,
                         eventClick: function (info) {
-                            var fechaSeleccionada = info.event.startStr;
-                            document.getElementById("<%= hfFechaSeleccionada.ClientID %>").value = fechaSeleccionada;
-                            var modal = new bootstrap.Modal(document.getElementById('modalTurno'));
-                            modal.show();
-                        }
-                    });
+                            const fecha = info.event.start;
+                            const hora = info.event.extendedProps.hora;
+                            const estado = info.event.extendedProps.estado;
 
-                    calendar.render();
-                },
-                error: function (err) {
-                    console.error("Error en AJAX:", err);
+                            if (estado !== "Disponible") {
+                                alert("Ese turno ya fue asignado.");
+                                return;
+                            }
+
+                            document.getElementById('<%= hfFechaTurno.ClientID %>').value = fecha.toISOString().substring(0, 10);
+                    document.getElementById('<%= hfHoraTurno.ClientID %>').value = hora;
+                    document.getElementById('<%= hfIdMedico.ClientID %>').value = idMedico;
+
+                    var modal = new bootstrap.Modal(document.getElementById('modalTurno'));
+                    modal.show();
                 }
             });
+
+            calendar.render();
+        },
+        error: function (err) {
+            console.error("Error en AJAX:", err);
         }
+    });
+    }
     </script>
 </asp:Content>
 
@@ -81,6 +93,8 @@
         <label for="txtMedico" class="form-label fw-bold">Buscar médico:</label>
         <asp:TextBox ID="txtMedico" runat="server" CssClass="form-control" placeholder="Escriba el nombre del médico..." />
         <asp:HiddenField ID="hfIdMedico" runat="server" />
+        <asp:HiddenField ID="hfFechaTurno" runat="server" />
+<asp:HiddenField ID="hfHoraTurno" runat="server" />
         <asp:Button ID="btnCargarEspecialidades" runat="server" Text="Cargar Especialidades" CssClass="btn btn-secondary mt-2" OnClick="btnCargarEspecialidades_Click" Style="display:none;" />
     </div>
 
@@ -89,7 +103,13 @@
         <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged" />
     </div>
 
-    <asp:HiddenField ID="hfFechaSeleccionada" runat="server" />
+    <!-- Funciona como session pero en realidad sólo guardamos el valor que pertenece a la misma ventana -->
+    
+    
+
+<asp:HiddenField ID="hfIdEspecialidadSeleccionada" runat="server" />
+    
+    
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
