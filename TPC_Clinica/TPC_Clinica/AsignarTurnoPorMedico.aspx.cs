@@ -1,12 +1,14 @@
-﻿using Negocio;
+﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Web;
-using System.Web.UI;
 using System.Web.Services;
+using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
 
 namespace TPC_Clinica
 {
@@ -180,35 +182,44 @@ namespace TPC_Clinica
             DateTime hoy = DateTime.Today;
             DateTime fin = hoy.AddDays(30);
 
-           
-
             foreach (var h in horarios)
             {
                 for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
                 {
+                   // Verifica si la fecha coincide con el día de la semana configurado en el horario(h.DiaSemana).
+                   //% 7 porque en .NET el DayOfWeek va de 0(domingo) a 6(sábado), y en tu base DiaSemana va de 1(lunes) a 7(domingo) sirve para poder comparar e igualar. 
                     if ((int)fecha.DayOfWeek == (h.DiaSemana % 7))
                     {
                         for (int hora = h.Turno.HoraInicio.Hours; hora < h.Turno.HoraFin.Hours; hora++)
                         {
-                            TimeSpan horaTurno = new TimeSpan(hora, 0, 0); // 
 
+                            //Verifica si ya existe un turno asignado para ese médico, esa fecha y esa hora.
+                           // Usa t.Hora.TotalHours para comparar solo la hora(sin minutos ni segundos).
+                           // Estado.Id == 1 implica que es un turno "Asignado".
                             bool yaAsignado = turnosAsignados.Any(t =>
                                 t.Fecha.Date == fecha.Date &&
-                                t.Hora == horaTurno &&
+                                (int)t.Hora.TotalHours == hora &&
                                 t.Medico.IdMedico == idMedico &&
                                 t.Estado != null &&
-                                t.Estado.Id == 1
-                            );
+                                t.Estado.Id == 1);
 
                             string estadoTexto = yaAsignado ? "Asignado" : "Disponible";
-                            string color = yaAsignado ? "green" : "blue";
-
+                            //Se crea un objeto anónimo para representar el evento del calendario.
+                              //title: muestra la hora y estado.
+                           // start: construye la fecha y hora completa en formato ISO(ToString("s")). allDay = false: indica que el evento tiene hora específica. Esto para poder independizar cada horario que aparece en el calendario
                             eventos.Add(new
                             {
-                                title = $"{hora:D2}:00 - {estadoTexto}",
-                                start = $"{fecha:yyyy-MM-dd}T{hora:D2}:00:00",
+                                title = $"{hora.ToString("D2")}:00 - {estadoTexto}",
+                                start = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0).ToString("s"),
                                 allDay = false,
-                                color = color
+                                backgroundColor = yaAsignado ? "green" : "lightblue",
+                                borderColor = yaAsignado ? "darkgreen" : "blue",
+                                textColor = "white",
+                                extendedProps = new
+                                {
+                                    hora = hora.ToString("D2") + ":00",
+                                    estado = estadoTexto
+                                }
                             });
                         }
                     }
