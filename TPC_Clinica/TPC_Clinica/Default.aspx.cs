@@ -36,7 +36,8 @@ namespace TPC_Clinica
 
                     if (medicoLogueado != null)
                     {
-                        Session["idMedico"] = medicoLogueado.IdMedico;
+                        Session["medico"] = medicoLogueado;
+                        Response.Write("ID Médico logueado: " + medicoLogueado.IdMedico);
                     }
                 }
 

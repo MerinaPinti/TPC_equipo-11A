@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -289,6 +290,99 @@ namespace Negocio
                 datos.setearConsulta("UPDATE Turno SET idEstado = @idEstado, ultimaModificacion = GETDATE() WHERE idTurno = @NroTurno");
                 datos.setearParametros("@NroTurno", turno.NroTurno);
                 datos.setearParametros("@idEstado", turno.Estado.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public List<TurnoVista> ListarTurnosAsignadosSemana(int idMedico, int idEspecialidad)
+        {
+            List<TurnoVista> lista = new List<TurnoVista>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+            SELECT 
+                T.idTurno,
+                T.fecha,
+                T.hora,
+                P.nombre AS NombrePaciente,
+                P.apellido AS ApellidoPaciente
+            FROM Turno T
+            INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
+            INNER JOIN HorarioAtencion H ON H.idMedico = T.idMedico AND H.idEspecialidad = @idEspecialidad
+            WHERE 
+                T.idMedico = @idMedico
+                AND T.fecha >= DATEADD(DAY, 1 - DATEPART(WEEKDAY, GETDATE()), CAST(GETDATE() AS DATE))
+                AND T.fecha < DATEADD(DAY, 8 - DATEPART(WEEKDAY, GETDATE()), CAST(GETDATE() AS DATE))
+                AND T.idEstado = 1");
+
+                datos.setearParametros("@idMedico", idMedico);
+                datos.setearParametros("@idEspecialidad", idEspecialidad);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    TurnoVista turno = new TurnoVista
+                    {
+                        NroTurno = datos.Lector["idTurno"].ToString(),
+                        Fecha = ((DateTime)datos.Lector["fecha"]).ToShortDateString(),
+                        Hora = datos.Lector["hora"].ToString().Substring(0, 5),
+                        NombrePaciente = datos.Lector["NombrePaciente"].ToString() + " " + datos.Lector["ApellidoPaciente"].ToString()
+                    };
+
+                    lista.Add(turno);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        //CLASE AUXILIAR PARA VER LOS TURNOS DE UNA SOLA SEMANA. 
+        public class TurnoVista
+
+        {
+            public string NroTurno { get; set; }
+            public string Fecha { get; set; }
+            public string Hora { get; set; }
+            public string NombrePaciente { get; set; }
+        }
+
+        public void actualizarTurnoMedico(Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+            UPDATE Turno 
+            SET 
+                idEstado = @idEstado,
+                observaciones = @observaciones,
+                diagnostico = @diagnostico,
+                ultimaModificacion = GETDATE()
+            WHERE idTurno = @NroTurno");
+
+                datos.setearParametros("@NroTurno", turno.NroTurno);
+                datos.setearParametros("@idEstado", turno.Estado.Id);
+
+                // Si alguno de los campos puede ser nulo:
+                datos.setearParametros("@observaciones", turno.Observaciones ?? (object)DBNull.Value);
+                datos.setearParametros("@diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
+
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

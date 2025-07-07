@@ -138,7 +138,7 @@
         <div id="calendar"></div>
     </div>
 
-        <!-- Modal Bootstrap para asignar turno --> -->
+        <!-- Modal Bootstrap para asignar turno --> 
     <div class="modal fade" id="modalTurno" tabindex="-1" aria-labelledby="modalTurnoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -153,7 +153,8 @@
     </div>
 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnAsignarTurno" runat="server" CssClass="btn btn-primary" Text="Confirmar Turno" OnClick="btnAsignarTurno_Click" />
+                    <asp:Button ID="btnAsignarTurno" runat="server" CssClass="btn btn-primary" Text="Confirmar Turno" OnClick="btnAsignarTurno_Click" />V
+
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
