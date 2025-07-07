@@ -92,6 +92,48 @@ namespace Negocio
             }
         }
 
+        public List<HorarioAtencion> listarConIdMedico(int id)
+        {
+            List<HorarioAtencion> horarios = new List<HorarioAtencion>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT HA.idHorarioAtencion, HA.idMedico, HA.idEspecialidad, HA.idTurnoTrabajo, HA.diaSemana, M.apellido, M.nombre, M.email, M.matricula, M.telefono, E.idEspecialidad, E.descripcion, TT.horaInicio, TT.horaFin FROM HorarioAtencion HA INNER JOIN Medico M ON HA.idMedico = M.idMedico INNER JOIN Especialidad E ON HA.idEspecialidad = E.idEspecialidad INNER JOIN TurnoTrabajo TT ON TT.idTurnoTrabajo = HA.idTurnoTrabajo WHERE HA.activo = 1 AND HA.idMedico = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    HorarioAtencion horario = new HorarioAtencion();
+                    horario.Id = (int)datos.Lector["idHorarioAtencion"];
+                    horario.Medico = new Medico
+                    {
+                        IdMedico = (int)datos.Lector["idMedico"],
+                        Apellido = (string)datos.Lector["apellido"],
+                        Nombre = (string)datos.Lector["nombre"],
+                        Email = (string)datos.Lector["email"],
+                        Especialidad = new List<Especialidad>(),
+                    };
+                    horario.Especialidad = new Especialidad { Id = (int)datos.Lector["idEspecialidad"], Descripcion = (string)datos.Lector["descripcion"] };
+                    horario.HorarioInicio = (TimeSpan)datos.Lector["horaInicio"];
+                    horario.HorarioFin = (TimeSpan)datos.Lector["horaFin"];
+                    horario.DiaSemana = (byte)datos.Lector["diaSemana"];
+                    horarios.Add(horario);
+                }
+                return horarios;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void modificarHorario(HorarioAtencion horario)
         {
             AccesoDatos datos = new AccesoDatos();

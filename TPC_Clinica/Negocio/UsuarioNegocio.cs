@@ -114,18 +114,20 @@ namespace Negocio
         }
 
 
-        public void agregarUsuarioMedico(Usuario usuario)
+        public int agregarUsuarioMedico(Usuario usuario)
         {
             
                 AccesoDatos datos = new AccesoDatos();
                 try
                 {
-                    datos.setearConsulta("INSERT INTO Usuario (usuario, contraseña, idTipoUsuario) VALUES (@user, @pass, @tipo)");
+                    datos.setearConsulta("INSERT INTO Usuario (usuario, contraseña, idTipoUsuario) VALUES (@user, @pass, @tipo); SELECT SCOPE_IDENTITY();");
                     datos.setearParametros("@user", usuario.UserName);
                     datos.setearParametros("@pass", usuario.Password);
                     datos.setearParametros("@tipo", usuario.TipoUsuario.Id);
-                    datos.ejecutarAccion();
+                    int idUsuario = (int)datos.ejecutarScalar();
+                    return idUsuario;
                 }
+
                 catch (Exception ex)
                 {
                     throw ex;

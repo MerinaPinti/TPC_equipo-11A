@@ -105,8 +105,8 @@ namespace TPC_Clinica
 
             Usuario usuario = (Usuario)Session["usuario"];
             MedicoNegocio negocio = new MedicoNegocio();
-            Medico medico = negocio.existeMedico(usuario);
-            ddlEspecialidad.DataSource = medico.Especialidad;
+            Medico medicoLogueado = (Medico)Session["medico"];
+            ddlEspecialidad.DataSource = medicoLogueado.Especialidad;
             ddlEspecialidad.DataTextField = "Descripcion";
             ddlEspecialidad.DataValueField = "Id";
             ddlEspecialidad.DataBind();
@@ -115,7 +115,8 @@ namespace TPC_Clinica
         private void cargarGridHorario()
         {
             HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
-            gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
+            Medico medicoLogueado = (Medico)Session["medico"];
+            gvHorarioMedico.DataSource = horarioAtencionNegocio.listarConIdMedico(medicoLogueado.IdMedico);
             gvHorarioMedico.DataBind();
         }
 
@@ -150,7 +151,8 @@ namespace TPC_Clinica
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
-            int idMedico = Convert.ToInt32(Session["idMedico"]);
+            Medico medico = (Medico)Session["medico"];
+
 
             int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
 
@@ -166,10 +168,9 @@ namespace TPC_Clinica
             }
             if (Session["idModificarHorario"] == null)
             {
-                horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, turno.IdTurnoTrabajo, ObtenerNumeroDiaSemana(ddlDia.SelectedItem.Value));
+                horarioNegocio.InsertarHorarioAtencion(medico.IdMedico, idEspecialidad, turno.IdTurnoTrabajo, ObtenerNumeroDiaSemana(ddlDia.SelectedItem.Value));
                 HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
-                gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
-                gvHorarioMedico.DataBind();
+                cargarGridHorario();
                 //verifica dato por dato de la grilla de horario
                 //foreach (GridViewRow fila in gvHorarioMedico.Rows)
                 //{
@@ -219,7 +220,7 @@ namespace TPC_Clinica
                     Especialidad = new Especialidad { Id = idEspecialidad },
                     HorarioFin = horarioFin,
                     HorarioInicio = horarioInicio,
-                    Medico = new Medico { IdMedico = idMedico },
+                    Medico = new Medico { IdMedico = medico.IdMedico },
                     Turno = turno
                 };
                 HorarioAtencionNegocio negocio = new HorarioAtencionNegocio();

@@ -97,28 +97,29 @@ namespace Negocio
 
             try
             {
-                // Insert en la tabla Medico
-                datos.setearConsulta("INSERT INTO Medico (Matricula, Nombre, Apellido, Email, Telefono) OUTPUT INSERTED.IDMedico VALUES (@Matricula, @Nombre, @Apellido, @Email, @Telefono)");
-                datos.setearParametros("@Matricula", nuevo.Matricula);
-                datos.setearParametros("@Nombre", nuevo.Nombre);
-                datos.setearParametros("@Apellido", nuevo.Apellido);
-                datos.setearParametros("@Email", nuevo.Email);
-                datos.setearParametros("@Telefono", nuevo.Telefono);
-
-
-                int idMedico = (int)datos.ejecutarScalar(); // Obtener el ID generado
-                nuevo.IdMedico = idMedico;
-                cargarIntermedia(nuevo);
 
                 // Luego de guardar el médico, creamos su usuario Usuario y Contra = a la Matrícula. 
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
                 Usuario nuevoUsuario = new Usuario();
                 nuevoUsuario.UserName = nuevo.Matricula.ToString();
                 nuevoUsuario.Password = nuevo.Matricula.ToString();
                 nuevoUsuario.TipoUsuario = new TipoUsuario();
                 nuevoUsuario.TipoUsuario.Id = 3; // ID de tipo Médico
+                int idUsuario = usuarioNegocio.agregarUsuarioMedico(nuevoUsuario);
 
-                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-                usuarioNegocio.agregarUsuarioMedico(nuevoUsuario);
+                // Insert en la tabla Medico
+                datos.setearConsulta("INSERT INTO Medico (Matricula, Nombre, Apellido, Email, Telefono, idUsuario) OUTPUT INSERTED.IDMedico VALUES (@Matricula, @Nombre, @Apellido, @Email, @Telefono, @IdUsuario)");
+                datos.setearParametros("@Matricula", nuevo.Matricula);
+                datos.setearParametros("@Nombre", nuevo.Nombre);
+                datos.setearParametros("@Apellido", nuevo.Apellido);
+                datos.setearParametros("@Email", nuevo.Email);
+                datos.setearParametros("@Telefono", nuevo.Telefono);
+                datos.setearParametros("@IdUsuario", idUsuario);
+
+
+                int idMedico = (int)datos.ejecutarScalar(); // Obtener el ID generado
+                nuevo.IdMedico = idMedico;
+                cargarIntermedia(nuevo);
 
 
             }
@@ -339,14 +340,13 @@ namespace Negocio
                         medico.Especialidad.Add(esp);
                     }
                 }
+                return medico;
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-
-            return medico;
         }
 
         public void eliminarMedico(int id)
@@ -386,15 +386,36 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT idMedico FROM Medico WHERE idUsuario = @idUsuario AND activo = 1");
-                datos.setearParametros("@idUsuario", idUsuario);
+                datos.setearConsulta("SELECT M.idMedico, M.Matricula, M.Nombre, M.Apellido, M.Telefono, M.Email, EM.IDESPECIALIDAD, E.descripcion FROM Medico M LEFT JOIN ESPECIALIDADES_MEDICOS EM ON M.idMedico = EM.IDMEDICO LEFT JOIN Especialidad E ON E.idEspecialidad = EM.IDESPECIALIDAD WHERE M.idUsuario = @IdUser AND M.Activo = 1");
+                datos.setearParametros("@idUser", idUsuario);
                 datos.ejecutarLectura();
-
-                if (datos.Lector.Read())
+                while (datos.Lector.Read())
                 {
-                    medico = new Medico();
-                    medico.IdMedico = (int)datos.Lector["idMedico"];
+                    if (medico == null)
+                    {
+                        medico = new Medico();
+                        medico.Matricula = (string)datos.Lector["matricula"];
+                        medico.IdMedico = (int)datos.Lector["idMedico"];
+                        medico.Nombre = datos.Lector["Nombre"].ToString();
+                        medico.Apellido = datos.Lector["Apellido"].ToString();
+                        medico.Telefono = datos.Lector["Telefono"].ToString();
+                        medico.Email = datos.Lector["Email"].ToString();
+                        medico.Especialidad = new List<Especialidad>();
+                    }
+
+
+                    if (datos.Lector["IDESPECIALIDAD"] != DBNull.Value)
+                    {
+                        Especialidad esp = new Especialidad
+                        {
+                            Id = (int)datos.Lector["IDESPECIALIDAD"],
+                            Descripcion = datos.Lector["descripcion"].ToString()
+                        };
+
+                        medico.Especialidad.Add(esp);
+                    }
                 }
+                return medico;
             }
             catch (Exception ex)
             {
@@ -405,7 +426,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
 
-            return medico;
         }
 
         public List<Medico> ListarPorEspecialidad(int idEspecialidad)
