@@ -16,12 +16,10 @@ namespace TPC_Clinica
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            idMedico = ((Medico)Session["medico"]).IdMedico;
+
             if (!IsPostBack)
             {
-                // Obtener el médico logueado
-                idMedico = ((Medico)Session["medico"]).IdMedico;
-
-                // Cargar especialidades del médico
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
                 ddlEspecialidades.DataSource = negocio.ListarPorMedico(idMedico);
                 ddlEspecialidades.DataTextField = "Descripcion";
@@ -34,6 +32,13 @@ namespace TPC_Clinica
 
         protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(ddlEspecialidades.SelectedValue))
+            {
+                gvTurnos.DataSource = null;
+                gvTurnos.DataBind();
+                return;
+            }
+
             int idEspecialidad = int.Parse(ddlEspecialidades.SelectedValue);
             TurnoNegocio negocio = new TurnoNegocio();
             gvTurnos.DataSource = negocio.ListarTurnosAsignadosSemana(idMedico, idEspecialidad);
