@@ -1,3 +1,4 @@
+
 USE MASTER
 GO
 CREATE DATABASE CLINICA_DB;
@@ -8,7 +9,7 @@ GO
 CREATE TABLE TipoUsuario (
 	idTipoUsuario INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	descripcion varchar(50) NOT NULL,
-	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
+	activo BIT NOT NULL DEFAULT 1
 );
 
 GO
@@ -16,7 +17,7 @@ GO
 CREATE TABLE Especialidad(
 	idEspecialidad INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	descripcion varchar(50) NOT NULL,
-	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
+	activo BIT NOT NULL DEFAULT 1
 );
 
 GO
@@ -24,7 +25,7 @@ GO
 CREATE TABLE Estado(
 	idEstado INT PRIMARY KEY NOT NULL IDENTITY(1,1),
 	descripcion varchar(30) NOT NULL,
-	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
+	activo BIT NOT NULL DEFAULT 1
 );
 
 GO
@@ -38,7 +39,7 @@ CREATE TABLE Paciente(
 	telefono VARCHAR(15),
 	direccion VARCHAR(60) NOT NULL,
 	email VARCHAR(100) NOT NULL,
-	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
+	activo BIT NOT NULL DEFAULT 1
 );
 
 GO
@@ -48,7 +49,7 @@ CREATE TABLE Usuario(
 	idTipoUsuario INT NOT NULL FOREIGN KEY REFERENCES TipoUsuario(idTipoUsuario),
 	usuario VARCHAR(15) NOT NULL,
 	contraseña VARCHAR(255) NOT NULL,
-	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva, 
+	activo BIT NOT NULL DEFAULT 1
 );
 
 GO
@@ -80,13 +81,13 @@ CREATE TABLE Turno(
 	idPaciente INT FOREIGN KEY REFERENCES Paciente(idPaciente),
 	idMedico INT NOT NULL FOREIGN KEY REFERENCES Medico(idMedico),
 	fecha DATE NOT NULL,
-	hora INT NOT NULL,
+	hora TIME NOT NULL,
 	idEstado INT NOT NULL FOREIGN KEY REFERENCES Estado(idEstado),
 	observaciones VARCHAR(200),
 	diagnostico VARCHAR(200),
 	fechaAlta DATE,
 	ultimaModificacion DATE, 
-	activo BIT NOT NULL DEFAULT 1 -- 1: activa, 0: inactiva
+	activo BIT NOT NULL DEFAULT 1
 );
 
 CREATE TABLE TurnoTrabajo (
@@ -102,7 +103,7 @@ CREATE TABLE HorarioAtencion (
 	idMedico INT NOT NULL FOREIGN KEY REFERENCES Medico(idMedico),
 	idEspecialidad INT NOT NULL FOREIGN KEY REFERENCES Especialidad(idEspecialidad),
 	idTurnoTrabajo INT NOT NULL FOREIGN KEY REFERENCES TurnoTrabajo(idTurnoTrabajo),
-	diaSemana TINYINT NOT NULL CHECK(diaSemana BETWEEN 1 AND 7), -- 1 = lunes, 7 = domingo
+	diaSemana TINYINT NOT NULL CHECK(diaSemana BETWEEN 1 AND 7),
 	activo BIT NOT NULL DEFAULT 1
 );
 
@@ -131,9 +132,9 @@ INSERT INTO Estado (descripcion) VALUES
 GO
 
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES 
-(1, 'admin', 'admin123'),         -- Administrador
-(2, 'recepcion1', 'recep123'),    -- Recepcionista
-(3, '30444555', '30444555');      -- Médico (DNI como usuario y contraseña)
+(1, 'admin', 'admin123'),         
+(2, 'recepcion1', 'recep123'),    
+(3, '30444555', '30444555');
 GO
 
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) VALUES 
@@ -141,8 +142,8 @@ INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) VAL
 GO
 
 INSERT INTO Especialidades_Medicos (IDEspecialidad, IDMedico) VALUES 
-(1, 1),  -- Clínico General
-(3, 1);  -- Cardiólogo
+(1, 1),  
+(3, 1);
 GO
 
 INSERT INTO Paciente (nombre, apellido, DNI, fechaNac, telefono, direccion, email) VALUES 

@@ -16,40 +16,69 @@ namespace TPC_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int idMedico = Convert.ToInt32(Session["idMedico"]);
+            if (idMedico == null)
+            {
+                Response.Redirect("Default.aspx");
+                return;
+            }
+            Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
+
             if (!IsPostBack)
             {
-                int idMedico = Convert.ToInt32(Session["idMedico"]);
-                if (Session["idMedico"] == null)
-                {
-                    Response.Redirect("Default.aspx");
-                    return;
-                }
-                Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
+                cargarDropDowns();
+                cargarGridHorario();
+                controlarFormularioModificacion();
 
-                HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
-                gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
-                gvHorarioMedico.DataBind();
+                //    HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
+                //    gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
+                //    gvHorarioMedico.DataBind();
 
-                List<String> dias = new List<String> { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
-                List<String> horarios = new List<String>();
-                MedicoNegocio negocio = new MedicoNegocio();
-                Usuario usuario = (Usuario)Session["usuario"];
-                Medico medico = negocio.existeMedico(usuario);
+                //    List<String> dias = new List<String> { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+                //    ddlDia.DataSource = dias;
+                //    ddlDia.DataBind();
 
-                for (int i = 0; i < 24; i++)
-                {
-                    horarios.Add(i.ToString() + ":00");
-                }
-                ddlDia.DataSource = dias;
-                ddlEspecialidad.DataSource = medico.Especialidad;
-                ddlEspecialidad.DataTextField = "Descripcion";
-                ddlEspecialidad.DataValueField = "Id";
-                ddlHoraFin.DataSource = horarios;
-                ddlHoraInicio.DataSource = horarios;
-                ddlDia.DataBind();
-                ddlEspecialidad.DataBind();
-                ddlHoraFin.DataBind();
-                ddlHoraInicio.DataBind();
+                //    List<String> horarios = new List<String>();
+                //    for (int i = 0; i < 24; i++)
+                //    {
+                //        horarios.Add(i.ToString("D2") + ":00");
+                //    }
+                //    ddlHoraFin.DataSource = horarios;
+                //    ddlHoraInicio.DataSource = horarios;
+                //    ddlHoraFin.DataBind();
+                //    MedicoNegocio negocio = new MedicoNegocio();
+                //    ddlHoraInicio.DataBind();
+                //    Usuario usuario = (Usuario)Session["usuario"];
+                //    Medico medico = negocio.existeMedico(usuario);
+                //    ddlEspecialidad.DataSource = medico.Especialidad;
+                //    ddlEspecialidad.DataTextField = "Descripcion";
+                //    ddlEspecialidad.DataValueField = "Id";
+                //    ddlEspecialidad.DataBind();
+                //}
+
+                //btnCancelar.Visible = false;
+                //gvHorarioMedico.Visible = true;
+                //collapseOne.Attributes["class"] = "accordion-collapse collapse";
+
+                //if (Session["idModificarHorario"] != null)
+                //{
+                //    int id = (int)Session["idModificarHorario"];
+                //    HorarioAtencionNegocio horarioNegocio = new HorarioAtencionNegocio();
+                //    HorarioAtencion horario = horarioNegocio.listar(id);
+                //    btnCancelar.Visible = true;
+                //    gvHorarioMedico.Visible = false;
+                //    ddlDia.SelectedIndex = horario.DiaSemana - 1;
+                //    ddlEspecialidad.SelectedValue = horario.Especialidad.Id.ToString();
+                //    ddlHoraInicio.SelectedValue = horario.HorarioInicio.ToString(@"hh\:mm");
+                //    ddlHoraFin.SelectedValue = horario.HorarioFin.ToString(@"hh\:mm");
+                //    lblAgregarHorario.Text = "Modificar Horario";
+                //    collapseOne.Attributes["class"] = "accordion-collapse collapse show";
+                //}
+                //else
+                //{
+                //    btnCancelar.Visible = false;
+                //    gvHorarioMedico.Visible = true;
+                //}
 
 
                 //cargarEspecialidades(idMedico);
@@ -57,11 +86,72 @@ namespace TPC_Clinica
             }
         }
 
+        private void cargarDropDowns()
+        {
+            List<string> dias = new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
+            ddlDia.DataSource = dias;
+            ddlDia.DataBind();
+
+            List<string> horarios = new List<string>();
+            for (int i = 0; i < 24; i++)
+            {
+                horarios.Add(i.ToString("D2") + ":00");
+            }
+
+            ddlHoraInicio.DataSource = horarios;
+            ddlHoraInicio.DataBind();
+            ddlHoraFin.DataSource = horarios;
+            ddlHoraFin.DataBind();
+
+            Usuario usuario = (Usuario)Session["usuario"];
+            MedicoNegocio negocio = new MedicoNegocio();
+            Medico medico = negocio.existeMedico(usuario);
+            ddlEspecialidad.DataSource = medico.Especialidad;
+            ddlEspecialidad.DataTextField = "Descripcion";
+            ddlEspecialidad.DataValueField = "Id";
+            ddlEspecialidad.DataBind();
+        }
+
+        private void cargarGridHorario()
+        {
+            HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
+            gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
+            gvHorarioMedico.DataBind();
+        }
+
+        private void controlarFormularioModificacion()
+        {
+            if (Session["idModificarHorario"] != null)
+            {
+                int id = (int)Session["idModificarHorario"];
+                HorarioAtencionNegocio horarioNegocio = new HorarioAtencionNegocio();
+                HorarioAtencion horario = horarioNegocio.listar(id);
+
+                btnCancelar.Visible = true;
+                gvHorarioMedico.Visible = false;
+
+                ddlDia.SelectedIndex = horario.DiaSemana - 1;
+                ddlEspecialidad.SelectedValue = horario.Especialidad.Id.ToString();
+                ddlHoraInicio.SelectedValue = horario.HorarioInicio.ToString(@"hh\:mm");
+                ddlHoraFin.SelectedValue = horario.HorarioFin.ToString(@"hh\:mm");
+                lblAgregarHorario.Text = "Modificar Horario";
+
+                collapseOne.Attributes["class"] = "accordion-collapse collapse show";
+            }
+            else
+            {
+                btnCancelar.Visible = false;
+                gvHorarioMedico.Visible = true;
+                collapseOne.Attributes["class"] = "accordion-collapse collapse";
+            }
+        }
+
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            //Id del login
+
             int idMedico = Convert.ToInt32(Session["idMedico"]);
-            //id del desplegable
+
             int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
 
             TurnoTrabajoNegocio turnoNegocio = new TurnoTrabajoNegocio();
@@ -74,49 +164,69 @@ namespace TPC_Clinica
                 turnoNegocio.InsertarTurnoTrabajo("Turno de " + horarioFin + " a " + horarioFin, horarioInicio, horarioFin);
                 turno = turnoNegocio.existeTurno(horarioInicio, horarioFin);
             }
+            if (Session["idModificarHorario"] == null)
+            {
+                horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, turno.IdTurnoTrabajo, ObtenerNumeroDiaSemana(ddlDia.SelectedItem.Value));
+                HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
+                gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
+                gvHorarioMedico.DataBind();
+                //verifica dato por dato de la grilla de horario
+                //foreach (GridViewRow fila in gvHorarioMedico.Rows)
+                //{
+                //    string diaTexto = fila.Cells[0].Text.Trim();
+                //    int diaSemana = ObtenerNumeroDiaSemana(diaTexto);
 
-            horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, turno.IdTurnoTrabajo, ObtenerNumeroDiaSemana(ddlDia.SelectedItem.Value));
-            HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
-            gvHorarioMedico.DataSource = horarioAtencionNegocio.listar();
-            gvHorarioMedico.DataBind();
-            //verifica dato por dato de la grilla de horario
-            //foreach (GridViewRow fila in gvHorarioMedico.Rows)
-            //{
-            //    string diaTexto = fila.Cells[0].Text.Trim();
-            //    int diaSemana = ObtenerNumeroDiaSemana(diaTexto);
+                //    //Si está clickeado el check box sigue al siguiente 
+                //    CheckBox chkDiaLibre = (CheckBox)fila.FindControl("chkDiaLibre");
+                //    if (chkDiaLibre != null && chkDiaLibre.Checked)
+                //        continue;
 
-            //    //Si está clickeado el check box sigue al siguiente 
-            //    CheckBox chkDiaLibre = (CheckBox)fila.FindControl("chkDiaLibre");
-            //    if (chkDiaLibre != null && chkDiaLibre.Checked)
-            //        continue;
+                //    DropDownList ddlInicio = (DropDownList)fila.FindControl("ddlHoraInicio");
+                //    DropDownList ddlFin = (DropDownList)fila.FindControl("ddlHoraFin");
 
-            //    DropDownList ddlInicio = (DropDownList)fila.FindControl("ddlHoraInicio");
-            //    DropDownList ddlFin = (DropDownList)fila.FindControl("ddlHoraFin");
+                //    string horaInicio = ddlInicio.SelectedValue;
+                //    string horaFin = ddlFin.SelectedValue;
 
-            //    string horaInicio = ddlInicio.SelectedValue;
-            //    string horaFin = ddlFin.SelectedValue;
+                //    if (!string.IsNullOrEmpty(horaInicio) && !string.IsNullOrEmpty(horaFin))
+                //    {
+                //        // Verifica si existe el turno de trabajo seleccionado (Es decir los horarios). 
+                //        int idTurnoTrabajo = turnoNegocio.ObtenerIdTurnoTrabajo(horaInicio, horaFin);
 
-            //    if (!string.IsNullOrEmpty(horaInicio) && !string.IsNullOrEmpty(horaFin))
-            //    {
-            //        // Verifica si existe el turno de trabajo seleccionado (Es decir los horarios). 
-            //        int idTurnoTrabajo = turnoNegocio.ObtenerIdTurnoTrabajo(horaInicio, horaFin);
+                //        // En caso de que no exista lo crea desde cero (rango horario). 
+                //        if (idTurnoTrabajo == 0)
+                //        {
+                //            idTurnoTrabajo = turnoNegocio.InsertarTurnoTrabajo(
+                //                "Turno " + horaInicio + " - " + horaFin,
+                //                TimeSpan.Parse(horaInicio),
+                //                TimeSpan.Parse(horaFin)
+                //            );
+                //        }
 
-            //        // En caso de que no exista lo crea desde cero (rango horario). 
-            //        if (idTurnoTrabajo == 0)
-            //        {
-            //            idTurnoTrabajo = turnoNegocio.InsertarTurnoTrabajo(
-            //                "Turno " + horaInicio + " - " + horaFin,
-            //                TimeSpan.Parse(horaInicio),
-            //                TimeSpan.Parse(horaFin)
-            //            );
-            //        }
+                //        // Hace un insert a la tabla HORARIO ATENCIÓN con los datos recolectados hasta acá 
+                //        horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, idTurnoTrabajo, diaSemana);
+                //    }
+                //}
 
-            //        // Hace un insert a la tabla HORARIO ATENCIÓN con los datos recolectados hasta acá 
-            //        horarioNegocio.InsertarHorarioAtencion(idMedico, idEspecialidad, idTurnoTrabajo, diaSemana);
-            //    }
-            //}
-
-            // Msj Exitoso. 
+                // Msj Exitoso. 
+            }
+            else
+            {
+                int id = (int)Session["idModificarHorario"];
+                HorarioAtencion horario = new HorarioAtencion
+                {
+                    Id = id,
+                    DiaSemana = ObtenerNumeroDiaSemana(ddlDia.SelectedItem.Value),
+                    Especialidad = new Especialidad { Id = idEspecialidad },
+                    HorarioFin = horarioFin,
+                    HorarioInicio = horarioInicio,
+                    Medico = new Medico { IdMedico = idMedico },
+                    Turno = turno
+                };
+                HorarioAtencionNegocio negocio = new HorarioAtencionNegocio();
+                negocio.modificarHorario(horario);
+                Session.Remove("idModificarHorario");
+                Response.Redirect("HorarioMedico.aspx", false);
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -142,28 +252,28 @@ namespace TPC_Clinica
             }
         }
 
-        protected void gvHorarioMedico_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                DropDownList ddlHoraInicio = (DropDownList)e.Row.FindControl("ddlHoraInicio");
-                DropDownList ddlHoraFin = (DropDownList)e.Row.FindControl("ddlHoraFin");
+        //protected void gvHorarioMedico_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        DropDownList ddlHoraInicio = (DropDownList)e.Row.FindControl("ddlHoraInicio");
+        //        DropDownList ddlHoraFin = (DropDownList)e.Row.FindControl("ddlHoraFin");
 
-                if (ddlHoraInicio != null && ddlHoraFin != null)
-                {
-                    for (int h = 0; h < 24; h++)
-                    {
-                        string hora = $"{h:D2}:00";
-                        ddlHoraInicio.Items.Add(hora);
-                        ddlHoraFin.Items.Add(hora);
-                    }
+        //        if (ddlHoraInicio != null && ddlHoraFin != null)
+        //        {
+        //            for (int h = 0; h < 24; h++)
+        //            {
+        //                string hora = $"{h:D2}:00";
+        //                ddlHoraInicio.Items.Add(hora);
+        //                ddlHoraFin.Items.Add(hora);
+        //            }
 
-                    // Valor por defecto 
-                    ddlHoraInicio.SelectedValue = "00";
-                    ddlHoraFin.SelectedValue = "00";
-                }
-            }
-        }
+        //            // Valor por defecto 
+        //            ddlHoraInicio.SelectedValue = "00";
+        //            ddlHoraFin.SelectedValue = "00";
+        //        }
+        //    }
+        //}
 
         private int ObtenerNumeroDiaSemana(string dia)
         {
@@ -199,8 +309,8 @@ namespace TPC_Clinica
 
             if (e.CommandName == "Editar")
             {
-                Session.Add("IdModificarEspecialidad", id);
-                Response.Redirect("AltaEspecialidad.aspx", true);
+                Session.Add("IdModificarHorario", id);
+                Response.Redirect("HorarioMedico.aspx", true);
             }
 
         }

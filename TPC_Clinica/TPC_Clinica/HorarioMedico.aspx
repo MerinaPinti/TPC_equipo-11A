@@ -60,10 +60,10 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Agregar Horario
+                        <asp:Label ID="lblAgregarHorario" runat="server" Text="Agregar Horario"></asp:Label>
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse">
+                <div id="collapseOne" runat="server" ClientIDMode="Static" class="accordion-collapse collapse">
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col">
@@ -84,6 +84,7 @@
                             </div>
                             <div class="col-1" style="margin-top: 1.5em;">
                                 <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnGuardar_Click" />
+                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm" OnClick="btnCancelar_Click"  Visible="false"/>
                             </div>
                         </div>
                     </div>
