@@ -282,7 +282,26 @@ namespace TPC_Clinica
                 };
 
                 negocio.actualizarTurnoRecep(turno);
-               
+                //------------------------------ENVIO DE MAIL------------------------------
+                string rutaPlantillas = HttpContext.Current.Server.MapPath("~/Templates");
+
+                var reemplazos = new Dictionary<string, string>
+                {
+                    { "NOMBRE", turno.Paciente.Nombre + " " + turno.Paciente.Apellido },
+                    { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + "a las " + turno.Hora.ToString(@"hh\:mm")},
+                    { "MEDICO", turno.Medico.Nombre + " " + turno.Medico.Apellido },
+                };
+
+                EmailService emailService = new EmailService();
+                emailService.armarCorreo(
+                    turno.Paciente.Email,
+                    "Cancelacion de turno en Clínica Médica Meraki 💙",
+                    reemplazos,
+                    TipoCorreo.EmailCancelarTurno,
+                    rutaPlantillas
+                );
+                emailService.enviarCorreo();
+                //-------------------------------------------------------------------------
                 return true;
             }
             catch
