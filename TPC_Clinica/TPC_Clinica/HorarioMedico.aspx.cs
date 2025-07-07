@@ -112,6 +112,18 @@ namespace TPC_Clinica
             ddlEspecialidad.DataBind();
         }
 
+        private void cargarDropDowns(int horarioInicio)
+        {
+
+            List<string> horarios = new List<string>();
+            for (int i = horarioInicio; i < 24; i++)
+            {
+                horarios.Add(i.ToString("D2") + ":00");
+            }
+            ddlHoraFin.DataSource = horarios;
+            ddlHoraFin.DataBind();
+        }
+
         private void cargarGridHorario()
         {
             HorarioAtencionNegocio horarioAtencionNegocio = new HorarioAtencionNegocio();
@@ -313,6 +325,18 @@ namespace TPC_Clinica
                 Session.Add("IdModificarHorario", id);
                 Response.Redirect("HorarioMedico.aspx", true);
             }
+
+        }
+
+        protected void ddlHoraInicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string hora = ddlHoraInicio.SelectedItem.Value;
+            int horaEntero = int.Parse(hora.Split(':')[0]);
+            cargarDropDowns(horaEntero);
+        }
+
+        protected void ddlHoraFin_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

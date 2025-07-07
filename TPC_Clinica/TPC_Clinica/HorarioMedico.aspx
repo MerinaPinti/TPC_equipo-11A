@@ -50,12 +50,12 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager runat="server"></asp:ScriptManager>
     <div class="cabecera">
         <span class="titulo">Turno de trabajo</span>
     </div>
 
     <div class="panel-turno">
-
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -63,30 +63,34 @@
                         <asp:Label ID="lblAgregarHorario" runat="server" Text="Agregar Horario"></asp:Label>
                     </button>
                 </h2>
-                <div id="collapseOne" runat="server" ClientIDMode="Static" class="accordion-collapse collapse">
+                <div id="collapseOne" runat="server" clientidmode="Static" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                        <div class="row">
-                            <div class="col">
-                                <label>Dia</label>
-                                <asp:DropDownList ID="ddlDia" CssClass="form-select" runat="server"></asp:DropDownList>
-                            </div>
-                            <div class="col">
-                                <label>Horario ingreso</label>
-                                <asp:DropDownList ID="ddlHoraInicio" CssClass="form-select" runat="server"></asp:DropDownList>
-                            </div>
-                            <div class="col">
-                                <label>Horario egreso</label>
-                                <asp:DropDownList ID="ddlHoraFin" CssClass="form-select" runat="server"></asp:DropDownList>
-                            </div>
-                            <div class="col">
-                                <label>Especialidad</label>
-                                <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" runat="server"></asp:DropDownList>
-                            </div>
-                            <div class="col-1" style="margin-top: 1.5em;">
-                                <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnGuardar_Click" />
-                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm" OnClick="btnCancelar_Click"  Visible="false"/>
-                            </div>
-                        </div>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Dia</label>
+                                        <asp:DropDownList ID="ddlDia" CssClass="form-select" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col">
+                                        <label>Horario ingreso</label>
+                                        <asp:DropDownList ID="ddlHoraInicio" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlHoraInicio_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    </div>
+                                    <div class="col">
+                                        <label>Horario egreso</label>
+                                        <asp:DropDownList ID="ddlHoraFin" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlHoraFin_SelectedIndexChanged"></asp:DropDownList>
+                                    </div>
+                                    <div class="col">
+                                        <label>Especialidad</label>
+                                        <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-1" style="margin-top: 1.5em;">
+                                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnGuardar_Click" />
+                                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm" OnClick="btnCancelar_Click" Visible="false" />
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
             </div>
