@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\asignarturnopormedico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\asignarturnopormedico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\asignarturnopormedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\asignarturnopormedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\templates\\emailcancelarturno.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\templates\\emailcancelarturno.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\asignarturnoporespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\asignarturnoporespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailCancelarTurno.html",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailCancelarTurno.html",
+              "RelativeDocumentMoniker": "TPC_Clinica\\Templates\\EmailCancelarTurno.html",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailCancelarTurno.html",
+              "RelativeToolTip": "TPC_Clinica\\Templates\\EmailCancelarTurno.html",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-07T23:18:47.063Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AsignarTurnoPorEspecialidad.aspx.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
+              "RelativeDocumentMoniker": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
+              "RelativeToolTip": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAuwOYAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T23:12:07.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AsignarTurnoPorMedico.aspx",
-              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorMedico.aspx",
-              "RelativeDocumentMoniker": "TPC_Clinica\\AsignarTurnoPorMedico.aspx",
-              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorMedico.aspx*",
-              "RelativeToolTip": "TPC_Clinica\\AsignarTurnoPorMedico.aspx*",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-07T22:58:56.907Z",
+              "Title": "AsignarTurnoPorMedico.aspx.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorMedico.aspx.cs",
+              "RelativeDocumentMoniker": "TPC_Clinica\\AsignarTurnoPorMedico.aspx.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorMedico.aspx.cs",
+              "RelativeToolTip": "TPC_Clinica\\AsignarTurnoPorMedico.aspx.cs",
+              "ViewState": "AgIAABMBAAAAAAAAAAAuwB4BAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T23:09:49.886Z",
               "EditorCaption": ""
             }
           ]
