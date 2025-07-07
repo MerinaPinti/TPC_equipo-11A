@@ -186,16 +186,15 @@ namespace TPC_Clinica
             {
                 for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
                 {
-                   // Verifica si la fecha coincide con el día de la semana configurado en el horario(h.DiaSemana).
-                   //% 7 porque en .NET el DayOfWeek va de 0(domingo) a 6(sábado), y en tu base DiaSemana va de 1(lunes) a 7(domingo) sirve para poder comparar e igualar. 
+                    // Verifica si la fecha coincide con el día de la semana configurado en el horario(h.DiaSemana).
+                    //% 7 porque en .NET el DayOfWeek va de 0(domingo) a 6(sábado), y en tu base DiaSemana va de 1(lunes) a 7(domingo) sirve para poder comparar e igualar. 
                     if ((int)fecha.DayOfWeek == (h.DiaSemana % 7))
                     {
                         for (int hora = h.Turno.HoraInicio.Hours; hora < h.Turno.HoraFin.Hours; hora++)
                         {
-
                             //Verifica si ya existe un turno asignado para ese médico, esa fecha y esa hora.
-                           // Usa t.Hora.TotalHours para comparar solo la hora(sin minutos ni segundos).
-                           // Estado.Id == 1 implica que es un turno "Asignado".
+                            // Usa t.Hora.TotalHours para comparar solo la hora(sin minutos ni segundos).
+                            // Estado.Id == 1 implica que es un turno "Asignado".
                             bool yaAsignado = turnosAsignados.Any(t =>
                                 t.Fecha.Date == fecha.Date &&
                                 (int)t.Hora.TotalHours == hora &&
@@ -204,6 +203,17 @@ namespace TPC_Clinica
                                 t.Estado.Id == 1);
 
                             string estadoTexto = yaAsignado ? "Asignado" : "Disponible";
+
+                            // Si está asignado, obtenemos el turno correspondiente para incluir info de paciente y médico
+                            Turno turno = null;
+                            if (yaAsignado)
+                            {
+                                turno = turnosAsignados.FirstOrDefault(t =>
+                                    t.Fecha.Date == fecha.Date &&
+                                    (int)t.Hora.TotalHours == hora &&
+                                    t.Medico.IdMedico == idMedico);
+                            }
+
                             //Se crea un objeto anónimo para representar el evento del calendario.
                             //title: muestra la hora y estado.
                             // start: construye la fecha y hora completa en formato ISO(ToString("s")). allDay = false: indica que el evento tiene hora específica. Esto para poder independizar cada horario que aparece en el calendario
@@ -218,7 +228,10 @@ namespace TPC_Clinica
                                 extendedProps = new
                                 {
                                     hora = $"{hora:00}:00",
-                                    estado = estadoTexto
+                                    estado = estadoTexto,
+                                    idTurno = turno != null ? turno.NroTurno : "",
+                                    nombrePaciente = turno?.Paciente != null ? turno.Paciente.Nombre + " " + turno.Paciente.Apellido : "",
+                                    nombreMedico = turno?.Medico != null ? turno.Medico.Nombre + " " + turno.Medico.Apellido : ""
                                 }
                             });
                         }
@@ -227,6 +240,30 @@ namespace TPC_Clinica
             }
 
             return eventos;
+        }
+
+
+        [WebMethod]
+        public static bool CancelarTurno(int idTurno)
+        {
+            try
+            {
+                TurnoNegocio negocio = new TurnoNegocio();
+
+                // Crea un objeto Turno con solo los campos que se deben actualizar
+                Turno turno = new Turno
+                {
+                    NroTurno = idTurno.ToString(),
+                    Estado = new Estado { Id = 3 } // Cancelado
+                };
+
+                negocio.actualizarTurnoRecep(turno);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 

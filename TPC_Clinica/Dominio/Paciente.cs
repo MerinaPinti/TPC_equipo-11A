@@ -19,5 +19,10 @@ namespace Dominio
 
         public bool Activo { get; set; }
 
+        public string NombreCompleto
+        {
+            get { return $"{Nombre} {Apellido}"; }
+        }
+
     }
 }

@@ -222,10 +222,15 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-            SELECT T.idTurno, T.fecha, T.hora, T.idEstado
-            FROM Turno T
-            WHERE T.idMedico = @idMedico AND T.activo = 1
-        ");
+    SELECT 
+        T.idTurno, T.fecha, T.hora, T.idEstado,
+        P.IdPaciente, P.Nombre AS NombrePaciente, P.Apellido AS ApellidoPaciente,
+        M.IdMedico, M.Nombre AS NombreMedico, M.Apellido AS ApellidoMedico
+    FROM Turno T
+    INNER JOIN Paciente P ON P.IdPaciente = T.idPaciente
+    INNER JOIN Medico M ON M.IdMedico = T.idMedico
+    WHERE T.idMedico = @idMedico AND T.activo = 1
+");
 
                 datos.setearParametros("@idMedico", idMedico);
                 datos.ejecutarLectura();
@@ -237,23 +242,54 @@ namespace Negocio
                     turno.Fecha = (DateTime)datos.Lector["fecha"];
                     turno.Hora = (TimeSpan)datos.Lector["hora"];
 
-
                     // Carga Estado del turno
                     turno.Estado = new Estado
                     {
                         Id = Convert.ToInt32(datos.Lector["idEstado"])
                     };
 
-                    // Carga Id del médico
+                    // Carga Paciente
+                    turno.Paciente = new Paciente
+                    {
+                        IdPaciente = Convert.ToInt32(datos.Lector["IdPaciente"]),
+                        Nombre = datos.Lector["NombrePaciente"].ToString(),
+                        Apellido = datos.Lector["ApellidoPaciente"].ToString()
+                    };
+
+                    // Carga Médico
                     turno.Medico = new Medico
                     {
-                        IdMedico = idMedico
+                        IdMedico = Convert.ToInt32(datos.Lector["IdMedico"]),
+                        Nombre = datos.Lector["NombreMedico"].ToString(),
+                        Apellido = datos.Lector["ApellidoMedico"].ToString()
                     };
 
                     lista.Add(turno);
                 }
 
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public void actualizarTurnoRecep(Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Turno SET idEstado = @idEstado, ultimaModificacion = GETDATE() WHERE idTurno = @NroTurno");
+                datos.setearParametros("@NroTurno", turno.NroTurno);
+                datos.setearParametros("@idEstado", turno.Estado.Id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

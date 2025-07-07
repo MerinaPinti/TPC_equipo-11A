@@ -55,8 +55,9 @@ namespace TPC_Clinica
                 List<HorarioAtencion> horarios = horarioNegocio.ListarPorMedicoYEspecialidad(idMedico, idEspecialidad);
                 List<Turno> turnosAsignados = turnoNegocio.ListarTurnosAsignados(idMedico);
 
-                var eventos = new List<object>();
-                DateTime hoy = DateTime.Today;
+            var eventos = new List<object>();
+            //el Today toma el día actual de sistema y le agrega hasta 30 días al calendario (para que no se muestren todos los turnos juntos, sino que 30 días nomás)
+            DateTime hoy = DateTime.Today;
                 DateTime fin = hoy.AddDays(30);
 
                 foreach (var h in horarios)
@@ -87,7 +88,22 @@ namespace TPC_Clinica
                                     extendedProps = new
                                     {
                                         hora = hora.ToString("D2") + ":00",
-                                        estado = estadoTexto
+                                        estado = estadoTexto,
+                                        idTurno = turnosAsignados.FirstOrDefault(t =>
+                                            t.Fecha.Date == fecha.Date &&
+                                            (int)t.Hora.TotalHours == hora &&
+                                            t.Medico.IdMedico == idMedico &&
+                                            t.Estado.Id == 1)?.NroTurno ?? "0",
+                                        nombrePaciente = turnosAsignados.FirstOrDefault(t =>
+                                            t.Fecha.Date == fecha.Date &&
+                                            (int)t.Hora.TotalHours == hora &&
+                                            t.Medico.IdMedico == idMedico &&
+                                            t.Estado.Id == 1)?.Paciente?.NombreCompleto ?? "", 
+                                        nombreMedico = turnosAsignados.FirstOrDefault(t =>
+                                            t.Fecha.Date == fecha.Date &&
+                                            (int)t.Hora.TotalHours == hora &&
+                                            t.Medico.IdMedico == idMedico &&
+                                            t.Estado.Id == 1)?.Medico?.NombreCompleto ?? ""
                                     }
                                 });
                             }
@@ -111,30 +127,35 @@ namespace TPC_Clinica
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
             Paciente paciente = pacienteNegocio.existePaciente(dniIngresado);
 
+
+            //Chekea que el paciente se encuentra registrado 
             if (paciente == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "noExiste", "alert('El paciente no está registrado.');", true);
                 return;
             }
 
-            // Obtenemos los datos del turno
+            // Obtenemos los datos del turno de los campos ocultos 
             string fechaStr = hfFechaTurno.Value;
             string horaStr = hfHoraTurno.Value;
             string idMedicoStr = hfIdMedico.Value;
 
+            //Valida que hayamos podido conseguir toda la info que necesitamos (sino, falla alguno de los campos ocultos)
             if (string.IsNullOrEmpty(fechaStr) || string.IsNullOrEmpty(horaStr) || string.IsNullOrEmpty(idMedicoStr))
+
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "faltanDatos", "alert('Faltan datos del turno.');", true);
                 return;
             }
 
+            //Generamos un nuevo turno con la info que corresponde. 
             Turno nuevo = new Turno
             {
                 Paciente = paciente,
                 Medico = new Medico { IdMedico = int.Parse(idMedicoStr) },
                 Fecha = DateTime.Parse(fechaStr),
                 Hora = TimeSpan.Parse(horaStr),
-                Estado = new Estado { Id = 1 } // Asignado
+                Estado = new Estado { Id = 1 } // Asignado (antes tenía null)
             };
 
             TurnoNegocio negocio = new TurnoNegocio();
@@ -146,6 +167,29 @@ namespace TPC_Clinica
             txtDniPaciente.Text = "";
             hfFechaTurno.Value = "";
             hfHoraTurno.Value = "";
+        }
+
+
+        [System.Web.Services.WebMethod]
+        public static bool CancelarTurno(int idTurno)
+        {
+            try
+            {
+                TurnoNegocio negocio = new TurnoNegocio();
+
+                Turno turno = new Turno
+                {
+                    NroTurno = idTurno.ToString(),
+                    Estado = new Estado { Id = 3 } // Cancelado
+                };
+
+                negocio.actualizarTurnoRecep(turno);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 

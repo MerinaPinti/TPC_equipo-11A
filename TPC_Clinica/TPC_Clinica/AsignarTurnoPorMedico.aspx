@@ -13,9 +13,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            $("#<%= txtMedico.ClientID %>").autocomplete({
+        <script type="text/javascript">
+            $(function () {
+                // Autocompletado de médico
+                $("#<%= txtMedico.ClientID %>").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "AsignarTurnoPorMedico.aspx/BuscarMedico",
@@ -36,9 +37,34 @@
             },
             minLength: 2
         });
-    });
 
-        function cargarCalendario(idMedico, idEspecialidad) {
+        // Botón para confirmar cancelación del turno 
+        $("#btnConfirmarCancelacion").on("click", function () {
+            const idTurno = $("#<%= hfIdTurnoACancelar.ClientID %>").val();
+
+            $.ajax({
+                url: 'AsignarTurnoPorMedico.aspx/CancelarTurno',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ idTurno: parseInt(idTurno) }),
+                success: function () {
+                    var modalCancelar = bootstrap.Modal.getInstance(document.getElementById('modalCancelarTurno'));
+                    modalCancelar.hide();
+
+                    // Refrescar el calendario con los turnos actualizados
+                    document.getElementById("calendar").innerHTML = "";
+                    const idMedico = $("#<%= hfIdMedico.ClientID %>").val();
+                    const idEspecialidad = $("#<%= ddlEspecialidades.ClientID %>").val();
+                    cargarCalendario(idMedico, idEspecialidad);
+                },
+                error: function () {
+                    alert("Error al cancelar el turno.");
+                }
+            });
+        });
+
+        //  Lógica calendario
+        window.cargarCalendario = function (idMedico, idEspecialidad) {
             console.log("Ejecutando cargarCalendario con:", idMedico, idEspecialidad);
 
             $.ajax({
@@ -52,7 +78,7 @@
                     console.log("Eventos recibidos:", eventos);
 
                     var calendarEl = document.getElementById('calendar');
-                    calendarEl.innerHTML = ""; // Limpiar antes de renderizar
+                    calendarEl.innerHTML = "";
 
                     var calendar = new FullCalendar.Calendar(calendarEl, {
                         initialView: 'dayGridMonth',
@@ -64,29 +90,42 @@
                             const fecha = info.event.start;
                             const hora = info.event.extendedProps.hora;
                             const estado = info.event.extendedProps.estado;
+                            const idTurno = info.event.extendedProps.idTurno;
+                            const nombrePaciente = info.event.extendedProps.nombrePaciente;
+                            const nombreMedico = info.event.extendedProps.nombreMedico;
 
-                            if (estado !== "Disponible") {
-                                alert("Ese turno ya fue asignado.");
-                                return;
+                            if (estado === "Disponible") {
+                                document.getElementById('<%= hfFechaTurno.ClientID %>').value = fecha.toISOString().substring(0, 10);
+                                document.getElementById('<%= hfHoraTurno.ClientID %>').value = hora;
+                                document.getElementById('<%= hfIdMedico.ClientID %>').value = idMedico;
+
+                                var modal = new bootstrap.Modal(document.getElementById('modalTurno'));
+                                modal.show();
+                            } else if (estado === "Asignado") {
+                                $("#lblPacienteTurno").text(nombrePaciente);
+                                $("#lblFechaTurno").text(fecha.toLocaleDateString());
+                                $("#lblHoraTurno").text(fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+                                $("#lblMedicoTurno").text(nombreMedico);
+
+                                $("#<%= hfIdTurnoACancelar.ClientID %>").val(idTurno);
+
+                                var modalCancelar = new bootstrap.Modal(document.getElementById('modalCancelarTurno'));
+                                modalCancelar.show();
+                            } else {
+                                alert("Este turno no está disponible para modificación.");
                             }
+                        }
+                    });
 
-                            document.getElementById('<%= hfFechaTurno.ClientID %>').value = fecha.toISOString().substring(0, 10);
-                    document.getElementById('<%= hfHoraTurno.ClientID %>').value = hora;
-                    document.getElementById('<%= hfIdMedico.ClientID %>').value = idMedico;
-
-                    var modal = new bootstrap.Modal(document.getElementById('modalTurno'));
-                    modal.show();
+                    calendar.render();
+                },
+                error: function (err) {
+                    console.error("Error en AJAX:", err);
                 }
             });
-
-            calendar.render();
-        },
-        error: function (err) {
-            console.error("Error en AJAX:", err);
         }
     });
-        }
-    </script>
+        </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -107,10 +146,9 @@
     </div>
 
     <!-- Funciona como session pero en realidad sólo guardamos el valor que pertenece a la misma ventana -->
-    
-    
-
 <asp:HiddenField ID="hfIdEspecialidadSeleccionada" runat="server" />
+    <!-- Guardamos el ID del turno a cancelar para la segunda ventana modal-->
+    <asp:HiddenField ID="hfIdTurnoACancelar" runat="server" />
     
     
 
@@ -147,4 +185,29 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal para cancelar un turno ya asignado -->
+<div class="modal fade" id="modalCancelarTurno" tabindex="-1" aria-labelledby="modalCancelarTurnoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="modalCancelarTurnoLabel">Cancelar Turno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Paciente:</strong> <span id="lblPacienteTurno"></span></p>
+        <p><strong>Fecha:</strong> <span id="lblFechaTurno"></span></p>
+        <p><strong>Hora:</strong> <span id="lblHoraTurno"></span></p>
+        <p><strong>Profesional:</strong> <span id="lblMedicoTurno"></span></p>
+        <p class="text-danger">¿Deseás cancelar este turno? El horario quedará disponible.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmarCancelacion">Cancelar Turno</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </asp:Content>
