@@ -167,6 +167,30 @@ namespace TPC_Clinica
             txtDniPaciente.Text = "";
             hfFechaTurno.Value = "";
             hfHoraTurno.Value = "";
+
+            //------------------------------ENVIO DE MAIL------------------------------
+            string rutaPlantillas = Server.MapPath("~/Templates");
+
+            MedicoNegocio medicoNegocio = new MedicoNegocio();
+            nuevo.Medico = medicoNegocio.existeMedico(nuevo.Medico.IdMedico);
+            var reemplazos = new Dictionary<string, string>
+            {
+                { "NOMBRE", nuevo.Paciente.Nombre + " " + nuevo.Paciente.Apellido },
+                { "MEDICO", nuevo.Medico.Nombre + " " + nuevo.Medico.Apellido },
+                { "FECHA", nuevo.Fecha.ToString("dd/MM/yyyy")},
+                { "HORA", nuevo.Hora.ToString(@"hh\:mm") }
+            };
+
+            EmailService emailService = new EmailService();
+            emailService.armarCorreo(
+                paciente.Email,
+                "Turno asignado en Clínica Médica Meraki 💙",
+                reemplazos,
+                TipoCorreo.EmailConfirmarTurno,
+                rutaPlantillas
+            );
+            emailService.enviarCorreo();
+            //-------------------------------------------------------------------------
         }
 
 
