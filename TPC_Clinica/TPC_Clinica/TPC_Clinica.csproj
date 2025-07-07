@@ -73,11 +73,9 @@
     <Content Include="AltaEspecialidad.aspx" />
     <Content Include="AltaTipoUsuario.aspx" />
     <Content Include="AltaUsuario.aspx" />
-    <Content Include="AsignarTurno.aspx" />
     <Content Include="AsignarTurno2.aspx" />
     <Content Include="AsignarTurnoPorEspecialidad.aspx" />
     <Content Include="AsignarTurnoPorMedico.aspx" />
-    <Content Include="CancelarTurno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="EleccionTurno.aspx" />
     <Content Include="Error.aspx" />
@@ -143,13 +141,6 @@
     <Compile Include="AltaUsuario.aspx.designer.cs">
       <DependentUpon>AltaUsuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AsignarTurno.aspx.cs">
-      <DependentUpon>AsignarTurno.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AsignarTurno.aspx.designer.cs">
-      <DependentUpon>AsignarTurno.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AsignarTurno2.aspx.cs">
       <DependentUpon>AsignarTurno2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,13 +161,6 @@
     </Compile>
     <Compile Include="AsignarTurnoPorMedico.aspx.designer.cs">
       <DependentUpon>AsignarTurnoPorMedico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CancelarTurno.aspx.cs">
-      <DependentUpon>CancelarTurno.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CancelarTurno.aspx.designer.cs">
-      <DependentUpon>CancelarTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

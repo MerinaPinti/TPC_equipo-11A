@@ -129,7 +129,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
     <div class="mb-3">
         <label for="txtMedico" class="form-label fw-bold">Buscar médico:</label>

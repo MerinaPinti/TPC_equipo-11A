@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\templates\\emailconfirmarturno.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\templates\\emailconfirmarturno.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\asignarturnoporespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\asignarturnoporespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\TPC_equipo-11A\\TPC_Clinica\\negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\tpc_equipo-11a\\tpc_clinica\\negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\asignarturnoporespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\asignarturnoporespecialidad.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\verturnomedico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,23 +54,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AsignarTurnoPorEspecialidad.aspx.cs",
-              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
-              "RelativeDocumentMoniker": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
-              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
-              "RelativeToolTip": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAArwDcAAABbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T19:49:31.453Z"
+              "DocumentIndex": 0,
+              "Title": "EmailConfirmarTurno.html",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailConfirmarTurno.html",
+              "RelativeDocumentMoniker": "TPC_Clinica\\Templates\\EmailConfirmarTurno.html",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Templates\\EmailConfirmarTurno.html*",
+              "RelativeToolTip": "TPC_Clinica\\Templates\\EmailConfirmarTurno.html*",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEIAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-07T22:36:42.254Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "AsignarTurnoPorEspecialidad.aspx.cs",
+              "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
+              "RelativeDocumentMoniker": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
+              "ToolTip": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs*",
+              "RelativeToolTip": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs*",
+              "ViewState": "AgIAALMAAAAAAAAAAAAiwNkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T19:49:31.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "VerTurnoMedico.aspx.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\VerTurnoMedico.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\VerTurnoMedico.aspx.cs",
@@ -78,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "VerTurnoMedico.aspx",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\VerTurnoMedico.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\VerTurnoMedico.aspx",
@@ -90,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "TurnoNegocio.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\TurnoNegocio.cs",
@@ -103,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AccesoDatos.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\AccesoDatos.cs",
               "RelativeDocumentMoniker": "Negocio\\AccesoDatos.cs",
@@ -116,7 +134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HorarioMedico.aspx",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\HorarioMedico.aspx",
@@ -128,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "HorarioAtencionNegocio.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\HorarioAtencionNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\HorarioAtencionNegocio.cs",
@@ -140,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "MedicoNegocio.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\MedicoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\MedicoNegocio.cs",
@@ -152,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Default.aspx.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Default.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\Default.aspx.cs",
@@ -164,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "HorarioMedico.aspx.cs",
               "DocumentMoniker": "C:\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\HorarioMedico.aspx.cs",
