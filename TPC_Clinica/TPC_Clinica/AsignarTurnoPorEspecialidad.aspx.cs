@@ -11,108 +11,116 @@ namespace TPC_Clinica
 {
     public partial class AsignarTurnoPorEspecialidad : System.Web.UI.Page
     {
-            protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Usuario usuario = (Usuario)Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            if (usuario == null || usuario.TipoUsuario.Id == 3)
             {
-                if (!IsPostBack)
-                {
-                    EspecialidadNegocio negocio = new EspecialidadNegocio();
-                    ddlEspecialidades.DataSource = negocio.Listar();
-                    ddlEspecialidades.DataTextField = "Descripcion";
-                    ddlEspecialidades.DataValueField = "Id";
-                    ddlEspecialidades.DataBind();
-
-                    ddlEspecialidades.Items.Insert(0, new ListItem("-- Seleccione una especialidad --", ""));
-                }
+                Session["error"] = "No tiene permisos para acceder a esta página.";
+                Response.Redirect("Error.aspx", true);
             }
+            Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
 
-            protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
+            if (!IsPostBack)
             {
-                if (int.TryParse(ddlEspecialidades.SelectedValue, out int idEspecialidad))
-                {
-                    MedicoNegocio negocio = new MedicoNegocio();
-                    List<Medico> medicos = negocio.ListarPorEspecialidad(idEspecialidad);
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                ddlEspecialidades.DataSource = negocio.Listar();
+                ddlEspecialidades.DataTextField = "Descripcion";
+                ddlEspecialidades.DataValueField = "Id";
+                ddlEspecialidades.DataBind();
 
-                    ddlMedicos.DataSource = medicos;
-                    ddlMedicos.DataTextField = "NombreCompleto";
-                    ddlMedicos.DataValueField = "IdMedico";
-                    ddlMedicos.DataBind();
-
-                    ddlMedicos.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
-                }
-                else
-                {
-                    ddlMedicos.Items.Clear();
-                    ddlMedicos.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
-                }
+                ddlEspecialidades.Items.Insert(0, new ListItem("-- Seleccione una especialidad --", ""));
             }
+        }
 
-            [System.Web.Services.WebMethod]
-            public static List<object> ObtenerTurnosDisponibles(int idMedico, int idEspecialidad)
+        protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(ddlEspecialidades.SelectedValue, out int idEspecialidad))
             {
-                HorarioAtencionNegocio horarioNegocio = new HorarioAtencionNegocio();
-                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                MedicoNegocio negocio = new MedicoNegocio();
+                List<Medico> medicos = negocio.ListarPorEspecialidad(idEspecialidad);
 
-                List<HorarioAtencion> horarios = horarioNegocio.ListarPorMedicoYEspecialidad(idMedico, idEspecialidad);
-                List<Turno> turnosAsignados = turnoNegocio.ListarTurnosAsignados(idMedico);
+                ddlMedicos.DataSource = medicos;
+                ddlMedicos.DataTextField = "NombreCompleto";
+                ddlMedicos.DataValueField = "IdMedico";
+                ddlMedicos.DataBind();
+
+                ddlMedicos.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
+            }
+            else
+            {
+                ddlMedicos.Items.Clear();
+                ddlMedicos.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
+            }
+        }
+
+        [System.Web.Services.WebMethod]
+        public static List<object> ObtenerTurnosDisponibles(int idMedico, int idEspecialidad)
+        {
+            HorarioAtencionNegocio horarioNegocio = new HorarioAtencionNegocio();
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+
+            List<HorarioAtencion> horarios = horarioNegocio.ListarPorMedicoYEspecialidad(idMedico, idEspecialidad);
+            List<Turno> turnosAsignados = turnoNegocio.ListarTurnosAsignados(idMedico);
 
             var eventos = new List<object>();
             //el Today toma el día actual de sistema y le agrega hasta 30 días al calendario (para que no se muestren todos los turnos juntos, sino que 30 días nomás)
             DateTime hoy = DateTime.Today;
-                DateTime fin = hoy.AddDays(30);
+            DateTime fin = hoy.AddDays(30);
 
-                foreach (var h in horarios)
+            foreach (var h in horarios)
+            {
+                for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
                 {
-                    for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
+                    if ((int)fecha.DayOfWeek == (h.DiaSemana % 7))
                     {
-                        if ((int)fecha.DayOfWeek == (h.DiaSemana % 7))
+                        for (int hora = h.Turno.HoraInicio.Hours; hora < h.Turno.HoraFin.Hours; hora++)
                         {
-                            for (int hora = h.Turno.HoraInicio.Hours; hora < h.Turno.HoraFin.Hours; hora++)
+                            bool yaAsignado = turnosAsignados.Any(t =>
+                                t.Fecha.Date == fecha.Date &&
+                                (int)t.Hora.TotalHours == hora &&
+                                t.Medico.IdMedico == idMedico &&
+                                t.Estado != null &&
+                                t.Estado.Id == 1);
+
+                            string estadoTexto = yaAsignado ? "Asignado" : "Disponible";
+
+                            eventos.Add(new
                             {
-                                bool yaAsignado = turnosAsignados.Any(t =>
-                                    t.Fecha.Date == fecha.Date &&
-                                    (int)t.Hora.TotalHours == hora &&
-                                    t.Medico.IdMedico == idMedico &&
-                                    t.Estado != null &&
-                                    t.Estado.Id == 1);
-
-                                string estadoTexto = yaAsignado ? "Asignado" : "Disponible";
-
-                                eventos.Add(new
+                                title = $"{hora.ToString("D2")}:00 - {estadoTexto}",
+                                start = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0).ToString("s"),
+                                allDay = false,
+                                backgroundColor = yaAsignado ? "green" : "lightblue",
+                                borderColor = yaAsignado ? "darkgreen" : "blue",
+                                textColor = "white",
+                                extendedProps = new
                                 {
-                                    title = $"{hora.ToString("D2")}:00 - {estadoTexto}",
-                                    start = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0).ToString("s"),
-                                    allDay = false,
-                                    backgroundColor = yaAsignado ? "green" : "lightblue",
-                                    borderColor = yaAsignado ? "darkgreen" : "blue",
-                                    textColor = "white",
-                                    extendedProps = new
-                                    {
-                                        hora = hora.ToString("D2") + ":00",
-                                        estado = estadoTexto,
-                                        idTurno = turnosAsignados.FirstOrDefault(t =>
-                                            t.Fecha.Date == fecha.Date &&
-                                            (int)t.Hora.TotalHours == hora &&
-                                            t.Medico.IdMedico == idMedico &&
-                                            t.Estado.Id == 1)?.NroTurno ?? "0",
-                                        nombrePaciente = turnosAsignados.FirstOrDefault(t =>
-                                            t.Fecha.Date == fecha.Date &&
-                                            (int)t.Hora.TotalHours == hora &&
-                                            t.Medico.IdMedico == idMedico &&
-                                            t.Estado.Id == 1)?.Paciente?.NombreCompleto ?? "", 
-                                        nombreMedico = turnosAsignados.FirstOrDefault(t =>
-                                            t.Fecha.Date == fecha.Date &&
-                                            (int)t.Hora.TotalHours == hora &&
-                                            t.Medico.IdMedico == idMedico &&
-                                            t.Estado.Id == 1)?.Medico?.NombreCompleto ?? ""
-                                    }
-                                });
-                            }
+                                    hora = hora.ToString("D2") + ":00",
+                                    estado = estadoTexto,
+                                    idTurno = turnosAsignados.FirstOrDefault(t =>
+                                        t.Fecha.Date == fecha.Date &&
+                                        (int)t.Hora.TotalHours == hora &&
+                                        t.Medico.IdMedico == idMedico &&
+                                        t.Estado.Id == 1)?.NroTurno ?? "0",
+                                    nombrePaciente = turnosAsignados.FirstOrDefault(t =>
+                                        t.Fecha.Date == fecha.Date &&
+                                        (int)t.Hora.TotalHours == hora &&
+                                        t.Medico.IdMedico == idMedico &&
+                                        t.Estado.Id == 1)?.Paciente?.NombreCompleto ?? "",
+                                    nombreMedico = turnosAsignados.FirstOrDefault(t =>
+                                        t.Fecha.Date == fecha.Date &&
+                                        (int)t.Hora.TotalHours == hora &&
+                                        t.Medico.IdMedico == idMedico &&
+                                        t.Estado.Id == 1)?.Medico?.NombreCompleto ?? ""
+                                }
+                            });
                         }
                     }
                 }
-
-                return eventos;
             }
+
+            return eventos;
+        }
 
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
@@ -241,4 +249,4 @@ namespace TPC_Clinica
     }
 
 
-    }
+}

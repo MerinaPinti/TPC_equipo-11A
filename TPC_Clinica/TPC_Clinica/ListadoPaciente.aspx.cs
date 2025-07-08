@@ -14,7 +14,7 @@ namespace TPC_Clinica
         {
             if (Session["usuario"] == null)
             {
-                Session["error"] = "Debe iniciar sesión para acceder a esta página.";
+                Session["error"] = "Debe iniciar sesión con permisos para acceder a esta página.";
                 Response.Redirect("Error.aspx", true);
             }
             Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);

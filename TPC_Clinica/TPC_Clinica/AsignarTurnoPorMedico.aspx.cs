@@ -16,6 +16,15 @@ namespace TPC_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Usuario usuario = (Usuario)Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            if (usuario == null || usuario.TipoUsuario.Id == 3)
+            {
+                Session["error"] = "No tiene permisos para acceder a esta página.";
+                Response.Redirect("Error.aspx", true);
+            }
+            Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
+
             if (!IsPostBack)
             {
                 

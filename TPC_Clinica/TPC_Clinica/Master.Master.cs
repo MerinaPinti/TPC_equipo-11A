@@ -41,6 +41,7 @@ namespace TPC_Clinica
                         hlPacientes.Visible = true;
                         hlTurnos.Text = "Mis turnos";
                         hlPacientes.Text = "Mis pacientes";
+                        hlTurnos.NavigateUrl = "VerTurnoMedico.aspx";
                         hlHorarios.Visible = true;
                         break;
                     default:
