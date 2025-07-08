@@ -76,6 +76,7 @@
     <Content Include="AsignarTurno2.aspx" />
     <Content Include="AsignarTurnoPorEspecialidad.aspx" />
     <Content Include="AsignarTurnoPorMedico.aspx" />
+    <Content Include="AtenderPaciente.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="EleccionTurno.aspx" />
     <Content Include="Error.aspx" />
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="AsignarTurnoPorMedico.aspx.designer.cs">
       <DependentUpon>AsignarTurnoPorMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AtenderPaciente.aspx.cs">
+      <DependentUpon>AtenderPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AtenderPaciente.aspx.designer.cs">
+      <DependentUpon>AtenderPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

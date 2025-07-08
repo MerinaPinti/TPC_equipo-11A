@@ -6,16 +6,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Negocio.TurnoNegocio;
 
 namespace TPC_Clinica
 {
     public partial class VerTurnoMedico : System.Web.UI.Page
     {
-
         private int idMedico;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             idMedico = ((Medico)Session["medico"]).IdMedico;
 
             if (!IsPostBack)
@@ -40,10 +41,13 @@ namespace TPC_Clinica
             }
 
             int idEspecialidad = int.Parse(ddlEspecialidades.SelectedValue);
+            int idMedico = ((Medico)Session["medico"]).IdMedico;
+
             TurnoNegocio negocio = new TurnoNegocio();
             gvTurnos.DataSource = negocio.ListarTurnosAsignadosSemana(idMedico, idEspecialidad);
             gvTurnos.DataBind();
         }
+
 
         protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -53,20 +57,61 @@ namespace TPC_Clinica
 
             if (e.CommandName == "Atender")
             {
-                // Redirigir a página de atención
-                Response.Redirect("todavía.aspx" + nroTurno);
+                TurnoNegocio negocio = new TurnoNegocio();
+                Turno turno = negocio.ObtenerPorId(nroTurno);
+
+                Session["turnoAAtender"] = turno;
+                Response.Redirect("AtenderPaciente.aspx");
             }
             else if (e.CommandName == "NoAsistio")
             {
                 Turno turno = new Turno
                 {
                     NroTurno = nroTurno,
-                    Estado = new Estado { Id = 4 } // 4 = No Asistió
+                    Estado = new Estado { Id = 4 } // No Asistió
                 };
 
                 TurnoNegocio negocio = new TurnoNegocio();
-                negocio.actualizarTurnoMedico(turno); // pasamos el objeto turno
+                negocio.actualizarTurnoMedico(turno);
+
                 ddlEspecialidades_SelectedIndexChanged(null, null); // refrescar grilla
+            }
+        }
+
+        protected void gvTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TurnoVista turno = (TurnoVista)e.Row.DataItem;
+
+                if (turno.IdEstado == 5)
+                {
+                    e.Row.Cells[3].Controls.Clear();
+                    e.Row.Cells[4].Controls.Clear();
+
+                    TableCell cell = new TableCell
+                    {
+                        ColumnSpan = 2,
+                        Text = "<span class='badge bg-success'>Atendido</span>",
+                        HorizontalAlign = HorizontalAlign.Center
+                    };
+
+                    e.Row.Cells.Add(cell);
+                }
+                else if (turno.IdEstado == 4)
+                {
+                    e.Row.Cells[3].Controls.Clear();
+                    e.Row.Cells[4].Controls.Clear();
+
+                    TableCell cell = new TableCell
+                    {
+                        ColumnSpan = 2,
+                        Text = "<span class='badge bg-danger'>No asistió</span>",
+                        HorizontalAlign = HorizontalAlign.Center
+                    };
+
+                    e.Row.Cells.Add(cell);
+                }
             }
         }
     }

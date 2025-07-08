@@ -223,15 +223,18 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-    SELECT t.idTurno, t.fecha, t.hora, p.nombre, p.apellido
-    FROM Turno t
-    INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
-    INNER JOIN HorarioAtencion h ON h.idMedico = t.idMedico
-    WHERE t.idMedico = @idMedico 
-      AND h.idEspecialidad = @idEspecialidad
-      AND t.fecha >= CAST(GETDATE() AS DATE)
-    ORDER BY t.fecha ASC, t.hora ASC
-");
+            SELECT t.idTurno, t.fecha, t.hora, t.idEstado, p.nombre, p.apellido
+            FROM Turno t
+            INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
+            WHERE t.idMedico = @idMedico
+              AND t.fecha >= CAST(GETDATE() AS DATE)
+              AND t.activo = 1
+              AND EXISTS (
+                  SELECT 1 FROM HorarioAtencion h
+                  WHERE h.idMedico = t.idMedico AND h.idEspecialidad = @idEspecialidad
+              )
+            ORDER BY t.fecha ASC, t.hora ASC
+        ");
 
                 datos.setearParametros("@idMedico", idMedico);
                 datos.setearParametros("@idEspecialidad", idEspecialidad);
@@ -244,7 +247,8 @@ namespace Negocio
                         NroTurno = datos.Lector["idTurno"].ToString(),
                         Fecha = ((DateTime)datos.Lector["fecha"]).ToShortDateString(),
                         Hora = datos.Lector["hora"].ToString().Substring(0, 5),
-                        NombrePaciente = datos.Lector["nombre"].ToString() + " " + datos.Lector["apellido"].ToString()
+                        NombrePaciente = datos.Lector["nombre"].ToString() + " " + datos.Lector["apellido"].ToString(),
+                        IdEstado = (int)datos.Lector["idEstado"]
                     };
 
                     lista.Add(turno);
@@ -281,8 +285,6 @@ namespace Negocio
         }
 
 
-
-
         //CLASE AUXILIAR PARA VER LOS TURNOS DE UNA SOLA SEMANA. 
         public class TurnoVista
 
@@ -291,6 +293,8 @@ namespace Negocio
             public string Fecha { get; set; }
             public string Hora { get; set; }
             public string NombrePaciente { get; set; }
+
+            public int IdEstado { get; set; }
         }
 
         public void actualizarTurnoMedico(Turno turno)
@@ -386,6 +390,45 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public Turno ObtenerPorId(string nroTurno)
+        {
+            Turno turno = new Turno();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+            SELECT t.fecha, t.hora, t.observaciones, t.diagnostico,
+                   p.nombre, p.apellido
+            FROM Turno t
+            INNER JOIN Paciente p ON t.idPaciente = p.idPaciente
+            WHERE t.idTurno = @idTurno");
+
+                datos.setearParametros("@idTurno", nroTurno);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    turno.NroTurno = nroTurno;
+                    turno.Fecha = (DateTime)datos.Lector["fecha"];
+                    turno.Hora = (TimeSpan)datos.Lector["hora"];
+                    turno.Observaciones = datos.Lector["observaciones"]?.ToString();
+                    turno.Diagnostico = datos.Lector["diagnostico"]?.ToString();
+                    turno.Paciente = new Paciente
+                    {
+                        Nombre = datos.Lector["nombre"].ToString(),
+                        Apellido = datos.Lector["apellido"].ToString()
+                    };
+                }
+
+                return turno;
             }
             finally
             {

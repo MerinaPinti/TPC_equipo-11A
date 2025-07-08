@@ -15,6 +15,7 @@
    <asp:GridView ID="gvTurnos" runat="server" CssClass="table table-striped"
     AutoGenerateColumns="False"
     OnRowCommand="gvTurnos_RowCommand"
+    OnRowDataBound="gvTurnos_RowDataBound"
     DataKeyNames="NroTurno">
     <Columns>
         <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
