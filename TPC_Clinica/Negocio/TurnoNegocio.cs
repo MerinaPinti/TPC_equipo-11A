@@ -82,31 +82,31 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-            SELECT 
-                T.idTurno,
-                T.fecha,
-                T.hora,
-                T.observaciones,
-                T.diagnostico,
-                T.fechaAlta,
-                T.ultimaModificacion,
-                ES.descripcion AS Especialidad,
-                T.activo,
-                P.idPaciente,
-                P.nombre AS NombrePaciente,
-                P.apellido AS ApellidoPaciente,
-                M.idMedico,
-                M.nombre AS NombreMedico,
-                M.apellido AS ApellidoMedico,
-                E.idEstado,
-                E.descripcion AS EstadoDescripcion
-            FROM Turno T
-            INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
-            INNER JOIN Medico M ON T.idMedico = M.idMedico
-            INNER JOIN Estado E ON T.idEstado = E.idEstado
-            INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
-            WHERE T.activo = 1
-        ");
+                    SELECT 
+                        T.idTurno,
+                        T.fecha,
+                        T.hora,
+                        T.observaciones,
+                        T.diagnostico,
+                        T.fechaAlta,
+                        T.ultimaModificacion,
+                        ES.descripcion AS Especialidad,
+                        T.activo,
+                        P.idPaciente,
+                        P.nombre AS NombrePaciente,
+                        P.apellido AS ApellidoPaciente,
+                        M.idMedico,
+                        M.nombre AS NombreMedico,
+                        M.apellido AS ApellidoMedico,
+                        E.idEstado,
+                        E.descripcion AS EstadoDescripcion
+                    FROM Turno T
+                    INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
+                    INNER JOIN Medico M ON T.idMedico = M.idMedico
+                    INNER JOIN Estado E ON T.idEstado = E.idEstado
+                    INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
+                    WHERE T.activo = 1"
+                );
 
                 datos.ejecutarLectura();
 
@@ -164,6 +164,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
         public void eliminarLogicoTurno(int idTurno)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -186,7 +187,6 @@ namespace Negocio
             }
         }
 
-
         public void cerrarTurno(int idTurno, string observaciones, string diagnostico)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -194,12 +194,13 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-            UPDATE Turno SET 
-                observaciones = @obs,
-                diagnostico = @diag,
-                idEstado = 5, -- Cerrado
-                ultimaModificacion = GETDATE()
-            WHERE idTurno = @idTurno");
+                    UPDATE Turno SET 
+                        observaciones = @obs,
+                        diagnostico = @diag,
+                        idEstado = 5, -- Cerrado
+                        ultimaModificacion = GETDATE()
+                    WHERE idTurno = @idTurno"
+                );
 
                 datos.setearParametros("@idTurno", idTurno);
                 datos.setearParametros("@obs", observaciones);
@@ -226,15 +227,15 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-            SELECT t.idTurno, t.fecha, t.hora, t.idEstado, p.nombre, p.apellido
-            FROM Turno t
-            INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
-            WHERE t.idMedico = @idMedico
-              AND t.idEspecialidad = @idEspecialidad
-              AND t.fecha >= CAST(GETDATE() AS DATE)
-              AND t.activo = 1
-            ORDER BY t.fecha ASC, t.hora ASC
-        ");
+                    SELECT t.idTurno, t.fecha, t.hora, t.idEstado, p.nombre, p.apellido
+                    FROM Turno t
+                    INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
+                    WHERE t.idMedico = @idMedico
+                      AND t.idEspecialidad = @idEspecialidad
+                      AND t.fecha >= CAST(GETDATE() AS DATE)
+                      AND t.activo = 1
+                    ORDER BY t.fecha ASC, t.hora ASC"
+                );
 
                 datos.setearParametros("@idMedico", idMedico);
                 datos.setearParametros("@idEspecialidad", idEspecialidad);
@@ -304,13 +305,14 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-            UPDATE Turno 
-            SET 
-                idEstado = @idEstado,
-                observaciones = @observaciones,
-                diagnostico = @diagnostico,
-                ultimaModificacion = GETDATE()
-            WHERE idTurno = @NroTurno");
+                    UPDATE Turno 
+                    SET 
+                        idEstado = @idEstado,
+                        observaciones = @observaciones,
+                        diagnostico = @diagnostico,
+                        ultimaModificacion = GETDATE()
+                    WHERE idTurno = @NroTurno"
+                );
 
                 datos.setearParametros("@NroTurno", turno.NroTurno);
                 datos.setearParametros("@idEstado", turno.Estado.Id);
@@ -340,15 +342,15 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-    SELECT 
-        T.idTurno, T.fecha, T.hora, T.idEstado,
-        P.IdPaciente, P.Nombre AS NombrePaciente, P.Apellido AS ApellidoPaciente,
-        M.IdMedico, M.Nombre AS NombreMedico, M.Apellido AS ApellidoMedico
-    FROM Turno T
-    INNER JOIN Paciente P ON P.IdPaciente = T.idPaciente
-    INNER JOIN Medico M ON M.IdMedico = T.idMedico
-    WHERE T.idMedico = @idMedico AND T.activo = 1
-");
+                    SELECT 
+                        T.idTurno, T.fecha, T.hora, T.idEstado,
+                        P.IdPaciente, P.Nombre AS NombrePaciente, P.Apellido AS ApellidoPaciente,
+                        M.IdMedico, M.Nombre AS NombreMedico, M.Apellido AS ApellidoMedico
+                    FROM Turno T
+                    INNER JOIN Paciente P ON P.IdPaciente = T.idPaciente
+                    INNER JOIN Medico M ON M.IdMedico = T.idMedico
+                    WHERE T.idMedico = @idMedico AND T.activo = 1"
+                );
 
                 datos.setearParametros("@idMedico", idMedico);
                 datos.ejecutarLectura();
@@ -405,11 +407,12 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-            SELECT t.fecha, t.hora, t.observaciones, t.diagnostico, t.idEspecialidad,
-                   p.nombre, p.apellido
-            FROM Turno t
-            INNER JOIN Paciente p ON t.idPaciente = p.idPaciente
-            WHERE t.idTurno = @idTurno");
+                    SELECT t.fecha, t.hora, t.observaciones, t.diagnostico, t.idEspecialidad,
+                           p.nombre, p.apellido
+                    FROM Turno t
+                    INNER JOIN Paciente p ON t.idPaciente = p.idPaciente
+                    WHERE t.idTurno = @idTurno"
+                );
 
                 datos.setearParametros("@idTurno", nroTurno);
                 datos.ejecutarLectura();
@@ -442,7 +445,82 @@ namespace Negocio
             }
         }
 
+        public List<Turno> ListarTurnosPorDNI(string dni)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta(@"SELECT 
+                        t.idTurno,
+                        t.fecha,
+                        t.hora,
+                        m.Nombre + ' ' + m.Apellido AS Medico,
+                        e.Descripcion AS Especialidad,
+                        est.Descripcion AS Estado,
+                        p.Nombre AS NombrePaciente,
+                        p.Apellido AS ApellidoPaciente,
+                        p.Email AS EmailPaciente
+                    FROM Turno t
+                    INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
+                    INNER JOIN Medico m ON m.idMedico = t.idMedico
+                    LEFT JOIN ESPECIALIDADES_MEDICOS em ON em.idMedico = m.idMedico
+                    LEFT JOIN Especialidad e ON e.idEspecialidad = em.idEspecialidad
+                    INNER JOIN Estado est ON est.idEstado = t.idEstado
+                    WHERE p.DNI = @DNI
+                    ORDER BY t.fecha ASC, t.hora ASC"
+                );
+
+                datos.setearParametros("@DNI", dni);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno t = new Turno();
+                    t.NroTurno = datos.Lector["idTurno"].ToString();
+                    t.Fecha = (DateTime)datos.Lector["fecha"];
+                    t.Hora = (TimeSpan)datos.Lector["hora"];
+
+                    t.Medico = new Medico
+                    {
+                        Nombre = datos.Lector["Medico"].ToString()
+                    };
+
+                    t.Medico.Especialidad = new List<Especialidad>
+                        {
+                            new Especialidad
+                            {
+                                Descripcion = datos.Lector["Especialidad"].ToString()
+                            }
+                        };
+
+                    t.Estado = new Estado
+                    {
+                        Descripcion = datos.Lector["Estado"].ToString()
+                    };
+                    t.Paciente = new Paciente
+                    {
+                        Nombre = datos.Lector["NombrePaciente"].ToString(),
+                        Apellido = datos.Lector["ApellidoPaciente"].ToString(),
+                        Email = datos.Lector["EmailPaciente"].ToString()
+                    };
 
 
+                    lista.Add(t);
+
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
