@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,12 +23,67 @@ namespace TPC_Clinica
 
         protected void dgvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            string id = e.CommandArgument.ToString();
 
+            List<Turno> turnos = Session["TurnosPorDNI"] as List<Turno>;
+            Turno turno = turnos?.FirstOrDefault(t => t.NroTurno == id);
+
+            if (turno == null)
+            {
+                return;
+            }
+
+            if (e.CommandName == "Modificar")
+            {
+                Session["TurnoSeleccionado"] = turno;
+                Response.Redirect("");
+            }
+            else if (e.CommandName == "Cancelar")
+            {
+                Turno turnocancelado = new Turno
+                {
+                    NroTurno = id.ToString(),
+                    Estado = new Estado { Id = 3 } // Cancelado
+                };
+                TurnoNegocio negocio = new TurnoNegocio();
+                negocio.actualizarTurnoRecep(turnocancelado);
+                
+                btnBuscar_Click(null, null); // Recarga grilla
+            }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            string dni = txtBuscarDNI.Text.Trim();
+            if (string.IsNullOrEmpty(dni))
+                return;
 
+            TurnoNegocio negocio = new TurnoNegocio();
+            List<Turno> lista = negocio.ListarTurnosPorDNI(dni);
+
+            if (lista != null && lista.Count > 0)
+            {
+                Session["TurnosPorDNI"] = lista;
+
+                var visuales = lista.Select(t => new
+                {
+                    NroTurno = t.NroTurno,
+                    Fecha = t.Fecha.ToString("dd/MM/yyyy"),
+                    Hora = t.Hora.ToString(@"hh\:mm"),
+                    Medico = t.Medico.Nombre,
+                    Especialidad = t.Medico.Especialidad?.FirstOrDefault()?.Descripcion ?? "Sin especialidad",
+                    Estado = t.Estado.Descripcion
+                }).ToList();
+
+                dgvTurnos.DataSource = visuales;
+                dgvTurnos.DataBind();
+            }
+            else
+            {
+                dgvTurnos.DataSource = null;
+                dgvTurnos.DataBind();
+
+            }
         }
 
     }
