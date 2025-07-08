@@ -210,28 +210,27 @@ namespace TPC_Clinica
             {
                 TurnoNegocio negocio = new TurnoNegocio();
 
-                Turno turno = new Turno
-                {
-                    NroTurno = idTurno.ToString(),
-                    Estado = new Estado { Id = 3 } // Cancelado
-                };
+                // Obtener el turno completo con paciente y médico
+                Turno turno = negocio.ObtenerPorId(idTurno.ToString());
 
+                // Cambiar el estado
+                turno.Estado = new Estado { Id = 3 }; // Cancelado
                 negocio.actualizarTurnoRecep(turno);
 
                 //------------------------------ENVIO DE MAIL------------------------------
                 string rutaPlantillas = HttpContext.Current.Server.MapPath("~/Templates");
 
                 var reemplazos = new Dictionary<string, string>
-                {
-                    { "NOMBRE", turno.Paciente.Nombre + " " + turno.Paciente.Apellido },
-                    { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + "a las " + turno.Hora.ToString(@"hh\:mm")},
-                    { "MEDICO", turno.Medico.Nombre + " " + turno.Medico.Apellido },
-                };
+        {
+            { "NOMBRE", turno.Paciente.Nombre + " " + turno.Paciente.Apellido },
+            { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + " a las " + turno.Hora.ToString(@"hh\\:mm") },
+            { "MEDICO", turno.Medico.Nombre + " " + turno.Medico.Apellido },
+        };
 
                 EmailService emailService = new EmailService();
                 emailService.armarCorreo(
                     turno.Paciente.Email,
-                    "Cancelacion de turno en Clínica Médica Meraki 💙",
+                    "Cancelación de turno en Clínica Médica Meraki 💙",
                     reemplazos,
                     TipoCorreo.EmailCancelarTurno,
                     rutaPlantillas

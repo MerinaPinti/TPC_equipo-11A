@@ -230,12 +230,9 @@ namespace Negocio
             FROM Turno t
             INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
             WHERE t.idMedico = @idMedico
+              AND t.idEspecialidad = @idEspecialidad
               AND t.fecha >= CAST(GETDATE() AS DATE)
               AND t.activo = 1
-              AND EXISTS (
-                  SELECT 1 FROM HorarioAtencion h
-                  WHERE h.idMedico = t.idMedico AND h.idEspecialidad = @idEspecialidad
-              )
             ORDER BY t.fecha ASC, t.hora ASC
         ");
 
@@ -408,7 +405,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-            SELECT t.fecha, t.hora, t.observaciones, t.diagnostico,
+            SELECT t.fecha, t.hora, t.observaciones, t.diagnostico, t.idEspecialidad,
                    p.nombre, p.apellido
             FROM Turno t
             INNER JOIN Paciente p ON t.idPaciente = p.idPaciente
@@ -428,6 +425,12 @@ namespace Negocio
                     {
                         Nombre = datos.Lector["nombre"].ToString(),
                         Apellido = datos.Lector["apellido"].ToString()
+                    };
+
+                    // Si necesitás la especialidad también:
+                    turno.Especialidad = new Especialidad
+                    {
+                        Id = Convert.ToInt32(datos.Lector["idEspecialidad"])
                     };
                 }
 
