@@ -151,8 +151,8 @@ namespace TPC_Clinica
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["error"] = ex.ToString();
+                Response.Redirect("Error.aspx",false);
             }
         }
 
