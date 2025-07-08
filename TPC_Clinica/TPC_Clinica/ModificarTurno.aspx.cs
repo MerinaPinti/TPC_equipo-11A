@@ -20,5 +20,17 @@ namespace TPC_Clinica
             }
             Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
         }
+
+        protected void dgvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
+
 }
