@@ -78,15 +78,22 @@
                                     </div>
                                     <div class="col">
                                         <label>Horario egreso</label>
-                                        <asp:DropDownList ID="ddlHoraFin" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlHoraFin_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlHoraFin" CssClass="form-select" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="col">
                                         <label>Especialidad</label>
                                         <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" runat="server"></asp:DropDownList>
                                     </div>
-                                    <div class="col-1" style="margin-top: 1.5em;">
+                                    <div class="col-1">
                                         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary btn-sm" OnClick="btnGuardar_Click" />
                                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-danger btn-sm" OnClick="btnCancelar_Click" Visible="false" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mt-4">
+                                        <div id="alert" runat="server" class="alert alert-warning" role="alert">
+                                            Los horarios de atención del médico no pueden superponerse!
+                                        </div>
                                     </div>
                                 </div>
                             </ContentTemplate>

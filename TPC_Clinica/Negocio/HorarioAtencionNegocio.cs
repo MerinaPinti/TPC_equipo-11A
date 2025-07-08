@@ -238,5 +238,77 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public bool existeHorario(TimeSpan horarioInicio, TimeSpan horarioFin, Medico medico, int diaSemana)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+                SELECT 1
+                FROM HorarioAtencion HA
+                INNER JOIN TurnoTrabajo TT ON HA.idTurnoTrabajo = TT.idTurnoTrabajo
+                WHERE (TT.horaInicio < @horarioFin AND TT.horaFin > @horarioInicio)
+                AND idMedico = @idMedico
+                AND diaSemana = @diaSemana
+                AND HA.activo = 1");
+
+                datos.setearParametros("@idMedico", medico.IdMedico);
+                datos.setearParametros("@horarioInicio", horarioInicio);
+                datos.setearParametros("@diaSemana", diaSemana);
+                datos.setearParametros("@horarioFin", horarioFin);
+
+                datos.ejecutarLectura();
+
+                return datos.Lector.Read();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public bool existeHorarioDistinto(TimeSpan horarioInicio, TimeSpan horarioFin, Medico medico, int diaSemana, int idHorarioAtencion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+                SELECT 1
+                FROM HorarioAtencion HA
+                INNER JOIN TurnoTrabajo TT ON HA.idTurnoTrabajo = TT.idTurnoTrabajo
+                WHERE (TT.horaInicio < @horarioFin AND TT.horaFin > @horarioInicio)
+                AND idMedico = @idMedico
+                AND diaSemana = @diaSemana
+                AND HA.activo = 1
+                AND HA.idHorarioAtencion != @idHorarioAtencion");
+
+                datos.setearParametros("@idMedico", medico.IdMedico);
+                datos.setearParametros("@horarioInicio", horarioInicio);
+                datos.setearParametros("@diaSemana", diaSemana);
+                datos.setearParametros("@horarioFin", horarioFin);
+                datos.setearParametros("@idHorarioAtencion", idHorarioAtencion);
+
+                datos.ejecutarLectura();
+
+                return datos.Lector.Read();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }
