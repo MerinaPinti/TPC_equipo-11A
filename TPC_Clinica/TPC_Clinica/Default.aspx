@@ -65,11 +65,6 @@
                 </span>
             </div>
         </div>
-
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="recordarUsuario" />
-            <label class="form-check-label" for="recordarUsuario">Recordar usuario</label>
-        </div>
         <asp:Button Text ="Ingresar" ID="btnIngresar" runat="server" CssClass ="btn btn-primary" CommandArgument = '<%Eval("Id")%>' CommandName ="ArticuloId" OnClick ="btnIngresar_Click" />
         </div>
 

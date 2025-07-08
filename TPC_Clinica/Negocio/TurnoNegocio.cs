@@ -17,11 +17,12 @@ namespace Negocio
             {
                 datos.setearConsulta(@"
             INSERT INTO Turno 
-            (idPaciente, idMedico, fecha, hora, idEstado, fechaAlta, ultimaModificacion, activo)
+            (idPaciente, idMedico, fecha, hora, idEstado, fechaAlta, ultimaModificacion, activo, idEspecialidad)
             VALUES 
-            (@idPaciente, @idMedico, @fecha, @hora, @idEstado, GETDATE(), GETDATE(), 1)");
+            (@idPaciente, @idMedico, @fecha, @hora, @idEstado, GETDATE(), GETDATE(), 1, @idEspecialidad)");
 
                 datos.setearParametros("@idPaciente", nuevo.Paciente.IdPaciente);
+                datos.setearParametros("idEspecialidad", nuevo.Especialidad.Id);
                 datos.setearParametros("@idMedico", nuevo.Medico.IdMedico);
                 datos.setearParametros("@fecha", nuevo.Fecha);
                 datos.setearParametros("@hora", nuevo.Hora);
@@ -89,6 +90,7 @@ namespace Negocio
                 T.diagnostico,
                 T.fechaAlta,
                 T.ultimaModificacion,
+                ES.descripcion AS Especialidad,
                 T.activo,
                 P.idPaciente,
                 P.nombre AS NombrePaciente,
@@ -102,6 +104,7 @@ namespace Negocio
             INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
             INNER JOIN Medico M ON T.idMedico = M.idMedico
             INNER JOIN Estado E ON T.idEstado = E.idEstado
+            INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
             WHERE T.activo = 1
         ");
 

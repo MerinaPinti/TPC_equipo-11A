@@ -18,6 +18,7 @@ namespace Dominio
         public string Diagnostico { get; set; }
         public DateTime FinTurno { get; set; }
         public DateTime UltimaModificacion { get; set; }
+        public Especialidad Especialidad { get; set; }
 
         public bool Activo { get; set; }
 

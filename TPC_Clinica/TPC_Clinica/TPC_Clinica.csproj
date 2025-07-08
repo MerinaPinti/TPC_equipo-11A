@@ -82,6 +82,7 @@
     <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HorarioMedico.aspx" />
+    <Content Include="Inicio.aspx" />
     <Content Include="ListadoEspecialidades.aspx" />
     <Content Include="ListadoEstados.aspx" />
     <Content Include="ListadoMedicos.aspx" />
@@ -200,6 +201,13 @@
     </Compile>
     <Compile Include="HorarioMedico.aspx.designer.cs">
       <DependentUpon>HorarioMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoEspecialidades.aspx.cs">
       <DependentUpon>ListadoEspecialidades.aspx</DependentUpon>

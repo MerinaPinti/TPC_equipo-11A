@@ -78,11 +78,12 @@ CREATE TABLE Especialidades_Medicos (
 GO
 CREATE TABLE Turno(
 	idTurno INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	idPaciente INT FOREIGN KEY REFERENCES Paciente(idPaciente),
+	idPaciente INT NOT NULL FOREIGN KEY REFERENCES Paciente(idPaciente),
 	idMedico INT NOT NULL FOREIGN KEY REFERENCES Medico(idMedico),
 	fecha DATE NOT NULL,
 	hora TIME NOT NULL,
 	idEstado INT NOT NULL FOREIGN KEY REFERENCES Estado(idEstado),
+	idEspecialidad INT NOT NULL FOREIGN KEY REFERENCES Especialidad(idEspecialidad),
 	observaciones VARCHAR(200),
 	diagnostico VARCHAR(200),
 	fechaAlta DATE,
@@ -109,43 +110,90 @@ CREATE TABLE HorarioAtencion (
 
 GO
 
-INSERT INTO TipoUsuario (descripcion) VALUES 
-('Administrador'), 
-('Recepcionista'), 
-('Medico');
+USE CLINICA_DB;
 GO
 
+-- TIPO DE USUARIO
+INSERT INTO TipoUsuario (descripcion) VALUES ('Administrador');
+INSERT INTO TipoUsuario (descripcion) VALUES ('Recepcionista');
+INSERT INTO TipoUsuario (descripcion) VALUES ('Médico');
+GO
+
+-- ESPECIALIDADES
 INSERT INTO Especialidad (descripcion) VALUES 
-('Clínico General'), 
-('Pediatra'), 
-('Cardiólogo'), 
-('Dermatólogo'), 
-('Odontólogo');
+('Clínica General'),
+('Pediatría'),           
+('Cardiología'),       
+('Dermatología'),        
+('Neurología');          
 GO
 
-INSERT INTO Estado (descripcion) VALUES 
-('Nuevo'), 
-('Reprogramado'), 
-('Cancelado'), 
-('No Asistió'), 
-('Cerrado');
+-- ESTADOS DE TURNOS
+INSERT INTO Estado (descripcion) VALUES ('Pendiente');
+INSERT INTO Estado (descripcion) VALUES ('Confirmado');
+INSERT INTO Estado (descripcion) VALUES ('Cancelado');
+INSERT INTO Estado (descripcion) VALUES ('Finalizado');
 GO
 
-INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES 
-(1, 'admin', 'admin123'),         
-(2, 'recepcion1', 'recep123'),    
-(3, '30444555', '30444555');
+-- USUARIOS MÉDICOS Y MÉDICOS USUARIO
+INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '236785', '236785');
+INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
+VALUES ('juan.perez@mail.com', '11-2345-6789', 'Juan', 'Pérez', '236785', SCOPE_IDENTITY());
+
+INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '582903', '582903');
+INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
+VALUES ('maria.lopez@mail.com', '11-9876-5432', 'María', 'López', '582903', SCOPE_IDENTITY());
+
+INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '790412', '790412');
+INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
+VALUES ('carlos.gomez@mail.com', '11-7654-3210', 'Carlos', 'Gómez', '790412', SCOPE_IDENTITY());
 GO
 
-INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) VALUES 
-('juanperez@clinica.com', '1133445566', 'Juan', 'Pérez', 'MN123456', 3);
+-- Usuario ADMIN
+INSERT INTO Usuario (idTipoUsuario, usuario, contraseña)
+VALUES (1, 'admin', 'admin123');
+
+-- Usuario Recepcionista
+INSERT INTO Usuario (idTipoUsuario, usuario, contraseña)
+VALUES (2, 'recepcion1', 'recep123');
 GO
 
-INSERT INTO Especialidades_Medicos (IDEspecialidad, IDMedico) VALUES 
-(1, 1),  
-(3, 1);
+-- PACIENTES
+INSERT INTO Paciente (nombre, apellido, DNI, fechaNac, telefono, direccion, email) 
+VALUES ('Lucía', 'Ramírez', '38562047', '1990-03-15', '11-4444-1234', 'Calle Falsa 123', 'lucia.ramirez@mail.com');
+
+INSERT INTO Paciente (nombre, apellido, DNI, fechaNac, telefono, direccion, email) 
+VALUES ('Federico', 'Martínez', '40234895', '1985-07-10', '11-5555-6789', 'Av. Siempreviva 742', 'federico.martinez@mail.com');
 GO
 
-INSERT INTO Paciente (nombre, apellido, DNI, fechaNac, telefono, direccion, email) VALUES 
-('María', 'Gómez', '33444555', '1990-05-10', '1144556677', 'Av. Siempreviva 123', 'maria.gomez@mail.com');
+-- RELACIÓN MEDICO - ESPECIALIDAD
+INSERT INTO Especialidades_Medicos (IDESPECIALIDAD, IDMEDICO) VALUES (1, 1); -- Juan Pérez - Clínico
+INSERT INTO Especialidades_Medicos (IDESPECIALIDAD, IDMEDICO) VALUES (2, 2); -- María López - Cardióloga
+INSERT INTO Especialidades_Medicos (IDESPECIALIDAD, IDMEDICO) VALUES (3, 3); -- Carlos Gómez - Pediatra
+GO
+
+-- TURNOS DE TRABAJO
+INSERT INTO TurnoTrabajo (descripcion, horaInicio, horaFin) VALUES
+('Mañana', '08:00', '12:00'),
+('Tarde', '14:00', '18:00'),
+('Noche', '18:00', '22:00');
+GO
+
+-- HORARIOS DE ATENCION
+INSERT INTO HorarioAtencion (idMedico, idEspecialidad, idTurnoTrabajo, diaSemana) VALUES
+(1, 1, 1, 1), -- lunes
+(1, 1, 1, 3); -- miércoles
+GO
+
+INSERT INTO HorarioAtencion (idMedico, idEspecialidad, idTurnoTrabajo, diaSemana) VALUES
+(2, 2, 2, 2), -- martes
+(2, 2, 2, 4); -- jueves
+GO
+
+-- TURNOS
+INSERT INTO Turno (idPaciente, idMedico, fecha, hora, idEstado, idEspecialidad, observaciones, diagnostico, fechaAlta, ultimaModificacion) VALUES
+(1, 1, '2025-07-10', '09:00', 1, 1, 'Chequeo general', NULL, GETDATE(), NULL);
+
+INSERT INTO Turno (idPaciente, idMedico, fecha, hora, idEstado, idEspecialidad, observaciones, diagnostico, fechaAlta, ultimaModificacion) VALUES
+(2, 2, '2025-07-11', '15:00', 2, 2, 'Control pediátrico para su hijo', NULL, GETDATE(), NULL);
 GO

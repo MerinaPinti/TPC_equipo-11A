@@ -158,7 +158,7 @@ namespace TPC_Clinica
                 Paciente = paciente,
                 Medico = new Medico { IdMedico = int.Parse(hfIdMedico.Value) },
                 Fecha = DateTime.Parse(fechaStr),
-                
+                Especialidad = new Especialidad { Id = Convert.ToInt32(ddlEspecialidades.SelectedValue), Descripcion = ddlEspecialidades.SelectedItem.Text },
                 Hora = TimeSpan.Parse(horaStr),
                 Estado = new Estado { Id = 1 } // Asignado
             };

@@ -29,12 +29,14 @@ namespace TPC_Clinica
                         hlTipoUsuario.Visible = true;
                         hlTurnos.Visible = true;
                         hlUsuarios.Visible = true;
+                        hpMeraki.NavigateUrl = "~/Inicio.aspx";
                         break;
                     case 2:
                         hlEspecialidades.Visible = true;
                         hlMedicos.Visible = true;
                         hlPacientes.Visible = true;
                         hlTurnos.Visible = true;
+                        hpMeraki.NavigateUrl = "~/Inicio.aspx";
                         break;
                     case 3:
                         hlTurnos.Visible = true;
@@ -42,6 +44,7 @@ namespace TPC_Clinica
                         hlTurnos.Text = "Mis turnos";
                         hlPacientes.Text = "Mis pacientes";
                         hlTurnos.NavigateUrl = "VerTurnoMedico.aspx";
+                        hpMeraki.NavigateUrl = "~/Inicio.aspx";
                         hlHorarios.Visible = true;
                         break;
                     default:

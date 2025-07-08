@@ -8,27 +8,17 @@ using Dominio;
 
 namespace TPC_Clinica
 {
-    public partial class AsignarTurno2 : System.Web.UI.Page
+    public partial class Inicio : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuario = (Usuario)Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
-            if (usuario == null || usuario.TipoUsuario.Id == 3)
+            if (usuario == null)
             {
                 Session["error"] = "No tiene permisos para acceder a esta página.";
                 Response.Redirect("Error.aspx", true);
             }
             Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
-        }
-
-        protected void btnEspecialidad_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AsignarTurnoPorEspecialidad.aspx");
-        }
-
-        protected void btnProfesional_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AsignarTurnoPorMedico.aspx");
         }
     }
 }
