@@ -10,6 +10,8 @@
             </div>
             <div class="col-md-4">
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary w-100" OnClick="btnBuscar_Click" />
+                <asp:Label ID="lblSinTurnos" runat="server" CssClass="text-danger d-block mt-2" Text="🔍 No se encontraron turnos asignados al paciente."
+            Visible="false" />
             </div>
         </div>
 
