@@ -35,8 +35,38 @@ namespace TPC_Clinica
 
             if (e.CommandName == "Modificar")
             {
-                Session["TurnoSeleccionado"] = turno;
-                Response.Redirect("");
+                Turno turnoCancelado = new Turno
+                {
+                    NroTurno = id.ToString(),
+                    Estado = new Estado { Id = 3 } // Cancelado
+                };
+
+                TurnoNegocio negocio = new TurnoNegocio();
+                negocio.actualizarTurnoRecep(turnoCancelado);
+                //------------------------------ENVIO DE MAIL------------------------------
+                string rutaPlantillas = HttpContext.Current.Server.MapPath("~/Templates");
+
+                var reemplazos = new Dictionary<string, string>
+                {
+                    { "NOMBRE", turno.Paciente.Nombre + " " + turno.Paciente.Apellido },
+                    { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + " a las " + turno.Hora.ToString(@"hh\:mm")},
+                    { "MEDICO", turno.Medico.Nombre + " " + turno.Medico.Apellido },
+                };
+
+                EmailService emailService = new EmailService();
+                emailService.armarCorreo(
+                    turno.Paciente.Email,
+                    "Cancelacion de Turno en Clínica Médica Meraki 💙",
+                    reemplazos,
+                    TipoCorreo.EmailCancelarTurno,
+                    rutaPlantillas
+                );
+                emailService.enviarCorreo();
+                //-------------------------------------------------------------------------
+
+                Session["DNI_Reasignacion"] = turno.Paciente?.DNI;
+
+                Response.Redirect("AsignarTurno2.aspx", true);
             }
             else if (e.CommandName == "Cancelar")
             {
@@ -78,7 +108,7 @@ namespace TPC_Clinica
                 return;
 
             TurnoNegocio negocio = new TurnoNegocio();
-            List<Turno> lista = negocio.ListarTurnosPorDNI(dni);
+            List<Turno> lista = negocio.ListarTurnosPorDNI(dni,1);
 
             if (lista != null && lista.Count > 0)
             {
