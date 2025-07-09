@@ -71,7 +71,7 @@ namespace TPC_Clinica
             string actual = txtActual.Text.Trim();
             string nueva = txtNueva.Text.Trim();
             string confirmar = txtConfirmar.Text.Trim();
-            bool Hayerror = false;
+            bool validar = true;
 
             //Campos vacíos
             if (string.IsNullOrEmpty(actual) || string.IsNullOrEmpty(nueva) || string.IsNullOrEmpty(confirmar))
@@ -79,7 +79,7 @@ namespace TPC_Clinica
                 lblActual.Text = "Completa todos los campos.";
                 lblActual.ForeColor = System.Drawing.Color.Red;
                 lblActual.Visible = true;
-                Hayerror = true;
+                validar = false;
             }
             //Contraseña actual erronea
             else if (actual != usuarioActual.Password)
@@ -87,7 +87,7 @@ namespace TPC_Clinica
                 lblActual.Text = "La contraseña actual es incorrecta.";
                 lblActual.ForeColor = System.Drawing.Color.Red;
                 lblActual.Visible = true;
-                Hayerror = true;
+                validar = false;
             }
             //Contraseñas diferentes
             else if (nueva != confirmar)
@@ -95,10 +95,10 @@ namespace TPC_Clinica
                 lblNueva.Text = "La nueva contraseña no coincide con su confirmación.";
                 lblNueva.ForeColor = System.Drawing.Color.Red;
                 lblNueva.Visible = true;
-                Hayerror = true;
+                validar = false;
             }
 
-            return Hayerror;
+            return validar;
         }
     }
 }

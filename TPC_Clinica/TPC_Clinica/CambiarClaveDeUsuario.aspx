@@ -9,18 +9,18 @@
     <div class="mb-3">
         <label for="txtActual" class="form-label">Contraseña actual:</label>
         <asp:TextBox ID="txtActual" runat="server" TextMode="Password" CssClass="form-control" />
-        <asp:Label ID="lblActual" runat="server" CssClass="alert alert-danger" Visible="false" />
+        <asp:Label ID="lblActual" runat="server" Visible="false" />
     </div>
 
     <div class="mb-3">
         <label for="txtNueva" class="form-label">Nueva contraseña:</label>
         <asp:TextBox ID="txtNueva" runat="server" TextMode="Password" CssClass="form-control" />
-        <asp:Label ID="lblNueva" runat="server" CssClass="alert alert-danger" Visible="false" />
+        <asp:Label ID="lblNueva" runat="server" Visible="false" />
     </div>
 
     <div class="mb-3">
         <label for="txtConfirmar" class="form-label">Confirmar nueva contraseña:</label>
-        <asp:TextBox ID="txtConfirmar" runat="server" CssClass="alert alert-danger" TextMode="Password" CssClass="form-control" />        
+        <asp:TextBox ID="txtConfirmar" runat="server" TextMode="Password" CssClass="form-control" />        
     </div>
 
     <asp:Button ID="btnCambiar" runat="server" Text="Actualizar" CssClass="btn btn-primary" OnClick="btnCambiar_Click" />
