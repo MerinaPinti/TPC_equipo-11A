@@ -92,7 +92,6 @@
     <Content Include="ModificarTurno.aspx" />
     <Content Include="Templates\EmailAltaMedico.html" />
     <Content Include="Templates\EmailAltaPaciente.html" />
-    <Content Include="Templates\EmailCambiarTurno.html" />
     <Content Include="Templates\EmailCancelarTurno.html" />
     <Content Include="Templates\EmailConfirmarTurno.html" />
     <Content Include="Templates\EmailModificarMedico.html" />
