@@ -445,7 +445,7 @@ namespace Negocio
             }
         }
 
-        public List<Turno> ListarTurnosPorDNI(string dni)
+        public List<Turno> ListarTurnosPorDNI(string dni, int idEstado)
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
@@ -460,7 +460,8 @@ namespace Negocio
                         est.Descripcion AS Estado,
                         p.Nombre AS NombrePaciente,
                         p.Apellido AS ApellidoPaciente,
-                        p.Email AS EmailPaciente
+                        p.Email AS EmailPaciente,
+                        DNI=dni
                     FROM Turno t
                     INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
                     INNER JOIN Medico m ON m.idMedico = t.idMedico
@@ -468,10 +469,12 @@ namespace Negocio
                     LEFT JOIN Especialidad e ON e.idEspecialidad = em.idEspecialidad
                     INNER JOIN Estado est ON est.idEstado = t.idEstado
                     WHERE p.DNI = @DNI
+                        AND (@idEstado = 0 OR t.idEstado = @idEstado)
                     ORDER BY t.fecha ASC, t.hora ASC"
                 );
 
                 datos.setearParametros("@DNI", dni);
+                datos.setearParametros("@idEstado", idEstado);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -502,7 +505,8 @@ namespace Negocio
                     {
                         Nombre = datos.Lector["NombrePaciente"].ToString(),
                         Apellido = datos.Lector["ApellidoPaciente"].ToString(),
-                        Email = datos.Lector["EmailPaciente"].ToString()
+                        Email = datos.Lector["EmailPaciente"].ToString(),
+                        DNI = dni
                     };
 
 
