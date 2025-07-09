@@ -82,6 +82,7 @@
     <Content Include="EleccionTurno.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="HistoriaClinica.aspx" />
     <Content Include="HorarioMedico.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="ListadoEspecialidades.aspx" />
@@ -201,6 +202,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HistoriaClinica.aspx.cs">
+      <DependentUpon>HistoriaClinica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistoriaClinica.aspx.designer.cs">
+      <DependentUpon>HistoriaClinica.aspx</DependentUpon>
     </Compile>
     <Compile Include="HorarioMedico.aspx.cs">
       <DependentUpon>HorarioMedico.aspx</DependentUpon>
