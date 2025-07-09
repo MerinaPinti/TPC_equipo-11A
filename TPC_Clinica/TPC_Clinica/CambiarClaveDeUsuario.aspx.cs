@@ -40,41 +40,65 @@ namespace TPC_Clinica
             //No inició sesión
             if (usuarioActual == null)
             {
-                Response.Redirect("Login.aspx");
-                return;
+                Response.Redirect("Login.aspx");                
             }
 
+            if (!validar())
+            {
+                return;
+            }
+            
+            try
+            {
+                usuarioActual.Password = nueva;
+                UsuarioNegocio negocio = new UsuarioNegocio();            
+                negocio.modificarUsuario(usuarioActual);
+
+                lblActual.Text = "¡Contraseña actualizada correctamente!";
+                lblActual.ForeColor = System.Drawing.Color.Green;
+                lblActual.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                Session["error"] = ex.ToString();
+                Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        protected bool validar()
+        {
+            Usuario usuarioActual = Session["usuario"] as Usuario;
+            string actual = txtActual.Text.Trim();
+            string nueva = txtNueva.Text.Trim();
+            string confirmar = txtConfirmar.Text.Trim();
+            bool Hayerror = false;
+
+            //Campos vacíos
             if (string.IsNullOrEmpty(actual) || string.IsNullOrEmpty(nueva) || string.IsNullOrEmpty(confirmar))
             {
                 lblActual.Text = "Completa todos los campos.";
                 lblActual.ForeColor = System.Drawing.Color.Red;
                 lblActual.Visible = true;
-                return;
+                Hayerror = true;
             }
-
-            if (nueva != confirmar)
-            {
-                lblNueva.Text = "La nueva contraseña no coincide con su confirmación.";
-                lblNueva.ForeColor = System.Drawing.Color.Red;
-                lblNueva.Visible = true;
-                return;
-            }
-
-            if (actual != usuarioActual.Password) 
+            //Contraseña actual erronea
+            else if (actual != usuarioActual.Password)
             {
                 lblActual.Text = "La contraseña actual es incorrecta.";
                 lblActual.ForeColor = System.Drawing.Color.Red;
                 lblActual.Visible = true;
-                return;
+                Hayerror = true;
+            }
+            //Contraseñas diferentes
+            else if (nueva != confirmar)
+            {
+                lblNueva.Text = "La nueva contraseña no coincide con su confirmación.";
+                lblNueva.ForeColor = System.Drawing.Color.Red;
+                lblNueva.Visible = true;
+                Hayerror = true;
             }
 
-            usuarioActual.Password = nueva;
-            UsuarioNegocio negocio = new UsuarioNegocio();            
-            negocio.modificarUsuario(usuarioActual);
-
-            lblActual.Text = "¡Contraseña actualizada correctamente!";
-            lblActual.ForeColor = System.Drawing.Color.Green;
-            lblActual.Visible = true;
+            return Hayerror;
         }
     }
 }

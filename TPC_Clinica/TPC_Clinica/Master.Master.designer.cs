@@ -114,6 +114,15 @@ namespace TPC_Clinica
         protected global::System.Web.UI.WebControls.HyperLink hlHorarios;
 
         /// <summary>
+        /// Control hlCambiarClave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlCambiarClave;
+
+        /// <summary>
         /// Control btnCerrarSesion.
         /// </summary>
         /// <remarks>
