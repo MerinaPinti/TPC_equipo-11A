@@ -1,4 +1,4 @@
-﻿using Dominio;
+using Dominio;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -30,6 +30,11 @@ namespace TPC_Clinica
                 ddlEspecialidades.DataBind();
 
                 ddlEspecialidades.Items.Insert(0, new ListItem("-- Seleccione una especialidad --", ""));
+            }
+            if (Session["DNI_Reasignacion"] != null)
+            {
+                txtDniPaciente.Text = Session["DNI_Reasignacion"].ToString();
+                txtDniPaciente.Enabled = false;
             }
         }
 
@@ -200,6 +205,9 @@ namespace TPC_Clinica
             txtDniPaciente.Text = "";
             hfFechaTurno.Value = "";
             hfHoraTurno.Value = "";
+
+            Session.Remove("DNI_Reasignacion");
+            Response.Redirect("AsignarTurno2.aspx", true);
         }
 
 
