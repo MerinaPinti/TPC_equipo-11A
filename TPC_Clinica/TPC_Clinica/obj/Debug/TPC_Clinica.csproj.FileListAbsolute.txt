@@ -180,7 +180,6 @@ C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\bin\Negocio.pdb
 C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.csproj.AssemblyReference.cache
 C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.csproj.CoreCompileInputs.cache
-C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clin.B0B5140E.Up2Date
 C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.dll
 C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.pdb
 D:\TUP\Programacion III\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\bin\TPC_Clinica.dll.config
@@ -309,3 +308,4 @@ C:\Users\Johann\Desktop\TUP2\Programacion III\TPC_equipo-11A\TPC_Clinica\TPC_Cli
 C:\Users\Johann\Desktop\TUP2\Programacion III\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clin.B0B5140E.Up2Date
 C:\Users\Johann\Desktop\TUP2\Programacion III\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.dll
 C:\Users\Johann\Desktop\TUP2\Programacion III\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.pdb
+C:\TPC_equipo-11A\TPC_Clinica\TPC_Clinica\obj\Debug\TPC_Clinica.csproj.CopyComplete
