@@ -526,5 +526,97 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Turno> ListarTurnoPorDNI(string dni, int idEstado, int idMedico, int idEspecialidad)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta(@"SELECT 
+                    t.idTurno,
+                    t.fecha,
+                    t.hora,
+                    t.Observaciones,
+                    t.Diagnostico,
+                    m.Nombre + ' ' + m.Apellido AS Medico,
+                    e.Descripcion AS Especialidad,
+                    est.Descripcion AS Estado,
+                    p.Nombre AS NombrePaciente,
+                    p.Apellido AS ApellidoPaciente,
+                    p.Email AS EmailPaciente,
+                    DNI = dni
+                FROM Turno t
+                INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
+                INNER JOIN Medico m ON m.idMedico = t.idMedico
+                LEFT JOIN ESPECIALIDADES_MEDICOS em ON em.idMedico = m.idMedico
+                LEFT JOIN Especialidad e ON e.idEspecialidad = em.idEspecialidad
+                INNER JOIN Estado est ON est.idEstado = t.idEstado
+                WHERE p.DNI = @DNI
+                    AND (@idEstado = 0 OR t.idEstado = @idEstado)
+                    AND (@idMedico = 0 OR m.idMedico = @idMedico)
+                    AND (@idEspecialidad = 0 OR e.idEspecialidad = @idEspecialidad)
+                ORDER BY t.fecha ASC, t.hora ASC");
+
+                datos.setearParametros("@DNI", dni);
+                datos.setearParametros("@idEstado", idEstado);
+                datos.setearParametros("@idMedico", idMedico);
+                datos.setearParametros("@idEspecialidad", idEspecialidad);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno t = new Turno();
+                    t.NroTurno = datos.Lector["idTurno"].ToString();
+                    t.Fecha = (DateTime)datos.Lector["fecha"];
+                    t.Hora = (TimeSpan)datos.Lector["hora"];
+                    t.Observaciones = datos.Lector["Observaciones"] != DBNull.Value ? datos.Lector["Observaciones"].ToString() : "";
+                    t.Diagnostico = datos.Lector["Diagnostico"] != DBNull.Value ? datos.Lector["Diagnostico"].ToString() : "";
+
+
+
+                    t.Medico = new Medico
+                    {
+                        Nombre = datos.Lector["Medico"].ToString()
+                    };
+
+                    t.Medico.Especialidad = new List<Especialidad>
+                    {
+                        new Especialidad
+                        {
+                            Descripcion = datos.Lector["Especialidad"].ToString()
+                        }
+                    };
+
+                    t.Estado = new Estado
+                    {
+                        Descripcion = datos.Lector["Estado"].ToString()
+                    };
+                    t.Paciente = new Paciente
+                    {
+                        Nombre = datos.Lector["NombrePaciente"].ToString(),
+                        Apellido = datos.Lector["ApellidoPaciente"].ToString(),
+                        Email = datos.Lector["EmailPaciente"].ToString(),
+                        DNI = dni
+                    };
+
+
+                    lista.Add(t);
+
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
