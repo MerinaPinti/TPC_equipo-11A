@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ListadoPaciente.aspx.cs" Inherits="TPC_Clinica.ListadoPaciente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>        
+    <style>
         .paciente-list {
             max-width: 70vw;
             margin: 50px auto;
@@ -22,19 +22,19 @@
         <div class="row">
             <div class="col">
                 <asp:Button ID="btnAgregar" CssClass="btn btn-primary" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-                
-                <asp:GridView ID="dgvPacientes" 
-                              DataKeyNames="DNI" 
-                              OnRowCommand="dgvPacientes_RowCommand" 
-                              runat="server" 
-                              AutoGenerateColumns="false" 
-                              CssClass="table mt-3">
+
+                <asp:GridView ID="dgvPacientes"
+                    DataKeyNames="DNI"
+                    OnRowCommand="dgvPacientes_RowCommand"
+                    runat="server"
+                    AutoGenerateColumns="false"
+                    CssClass="table mt-3">
                     <Columns>
                         <asp:BoundField HeaderText="DNI" DataField="DNI" />
-                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" /> 
-                        <asp:BoundField HeaderText="Apellido" DataField="Apellido" /> 
-                        <asp:BoundField HeaderText="Email" DataField="Email" /> 
-                        
+                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                        <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                        <asp:BoundField HeaderText="Email" DataField="Email" />
+
                         <asp:TemplateField>
                             <ItemStyle HorizontalAlign="Right" />
                             <ItemTemplate>
@@ -43,16 +43,29 @@
                                     CommandName="Editar"
                                     ToolTip="Editar"
                                     CommandArgument='<%# Container.DataItemIndex %>'
-                                    Style="width: 17px; height: 17px; margin:0 4px"/>
+                                    Style="width: 17px; height: 17px; margin: 0 4px" />
                                 <asp:ImageButton ID="btnEliminar" runat="server"
                                     ImageUrl="https://cdn3.iconfinder.com/data/icons/font-awesome-solid/512/trash-can-256.png"
                                     CommandName="Eliminar"
                                     ToolTip="Eliminar"
                                     CommandArgument='<%# Container.DataItemIndex %>'
-                                    Style="width: 17px; height: 17px; margin:0 4px;"
-                                    OnClientClick="return confirm('¿Estás seguro que quieres eliminar este paciente?');"/> 
+                                    Style="width: 17px; height: 17px; margin: 0 4px;"
+                                    OnClientClick="return confirm('¿Estás seguro que quieres eliminar este paciente?');" />
                             </ItemTemplate>
                         </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                <asp:GridView ID="dgvPacientesMedico"
+                    DataKeyNames="DNI"
+                    runat="server"
+                    AutoGenerateColumns="false"
+                    CssClass="table mt-3">
+                    <Columns>
+                        <asp:BoundField HeaderText="DNI" DataField="DNI" />
+                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                        <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                        <asp:BoundField DataField="FechaNac" HeaderText="Fecha de Nacimiento"
+                            DataFormatString="{0:dd/MM/yyyy}" HtmlEncode="false" />
                     </Columns>
                 </asp:GridView>
             </div>

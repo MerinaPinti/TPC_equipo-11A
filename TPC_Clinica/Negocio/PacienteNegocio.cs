@@ -139,6 +139,39 @@ namespace Negocio
             }
         }
 
+        public List<Paciente> listarPacientesPorMedico(int idMedico)
+        {
+            List<Paciente> lista = new List<Paciente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT P.nombre, P.apellido, P.DNI, P.fechaNac FROM TURNO T INNER JOIN Paciente P ON T.idPaciente = P.idPaciente WHERE T.idMedico = @idMedico AND T.activo = 1 AND P.activo = 1");
+                datos.setearParametros("@idMedico", idMedico);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Paciente paciente = new Paciente();
+                    paciente.DNI = datos.Lector["DNI"].ToString();
+                    paciente.Nombre = datos.Lector["Nombre"].ToString();
+                    paciente.Apellido = datos.Lector["Apellido"].ToString();
+                    paciente.FechaNac = (DateTime)datos.Lector["FechaNac"];
+                    lista.Add(paciente);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void eliminarLogico(string DNI)
         {
             try

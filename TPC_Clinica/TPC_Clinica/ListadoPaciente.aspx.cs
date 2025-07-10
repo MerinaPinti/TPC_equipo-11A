@@ -1,4 +1,5 @@
-﻿using Negocio;
+using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace TPC_Clinica
 {
     public partial class ListadoPaciente : System.Web.UI.Page
     {
+        Usuario usuario;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+            usuario = (Usuario)Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            if (usuario == null)
             {
-                Session["error"] = "Debe iniciar sesión con permisos para acceder a esta página.";
+                Session["error"] = "No tiene permisos para acceder a esta página.";
                 Response.Redirect("Error.aspx", true);
             }
             Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
@@ -28,8 +31,23 @@ namespace TPC_Clinica
         private void cargarPacientes()
         {
             PacienteNegocio negocio = new PacienteNegocio();
-            dgvPacientes.DataSource = negocio.listarPacientes();
-            dgvPacientes.DataBind();
+            if (usuario.TipoUsuario.Id == 3)
+            {
+                btnAgregar.Visible = false;
+                Medico medico = (Medico)Session["medico"];
+                dgvPacientesMedico.Visible = true;
+                dgvPacientes.Visible = false;
+                dgvPacientesMedico.DataSource = negocio.listarPacientesPorMedico(medico.IdMedico);
+                dgvPacientesMedico.DataBind();
+            }
+            else
+            {
+                dgvPacientesMedico.Visible = false;
+                dgvPacientes.Visible = true;
+                dgvPacientes.DataSource = negocio.listarPacientes();
+                dgvPacientes.DataBind();
+            }
+
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
