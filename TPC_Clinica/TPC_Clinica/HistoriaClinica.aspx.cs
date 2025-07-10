@@ -72,7 +72,8 @@ namespace TPC_Clinica
                     return;
                 }
             }
-            lblErrorDNI.Visible = false;    
+            lblErrorDNI.Visible = false;
+            txtDNI.CssClass = "form-control";
             string dni = txtDNI.Text.Trim();
             int idMedico = int.Parse(ddlMedico.SelectedValue);
             int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
