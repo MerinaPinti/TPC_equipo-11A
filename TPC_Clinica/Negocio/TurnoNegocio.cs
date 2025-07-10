@@ -199,7 +199,8 @@ namespace Negocio
                     INNER JOIN Estado E ON T.idEstado = E.idEstado
                     INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
                     WHERE T.activo = 1
-                    AND P.DNI = @dni"
+                    AND P.DNI = @dni
+                    ORDER BY fecha"
                 );
                 datos.setearParametros("@dni", dni);
                 datos.ejecutarLectura();
