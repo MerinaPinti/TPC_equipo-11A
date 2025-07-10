@@ -58,6 +58,21 @@ namespace TPC_Clinica
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtDNI.Text)){
+                lblErrorDNI.Text = "Se debe ingresar un DNI para la búsqueda.";
+                txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                return;
+            }
+            else
+            {
+                if(txtDNI.Text.Length > 8)
+                {
+                    lblErrorDNI.Text = "El DNI no puede superar los 8 caracteres.";
+                    txtDNI.CssClass = "form-control form-control-lg mx-auto is-invalid";
+                    return;
+                }
+            }
+            lblErrorDNI.Visible = false;    
             string dni = txtDNI.Text.Trim();
             int idMedico = int.Parse(ddlMedico.SelectedValue);
             int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
