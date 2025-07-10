@@ -25,6 +25,7 @@
 
                 <asp:GridView ID="dgvPacientes"
                     DataKeyNames="DNI"
+                    OnRowDataBound="dgvPacientes_RowDataBound"
                     OnRowCommand="dgvPacientes_RowCommand"
                     runat="server"
                     AutoGenerateColumns="false"
@@ -34,10 +35,18 @@
                         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                         <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
                         <asp:BoundField HeaderText="Email" DataField="Email" />
+                        <asp:BoundField DataField="FechaNac" HeaderText="Fecha de Nacimiento"
+                            DataFormatString="{0:dd/MM/yyyy}" HtmlEncode="false" />
 
                         <asp:TemplateField>
                             <ItemStyle HorizontalAlign="Right" />
                             <ItemTemplate>
+                                <asp:ImageButton ID="btnHistoriaClinica" runat="server"
+                                    ImageUrl="https://cdn1.iconfinder.com/data/icons/documents-and-paper/100/clipboard-256.png"
+                                    CommandName="HistoriaClinica"
+                                    ToolTip="Historia Clinica"
+                                    CommandArgument='<%# Container.DataItemIndex %>'
+                                    Style="width: 17px; height: 17px; margin: 0 4px" />
                                 <asp:ImageButton ID="btnModificar" runat="server"
                                     ImageUrl="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png"
                                     CommandName="Editar"
@@ -53,19 +62,6 @@
                                     OnClientClick="return confirm('¿Estás seguro que quieres eliminar este paciente?');" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-                <asp:GridView ID="dgvPacientesMedico"
-                    DataKeyNames="DNI"
-                    runat="server"
-                    AutoGenerateColumns="false"
-                    CssClass="table mt-3">
-                    <Columns>
-                        <asp:BoundField HeaderText="DNI" DataField="DNI" />
-                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                        <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-                        <asp:BoundField DataField="FechaNac" HeaderText="Fecha de Nacimiento"
-                            DataFormatString="{0:dd/MM/yyyy}" HtmlEncode="false" />
                     </Columns>
                 </asp:GridView>
             </div>

@@ -165,6 +165,105 @@ namespace Negocio
             }
         }
 
+        public List<Turno> ListarTurnos(string dni)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+                    SELECT 
+                        T.idTurno,
+                        T.fecha,
+                        T.hora,
+                        T.observaciones,
+                        T.diagnostico,
+                        T.fechaAlta,
+                        T.ultimaModificacion,
+                        ES.descripcion AS Especialidad,
+                        T.activo,
+                        P.idPaciente,
+                        P.nombre AS NombrePaciente,
+                        P.apellido AS ApellidoPaciente,
+                        M.idMedico,
+                        M.nombre AS NombreMedico,
+                        M.apellido AS ApellidoMedico,
+                        E.idEstado,
+                        E.descripcion AS EstadoDescripcion,
+                        ES.idEspecialidad,
+                        ES.descripcion AS Especilidad
+                    FROM Turno T
+                    INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
+                    INNER JOIN Medico M ON T.idMedico = M.idMedico
+                    INNER JOIN Estado E ON T.idEstado = E.idEstado
+                    INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
+                    WHERE T.activo = 1
+                    AND P.DNI = @dni"
+                );
+                datos.setearParametros("@dni", dni);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno turno = new Turno();
+                    turno.NroTurno = datos.Lector["idTurno"].ToString();
+                    turno.Fecha = (DateTime)datos.Lector["fecha"];
+                    turno.Hora = (TimeSpan)datos.Lector["hora"];
+                    turno.Observaciones = datos.Lector["observaciones"]?.ToString();
+                    turno.Diagnostico = datos.Lector["diagnostico"]?.ToString();
+
+                    if (datos.Lector["fechaAlta"] != DBNull.Value)
+                        turno.FinTurno = (DateTime)datos.Lector["fechaAlta"];
+
+                    if (datos.Lector["ultimaModificacion"] != DBNull.Value)
+                        turno.UltimaModificacion = (DateTime)datos.Lector["ultimaModificacion"];
+
+
+                    turno.Estado = new Estado
+                    {
+                        Id = (int)datos.Lector["idEstado"],
+                        Descripcion = datos.Lector["EstadoDescripcion"].ToString()
+                    };
+
+
+                    turno.Paciente = new Paciente
+                    {
+                        IdPaciente = (int)datos.Lector["idPaciente"],
+                        Nombre = datos.Lector["NombrePaciente"].ToString(),
+                        Apellido = datos.Lector["ApellidoPaciente"].ToString()
+                    };
+
+                    turno.Especialidad = new Especialidad
+                    {
+                        Descripcion = (string)datos.Lector["Especialidad"],
+                        Id = (int)datos.Lector["idEspecialidad"]
+                    };
+
+                    turno.Medico = new Medico
+                    {
+                        IdMedico = (int)datos.Lector["idMedico"],
+                        Nombre = datos.Lector["NombreMedico"].ToString(),
+                        Apellido = datos.Lector["ApellidoMedico"].ToString()
+                    };
+
+                    turno.Activo = (bool)datos.Lector["activo"];
+
+                    lista.Add(turno);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void eliminarLogicoTurno(int idTurno)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -35,15 +35,12 @@ namespace TPC_Clinica
             {
                 btnAgregar.Visible = false;
                 Medico medico = (Medico)Session["medico"];
-                dgvPacientesMedico.Visible = true;
-                dgvPacientes.Visible = false;
-                dgvPacientesMedico.DataSource = negocio.listarPacientesPorMedico(medico.IdMedico);
-                dgvPacientesMedico.DataBind();
+                dgvPacientes.Columns[3].Visible = false;
+                dgvPacientes.DataSource = negocio.listarPacientesPorMedico(medico.IdMedico);
+                dgvPacientes.DataBind();
             }
             else
             {
-                dgvPacientesMedico.Visible = false;
-                dgvPacientes.Visible = true;
                 dgvPacientes.DataSource = negocio.listarPacientes();
                 dgvPacientes.DataBind();
             }
@@ -73,6 +70,30 @@ namespace TPC_Clinica
             {
                 Session.Add("DniModificarPaciente", dni);
                 Response.Redirect("AltaPaciente.aspx", true);
+            }
+
+            if (e.CommandName == "HistoriaClinica")
+            {
+                Session.Add("DniHistoriaClinica", dni);
+                Session.Add("BuscarPorPaciente", true);
+                Response.Redirect("HistoriaClinica.aspx", true);
+            }
+        }
+
+        protected void dgvPacientes_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int tipoUsuario = ((Usuario)Session["usuario"]).TipoUsuario.Id;
+
+                ImageButton btnModificar = (ImageButton)e.Row.FindControl("btnModificar");
+                ImageButton btnEliminar = (ImageButton)e.Row.FindControl("btnEliminar");
+
+                if (tipoUsuario == 3)
+                {
+                    if (btnModificar != null) btnModificar.Visible = false;
+                    if (btnEliminar != null) btnEliminar.Visible = false;
+                }
             }
         }
     }

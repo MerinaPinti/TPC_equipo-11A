@@ -1,4 +1,4 @@
-﻿//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // <generado automáticamente>
 //     Este código fue generado por una herramienta.
 //
@@ -13,6 +13,15 @@ namespace TPC_Clinica
 
     public partial class HistoriaClinica
     {
+
+        /// <summary>
+        /// Control divHeader.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHeader;
 
         /// <summary>
         /// Control txtDNI.
@@ -60,12 +69,12 @@ namespace TPC_Clinica
         protected global::System.Web.UI.WebControls.Label lblSinTurnos;
 
         /// <summary>
-        /// Control gvResultados.
+        /// Control repeaterCard.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvResultados;
+        protected global::System.Web.UI.WebControls.Repeater repeaterCard;
     }
 }

@@ -87,6 +87,7 @@
     <Content Include="Inicio.aspx" />
     <Content Include="ListadoEspecialidades.aspx" />
     <Content Include="ListadoEstados.aspx" />
+    <Content Include="ListadoHistoriaClinica.aspx" />
     <Content Include="ListadoMedicos.aspx" />
     <Content Include="ListadoPaciente.aspx" />
     <Content Include="ListadoTipoUsuario.aspx" />
@@ -237,6 +238,13 @@
     </Compile>
     <Compile Include="ListadoEstados.aspx.designer.cs">
       <DependentUpon>ListadoEstados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoHistoriaClinica.aspx.cs">
+      <DependentUpon>ListadoHistoriaClinica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoHistoriaClinica.aspx.designer.cs">
+      <DependentUpon>ListadoHistoriaClinica.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoMedicos.aspx.cs">
       <DependentUpon>ListadoMedicos.aspx</DependentUpon>

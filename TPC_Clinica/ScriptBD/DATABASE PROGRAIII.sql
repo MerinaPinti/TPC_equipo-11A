@@ -129,10 +129,11 @@ INSERT INTO Especialidad (descripcion) VALUES
 GO
 
 -- ESTADOS DE TURNOS
-INSERT INTO Estado (descripcion) VALUES ('Pendiente');
-INSERT INTO Estado (descripcion) VALUES ('Confirmado');
-INSERT INTO Estado (descripcion) VALUES ('Cancelado');
-INSERT INTO Estado (descripcion) VALUES ('Finalizado');
+INSERT INTO Estado (descripcion) VALUES ('Asignado') ;
+INSERT INTO Estado (descripcion) VALUES('Reprogramado');  
+INSERT INTO Estado (descripcion) VALUES('Cancelado');     
+INSERT INTO Estado (descripcion) VALUES('No Asistió');    
+INSERT INTO Estado (descripcion) VALUES('Cerrado');        
 GO
 
 -- USUARIOS MÉDICOS Y MÉDICOS USUARIO
