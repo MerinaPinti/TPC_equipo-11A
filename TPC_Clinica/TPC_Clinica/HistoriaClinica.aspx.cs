@@ -63,7 +63,7 @@ namespace TPC_Clinica
 
             TurnoNegocio negocio = new TurnoNegocio();
 
-            var lista = negocio.ListarTurnoPorDNI(dni, 4, idMedico, idEspecialidad);
+            var lista = negocio.ListarTurnoPorDNI(dni, 5, idMedico, idEspecialidad);
 
             if (lista != null && lista.Count > 0)
             {
