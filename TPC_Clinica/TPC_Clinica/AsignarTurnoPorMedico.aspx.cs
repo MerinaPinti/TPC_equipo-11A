@@ -1,4 +1,4 @@
-﻿using Dominio;
+using Dominio;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -138,7 +138,11 @@ namespace TPC_Clinica
 
             if (paciente == null)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "noExiste", "alert('El paciente no está registrado. Por favor, registre al paciente antes de asignar un turno.');", true);
+                //Guarda el DNI en sesion
+                Session["DniParaRegistrar"] = dniIngresado;
+
+                // Redirige al alta de paciente
+                Response.Redirect("AltaPaciente.aspx?from=asignacionTurno");
                 return;
             }
 

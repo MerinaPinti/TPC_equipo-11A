@@ -63,6 +63,20 @@ namespace TPC_Clinica
                         lblDNI.ForeColor = System.Drawing.Color.Blue;
                     }
                 }
+
+                //DNI en sesion
+                if (Session["DniParaRegistrar"] != null)
+                {
+                    txtDNI.Text = Session["DniParaRegistrar"].ToString();
+                    Session.Remove("DniParaRegistrar");
+                }
+                //Alerta! para saber que viene de otra pantalla
+                if (Request.QueryString["from"] == "asignacionTurno")
+                {
+                    lblMensaje.Text = "⚠️ Complete los datos para registrar al paciente antes de asignar un turno.";
+                    lblMensaje.CssClass = "alert alert-info";
+                    lblMensaje.Visible = true;
+                }
             }
         }
 

@@ -84,6 +84,9 @@ namespace TPC_Clinica
             lblErrorDNI.Visible = false;
             txtDNI.CssClass = "form-control";
             string dni = txtDNI.Text.Trim();
+
+            Session["DniHistoriaClinica"] = dni;
+
             int idMedico = int.Parse(ddlMedico.SelectedValue);
             int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
 

@@ -650,8 +650,7 @@ namespace Negocio
                 FROM Turno t
                 INNER JOIN Paciente p ON p.idPaciente = t.idPaciente
                 INNER JOIN Medico m ON m.idMedico = t.idMedico
-                LEFT JOIN ESPECIALIDADES_MEDICOS em ON em.idMedico = m.idMedico
-                LEFT JOIN Especialidad e ON e.idEspecialidad = em.idEspecialidad
+                INNER JOIN Especialidad e ON e.idEspecialidad = t.idEspecialidad
                 INNER JOIN Estado est ON est.idEstado = t.idEstado
                 WHERE p.DNI = @DNI
                     AND (t.idEstado = 5)

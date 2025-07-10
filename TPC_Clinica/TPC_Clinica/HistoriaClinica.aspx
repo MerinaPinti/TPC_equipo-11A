@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col">
                 <div class="container">
-                    <h3>Historial Clinica</h3>
+                    <h3>Historia Clinica</h3>
 
                     <div class="row g-3" runat="server" id="divHeader">
                         <div class="col-md-4">
@@ -50,6 +50,7 @@
                                         <figcaption class="blockquote-footer"><%# ((Dominio.Turno)Container.DataItem).Especialidad.Descripcion %></figcaption>
                                     </figure>
                                     <p>Fecha: <%# String.Format("{0:dd/MM/yyyy}", Eval("Fecha")) %></p>
+                                    <p>Hora: <%# ((TimeSpan)Eval("Hora")).ToString(@"hh\:mm") %></p>
                                     <p><small>DNI: <%# (string)Session["DniHistoriaClinica"]%></small></p>
                                     <hr />
 

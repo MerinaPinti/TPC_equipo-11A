@@ -140,11 +140,14 @@ namespace TPC_Clinica
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
             Paciente paciente = pacienteNegocio.existePaciente(dniIngresado);
 
-
             //Chekea que el paciente se encuentra registrado 
             if (paciente == null)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "noExiste", "alert('El paciente no está registrado.');", true);
+                //Guarda el DNI en sesion
+                Session["DniParaRegistrar"] = dniIngresado;
+
+                // Redirige al alta de paciente
+                Response.Redirect("AltaPaciente.aspx?from=asignacionTurno");
                 return;
             }
 
@@ -175,8 +178,12 @@ namespace TPC_Clinica
             TurnoNegocio negocio = new TurnoNegocio();
             negocio.agregarTurno(nuevo);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "turnoAsignado",
-                $"alert('Turno asignado correctamente a {paciente.Nombre} {paciente.Apellido}.');", true);
+            string script = $@"
+                alert('✅ Turno asignado correctamente a {paciente.Nombre} {paciente.Apellido}.');
+                window.location.href = 'AsignarTurnoPorMedico.aspx';
+            ";
+            ScriptManager.RegisterStartupScript(this, GetType(), "turnoAsignado", script, true);
+
 
             //------------------------------ENVIO DE MAIL------------------------------
             string rutaPlantillas = Server.MapPath("~/Templates");
@@ -231,7 +238,7 @@ namespace TPC_Clinica
                 var reemplazos = new Dictionary<string, string>
         {
             { "NOMBRE", turno.Paciente.Nombre + " " + turno.Paciente.Apellido },
-            { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + " a las " + turno.Hora.ToString(@"hh\\:mm") },
+            { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + " a las " + turno.Hora.ToString(@"hh\:mm") },
             { "MEDICO", turno.Medico.Nombre + " " + turno.Medico.Apellido },
         };
 

@@ -1,4 +1,4 @@
-﻿using Negocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -305,9 +305,9 @@ namespace TPC_Clinica
 
         protected void txtMatricula_TextChanged(object sender, EventArgs e)
         {
-            PacienteNegocio negocio = new PacienteNegocio();
-            Paciente paciente = negocio.existePaciente(txtMatricula.Text);
-            if (paciente != null)
+            MedicoNegocio negocio = new MedicoNegocio();
+            Medico medico = negocio.existeMedico(txtMatricula.Text);
+            if (medico != null)
             {
                 lblMatricula.ForeColor = System.Drawing.Color.Red;
                 lblMatricula.Text = "Matricula ya registrada.";

@@ -37,6 +37,7 @@
                     <label for="txtDNI" class="form-label">DNI</label>
                     <asp:TextBox ID="txtDNI" runat="server" AutoPostBack="true" OnTextChanged="txtDNI_DataBinding" CssClass="form-control" placeholder="40123456" />
                     <asp:Label ID="lblDNI" runat="server" CssClass="form-text" />
+                    <asp:Label ID="lblMensaje" runat="server" Visible="false"></asp:Label>
                 </div>
 
                 <div class="mb-3">

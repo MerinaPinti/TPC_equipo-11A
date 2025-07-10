@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -73,6 +73,17 @@ namespace TPC_Clinica
         protected void dgvEstados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             List<Estado> Estadoes = (List<Estado>)Session["estados"];
+
+            Estado estadoAEliminar = Estadoes[e.RowIndex];
+
+            // Bloquear la eliminación de estados con Id <= 5
+            if (estadoAEliminar.Id <= 5)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alerta",
+                    "alert('⚠️ No se puede eliminar este estado porque es esencial para el funcionamiento del sistema.');", true);
+                return;
+            }
+
             Estadoes.RemoveAt(e.RowIndex);
             dgvEstados.DataSource = Estadoes;
             dgvEstados.DataBind();
