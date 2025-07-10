@@ -13,7 +13,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="clinica-list">
+    <div class="clinica-list" style="background-color:#F8F9FA">
         <div class="row">
             <div class="col">
                 <div class="container">
@@ -41,10 +41,8 @@
                     <asp:Label ID="lblSinTurnos" runat="server" CssClass="text-danger d-block mt-2" Text="🔍 No se encontraron turnos asignados al paciente."></asp:Label>
                     <asp:Repeater ID="repeaterCard" runat="server">
                         <ItemTemplate>
-                            <div class="card mt-4">
-                                <div class="card-header" style="background-color: #CFE2FF;">
-                                </div>
-                                <div class="card-body" style="background-color: #F8F9FA;">
+                            <div class="card mt-4" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+                                <div class="card-body">
                                     <figure>
                                         <blockquote class="blockquote">
                                             <h3><strong><%# ((Dominio.Turno)Container.DataItem).Paciente.Nombre + " " + ((Dominio.Turno)Container.DataItem).Paciente.Apellido %></strong></h3>
