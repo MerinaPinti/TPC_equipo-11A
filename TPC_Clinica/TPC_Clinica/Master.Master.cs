@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,6 +30,8 @@ namespace TPC_Clinica
                         hlTurnos.Visible = true;
                         hlUsuarios.Visible = true;
                         hpMeraki.NavigateUrl = "~/Inicio.aspx";
+                        hlCambiarClave.Visible = true;
+                        hlHistoriaClinica.Visible = true;
                         break;
                     case 2:
                         hlEspecialidades.Visible = true;
@@ -37,6 +39,8 @@ namespace TPC_Clinica
                         hlPacientes.Visible = true;
                         hlTurnos.Visible = true;
                         hpMeraki.NavigateUrl = "~/Inicio.aspx";
+                        hlCambiarClave.Visible = true;
+                        hlHistoriaClinica.Visible = true;
                         break;
                     case 3:
                         hlTurnos.Visible = true;
@@ -46,6 +50,8 @@ namespace TPC_Clinica
                         hlTurnos.NavigateUrl = "VerTurnoMedico.aspx";
                         hpMeraki.NavigateUrl = "~/Inicio.aspx";
                         hlHorarios.Visible = true;
+                        hlCambiarClave.Visible = true;
+                        hlHistoriaClinica.Visible = true;
                         break;
                     default:
                         hlEspecialidades.Visible = false;
@@ -55,6 +61,8 @@ namespace TPC_Clinica
                         hlTipoUsuario.Visible = false;
                         hlTurnos.Visible = false;
                         hlUsuarios.Visible = false;
+                        hlCambiarClave.Visible = false;
+                        hlHistoriaClinica.Visible = false;
                         break;
                 }
 
@@ -67,6 +75,5 @@ namespace TPC_Clinica
             Session.Abandon();
             Response.Redirect("Default.aspx"); 
         }
-
     }
 }

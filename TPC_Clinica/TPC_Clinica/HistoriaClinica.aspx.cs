@@ -53,6 +53,7 @@ namespace TPC_Clinica
                     }
                 }
             }
+            Session.Remove("buscarPorPaciente");
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -63,7 +64,7 @@ namespace TPC_Clinica
 
             TurnoNegocio negocio = new TurnoNegocio();
 
-            var lista = negocio.ListarTurnoPorDNI(dni, 5, idMedico, idEspecialidad);
+            var lista = negocio.ListarTurnoPorDNI(dni, idMedico, idEspecialidad);
 
             if (lista != null && lista.Count > 0)
             {

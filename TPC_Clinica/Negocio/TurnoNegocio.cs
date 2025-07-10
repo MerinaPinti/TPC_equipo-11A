@@ -626,7 +626,7 @@ namespace Negocio
             }
         }
 
-        public List<Turno> ListarTurnoPorDNI(string dni, int idEstado, int idMedico, int idEspecialidad)
+        public List<Turno> ListarTurnoPorDNI(string dni, int idMedico, int idEspecialidad)
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
@@ -639,6 +639,7 @@ namespace Negocio
                     t.Observaciones,
                     t.Diagnostico,
                     m.Nombre + ' ' + m.Apellido AS Medico,
+                    e.idEspecialidad,
                     e.Descripcion AS Especialidad,
                     est.Descripcion AS Estado,
                     p.Nombre AS NombrePaciente,
@@ -652,13 +653,12 @@ namespace Negocio
                 LEFT JOIN Especialidad e ON e.idEspecialidad = em.idEspecialidad
                 INNER JOIN Estado est ON est.idEstado = t.idEstado
                 WHERE p.DNI = @DNI
-                    AND (@idEstado = 0 OR t.idEstado = @idEstado)
+                    AND (t.idEstado = 5)
                     AND (@idMedico = 0 OR m.idMedico = @idMedico)
                     AND (@idEspecialidad = 0 OR e.idEspecialidad = @idEspecialidad)
                 ORDER BY t.fecha ASC, t.hora ASC");
 
                 datos.setearParametros("@DNI", dni);
-                datos.setearParametros("@idEstado", idEstado);
                 datos.setearParametros("@idMedico", idMedico);
                 datos.setearParametros("@idEspecialidad", idEspecialidad);
 
@@ -680,12 +680,10 @@ namespace Negocio
                         Nombre = datos.Lector["Medico"].ToString()
                     };
 
-                    t.Medico.Especialidad = new List<Especialidad>
+                    t.Especialidad = new Especialidad
                     {
-                        new Especialidad
-                        {
-                            Descripcion = datos.Lector["Especialidad"].ToString()
-                        }
+                        Id = (int)datos.Lector["idEspecialidad"],
+                        Descripcion = datos.Lector["Especialidad"].ToString()
                     };
 
                     t.Estado = new Estado
