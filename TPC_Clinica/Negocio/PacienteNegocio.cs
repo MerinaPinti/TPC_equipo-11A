@@ -80,7 +80,7 @@ namespace Negocio
                 if (datos.Lector.Read())
                 {
                     paciente = new Paciente();
-                    paciente.IdPaciente = (int)datos.Lector["idPaciente"]; 
+                    paciente.IdPaciente = (int)datos.Lector["idPaciente"];
                     paciente.DNI = datos.Lector["DNI"].ToString();
                     paciente.Nombre = datos.Lector["Nombre"].ToString();
                     paciente.Apellido = datos.Lector["Apellido"].ToString();
@@ -109,7 +109,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion, Activo FROM Paciente WHERE Activo = 1");
+                datos.setearConsulta("SELECT idPaciente, DNI, Nombre, Apellido, FechaNac, Telefono, Email, Direccion, Activo FROM Paciente WHERE Activo = 1");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -123,6 +123,7 @@ namespace Negocio
                     paciente.Email = datos.Lector["Email"].ToString();
                     paciente.Direccion = datos.Lector["Direccion"].ToString();
                     paciente.Activo = (bool)datos.Lector["Activo"];
+                    paciente.IdPaciente = (int)datos.Lector["idPaciente"];
 
                     lista.Add(paciente);
                 }
@@ -146,7 +147,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT DISTINCT P.nombre, P.apellido, P.DNI, P.fechaNac FROM TURNO T INNER JOIN Paciente P ON T.idPaciente = P.idPaciente WHERE T.idMedico = @idMedico AND T.activo = 1 AND P.activo = 1");
+                datos.setearConsulta("SELECT DISTINCT P.idPaciente, P.nombre, P.apellido, P.DNI, P.fechaNac FROM TURNO T INNER JOIN Paciente P ON T.idPaciente = P.idPaciente WHERE T.idMedico = @idMedico AND T.activo = 1 AND P.activo = 1");
                 datos.setearParametros("@idMedico", idMedico);
                 datos.ejecutarLectura();
 
@@ -157,6 +158,7 @@ namespace Negocio
                     paciente.Nombre = datos.Lector["Nombre"].ToString();
                     paciente.Apellido = datos.Lector["Apellido"].ToString();
                     paciente.FechaNac = (DateTime)datos.Lector["FechaNac"];
+                    paciente.IdPaciente = (int)datos.Lector["idPaciente"];
                     lista.Add(paciente);
                 }
 
@@ -190,10 +192,31 @@ namespace Negocio
             }
         }
 
+        public bool enUso(int idPaciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                Especialidad esp = new Especialidad();
+                datos.setearConsulta("SELECT 1 FROM Paciente P INNER JOIN Turno T ON P.idPaciente = T.idPaciente WHERE (T.idPaciente = @idPaciente AND T.activo = 1)");
+                datos.setearParametros("@idPaciente", idPaciente);
+                datos.ejecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    return true;
+                }
 
-        
-
-
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

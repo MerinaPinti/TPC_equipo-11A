@@ -10,6 +10,10 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
+
+        .transparente {
+            opacity: 0.3;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -31,6 +35,7 @@
                     AutoGenerateColumns="false"
                     CssClass="table mt-3">
                     <Columns>
+                        <asp:BoundField HeaderText="Id" DataField="idPaciente"/>
                         <asp:BoundField HeaderText="DNI" DataField="DNI" />
                         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                         <asp:BoundField HeaderText="Apellido" DataField="Apellido" />

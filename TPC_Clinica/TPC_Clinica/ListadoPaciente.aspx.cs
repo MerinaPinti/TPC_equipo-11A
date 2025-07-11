@@ -35,7 +35,7 @@ namespace TPC_Clinica
             {
                 btnAgregar.Visible = false;
                 Medico medico = (Medico)Session["medico"];
-                dgvPacientes.Columns[3].Visible = false;
+                dgvPacientes.Columns[4].Visible = false;
                 dgvPacientes.DataSource = negocio.listarPacientesPorMedico(medico.IdMedico);
                 dgvPacientes.DataBind();
             }
@@ -82,12 +82,21 @@ namespace TPC_Clinica
 
         protected void dgvPacientes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            PacienteNegocio negocio = new PacienteNegocio();
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 int tipoUsuario = ((Usuario)Session["usuario"]).TipoUsuario.Id;
 
                 ImageButton btnModificar = (ImageButton)e.Row.FindControl("btnModificar");
                 ImageButton btnEliminar = (ImageButton)e.Row.FindControl("btnEliminar");
+                Paciente paciente = (Paciente)e.Row.DataItem;
+
+                if (negocio.enUso(paciente.IdPaciente))
+                {
+                    btnEliminar.CommandName = "";
+                    btnEliminar.CssClass = "transparente";
+                    btnEliminar.OnClientClick = "return alert('No se puede eliminar este paciente ya que se encuentra en uso');";
+                }
 
                 if (tipoUsuario == 3)
                 {
