@@ -72,8 +72,8 @@
                     <strong>¡Aviso!</strong> Al crear un médico, también se generará automáticamente un usuario asociado.
             <br />
                     Para ingresar al sistema:<br />
-                    - <strong>Usuario:</strong> número de DNI del médico<br />
-                    - <strong>Contraseña inicial:</strong> mismo número de DNI<br />
+                    - <strong>Usuario:</strong> número de Matricula del médico<br />
+                    - <strong>Contraseña inicial:</strong> mismo número de Matricula<br />
                     <em>Se recomienda cambiar la contraseña en el primer ingreso.</em>
                 </div>
 

@@ -367,6 +367,23 @@ namespace Negocio
                 datos.setearParametros("@id", id);
                 datos.ejecutarAccion();
 
+                //Traemos el idUser
+                datos = new AccesoDatos();
+                datos.setearConsulta("SELECT idUsuario FROM Medico WHERE idMedico = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarLectura();
+
+                //Borramos el usuario
+                while (datos.Lector.Read())
+                {
+                    int  idUsuario = (int)datos.Lector["idUsuario"];
+                    datos = new AccesoDatos();
+                    datos.setearConsulta("UPDATE Usuario SET activo = 0 WHERE idUsuario = @idUser");
+                    datos.setearParametros("@idUser", idUsuario);
+                    datos.ejecutarLectura();
+                }
+
+
                 //EN EL FUTURO DEBERÍAMOS BORRAR LOS TURNOS ASIGNADOS TAMBIÉN. 
             }
             catch (Exception ex)
