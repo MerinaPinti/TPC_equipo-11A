@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -184,6 +185,33 @@ namespace Negocio
                 }
 
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public bool enUso(int idEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                Especialidad esp = new Especialidad();
+                datos.setearConsulta("SELECT 1 FROM Especialidad E INNER JOIN Turno T ON E.idEspecialidad = T.idEspecialidad INNER JOIN HorarioAtencion HA ON E.idEspecialidad = HA.idEspecialidad INNER JOIN Especialidades_Medicos EM ON E.idEspecialidad = EM.IDESPECIALIDAD INNER JOIN Medico M ON EM.IDMEDICO = M.idMedico WHERE E.activo = 1 AND T.activo = 1 AND HA.activo = 1 AND EM.Activo = 1 AND E.idEspecialidad = @idEspecialidad");
+                datos.setearParametros("@idEspecialidad", idEspecialidad);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    return true;
+                }
+
+                return false;
             }
             catch (Exception ex)
             {

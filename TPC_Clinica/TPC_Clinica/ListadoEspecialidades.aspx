@@ -29,7 +29,14 @@
                     </Columns>
                 </asp:GridView>--%>
 
-                <asp:GridView ID="dgvEspecialidades" DataKeyNames="Id" OnRowCommand="dgvEspecialidades_RowCommand" runat="server" AutoGenerateColumns="false" CssClass="table">
+                <asp:GridView 
+                    ID="dgvEspecialidades" 
+                    DataKeyNames="Id" 
+                    OnRowCommand="dgvEspecialidades_RowCommand" 
+                    OnRowDataBound="dgvEspecialidades_RowDataBound"
+                    runat="server" 
+                    AutoGenerateColumns="false" 
+                    CssClass="table">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" />
                         <asp:BoundField HeaderText="Especialidad" DataField="descripcion" />

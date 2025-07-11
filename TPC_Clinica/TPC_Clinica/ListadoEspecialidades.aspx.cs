@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -53,6 +53,30 @@ namespace TPC_Clinica
             {
                 Session.Add("IdModificarEspecialidad", id);
                 Response.Redirect("AltaEspecialidad.aspx", true);
+            }
+        }
+
+        protected void dgvEspecialidades_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int tipoUsuario = ((Usuario)Session["usuario"]).TipoUsuario.Id;
+
+                ImageButton btnModificar = (ImageButton)e.Row.FindControl("btnModificar");
+                ImageButton btnEliminar = (ImageButton)e.Row.FindControl("btnEliminar");
+                Especialidad especialidad = (Especialidad)e.Row.DataItem;
+
+                if (tipoUsuario == 3)
+                {
+                    if (btnModificar != null) btnModificar.Visible = false;
+                    if (btnEliminar != null) btnEliminar.Visible = false;
+                }
+
+                if (negocio.enUso(especialidad.Id))
+                {
+                    if (btnEliminar != null) btnEliminar.Visible = false;
+                }
             }
         }
     }
