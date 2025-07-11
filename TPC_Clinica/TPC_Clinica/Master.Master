@@ -79,8 +79,9 @@
                             <li class="nav-item"><asp:HyperLink ID="hlTipoUsuario" CssClass="nav-link active" NavigateUrl="~/ListadoTipoUsuario.aspx" Visible="false" runat="server">Tipo Usuario</asp:HyperLink></li>
                             <li class="nav-item"><asp:HyperLink ID="hlEstados" CssClass="nav-link active" NavigateUrl="~/ListadoEstados.aspx" Visible="false" runat="server">Estados</asp:HyperLink></li>
                             <li class="nav-item"><asp:HyperLink ID="hlHorarios" CssClass="nav-link active" NavigateUrl="~/HorarioMedico.aspx" Visible="false" runat="server">Mis horarios</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlCambiarClave" CssClass="nav-link active" NavigateUrl="~/CambiarClaveDeUsuario.aspx" Visible="false" runat="server"> Cambiar contraseña </asp:HyperLink></li>
                             <li class="nav-item"><asp:HyperLink ID="hlHistoriaClinica" CssClass="nav-link active" NavigateUrl="~/HistoriaClinica.aspx" Visible="false" runat="server"> Historia Clinica </asp:HyperLink></li>
+                            <li class="nav-item"><asp:HyperLink ID="hlCambiarClave" CssClass="nav-link active" NavigateUrl="~/CambiarClaveDeUsuario.aspx" Visible="false" runat="server"> Cambiar contraseña </asp:HyperLink></li>
+                            
 
                         </ul>
                         <ul class="navbar-nav">
