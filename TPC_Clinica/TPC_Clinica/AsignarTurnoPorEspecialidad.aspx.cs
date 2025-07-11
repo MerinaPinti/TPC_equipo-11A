@@ -178,10 +178,13 @@ namespace TPC_Clinica
             TurnoNegocio negocio = new TurnoNegocio();
             negocio.agregarTurno(nuevo);
 
+            // Confirmación 
             string script = $@"
-                alert('✅ Turno asignado correctamente a {paciente.Nombre} {paciente.Apellido}.');
-                window.location.href = 'AsignarTurnoPorMedico.aspx';
-            ";
+    alert('Turno asignado correctamente a {paciente.Nombre} {paciente.Apellido}.');
+    if (window.calendar) {{
+        window.calendar.refetchEvents();
+    }}
+";
             ScriptManager.RegisterStartupScript(this, GetType(), "turnoAsignado", script, true);
 
 
@@ -213,8 +216,7 @@ namespace TPC_Clinica
             hfFechaTurno.Value = "";
             hfHoraTurno.Value = "";
 
-            Session.Remove("DNI_Reasignacion");
-            Response.Redirect("AsignarTurno2.aspx", true);
+            
         }
 
 
