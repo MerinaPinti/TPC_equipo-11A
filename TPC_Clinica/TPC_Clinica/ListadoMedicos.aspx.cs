@@ -1,4 +1,4 @@
-﻿using Dominio;
+using Dominio;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -55,6 +55,35 @@ namespace TPC_Clinica
                 Session["IdModificarMedico"] = id;
                 Response.Redirect("AltaMedico.aspx", true);
             }
+        }
+
+        protected void gvMedico_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            MedicoNegocio negocio = new MedicoNegocio();
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int tipoUsuario = ((Usuario)Session["usuario"]).TipoUsuario.Id;
+
+                ImageButton btnModificar = (ImageButton)e.Row.FindControl("btnModificar");
+                ImageButton btnEliminar = (ImageButton)e.Row.FindControl("btnEliminar");
+                Medico medico = (Medico)e.Row.DataItem;
+
+                if (negocio.ExisteTurnoDeMedico(medico.IdMedico))
+                {
+                    btnEliminar.CommandName = "";
+                    btnEliminar.CssClass = "transparente";
+                    btnEliminar.OnClientClick = "return alert('No se puede eliminar esta especialidad ya que, actualmente se encuentra en uso');";
+                }
+
+                //Para que al doc no le aparezca el botón de eliminar y modificar. 
+                if (tipoUsuario == 3)
+                {
+                    if (btnModificar != null) btnModificar.Visible = false;
+                    if (btnEliminar != null) btnEliminar.Visible = false;
+                }
+
+            }
+
         }
     }
 }

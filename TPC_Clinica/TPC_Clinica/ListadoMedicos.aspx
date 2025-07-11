@@ -10,6 +10,10 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
+
+         .transparente {
+     opacity :  0.3;
+ }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,7 +27,7 @@
             <div class="col">
                 <asp:Button ID="btnAgregar" CssClass="btn btn-primary" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
 
-                <asp:GridView ID="gvMedico" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" OnRowCommand="GridView1_RowCommand" DataKeyNames="IdMedico">
+                <asp:GridView ID="gvMedico" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" OnRowCommand="GridView1_RowCommand" DataKeyNames="IdMedico" OnRowDataBound="gvMedico_RowDataBound">
                     <Columns>
                         <asp:BoundField HeaderText="Matrícula" DataField="Matricula" />
                         <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" />

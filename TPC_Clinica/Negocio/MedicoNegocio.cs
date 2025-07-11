@@ -351,6 +351,64 @@ namespace Negocio
 
         public void eliminarMedico(int id)
         {
+
+                AccesoDatos datos = new AccesoDatos();
+
+                try
+                {
+                    // 1. Baja lógica en Medico
+                    datos.setearConsulta("UPDATE Medico SET Activo = 0 WHERE IdMedico = @id");
+                    datos.setearParametros("@id", id);
+                    datos.ejecutarAccion();
+                    datos.cerrarConexion();
+
+                    // 2. Baja lógica en Especialidades_Medicos
+                    datos = new AccesoDatos();
+                    datos.setearConsulta("UPDATE Especialidades_Medicos SET Activo = 0 WHERE IdMedico = @id");
+                    datos.setearParametros("@id", id);
+                    datos.ejecutarAccion();
+                    datos.cerrarConexion();
+
+                    // 3. Baja lógica en HorarioAtencion
+                    datos = new AccesoDatos();
+                    datos.setearConsulta("UPDATE HorarioAtencion SET Activo = 0 WHERE idMedico = @id");
+                    datos.setearParametros("@id", id);
+                    datos.ejecutarAccion();
+                    datos.cerrarConexion();
+
+
+                    //Traemos el idUser
+                    datos = new AccesoDatos();
+                    datos.setearConsulta("SELECT idUsuario FROM Medico WHERE idMedico = @id");
+                    datos.setearParametros("@id", id);
+                    datos.ejecutarLectura();
+
+                    //Borramos el usuario
+                    while (datos.Lector.Read())
+                    {
+                        int idUsuario = (int)datos.Lector["idUsuario"];
+                        datos = new AccesoDatos();
+                        datos.setearConsulta("UPDATE Usuario SET activo = 0 WHERE idUsuario = @idUser");
+                        datos.setearParametros("@idUser", idUsuario);
+                        datos.ejecutarLectura();
+                    }
+
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+            }
+        
+
+
+        /*public void eliminarMedico(int id)
+        {
             AccesoDatos datos = new AccesoDatos();
 
             try
@@ -394,7 +452,7 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-        }
+        }*/
 
         public Medico ObtenerPorIdUsuario(int idUsuario)
         {
@@ -476,6 +534,42 @@ namespace Negocio
                 }
 
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public bool PuedeEliminarMedico(int idMedico)
+        {
+            if (ExisteTurnoDeMedico(idMedico)) return false;
+            return true;
+        }
+
+
+        public bool ExisteTurnoDeMedico(int idMedico)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Turno WHERE idMedico = @idMedico AND activo = 1");
+                datos.setearParametros("@idMedico", idMedico);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
             }
             catch (Exception ex)
             {
