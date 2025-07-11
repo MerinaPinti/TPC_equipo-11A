@@ -86,5 +86,11 @@ namespace Negocio
 
             return html;
         }
+
+        public static bool EsEmailValido(string email)
+        {
+            return !string.IsNullOrWhiteSpace(email) && email.Contains("@");
+        }
+
     }
 }

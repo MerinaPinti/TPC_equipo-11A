@@ -370,8 +370,8 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("UPDATE Turno SET idEstado = @idEstado, ultimaModificacion = GETDATE() WHERE idTurno = @NroTurno");
-                datos.setearParametros("@NroTurno", turno.NroTurno);
+                datos.setearConsulta("UPDATE Turno SET idEstado = @idEstado, ultimaModificacion = GETDATE() WHERE idTurno = @idTurno");
+                datos.setearParametros("@idTurno", Convert.ToInt32(turno.NroTurno));
                 datos.setearParametros("@idEstado", turno.Estado.Id);
                 datos.ejecutarAccion();
             }
@@ -507,12 +507,17 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-                    SELECT t.fecha, t.hora, t.observaciones, t.diagnostico, t.idEspecialidad,
-                           p.nombre, p.apellido
+                    SELECT t.idTurno, t.fecha, t.hora, t.observaciones, t.diagnostico, t.idEspecialidad, 
+                           p.nombre AS nombrePaciente, 
+                           p.apellido AS apellidoPaciente, 
+                           p.email AS emailPaciente,
+                           m.idMedico, m.nombre AS nombreMedico, 
+                           m.apellido AS apellidoMedico
                     FROM Turno t
                     INNER JOIN Paciente p ON t.idPaciente = p.idPaciente
-                    WHERE t.idTurno = @idTurno"
-                );
+                    INNER JOIN Medico m ON t.idMedico = m.idMedico
+                    WHERE t.idTurno = @idTurno
+                ");
 
                 datos.setearParametros("@idTurno", nroTurno);
                 datos.ejecutarLectura();
@@ -524,16 +529,25 @@ namespace Negocio
                     turno.Hora = (TimeSpan)datos.Lector["hora"];
                     turno.Observaciones = datos.Lector["observaciones"]?.ToString();
                     turno.Diagnostico = datos.Lector["diagnostico"]?.ToString();
+                    
                     turno.Paciente = new Paciente
                     {
-                        Nombre = datos.Lector["nombre"].ToString(),
-                        Apellido = datos.Lector["apellido"].ToString()
+                        Nombre = datos.Lector["nombrePaciente"].ToString(),
+                        Apellido = datos.Lector["apellidoPaciente"].ToString(),
+                        Email = datos.Lector["emailPaciente"].ToString()
+
                     };
 
                     // Si necesitás la especialidad también:
                     turno.Especialidad = new Especialidad
                     {
                         Id = Convert.ToInt32(datos.Lector["idEspecialidad"])
+                    };
+
+                    turno.Medico = new Medico
+                    {
+                        Nombre = datos.Lector["nombreMedico"].ToString(),
+                        Apellido = datos.Lector["apellidoMedico"].ToString()
                     };
                 }
 

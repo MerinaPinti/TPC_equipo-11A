@@ -285,15 +285,12 @@ namespace TPC_Clinica
         {
             try
             {
+                // Obtener el turno completo con paciente y médico
                 TurnoNegocio negocio = new TurnoNegocio();
+                Turno turno = negocio.ObtenerPorId(idTurno.ToString());
 
-                // Crea un objeto Turno con solo los campos que se deben actualizar
-                Turno turno = new Turno
-                {
-                    NroTurno = idTurno.ToString(),
-                    Estado = new Estado { Id = 3 } // Cancelado
-                };
-
+                // Cambiar el estado
+                turno.Estado = new Estado { Id = 3 }; // Cancelado
                 negocio.actualizarTurnoRecep(turno);
                 //------------------------------ENVIO DE MAIL------------------------------
                 string rutaPlantillas = HttpContext.Current.Server.MapPath("~/Templates");
@@ -313,8 +310,17 @@ namespace TPC_Clinica
                     TipoCorreo.EmailCancelarTurno,
                     rutaPlantillas
                 );
-                emailService.enviarCorreo();
+
+                if (EmailService.EsEmailValido(turno.Paciente.Email))
+                {
+                    emailService.enviarCorreo();
+                }
+                else
+                {
+                    Console.WriteLine("Email inválido, no se enviará el correo.");
+                }
                 //-------------------------------------------------------------------------
+
                 return true;
             }
             catch

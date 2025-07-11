@@ -223,9 +223,9 @@ namespace TPC_Clinica
         {
             try
             {
-                TurnoNegocio negocio = new TurnoNegocio();
 
                 // Obtener el turno completo con paciente y médico
+                TurnoNegocio negocio = new TurnoNegocio();
                 Turno turno = negocio.ObtenerPorId(idTurno.ToString());
 
                 // Cambiar el estado
@@ -236,11 +236,11 @@ namespace TPC_Clinica
                 string rutaPlantillas = HttpContext.Current.Server.MapPath("~/Templates");
 
                 var reemplazos = new Dictionary<string, string>
-        {
-            { "NOMBRE", turno.Paciente.Nombre + " " + turno.Paciente.Apellido },
-            { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + " a las " + turno.Hora.ToString(@"hh\:mm") },
-            { "MEDICO", turno.Medico.Nombre + " " + turno.Medico.Apellido },
-        };
+                {
+                    { "NOMBRE", turno.Paciente.Nombre + " " + turno.Paciente.Apellido },
+                    { "FECHA", turno.Fecha.ToString("dd/MM/yyyy") + " a las " + turno.Hora.ToString(@"hh\:mm") },
+                    { "MEDICO", turno.Medico.Nombre + " " + turno.Medico.Apellido },
+                };
 
                 EmailService emailService = new EmailService();
                 emailService.armarCorreo(
@@ -250,7 +250,17 @@ namespace TPC_Clinica
                     TipoCorreo.EmailCancelarTurno,
                     rutaPlantillas
                 );
-                emailService.enviarCorreo();
+
+                if (EmailService.EsEmailValido(turno.Paciente.Email))
+                {
+                    emailService.enviarCorreo();
+
+                }
+                else
+                {
+                    Console.WriteLine("Email inválido, no se enviará el correo.");
+                }
+
                 //-------------------------------------------------------------------------
                 return true;
             }
