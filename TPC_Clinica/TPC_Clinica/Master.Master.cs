@@ -33,6 +33,8 @@ namespace TPC_Clinica
                         hlCambiarClave.Visible = true;
                         hlHistoriaClinica.Visible = true;
                         btnCerrarSesion.Visible = true;
+                        hlModificarTurno.Visible = true;
+                        hlTurnos.Visible = true;
                         break;
                     case 2:
                         hlEspecialidades.Visible = true;
@@ -43,6 +45,8 @@ namespace TPC_Clinica
                         hlCambiarClave.Visible = true;
                         hlHistoriaClinica.Visible = true;
                         btnCerrarSesion.Visible = true;
+                        hlModificarTurno.Visible = true;
+                        hlTurnos.Visible = true;
                         break;
                     case 3:
                         hlTurnos.Visible = true;
@@ -55,6 +59,7 @@ namespace TPC_Clinica
                         hlCambiarClave.Visible = true;
                         hlHistoriaClinica.Visible = true;
                         btnCerrarSesion.Visible = true;
+                        hlModificarTurno.Visible = false;
                         break;
                     default:
                         hlEspecialidades.Visible = false;
@@ -67,6 +72,8 @@ namespace TPC_Clinica
                         hlCambiarClave.Visible = false;
                         hlHistoriaClinica.Visible = false;
                         btnCerrarSesion.Visible = false;
+                        hlModificarTurno.Visible = false;
+                        hlTurnos.Visible = false;
                         break;
                 }
 

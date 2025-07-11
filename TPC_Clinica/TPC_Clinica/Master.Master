@@ -17,8 +17,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <!-- FullCalendar v5 compatible -->
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
     <style>
         html, body {
@@ -44,7 +44,7 @@
             font-size: 2.5rem;
             text-align: center;
             font-weight: 600;
-            color: #0d6efd; 
+            color: #0d6efd;
             margin-bottom: 30px;
         }
 
@@ -61,7 +61,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        
+
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
@@ -71,22 +71,38 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><asp:HyperLink ID="hlUsuarios" CssClass="nav-link active" NavigateUrl="~/ListadoUsuarios.aspx" Visible="false" runat="server">Usuarios</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlMedicos" CssClass="nav-link active" NavigateUrl="~/ListadoMedicos.aspx" Visible="false" runat="server">Medicos</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlEspecialidades" CssClass="nav-link active" NavigateUrl="~/ListadoEspecialidades.aspx" Visible="false" runat="server">Especialidades</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlPacientes" CssClass="nav-link active" NavigateUrl="~/ListadoPaciente.aspx" Visible="false" runat="server">Pacientes</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlTurnos" CssClass="nav-link active" NavigateUrl="~/AsignarTurno2.aspx" Visible="false" runat="server">Turnos</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlTipoUsuario" CssClass="nav-link active" NavigateUrl="~/ListadoTipoUsuario.aspx" Visible="false" runat="server">Tipo Usuario</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlEstados" CssClass="nav-link active" NavigateUrl="~/ListadoEstados.aspx" Visible="false" runat="server">Estados</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlHorarios" CssClass="nav-link active" NavigateUrl="~/HorarioMedico.aspx" Visible="false" runat="server">Mis horarios</asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlHistoriaClinica" CssClass="nav-link active" NavigateUrl="~/HistoriaClinica.aspx" Visible="false" runat="server"> Historia Clinica </asp:HyperLink></li>
-                            <li class="nav-item"><asp:HyperLink ID="hlCambiarClave" CssClass="nav-link active" NavigateUrl="~/CambiarClaveDeUsuario.aspx" Visible="false" runat="server"> Cambiar contraseña </asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlUsuarios" CssClass="nav-link active" NavigateUrl="~/ListadoUsuarios.aspx" Visible="false" runat="server">Usuarios</asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlMedicos" CssClass="nav-link active" NavigateUrl="~/ListadoMedicos.aspx" Visible="false" runat="server">Medicos</asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlEspecialidades" CssClass="nav-link active" NavigateUrl="~/ListadoEspecialidades.aspx" Visible="false" runat="server">Especialidades</asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlPacientes" CssClass="nav-link active" NavigateUrl="~/ListadoPaciente.aspx" Visible="false" runat="server">Pacientes</asp:HyperLink></li>
                             
+                            <li>
+                                <asp:HyperLink ID="hlTurnos" CssClass="nav-link active" NavigateUrl="~/AsignarTurno2.aspx" Visible="false" runat="server">Nuevo turno</asp:HyperLink></li>
+
+                            <li>
+                                <asp:HyperLink ID="hlModificarTurno" CssClass="nav-link active" NavigateUrl="~/ModificarTurno.aspx" Visible="false" runat="server">Modificar Turno</asp:HyperLink></li>
+
+
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlTipoUsuario" CssClass="nav-link active" NavigateUrl="~/ListadoTipoUsuario.aspx" Visible="false" runat="server">Tipo Usuario</asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlEstados" CssClass="nav-link active" NavigateUrl="~/ListadoEstados.aspx" Visible="false" runat="server">Estados</asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlHorarios" CssClass="nav-link active" NavigateUrl="~/HorarioMedico.aspx" Visible="false" runat="server">Mis horarios</asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlHistoriaClinica" CssClass="nav-link active" NavigateUrl="~/HistoriaClinica.aspx" Visible="false" runat="server"> Historia Clinica </asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hlCambiarClave" CssClass="nav-link active" NavigateUrl="~/CambiarClaveDeUsuario.aspx" Visible="false" runat="server"> Cambiar contraseña </asp:HyperLink></li>
+
 
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <asp:LinkButton ID="btnCerrarSesion" Visible="false" runat ="server" CssClass="nav-link text-danger" OnClick="btnCerrarSesion_Click">
+                                <asp:LinkButton ID="btnCerrarSesion" Visible="false" runat="server" CssClass="nav-link text-danger" OnClick="btnCerrarSesion_Click">
                                     <i class="bi bi-box-arrow-right"></i> Salir
                                 </asp:LinkButton>
                             </li>
