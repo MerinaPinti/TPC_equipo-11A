@@ -10,6 +10,10 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
+
+        .transparente {
+            opacity :  0.3;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -67,16 +67,19 @@ namespace TPC_Clinica
                 ImageButton btnEliminar = (ImageButton)e.Row.FindControl("btnEliminar");
                 Especialidad especialidad = (Especialidad)e.Row.DataItem;
 
+                if (negocio.enUso(especialidad.Id))
+                {
+                    btnEliminar.CommandName = "";
+                    btnEliminar.CssClass = "transparente";
+                    btnEliminar.OnClientClick = "return alert('No se puede eliminar esta especialidad ya que se encuentra en uso');";
+                }
+
                 if (tipoUsuario == 3)
                 {
                     if (btnModificar != null) btnModificar.Visible = false;
                     if (btnEliminar != null) btnEliminar.Visible = false;
                 }
 
-                if (negocio.enUso(especialidad.Id))
-                {
-                    if (btnEliminar != null) btnEliminar.Visible = false;
-                }
             }
         }
     }

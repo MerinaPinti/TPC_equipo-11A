@@ -670,7 +670,7 @@ namespace Negocio
                     AND (t.idEstado = 5)
                     AND (@idMedico = 0 OR m.idMedico = @idMedico)
                     AND (@idEspecialidad = 0 OR e.idEspecialidad = @idEspecialidad)
-                ORDER BY t.fecha ASC, t.hora ASC");
+                ORDER BY t.fecha DESC");
 
                 datos.setearParametros("@DNI", dni);
                 datos.setearParametros("@idMedico", idMedico);

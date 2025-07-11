@@ -202,7 +202,7 @@ namespace Negocio
             try
             {
                 Especialidad esp = new Especialidad();
-                datos.setearConsulta("SELECT 1 FROM Especialidad E INNER JOIN Turno T ON E.idEspecialidad = T.idEspecialidad INNER JOIN HorarioAtencion HA ON E.idEspecialidad = HA.idEspecialidad INNER JOIN Especialidades_Medicos EM ON E.idEspecialidad = EM.IDESPECIALIDAD INNER JOIN Medico M ON EM.IDMEDICO = M.idMedico WHERE E.activo = 1 AND T.activo = 1 AND HA.activo = 1 AND EM.Activo = 1 AND E.idEspecialidad = @idEspecialidad");
+                datos.setearConsulta("SELECT 1 FROM Especialidad E LEFT JOIN Turno T ON E.idEspecialidad = T.idEspecialidad LEFT JOIN HorarioAtencion HA ON E.idEspecialidad = HA.idEspecialidad LEFT JOIN Especialidades_Medicos EM ON E.idEspecialidad = EM.IDESPECIALIDAD INNER JOIN Medico M ON EM.IDMEDICO = M.idMedico WHERE (E.idEspecialidad = @idEspecialidad AND E.activo = 1) OR (T.idEspecialidad = @idEspecialidad AND T.activo = 1) OR (HA.idEspecialidad = @idEspecialidad AND HA.activo = 1) OR (EM.IDESPECIALIDAD = @idEspecialidad AND EM.Activo = 1)");
                 datos.setearParametros("@idEspecialidad", idEspecialidad);
                 datos.ejecutarLectura();
 

@@ -32,6 +32,7 @@ namespace TPC_Clinica
                         hpMeraki.NavigateUrl = "~/Inicio.aspx";
                         hlCambiarClave.Visible = true;
                         hlHistoriaClinica.Visible = true;
+                        btnCerrarSesion.Visible = true;
                         break;
                     case 2:
                         hlEspecialidades.Visible = true;
@@ -41,6 +42,7 @@ namespace TPC_Clinica
                         hpMeraki.NavigateUrl = "~/Inicio.aspx";
                         hlCambiarClave.Visible = true;
                         hlHistoriaClinica.Visible = true;
+                        btnCerrarSesion.Visible = true;
                         break;
                     case 3:
                         hlTurnos.Visible = true;
@@ -52,6 +54,7 @@ namespace TPC_Clinica
                         hlHorarios.Visible = true;
                         hlCambiarClave.Visible = true;
                         hlHistoriaClinica.Visible = true;
+                        btnCerrarSesion.Visible = true;
                         break;
                     default:
                         hlEspecialidades.Visible = false;
@@ -63,6 +66,7 @@ namespace TPC_Clinica
                         hlUsuarios.Visible = false;
                         hlCambiarClave.Visible = false;
                         hlHistoriaClinica.Visible = false;
+                        btnCerrarSesion.Visible = false;
                         break;
                 }
 
