@@ -21,9 +21,17 @@
         </div>
         <div class="row">
             <div class="col">
-                <asp:Button ID="btnAgregar" CssClass="btn btn-primary" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
+                <asp:Button 
+                    ID="btnAgregar" CssClass="btn btn-primary" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
                 
-                <asp:GridView ID="dgvTiposUsuario" DataKeyNames="Id" OnRowCommand="dgvTiposUsuario_RowCommand" runat="server" AutoGenerateColumns="false" CssClass="table">
+                <asp:GridView 
+                    ID="dgvTiposUsuario" 
+                    DataKeyNames="Id" 
+                    OnRowCommand="dgvTiposUsuario_RowCommand" 
+                    OnRowDataBound="dgvTiposUsuario_RowDataBound"
+                    runat="server" 
+                    AutoGenerateColumns="false" 
+                    CssClass="table">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" />
                         <asp:BoundField HeaderText="Tipo de Usuario" DataField="Descripcion" />

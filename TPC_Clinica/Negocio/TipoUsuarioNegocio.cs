@@ -170,5 +170,32 @@ namespace Negocio
             }
         }
 
+        public bool enUso(int idTipoUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                Especialidad esp = new Especialidad();
+                datos.setearConsulta("SELECT 1 FROM TipoUsuario TU  INNER JOIN Usuario U ON TU.idTipoUsuario = U.idTipoUsuario WHERE U.idTipoUsuario = @idTipoUsuario AND U.activo = 1");
+                datos.setearParametros("@idTipoUsuario", idTipoUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

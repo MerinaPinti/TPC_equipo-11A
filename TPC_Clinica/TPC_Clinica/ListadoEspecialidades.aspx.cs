@@ -71,7 +71,7 @@ namespace TPC_Clinica
                 {
                     btnEliminar.CommandName = "";
                     btnEliminar.CssClass = "transparente";
-                    btnEliminar.OnClientClick = "return alert('No se puede eliminar esta especialidad ya que se encuentra en uso');";
+                    btnEliminar.OnClientClick = "return alert('No se puede eliminar esta especialidad ya que, actualmente se encuentra en uso');";
                 }
 
                 if (tipoUsuario == 3)

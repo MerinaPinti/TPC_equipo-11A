@@ -47,7 +47,7 @@
                                         <blockquote class="blockquote">
                                             <h3><strong><%# ((Dominio.Turno)Container.DataItem).Paciente.Nombre + " " + ((Dominio.Turno)Container.DataItem).Paciente.Apellido %></strong></h3>
                                         </blockquote>
-                                        <figcaption class="blockquote-footer"><%# ((Dominio.Turno)Container.DataItem).Especialidad.Descripcion %></figcaption>
+                                        <figcaption class="blockquote-footer"><%#((Dominio.Turno)Container.DataItem).Medico.Nombre + " "  + ((Dominio.Turno)Container.DataItem).Medico.Apellido  + " - " + ((Dominio.Turno)Container.DataItem).Especialidad.Descripcion %></figcaption>
                                     </figure>
                                     <p>Fecha: <%# String.Format("{0:dd/MM/yyyy}", Eval("Fecha")) %></p>
                                     <p>Hora: <%# ((TimeSpan)Eval("Hora")).ToString(@"hh\:mm") %></p>

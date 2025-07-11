@@ -199,6 +199,7 @@ namespace Negocio
                     INNER JOIN Estado E ON T.idEstado = E.idEstado
                     INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
                     WHERE T.activo = 1
+                    AND T.idEstado = 5
                     AND P.DNI = @dni
                     ORDER BY fecha"
                 );

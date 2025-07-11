@@ -95,7 +95,7 @@ namespace TPC_Clinica
                 {
                     btnEliminar.CommandName = "";
                     btnEliminar.CssClass = "transparente";
-                    btnEliminar.OnClientClick = "return alert('No se puede eliminar este paciente ya que se encuentra en uso');";
+                    btnEliminar.OnClientClick = "return alert('No se puede eliminar este paciente ya que, actualmente se encuentra en uso');";
                 }
 
                 if (tipoUsuario == 3)

@@ -10,6 +10,10 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
+
+        .transparente {
+            opacity: 0.3;
+        }
     </style>
 
 </asp:Content>
@@ -31,19 +35,19 @@
                 </asp:GridView>--%>
 
                 <asp:GridView ID="dgvUsuarios" DataKeyNames="Id" OnRowCommand="dgvUsuarios_RowCommand" runat="server" AutoGenerateColumns="false" CssClass="table">
-                    <Columns>
+                    <columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" />
                         <asp:TemplateField HeaderText="Tipo de Usuario">
-                            <ItemTemplate>
+                            <itemtemplate>
                                 <%# Eval("TipoUsuario.Descripcion") %>
-                            </ItemTemplate>
+                            </itemtemplate>
                         </asp:TemplateField>
                         <asp:BoundField HeaderText="Usuario" DataField="UserName" />
                         <asp:BoundField HeaderText="Contraseña" DataField="Password" />
 
                         <asp:TemplateField>
-                            <ItemStyle HorizontalAlign="Right" />
-                            <ItemTemplate>
+                            <itemstyle horizontalalign="Right" />
+                            <itemtemplate>
                                 <asp:ImageButton ID="btnModificar" runat="server"
                                     ImageUrl="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png"
                                     CommandName="Editar"
@@ -57,9 +61,9 @@
                                     CommandArgument='<%# Container.DataItemIndex %>'
                                     Style="width: 17px; height: 17px; margin: 0 4px;"
                                     OnClientClick="return confirm('¿Estás seguro que querés eliminar este usuario?');" />
-                            </ItemTemplate>
+                            </itemtemplate>
                         </asp:TemplateField>
-                    </Columns>
+                    </columns>
                 </asp:GridView>
             </div>
         </div>

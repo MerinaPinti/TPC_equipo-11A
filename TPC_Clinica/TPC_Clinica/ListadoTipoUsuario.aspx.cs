@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -53,6 +53,33 @@ namespace TPC_Clinica
                 Session.Add("IdModificarTipoUsuario", id);
 
                 Response.Redirect("AltaTipoUsuario.aspx", true);
+            }
+        }
+
+        protected void dgvTiposUsuario_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            TipoUsuarioNegocio negocio = new TipoUsuarioNegocio();
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int tipoUsuario = ((Usuario)Session["usuario"]).TipoUsuario.Id;
+
+                ImageButton btnModificar = (ImageButton)e.Row.FindControl("btnModificar");
+                ImageButton btnEliminar = (ImageButton)e.Row.FindControl("btnEliminar");
+                TipoUsuario especialidad = (TipoUsuario)e.Row.DataItem;
+
+                if (negocio.enUso(especialidad.Id))
+                {
+                    btnEliminar.CommandName = "";
+                    btnEliminar.CssClass = "transparente";
+                    btnEliminar.OnClientClick = "return alert('No se puede eliminar este Tipo de Usuario ya que, actualmente se encuentra en uso');";
+                }
+
+                if (tipoUsuario == 3)
+                {
+                    if (btnModificar != null) btnModificar.Visible = false;
+                    if (btnEliminar != null) btnEliminar.Visible = false;
+                }
+
             }
         }
     }
