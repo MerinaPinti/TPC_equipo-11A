@@ -539,7 +539,7 @@ namespace Negocio
 
                     };
 
-                    // Si necesitás la especialidad también:
+                    
                     turno.Especialidad = new Especialidad
                     {
                         Id = Convert.ToInt32(datos.Lector["idEspecialidad"])
@@ -730,5 +730,100 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Turno> ListarTurnosDelDia(string dniPaciente, string nombreMedico, int idEspecialidad)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = @"
+            SELECT T.idTurno, T.fecha, T.hora, 
+       P.nombre AS NombrePaciente, P.apellido AS ApellidoPaciente, P.DNI,
+       M.nombre AS NombreMedico, M.apellido AS ApellidoMedico,
+       E.descripcion AS Especialidad,
+       EST.descripcion AS Estado,
+       T.idEstado
+    FROM Turno T
+    INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
+    INNER JOIN Medico M ON T.idMedico = M.idMedico
+    INNER JOIN Especialidad E ON T.idEspecialidad = E.idEspecialidad
+    INNER JOIN Estado EST ON T.idEstado = EST.idEstado
+    WHERE T.fecha = CAST(GETDATE() AS DATE)
+      AND T.activo = 1";
+
+
+                // Agregar filtros 
+                if (!string.IsNullOrEmpty(dniPaciente))
+                    consulta += " AND P.DNI LIKE @dni ";
+
+                if (!string.IsNullOrEmpty(nombreMedico))
+                    consulta += " AND (M.nombre + ' ' + M.apellido) LIKE @nombreMedico ";
+
+                if (idEspecialidad != 0)
+                    consulta += " AND E.idEspecialidad = @idEspecialidad ";
+
+                // Ordena Acendente 
+                consulta += " ORDER BY T.fecha ASC, T.hora ASC";
+
+                // Ejecutar consulta
+                datos.setearConsulta(consulta);
+
+                if (!string.IsNullOrEmpty(dniPaciente))
+                    datos.setearParametros("@dni", "%" + dniPaciente + "%");
+
+                if (!string.IsNullOrEmpty(nombreMedico))
+                    datos.setearParametros("@nombreMedico", "%" + nombreMedico + "%");
+
+                if (idEspecialidad != 0)
+                    datos.setearParametros("@idEspecialidad", idEspecialidad);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno turno = new Turno
+                    {
+                        NroTurno = datos.Lector["idTurno"].ToString(),
+                        Fecha = (DateTime)datos.Lector["fecha"],
+                        Hora = (TimeSpan)datos.Lector["hora"],
+                        Estado = new Estado
+                        {
+                            Id = (int)datos.Lector["idEstado"],
+                            Descripcion = datos.Lector["Estado"].ToString()
+                        },
+                        Paciente = new Paciente
+                        {
+                            Nombre = datos.Lector["NombrePaciente"].ToString(),
+                            Apellido = datos.Lector["ApellidoPaciente"].ToString(),
+                            DNI = datos.Lector["DNI"].ToString()
+                        },
+                        Medico = new Medico
+                        {
+                            Nombre = datos.Lector["NombreMedico"].ToString(),
+                            Apellido = datos.Lector["ApellidoMedico"].ToString()
+                        },
+                        Especialidad = new Especialidad
+                        {
+                            Descripcion = datos.Lector["Especialidad"].ToString()
+                        }
+                    };
+
+                    lista.Add(turno);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
