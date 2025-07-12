@@ -63,7 +63,15 @@ namespace TPC_Clinica
                 TurnoNegocio negocio = new TurnoNegocio();
                 negocio.actualizarTurnoMedico(turno);
 
-                
+                Usuario medicoLogueado = (Usuario)Session["usuario"];
+                if (medicoLogueado != null)
+                {
+                    CargarTurnosEnSalaEspera(medicoLogueado.Id);
+
+                    lblMensaje.Text = $"El turno {nroTurno} fue marcado como <strong>'No asistió'</strong>.";
+                    lblMensaje.CssClass = "alert alert-info";
+                    lblMensaje.Visible = true;
+                }
             }
         }
 
