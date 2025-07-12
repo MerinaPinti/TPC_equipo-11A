@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -40,8 +40,14 @@ namespace TPC_Clinica
                         Response.Write("ID Médico logueado: " + medicoLogueado.IdMedico);
                     }
                 }
-
-                Response.Redirect("Inicio.aspx");
+                if (logueado.TipoUsuario != null && logueado.TipoUsuario.Id == 2)
+                {
+                    Response.Redirect("Recepcion.aspx");
+                }
+                else
+                {
+                    Response.Redirect("Inicio.aspx");
+                }
             }
             else
             {
