@@ -387,17 +387,7 @@ namespace Negocio
         }
 
 
-        //CLASE AUXILIAR PARA VER LOS TURNOS DE UNA SOLA SEMANA. 
-        public class TurnoVista
-
-        {
-            public string NroTurno { get; set; }
-            public string Fecha { get; set; }
-            public string Hora { get; set; }
-            public string NombrePaciente { get; set; }
-
-            public int IdEstado { get; set; }
-        }
+        
 
         public void actualizarTurnoMedico(Turno turno)
         {
@@ -803,6 +793,73 @@ namespace Negocio
                         {
                             Nombre = datos.Lector["NombreMedico"].ToString(),
                             Apellido = datos.Lector["ApellidoMedico"].ToString()
+                        },
+                        Especialidad = new Especialidad
+                        {
+                            Descripcion = datos.Lector["Especialidad"].ToString()
+                        }
+                    };
+
+                    lista.Add(turno);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public List<Turno> ListarTurnosDelDiaMedico(int idMedico)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = @"
+            SELECT T.idTurno, T.fecha, T.hora, 
+                   P.nombre AS NombrePaciente, P.apellido AS ApellidoPaciente, P.DNI,
+                   E.descripcion AS Especialidad,
+                   EST.descripcion AS Estado,
+                   T.idEstado
+            FROM Turno T
+            INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
+            INNER JOIN Especialidad E ON T.idEspecialidad = E.idEspecialidad
+            INNER JOIN Estado EST ON T.idEstado = EST.idEstado
+            WHERE T.fecha = CAST(GETDATE() AS DATE)
+              AND T.idMedico = @idMedico
+              AND T.idEstado = 6
+              AND T.activo = 1
+            ORDER BY T.hora ASC";
+
+                datos.setearConsulta(consulta);
+                datos.setearParametros("@idMedico", idMedico);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno turno = new Turno
+                    {
+                        NroTurno = datos.Lector["idTurno"].ToString(),
+                        Fecha = (DateTime)datos.Lector["fecha"],
+                        Hora = (TimeSpan)datos.Lector["hora"],
+                        Estado = new Estado
+                        {
+                            Id = (int)datos.Lector["idEstado"],
+                            Descripcion = datos.Lector["Estado"].ToString()
+                        },
+                        Paciente = new Paciente
+                        {
+                            Nombre = datos.Lector["NombrePaciente"].ToString(),
+                            Apellido = datos.Lector["ApellidoPaciente"].ToString(),
+                            DNI = datos.Lector["DNI"].ToString()
                         },
                         Especialidad = new Especialidad
                         {
