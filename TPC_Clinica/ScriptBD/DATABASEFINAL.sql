@@ -111,10 +111,10 @@ CREATE TABLE HorarioAtencion (
 GO
 
 
-
-
 USE CLINICA_DB;
 GO
+
+
 
 -- TIPO DE USUARIO
 INSERT INTO TipoUsuario (descripcion) VALUES ('Administrador');
@@ -141,8 +141,11 @@ INSERT INTO Estado (descripcion) VALUES ('Asignado') ;
 INSERT INTO Estado (descripcion) VALUES('Reprogramado');  
 INSERT INTO Estado (descripcion) VALUES('Cancelado');     
 INSERT INTO Estado (descripcion) VALUES('No Asistió');    
-INSERT INTO Estado (descripcion) VALUES('Cerrado');        
+INSERT INTO Estado (descripcion) VALUES('Cerrado');
+INSERT INTO Estado (descripcion) VALUES ('En sala de espera');
 GO
+
+
 
 -- Usuario ADMIN
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña)
@@ -156,27 +159,27 @@ GO
 -- USUARIOS MÉDICOS Y MÉDICOS USUARIO
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '236785', '236785');
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
-VALUES ('juan.perez@mail.com', '11-2345-6789', 'Juan', 'Pérez', '236785', SCOPE_IDENTITY());
+VALUES ('juan.perez@mail.com', '1123456789', 'Juan', 'Pérez', '236785', SCOPE_IDENTITY());
 
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '582903', '582903');
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
-VALUES ('maria.lopez@mail.com', '11-9876-5432', 'María', 'López', '582903', SCOPE_IDENTITY());
+VALUES ('maria.lopez@mail.com', '1198785432', 'María', 'López', '582903', SCOPE_IDENTITY());
 
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '790412', '790412');
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
-VALUES ('carlos.gomez@mail.com', '11-7654-3210', 'Carlos', 'Gómez', '790412', SCOPE_IDENTITY());
+VALUES ('carlos.gomez@mail.com', '1176543210', 'Carlos', 'Gómez', '790412', SCOPE_IDENTITY());
 
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '413278', '413278');
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
-VALUES ('lucia.fernandez@mail.com', '11-4455-6677', 'Lucía', 'Fernández', '413278', SCOPE_IDENTITY());
+VALUES ('lucia.fernandez@mail.com', '1144556677', 'Lucía', 'Fernández', '413278', SCOPE_IDENTITY());
 
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '629845', '629845');
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
-VALUES ('diego.ramirez@mail.com', '11-5566-7788', 'Diego', 'Ramírez', '629845', SCOPE_IDENTITY());
+VALUES ('diego.ramirez@mail.com', '1155667788', 'Diego', 'Ramírez', '629845', SCOPE_IDENTITY());
 
 INSERT INTO Usuario (idTipoUsuario, usuario, contraseña) VALUES (3, '817362', '817362');
 INSERT INTO Medico (email, telefono, nombre, apellido, matricula, idUsuario) 
-VALUES ('veronica.martinez@mail.com', '11-6677-8899', 'Verónica', 'Martínez', '817362', SCOPE_IDENTITY());
+VALUES ('veronica.martinez@mail.com', '1166778899', 'Verónica', 'Martínez', '817362', SCOPE_IDENTITY());
 
 GO
 
@@ -285,6 +288,11 @@ INSERT INTO HorarioAtencion (idMedico, idEspecialidad, idTurnoTrabajo, diaSemana
 
 GO
 
+SELECT * FROM Medico
+SELECT * FROM Turno
+SELECT * FROM Paciente
+SELECT * FROM Especialidades_Medicos
+
 -- TURNOS
 INSERT INTO Turno (idPaciente, idMedico, fecha, hora, idEstado, idEspecialidad, observaciones, diagnostico, fechaAlta, ultimaModificacion) 
 VALUES
@@ -340,3 +348,5 @@ VALUES
 (7, 6, '2025-07-01', '14:00:00', 5, 6, 'Control ginecológico anual postmenstrual', 'Sin hallazgos clínicos - PAP negativo', '2025-07-01', '2025-07-02');
 
 GO
+
+
