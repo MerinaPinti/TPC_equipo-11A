@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|c:\\users\\johann\\desktop\\tup2\\programacion iii\\tpc_equipo-11a\\tpc_clinica\\negocio\\mediconegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -41,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\historiaclinica.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\historiaclinica.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,32 +54,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Master.Master.cs",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\Master.Master.cs",
-              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master.cs*",
-              "RelativeToolTip": "TPC_Clinica\\Master.Master.cs*",
+              "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master.cs",
+              "RelativeToolTip": "TPC_Clinica\\Master.Master.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAgwD0AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-11T21:51:45.629Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Master.Master",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master",
               "RelativeDocumentMoniker": "TPC_Clinica\\Master.Master",
@@ -92,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ListadoEspecialidades.aspx",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoEspecialidades.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoEspecialidades.aspx",
@@ -104,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ListadoEspecialidades.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoEspecialidades.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoEspecialidades.aspx.cs",
@@ -116,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ListadoMedicos.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoMedicos.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoMedicos.aspx.cs",
@@ -128,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ListadoMedicos.aspx",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoMedicos.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoMedicos.aspx",
@@ -140,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "AltaMedico.aspx",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\AltaMedico.aspx",
@@ -152,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MedicoNegocio.cs",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\MedicoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\MedicoNegocio.cs",
@@ -165,7 +157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "HistoriaClinica.aspx",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HistoriaClinica.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\HistoriaClinica.aspx",
@@ -177,19 +169,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "TurnoNegocio.cs",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\TurnoNegocio.cs",
               "ToolTip": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoNegocio.cs",
               "RelativeToolTip": "Negocio\\TurnoNegocio.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAMwLgAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAACwCAAAAAAAAAAD4vzMCAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-11T20:27:46.39Z"
+              "WhenOpened": "2025-07-11T20:27:46.39Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AccesoDatos.cs",
               "DocumentMoniker": "C:\\Users\\Johann\\Desktop\\TUP2\\Programacion III\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\AccesoDatos.cs",
               "RelativeDocumentMoniker": "Negocio\\AccesoDatos.cs",
