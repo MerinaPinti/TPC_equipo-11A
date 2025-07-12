@@ -69,7 +69,6 @@ namespace TPC_Clinica
             List<Turno> turnosAsignados = turnoNegocio.ListarTurnosAsignados(idMedico);
 
             var eventos = new List<object>();
-            //el Today toma el día actual de sistema y le agrega hasta 30 días al calendario (para que no se muestren todos los turnos juntos, sino que 30 días nomás)
             DateTime hoy = DateTime.Today;
             DateTime fin = hoy.AddDays(30);
 
@@ -81,42 +80,58 @@ namespace TPC_Clinica
                     {
                         for (int hora = h.Turno.HoraInicio.Hours; hora < h.Turno.HoraFin.Hours; hora++)
                         {
-                            bool yaAsignado = turnosAsignados.Any(t =>
+                            var turnoCoincidente = turnosAsignados.FirstOrDefault(t =>
                                 t.Fecha.Date == fecha.Date &&
                                 (int)t.Hora.TotalHours == hora &&
                                 t.Medico.IdMedico == idMedico &&
-                                t.Estado != null &&
-                                t.Estado.Id == 1);
+                                t.Estado != null);
 
-                            string estadoTexto = yaAsignado ? "Asignado" : "Disponible";
+                            string estadoTexto = "Disponible";
+                            string backgroundColor = "lightblue";
+                            string borderColor = "blue";
+
+                            if (turnoCoincidente != null)
+                            {
+                                switch (turnoCoincidente.Estado.Id)
+                                {
+                                    case 1: // Asignado
+                                        estadoTexto = "Asignado";
+                                        backgroundColor = "green";
+                                        borderColor = "darkgreen";
+                                        break;
+                                    case 4: // No asistió
+                                        estadoTexto = "No asistió";
+                                        backgroundColor = "#ff6666"; // rojo claro
+                                        borderColor = "#cc0000";
+                                        break;
+                                    case 5: // Atendido
+                                        estadoTexto = "Atendido";
+                                        backgroundColor = "#999999"; // gris
+                                        borderColor = "#666666";
+                                        break;
+                                    default:
+                                        estadoTexto = "Otro";
+                                        backgroundColor = "#cccccc";
+                                        borderColor = "#999999";
+                                        break;
+                                }
+                            }
 
                             eventos.Add(new
                             {
                                 title = $"{hora.ToString("D2")}:00 - {estadoTexto}",
                                 start = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0).ToString("s"),
                                 allDay = false,
-                                backgroundColor = yaAsignado ? "green" : "lightblue",
-                                borderColor = yaAsignado ? "darkgreen" : "blue",
+                                backgroundColor = backgroundColor,
+                                borderColor = borderColor,
                                 textColor = "white",
                                 extendedProps = new
                                 {
                                     hora = hora.ToString("D2") + ":00",
                                     estado = estadoTexto,
-                                    idTurno = turnosAsignados.FirstOrDefault(t =>
-                                        t.Fecha.Date == fecha.Date &&
-                                        (int)t.Hora.TotalHours == hora &&
-                                        t.Medico.IdMedico == idMedico &&
-                                        t.Estado.Id == 1)?.NroTurno ?? "0",
-                                    nombrePaciente = turnosAsignados.FirstOrDefault(t =>
-                                        t.Fecha.Date == fecha.Date &&
-                                        (int)t.Hora.TotalHours == hora &&
-                                        t.Medico.IdMedico == idMedico &&
-                                        t.Estado.Id == 1)?.Paciente?.NombreCompleto ?? "",
-                                    nombreMedico = turnosAsignados.FirstOrDefault(t =>
-                                        t.Fecha.Date == fecha.Date &&
-                                        (int)t.Hora.TotalHours == hora &&
-                                        t.Medico.IdMedico == idMedico &&
-                                        t.Estado.Id == 1)?.Medico?.NombreCompleto ?? ""
+                                    idTurno = turnoCoincidente?.NroTurno ?? "0",
+                                    nombrePaciente = turnoCoincidente?.Paciente?.NombreCompleto ?? "",
+                                    nombreMedico = turnoCoincidente?.Medico?.NombreCompleto ?? ""
                                 }
                             });
                         }
@@ -140,66 +155,71 @@ namespace TPC_Clinica
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
             Paciente paciente = pacienteNegocio.existePaciente(dniIngresado);
 
-            //Chekea que el paciente se encuentra registrado 
             if (paciente == null)
             {
-                //Guarda el DNI en sesion
                 Session["DniParaRegistrar"] = dniIngresado;
-
-                // Redirige al alta de paciente
                 Response.Redirect("AltaPaciente.aspx?from=asignacionTurno");
                 return;
             }
 
-            // Obtenemos los datos del turno de los campos ocultos 
             string fechaStr = hfFechaTurno.Value;
             string horaStr = hfHoraTurno.Value;
             string idMedicoStr = hfIdMedico.Value;
+            string idTurnoExistente = hfIdTurnoACancelar.Value; //Sirve para ver si un turno fue cancelado
 
-            //Valida que hayamos podido conseguir toda la info que necesitamos (sino, falla alguno de los campos ocultos)
             if (string.IsNullOrEmpty(fechaStr) || string.IsNullOrEmpty(horaStr) || string.IsNullOrEmpty(idMedicoStr))
-
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "faltanDatos", "alert('Faltan datos del turno.');", true);
                 return;
             }
 
-            //Generamos un nuevo turno con la info que corresponde. 
-            Turno nuevo = new Turno
-            {
-                Paciente = paciente,
-                Medico = new Medico { IdMedico = int.Parse(idMedicoStr) },
-                Fecha = DateTime.Parse(fechaStr),
-                Especialidad = new Especialidad { Id = Convert.ToInt32(ddlEspecialidades.SelectedValue), Descripcion = ddlEspecialidades.SelectedItem.Text },
-                Hora = TimeSpan.Parse(horaStr),
-                Estado = new Estado { Id = 1 } // Asignado (antes tenía null)
-            };
-
             TurnoNegocio negocio = new TurnoNegocio();
-            negocio.agregarTurno(nuevo);
-
-            // Confirmación 
-            string script = $@"
-    alert('Turno asignado correctamente a {paciente.Nombre} {paciente.Apellido}.');
-    if (window.calendar) {{
-        window.calendar.refetchEvents();
-    }}
-";
-            ScriptManager.RegisterStartupScript(this, GetType(), "turnoAsignado", script, true);
-
-
-            //------------------------------ENVIO DE MAIL------------------------------
-            string rutaPlantillas = Server.MapPath("~/Templates");
-
             MedicoNegocio medicoNegocio = new MedicoNegocio();
-            nuevo.Medico = medicoNegocio.existeMedico(nuevo.Medico.IdMedico);
-            var reemplazos = new Dictionary<string, string>
+
+            if (!string.IsNullOrEmpty(idTurnoExistente) && idTurnoExistente != "0")
             {
-                { "NOMBRE", nuevo.Paciente.Nombre + " " + nuevo.Paciente.Apellido },
-                { "MEDICO", nuevo.Medico.Nombre + " " + nuevo.Medico.Apellido },
-                { "FECHA", nuevo.Fecha.ToString("dd/MM/yyyy")},
-                { "HORA", nuevo.Hora.ToString(@"hh\:mm") }
-            };
+                // Es un turno existente (cancelado previamente) entonces se actualiza 
+                Turno turnoExistente = negocio.ObtenerPorId(idTurnoExistente);
+                turnoExistente.Paciente = paciente;
+                turnoExistente.Estado = new Estado { Id = 1 }; // Asignado
+                negocio.actualizarTurnoRecep(turnoExistente);
+
+                // Refrescamos calendario
+                ScriptManager.RegisterStartupScript(this, GetType(), "turnoAsignado", "alert('Turno reasignado correctamente.'); if(window.calendar) { window.calendar.refetchEvents(); }", true);
+            }
+            else
+            {
+                // Turno nuevo en caso de que no existiera previamente. 
+                Turno nuevo = new Turno
+                {
+                    Paciente = paciente,
+                    Medico = new Medico { IdMedico = int.Parse(idMedicoStr) },
+                    Fecha = DateTime.Parse(fechaStr),
+                    Especialidad = new Especialidad { Id = Convert.ToInt32(ddlEspecialidades.SelectedValue), Descripcion = ddlEspecialidades.SelectedItem.Text },
+                    Hora = TimeSpan.Parse(horaStr),
+                    Estado = new Estado { Id = 1 }
+                };
+
+                negocio.agregarTurno(nuevo);
+
+                string script = $@"
+            alert('Turno asignado correctamente a {paciente.Nombre} {paciente.Apellido}.');
+            if (window.calendar) {{
+                window.calendar.refetchEvents();
+            }}";
+                ScriptManager.RegisterStartupScript(this, GetType(), "turnoAsignado", script, true);
+            }
+
+            // ----------------- MAIL -----------------
+            string rutaPlantillas = Server.MapPath("~/Templates");
+            Medico medico = medicoNegocio.existeMedico(int.Parse(idMedicoStr));
+            var reemplazos = new Dictionary<string, string>
+    {
+        { "NOMBRE", paciente.Nombre + " " + paciente.Apellido },
+        { "MEDICO", medico.Nombre + " " + medico.Apellido },
+        { "FECHA", DateTime.Parse(fechaStr).ToString("dd/MM/yyyy")},
+        { "HORA", TimeSpan.Parse(horaStr).ToString(@"hh\:mm") }
+    };
 
             EmailService emailService = new EmailService();
             emailService.armarCorreo(
@@ -210,13 +230,12 @@ namespace TPC_Clinica
                 rutaPlantillas
             );
             emailService.enviarCorreo();
-            //-------------------------------------------------------------------------
+            // ---------------------------------------
 
             txtDniPaciente.Text = "";
             hfFechaTurno.Value = "";
             hfHoraTurno.Value = "";
-
-            
+            hfIdTurnoACancelar.Value = ""; 
         }
 
 
@@ -270,6 +289,91 @@ namespace TPC_Clinica
             {
                 return false;
             }
+        }
+
+        //OBTENEMOS TODOS LOS TURNOS Y LE ASIGNAMOS DISTINTOS COLORES SEGÚN EL ESTADO EN EL CALENDARIO.
+
+        [System.Web.Services.WebMethod]
+        public static List<object> ObtenerTodosLosTurnos(int idMedico, int idEspecialidad)
+        {
+            HorarioAtencionNegocio horarioNegocio = new HorarioAtencionNegocio();
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+
+            List<HorarioAtencion> horarios = horarioNegocio.ListarPorMedicoYEspecialidad(idMedico, idEspecialidad);
+            List<Turno> turnosAsignados = turnoNegocio.ListarTurnosAsignados(idMedico);
+
+            var eventos = new List<object>();
+            DateTime hoy = DateTime.Today;
+            DateTime fin = hoy.AddDays(30);
+
+            foreach (var h in horarios)
+            {
+                for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
+                {
+                    if ((int)fecha.DayOfWeek == (h.DiaSemana % 7))
+                    {
+                        for (int hora = h.Turno.HoraInicio.Hours; hora < h.Turno.HoraFin.Hours; hora++)
+                        {
+                            var turnoCoincidente = turnosAsignados.FirstOrDefault(t =>
+                                t.Fecha.Date == fecha.Date &&
+                                (int)t.Hora.TotalHours == hora &&
+                                t.Medico.IdMedico == idMedico &&
+                                t.Estado != null);
+
+                            string estadoTexto = "Disponible";
+                            string backgroundColor = "lightblue";
+                            string borderColor = "blue";
+
+                            if (turnoCoincidente != null)
+                            {
+                                switch (turnoCoincidente.Estado.Id)
+                                {
+                                    case 1:
+                                        estadoTexto = "Asignado";
+                                        backgroundColor = "green";
+                                        borderColor = "darkgreen";
+                                        break;
+                                    case 3:
+                                        estadoTexto = "Cancelado";
+                                        backgroundColor = "#ffc107"; // amarillo
+                                        borderColor = "#e0a800";
+                                        break;
+                                    case 4:
+                                        estadoTexto = "No asistió";
+                                        backgroundColor = "#dc3545"; // rojo
+                                        borderColor = "#a71d2a";
+                                        break;
+                                    case 5:
+                                        estadoTexto = "Atendido";
+                                        backgroundColor = "#6c757d"; // gris
+                                        borderColor = "#343a40";
+                                        break;
+                                }
+                            }
+
+                            eventos.Add(new
+                            {
+                                title = $"{hora.ToString("D2")}:00 - {estadoTexto}",
+                                start = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0).ToString("s"),
+                                allDay = false,
+                                backgroundColor,
+                                borderColor,
+                                textColor = "white",
+                                extendedProps = new
+                                {
+                                    hora = hora.ToString("D2") + ":00",
+                                    estado = estadoTexto,
+                                    idTurno = turnoCoincidente?.NroTurno ?? "0",
+                                    nombrePaciente = turnoCoincidente?.Paciente?.NombreCompleto ?? "",
+                                    nombreMedico = turnoCoincidente?.Medico?.NombreCompleto ?? ""
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+
+            return eventos;
         }
 
 
