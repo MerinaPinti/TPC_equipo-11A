@@ -51,6 +51,7 @@
     <Compile Include="Turno.cs" />
     <Compile Include="HorarioAtencion.cs" />
     <Compile Include="TurnoTrabajo.cs" />
+    <Compile Include="TurnoVista.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
