@@ -22,37 +22,20 @@ namespace TPC_Clinica
                 Session["error"] = "No tiene permisos para acceder a esta página.";
                 Response.Redirect("Error.aspx", true);
             }
+
             Session["paginaAnterior"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
-            idMedico = ((Medico)Session["medico"]).IdMedico;
 
             if (!IsPostBack)
             {
-                EspecialidadNegocio negocio = new EspecialidadNegocio();
-                ddlEspecialidades.DataSource = negocio.ListarPorMedico(idMedico);
-                ddlEspecialidades.DataTextField = "Descripcion";
-                ddlEspecialidades.DataValueField = "Id";
-                ddlEspecialidades.DataBind();
+                // Obtener el ID del médico desde sesión
+                idMedico = ((Medico)Session["medico"]).IdMedico;
 
-                ddlEspecialidades.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", ""));
+                // Cargar directamente los turnos del médico en sala de espera
+                CargarTurnosEnSalaEspera(idMedico);
             }
         }
 
-        protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ddlEspecialidades.SelectedValue))
-            {
-                gvTurnos.DataSource = null;
-                gvTurnos.DataBind();
-                return;
-            }
-
-            int idEspecialidad = int.Parse(ddlEspecialidades.SelectedValue);
-            int idMedico = ((Medico)Session["medico"]).IdMedico;
-
-            TurnoNegocio negocio = new TurnoNegocio();
-            gvTurnos.DataSource = negocio.ListarTurnosAsignadosSemana(idMedico, idEspecialidad);
-            gvTurnos.DataBind();
-        }
+        
 
 
         protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -80,7 +63,7 @@ namespace TPC_Clinica
                 TurnoNegocio negocio = new TurnoNegocio();
                 negocio.actualizarTurnoMedico(turno);
 
-                ddlEspecialidades_SelectedIndexChanged(null, null); // refrescar grilla
+                
             }
         }
 
@@ -118,6 +101,39 @@ namespace TPC_Clinica
 
                     e.Row.Cells.Add(cell);
                 }
+            }
+        }
+
+        private void CargarTurnosEnSalaEspera(int idMedico)
+        {
+            TurnoNegocio negocio = new TurnoNegocio();
+            List<Turno> lista = negocio.ListarTurnosDelDiaMedico(idMedico);
+
+            var tabla = lista.Select(t => new TurnoVista
+            {
+                NroTurno = t.NroTurno,
+                Fecha = t.Fecha.ToString("dd/MM/yyyy"),
+                Hora = t.Hora.ToString(@"hh\:mm"),
+                NombrePaciente = $"{t.Paciente.Nombre} {t.Paciente.Apellido}",
+                Especialidad = t.Especialidad.Descripcion,
+
+                // Comentado hasta que se agregue el campo en la entidad Turno y en BD
+                // MotivoConsulta = t.MotivoConsulta,
+
+                IdEstado = t.Estado.Id
+            }).ToList();
+
+            gvTurnos.DataSource = tabla;
+            gvTurnos.DataBind();
+
+            if (tabla.Count == 0)
+            {
+                lblMensaje.Text = "No hay pacientes en sala de espera en este momento.";
+                lblMensaje.Visible = true;
+            }
+            else
+            {
+                lblMensaje.Visible = false;
             }
         }
     }

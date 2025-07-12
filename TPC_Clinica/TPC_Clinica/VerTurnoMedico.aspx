@@ -5,13 +5,10 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 class="text-primary text-center mt-4">Turnos de la Semana</h2>
+    <h2 class="text-primary text-center mt-4">Turnos del día</h2>
 
-    <div class="mb-3">
-        <label for="ddlEspecialidades" class="form-label fw-bold">Filtrar por Especialidad:</label>
-        <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged" />
-    </div>
-
+    
+    <asp:Label ID="lblMensaje" runat="server" CssClass="alert alert-warning" Visible="false" />
    <asp:GridView ID="gvTurnos" runat="server" CssClass="table table-striped"
     AutoGenerateColumns="False"
     OnRowCommand="gvTurnos_RowCommand"
@@ -20,7 +17,12 @@
     <Columns>
         <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
         <asp:BoundField DataField="Hora" HeaderText="Hora" />
-        <asp:BoundField DataField="NombrePaciente" HeaderText="Paciente" />
+        <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
+        <asp:BoundField HeaderText="Especialidad" DataField="Especialidad" />
+
+<%-- Futuro campo: Motivo de consulta
+<asp:BoundField HeaderText="Motivo de Consulta" DataField="MotivoConsulta" />
+--%>
         <asp:ButtonField ButtonType="Button" CommandName="Atender" Text="Atender" ControlStyle-CssClass="btn btn-success btn-sm" />
         <asp:ButtonField ButtonType="Button" CommandName="NoAsistio" Text="No Asistió" ControlStyle-CssClass="btn btn-danger btn-sm" />
     </Columns>
