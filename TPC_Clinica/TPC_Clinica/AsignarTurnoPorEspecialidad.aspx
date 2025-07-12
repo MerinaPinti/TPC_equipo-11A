@@ -17,7 +17,7 @@
        function cargarCalendario(idMedico, idEspecialidad) {
            $.ajax({
                type: "POST",
-               url: "AsignarTurnoPorEspecialidad.aspx/ObtenerTurnosDisponibles",
+               url: "AsignarTurnoPorEspecialidad.aspx/ObtenerTodosLosTurnos",
                data: JSON.stringify({ idMedico: idMedico, idEspecialidad: idEspecialidad }),
                contentType: "application/json; charset=utf-8",
                dataType: "json",
@@ -41,13 +41,15 @@
                            const nombrePaciente = info.event.extendedProps.nombrePaciente;
                            const nombreMedico = info.event.extendedProps.nombreMedico;
 
-                           if (estado === "Disponible") {
+                           if (estado === "Disponible" || estado === "Cancelado") {
                                document.getElementById('<%= hfFechaTurno.ClientID %>').value = fecha.toISOString().substring(0, 10);
-                            document.getElementById('<%= hfHoraTurno.ClientID %>').value = hora;
-                            document.getElementById('<%= hfIdMedico.ClientID %>').value = document.getElementById('<%= ddlMedicos.ClientID %>').value;
+                               document.getElementById('<%= hfHoraTurno.ClientID %>').value = hora;
+                               document.getElementById('<%= hfIdMedico.ClientID %>').value = document.getElementById('<%= ddlMedicos.ClientID %>').value;
+                               document.getElementById('<%= hfIdTurnoACancelar.ClientID %>').value = idTurno; // Guardamos el ID turno para poder editarlo. 
 
-                            var modal = new bootstrap.Modal(document.getElementById('modalTurno'));
-                            modal.show();
+                               var modal = new bootstrap.Modal(document.getElementById('modalTurno'));
+                               modal.show();
+                           
                         }
                         else if (estado === "Asignado") {
                             $("#lblPacienteTurno").text(nombrePaciente);
@@ -60,9 +62,12 @@
                             var modalCancelar = new bootstrap.Modal(document.getElementById('modalCancelarTurno'));
                             modalCancelar.show();
                         }
-                        else {
-                            alert("Este turno no está disponible para modificación.");
-                        }
+                           else if (estado === "Atendido") {
+                               alert("Este turno ya fue atendido.");
+                           }
+                           else {
+                               alert("Este turno no está disponible para modificación.");
+                           }
                     }
                 });
 
