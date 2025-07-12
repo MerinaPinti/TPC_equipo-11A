@@ -27,10 +27,14 @@ namespace TPC_Clinica
 
             if (!IsPostBack)
             {
-                // Obtener el ID del médico desde sesión
-                idMedico = ((Medico)Session["medico"]).IdMedico;
+                Medico medico = Session["medico"] as Medico;
+                if (medico == null)
+                {
+                    Session["error"] = "No se pudo obtener la información del médico.";
+                    Response.Redirect("Error.aspx", true);
+                }
 
-                // Cargar directamente los turnos del médico en sala de espera
+                idMedico = medico.IdMedico;
                 CargarTurnosEnSalaEspera(idMedico);
             }
         }
@@ -66,12 +70,12 @@ namespace TPC_Clinica
                 Usuario medicoLogueado = (Usuario)Session["usuario"];
                 if (medicoLogueado != null)
                 {
-                    CargarTurnosEnSalaEspera(medicoLogueado.Id);
 
-                    lblMensaje.Text = $"El turno {nroTurno} fue marcado como <strong>'No asistió'</strong>.";
-                    lblMensaje.CssClass = "alert alert-info";
-                    lblMensaje.Visible = true;
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarToast", "mostrarToastNoAsistio();", true);
+                    CargarTurnosEnSalaEspera(medicoLogueado.Id);
                 }
+
             }
         }
 

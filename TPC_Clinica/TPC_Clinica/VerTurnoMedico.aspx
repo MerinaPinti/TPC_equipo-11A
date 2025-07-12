@@ -27,5 +27,20 @@
         <asp:ButtonField ButtonType="Button" CommandName="NoAsistio" Text="No Asistió" ControlStyle-CssClass="btn btn-danger btn-sm" />
     </Columns>
 </asp:GridView>
+
+    <div aria-live="polite" aria-atomic="true" style="position: relative;">
+    <div id="toastNoAsistio" class="toast position-absolute top-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-danger text-white">
+            <strong class="me-auto">Turno cancelado</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+</div>
+    <script>
+    function mostrarToastNoAsistio() {
+        var toastEl = document.getElementById('toastNoAsistio');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    }
+    </script>
+
 </asp:Content>
 
