@@ -93,6 +93,7 @@
     <Content Include="ListadoTipoUsuario.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="ModificarTurno.aspx" />
+    <Content Include="Recepcion.aspx" />
     <Content Include="Templates\EmailAltaMedico.html" />
     <Content Include="Templates\EmailAltaPaciente.html" />
     <Content Include="Templates\EmailCancelarTurno.html" />
@@ -289,6 +290,13 @@
       <DependentUpon>ModificarTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recepcion.aspx.cs">
+      <DependentUpon>Recepcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recepcion.aspx.designer.cs">
+      <DependentUpon>Recepcion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VerTurnoMedico.aspx.cs">
       <DependentUpon>VerTurnoMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
