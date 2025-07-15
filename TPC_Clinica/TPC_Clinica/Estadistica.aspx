@@ -4,26 +4,55 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .estadisticas-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        canvas {
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .titulo {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .grafico {
-    max-width: 100%;
-    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.grafico-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.grafico-wrapper:not(.barras) {
+    width: 450px;
+    height: 450px;
+}
+
+
+.grafico-wrapper.barras {
+    width: 750px;
+    height: 450px;
+}
+
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.titulo {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.grafico {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.estadistica-extra {
+    font-size: 1.2rem;
+    color: #2c3e50;
 }
     </style>
 </asp:Content>
@@ -35,17 +64,20 @@
 <asp:Literal ID="litEspecialidades" runat="server" Mode="PassThrough" />
 
     <div class="estadisticas-container">
-        <canvas id="chartEstados" width="350" height="350" class="grafico"></canvas>
-<canvas id="chartEspecialidades" width="350" height="350" class="grafico"></canvas>
+    <div class="grafico-wrapper">
+        <canvas id="chartEstados" class="grafico"></canvas>
+    </div>
+    <div class="grafico-wrapper barras">
+        <canvas id="chartEspecialidades" class="grafico"></canvas>
     </div>
 
-    <script>
-       
-            
-            window.onload = function () {
-                console.log("dataEstados", dataEstados);
-                console.log("dataEspecialidades", dataEspecialidades);
+</div>
+            <div class="estadistica-extra text-center mt-4">
+    <asp:Literal ID="litMedicoMasCierres" runat="server" Mode="PassThrough" />
+</div>
 
+    <script>
+        window.onload = function () {
             const ctx1 = document.getElementById('chartEstados').getContext('2d');
             new Chart(ctx1, {
                 type: 'pie',
@@ -58,11 +90,23 @@
                 },
                 options: {
                     responsive: true,
-                    plugins: { legend: { position: 'bottom' } },
-                    font: {
-                        size: 14 
-                    },
-                    title: { display: true, text: 'Distribución por Estado' }
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribución por Estado',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
                 }
             });
 
@@ -79,8 +123,22 @@
                 },
                 options: {
                     responsive: true,
-                    scales: { y: { beginAtZero: true } }
+                    scales: {
+                        y: { beginAtZero: true },
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45,
+                                font: { size: 14 }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: 'Turnos por Especialidad' }
+                    }
                 }
+                
             });
         };
     </script>

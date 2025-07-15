@@ -888,8 +888,47 @@ P.DNI,
             }
         }
 
+        public (string NombreMedico, int Cantidad) ObtenerMedicoConMasTurnosCerrados()
+        {
+            AccesoDatos datos = new AccesoDatos();
 
-        
+            try
+            {
+                datos.setearConsulta(@"
+            SELECT TOP 1 
+                M.nombre + ' ' + M.apellido AS NombreCompleto,
+                COUNT(*) AS CantidadTurnosCerrados
+            FROM Turno T
+            INNER JOIN Medico M ON T.idMedico = M.idMedico
+            INNER JOIN Estado E ON T.idEstado = E.idEstado
+            WHERE E.descripcion = 'Cerrado' AND T.activo = 1
+            GROUP BY M.nombre, M.apellido
+            ORDER BY CantidadTurnosCerrados DESC
+        ");
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    string nombre = datos.Lector["NombreCompleto"].ToString();
+                    int cantidad = (int)datos.Lector["CantidadTurnosCerrados"];
+                    return (nombre, cantidad);
+                }
+
+                return ("—", 0);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
 
     }
 }

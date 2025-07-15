@@ -13,9 +13,10 @@ namespace TPC_Clinica
     {
         public string jsonEstados;
         public string jsonEspecialidades;
-
+        public string MedicoMasCierresTexto { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 CargarDatos();
@@ -23,6 +24,7 @@ namespace TPC_Clinica
                 
                 litEstados.Text = $"<script>const dataEstados = {jsonEstados};</script>";
                 litEspecialidades.Text = $"<script>const dataEspecialidades = {jsonEspecialidades};</script>";
+                litMedicoMasCierres.Text = MedicoMasCierresTexto;
             }
         }
 
@@ -31,6 +33,8 @@ namespace TPC_Clinica
             TurnoNegocio negocio = new TurnoNegocio();
             var turnos = negocio.ListarTurnos();
 
+            var resultado = negocio.ObtenerMedicoConMasTurnosCerrados();
+            MedicoMasCierresTexto = $"El médico con más turnos cerrados es <strong>{resultado.NombreMedico}</strong> con <strong>{resultado.Cantidad}</strong> turnos.";
             var estados = turnos
                 .GroupBy(t => t.Estado?.Descripcion ?? "Sin Estado")
                 .ToDictionary(g => g.Key, g => g.Count());
