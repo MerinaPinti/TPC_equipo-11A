@@ -81,6 +81,7 @@
     <Content Include="Default.aspx" />
     <Content Include="EleccionTurno.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Estadistica.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HistoriaClinica.aspx" />
     <Content Include="HorarioMedico.aspx" />
@@ -202,6 +203,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Estadistica.aspx.cs">
+      <DependentUpon>Estadistica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Estadistica.aspx.designer.cs">
+      <DependentUpon>Estadistica.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

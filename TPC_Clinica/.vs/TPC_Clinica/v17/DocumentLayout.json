@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\estadistica.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\estadistica.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\estadistica.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\estadistica.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,14 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\dominio\\paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\master.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\tpc_clinica\\master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\verturnomedico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -114,41 +122,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Estadistica.aspx.cs",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Estadistica.aspx.cs",
+              "RelativeDocumentMoniker": "TPC_Clinica\\Estadistica.aspx.cs",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Estadistica.aspx.cs*",
+              "RelativeToolTip": "TPC_Clinica\\Estadistica.aspx.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAA1wBYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-15T18:31:23.127Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "ListadoTurnos.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoTurnos.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoTurnos.aspx.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoTurnos.aspx.cs*",
-              "RelativeToolTip": "TPC_Clinica\\ListadoTurnos.aspx.cs*",
-              "ViewState": "AgIAAHoAAAAAAAAAAAAIwEEAAAAPAAAAAAAAAA==",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoTurnos.aspx.cs",
+              "RelativeToolTip": "TPC_Clinica\\ListadoTurnos.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T17:09:52.574Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Master.Master.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\Master.Master.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master.cs",
-              "RelativeToolTip": "TPC_Clinica\\Master.Master.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAgwFEAAAA5AAAAAAAAAA==",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master.cs*",
+              "RelativeToolTip": "TPC_Clinica\\Master.Master.cs*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-11T21:51:45.629Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "MedicoNegocio.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\MedicoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\MedicoNegocio.cs",
@@ -161,7 +178,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "ListadoTurnos.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoTurnos.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoTurnos.aspx",
@@ -174,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "TurnoNegocio.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\TurnoNegocio.cs",
@@ -187,7 +204,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Master.Master",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master",
+              "RelativeDocumentMoniker": "TPC_Clinica\\Master.Master",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master*",
+              "RelativeToolTip": "TPC_Clinica\\Master.Master*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-07-11T21:46:32.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Estadistica.aspx",
+              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Estadistica.aspx",
+              "RelativeDocumentMoniker": "TPC_Clinica\\Estadistica.aspx",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Estadistica.aspx",
+              "RelativeToolTip": "TPC_Clinica\\Estadistica.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-07-15T18:29:15.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "TurnoVista.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TurnoVista.cs",
               "RelativeDocumentMoniker": "Dominio\\TurnoVista.cs",
@@ -200,20 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Master.Master",
-              "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master",
-              "RelativeDocumentMoniker": "TPC_Clinica\\Master.Master",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Master.Master",
-              "RelativeToolTip": "TPC_Clinica\\Master.Master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-11T21:46:32.587Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Default.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Default.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\Default.aspx.cs",
@@ -225,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Paciente.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Paciente.cs",
               "RelativeDocumentMoniker": "Dominio\\Paciente.cs",
@@ -238,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "HorarioMedico.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HorarioMedico.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\HorarioMedico.aspx.cs",
@@ -250,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "VerTurnoMedico.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\VerTurnoMedico.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\VerTurnoMedico.aspx",
@@ -263,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "VerTurnoMedico.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\VerTurnoMedico.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\VerTurnoMedico.aspx.cs",
@@ -275,7 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "AsignarTurnoPorEspecialidad.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx",
@@ -287,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Default.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Default.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\Default.aspx",
@@ -299,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "AltaMedico.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AltaMedico.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\AltaMedico.aspx",
@@ -311,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "ListadoMedicos.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoMedicos.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoMedicos.aspx",
@@ -323,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "AsignarTurnoPorEspecialidad.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\AsignarTurnoPorEspecialidad.aspx.cs",
@@ -335,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Turno.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\Turno.cs",
               "RelativeDocumentMoniker": "Dominio\\Turno.cs",
@@ -347,7 +381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "TurnoTrabajo.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TurnoTrabajo.cs",
               "RelativeDocumentMoniker": "Dominio\\TurnoTrabajo.cs",
@@ -359,7 +393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "Recepcion.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Recepcion.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\Recepcion.aspx.cs",
@@ -371,7 +405,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "Recepcion.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\Recepcion.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\Recepcion.aspx",
@@ -383,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "ListadoMedicos.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoMedicos.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoMedicos.aspx.cs",
@@ -395,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "ListadoEspecialidades.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoEspecialidades.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoEspecialidades.aspx.cs",
@@ -407,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "AccesoDatos.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\AccesoDatos.cs",
               "RelativeDocumentMoniker": "Negocio\\AccesoDatos.cs",
@@ -419,7 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "ListadoEspecialidades.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoEspecialidades.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoEspecialidades.aspx",
@@ -431,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "HistoriaClinica.aspx",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\HistoriaClinica.aspx",
               "RelativeDocumentMoniker": "TPC_Clinica\\HistoriaClinica.aspx",
