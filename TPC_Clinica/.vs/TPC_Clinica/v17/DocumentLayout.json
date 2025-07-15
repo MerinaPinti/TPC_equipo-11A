@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5B763B84-F263-48BF-B908-E38659CBDAE3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\dominio\\turnovista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E28E7ACD-F17D-4000-B57B-F90685775050}|Dominio\\Dominio.csproj|solutionrelative:dominio\\turnovista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|solutionrelative:tpc_clinica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{369AAF3B-0170-4CDB-AB3E-C8CB79F3F1A5}|TPC_Clinica\\TPC_Clinica.csproj|c:\\tp final tpc\\tpc_equipo-11a\\tpc_clinica\\tpc_clinica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -114,7 +114,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -122,13 +122,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ListadoTurnos.aspx.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoTurnos.aspx.cs",
               "RelativeDocumentMoniker": "TPC_Clinica\\ListadoTurnos.aspx.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoTurnos.aspx.cs",
-              "RelativeToolTip": "TPC_Clinica\\ListadoTurnos.aspx.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAApwIcAAAAJAAAAAAAAAA==",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\TPC_Clinica\\ListadoTurnos.aspx.cs*",
+              "RelativeToolTip": "TPC_Clinica\\ListadoTurnos.aspx.cs*",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAIwEEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T17:09:52.574Z",
               "EditorCaption": ""
@@ -174,12 +174,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "TurnoNegocio.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\TurnoNegocio.cs",
-              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoNegocio.cs*",
-              "RelativeToolTip": "Negocio\\TurnoNegocio.cs*",
+              "ToolTip": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Negocio\\TurnoNegocio.cs",
+              "RelativeToolTip": "Negocio\\TurnoNegocio.cs",
               "ViewState": "AgIAAHMAAAAAAAAAAAAAAIkAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-11T20:27:46.39Z",
@@ -187,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TurnoVista.cs",
               "DocumentMoniker": "C:\\TP FINAL TPC\\TPC_equipo-11A\\TPC_Clinica\\Dominio\\TurnoVista.cs",
               "RelativeDocumentMoniker": "Dominio\\TurnoVista.cs",
