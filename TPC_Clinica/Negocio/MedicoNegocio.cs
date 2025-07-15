@@ -88,6 +88,46 @@ namespace Negocio
 
         }
 
+        public List<Especialidad> ListarEspecialidadesPorMedico(int idMedico)
+        {
+            List<Especialidad> lista = new List<Especialidad>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+            SELECT E.idEspecialidad, E.descripcion
+            FROM ESPECIALIDADES_MEDICOS EM
+            INNER JOIN Especialidad E ON EM.idEspecialidad = E.idEspecialidad
+            WHERE EM.idMedico = @idMedico AND EM.activo = 1
+        ");
+
+                datos.setearParametros("@idMedico", idMedico);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Especialidad esp = new Especialidad
+                    {
+                        Id = (int)datos.Lector["idEspecialidad"],
+                        Descripcion = datos.Lector["descripcion"].ToString()
+                    };
+
+                    lista.Add(esp);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
 
 
