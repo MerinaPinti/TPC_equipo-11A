@@ -98,6 +98,8 @@
                             <li class="nav-item">
                             <asp:HyperLink ID="hlRecepcion" CssClass="nav-link active" NavigateUrl="~/Recepcion.aspx" Visible="false" runat="server"> Recepción </asp:HyperLink></li>
                             <li class="nav-item">
+                            <asp:HyperLink ID="hlListadoTurnos" CssClass="nav-link active" NavigateUrl="~/ListadoTurnos.aspx" Visible="false" runat="server"> Listado Turnos </asp:HyperLink></li>
+                            <li class="nav-item">
                                 <asp:HyperLink ID="hlCambiarClave" CssClass="nav-link active" NavigateUrl="~/CambiarClaveDeUsuario.aspx" Visible="false" runat="server"> Cambiar contraseña </asp:HyperLink></li>
 
 

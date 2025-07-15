@@ -36,6 +36,7 @@ namespace TPC_Clinica
                         hlHorarios.Visible = false;
                         hlModificarTurno.Visible = true;
                         hlTurnos.Visible = true;
+                        hlListadoTurnos.Visible = true;
                         hlRecepcion.Visible = true;
                         break;
                     case 2:
@@ -49,6 +50,7 @@ namespace TPC_Clinica
                         btnCerrarSesion.Visible = true;
                         hlModificarTurno.Visible = true;
                         hlTurnos.Visible = true;
+                        hlListadoTurnos.Visible = true;
                         hlRecepcion.Visible = true;
                         break;
                     case 3:
@@ -77,6 +79,7 @@ namespace TPC_Clinica
                         btnCerrarSesion.Visible = false;
                         hlModificarTurno.Visible = false;
                         hlTurnos.Visible = false;
+                        hlListadoTurnos.Visible = false; 
                         hlRecepcion.Visible = false;
                         break;
                 }
