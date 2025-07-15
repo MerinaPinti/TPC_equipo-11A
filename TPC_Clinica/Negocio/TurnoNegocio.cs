@@ -82,31 +82,33 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-                    SELECT 
-                        T.idTurno,
-                        T.fecha,
-                        T.hora,
-                        T.observaciones,
-                        T.diagnostico,
-                        T.fechaAlta,
-                        T.ultimaModificacion,
-                        ES.descripcion AS Especialidad,
-                        T.activo,
-                        P.idPaciente,
-                        P.nombre AS NombrePaciente,
-                        P.apellido AS ApellidoPaciente,
-                        M.idMedico,
-                        M.nombre AS NombreMedico,
-                        M.apellido AS ApellidoMedico,
-                        E.idEstado,
-                        E.descripcion AS EstadoDescripcion
-                    FROM Turno T
-                    INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
-                    INNER JOIN Medico M ON T.idMedico = M.idMedico
-                    INNER JOIN Estado E ON T.idEstado = E.idEstado
-                    INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
-                    WHERE T.activo = 1"
-                );
+    SELECT 
+        T.idTurno,
+        T.fecha,
+        T.hora,
+        T.observaciones,
+        T.diagnostico,
+        T.fechaAlta,
+        T.ultimaModificacion,
+        ES.idEspecialidad,                                
+        ES.descripcion AS Especialidad,                   
+        T.activo,
+        P.idPaciente,
+        P.nombre AS NombrePaciente,
+        P.apellido AS ApellidoPaciente,
+P.DNI,
+        M.idMedico,
+        M.nombre AS NombreMedico,
+        M.apellido AS ApellidoMedico,
+        E.idEstado,
+        E.descripcion AS EstadoDescripcion
+    FROM Turno T
+    INNER JOIN Paciente P ON T.idPaciente = P.idPaciente
+    INNER JOIN Medico M ON T.idMedico = M.idMedico
+    INNER JOIN Estado E ON T.idEstado = E.idEstado
+    INNER JOIN Especialidad ES ON T.idEspecialidad = ES.idEspecialidad
+    WHERE T.activo = 1"
+);
 
                 datos.ejecutarLectura();
 
@@ -125,27 +127,31 @@ namespace Negocio
                     if (datos.Lector["ultimaModificacion"] != DBNull.Value)
                         turno.UltimaModificacion = (DateTime)datos.Lector["ultimaModificacion"];
 
-
                     turno.Estado = new Estado
                     {
                         Id = (int)datos.Lector["idEstado"],
                         Descripcion = datos.Lector["EstadoDescripcion"].ToString()
                     };
 
-
                     turno.Paciente = new Paciente
                     {
+                        DNI = datos.Lector["DNI"].ToString(),
                         IdPaciente = (int)datos.Lector["idPaciente"],
                         Nombre = datos.Lector["NombrePaciente"].ToString(),
                         Apellido = datos.Lector["ApellidoPaciente"].ToString()
                     };
-
 
                     turno.Medico = new Medico
                     {
                         IdMedico = (int)datos.Lector["idMedico"],
                         Nombre = datos.Lector["NombreMedico"].ToString(),
                         Apellido = datos.Lector["ApellidoMedico"].ToString()
+                    };
+
+                    turno.Especialidad = new Especialidad
+                    {
+                        Id = (int)datos.Lector["idEspecialidad"],
+                        Descripcion = datos.Lector["Especialidad"].ToString()
                     };
 
                     turno.Activo = (bool)datos.Lector["activo"];
