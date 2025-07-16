@@ -218,5 +218,65 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+
+        public List<Paciente> ListarEliminados()
+        {
+            List<Paciente> lista = new List<Paciente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"SELECT idPaciente, nombre, apellido, DNI, fechaNac, telefono, direccion, email
+                               FROM Paciente
+                               WHERE activo = 0");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Paciente paciente = new Paciente();
+                    paciente.IdPaciente = (int)datos.Lector["idPaciente"];
+                    paciente.Nombre = datos.Lector["nombre"].ToString();
+                    paciente.Apellido = datos.Lector["apellido"].ToString();
+                    paciente.DNI = datos.Lector["DNI"].ToString();
+                    paciente.FechaNac = Convert.ToDateTime(datos.Lector["fechaNac"]);
+                    paciente.Telefono = datos.Lector["telefono"].ToString();
+                    paciente.Direccion = datos.Lector["direccion"].ToString();
+                    paciente.Email = datos.Lector["email"].ToString();
+
+                    lista.Add(paciente);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ReactivarPaciente(int idPaciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Paciente SET activo = 1 WHERE idPaciente = @id");
+                datos.setearParametros("@id", idPaciente);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
