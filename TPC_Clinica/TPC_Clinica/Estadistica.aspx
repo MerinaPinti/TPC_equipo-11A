@@ -76,70 +76,113 @@ canvas {
     <asp:Literal ID="litMedicoMasCierres" runat="server" Mode="PassThrough" />
 </div>
 
-    <script>
-        window.onload = function () {
-            const ctx1 = document.getElementById('chartEstados').getContext('2d');
-            new Chart(ctx1, {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(dataEstados),
-                    datasets: [{
-                        data: Object.values(dataEstados),
-                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#F44336', '#9C27B0', '#607D8B']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    size: 14
-                                }
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Distribución por Estado',
-                            font: {
-                                size: 16
-                            }
-                        }
-                    }
-                }
-            });
+   <script>
+       window.onload = function () {
 
-            const ctx2 = document.getElementById('chartEspecialidades').getContext('2d');
-            new Chart(ctx2, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(dataEspecialidades),
-                    datasets: [{
-                        label: 'Turnos por Especialidad',
-                        data: Object.values(dataEspecialidades),
-                        backgroundColor: '#42A5F5'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true },
-                        x: {
-                            ticks: {
-                                maxRotation: 45,
-                                minRotation: 45,
-                                font: { size: 14 }
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: { position: 'top' },
-                        title: { display: true, text: 'Turnos por Especialidad' }
-                    }
-                }
-                
-            });
-        };
-    </script>
+           // =========================
+           //  GRÁFICO DE TORTA (ESTADOS)
+           // =========================
+
+           // Calcula el total de turnos sumando los valores de cada estado
+           const totalEstados = Object.values(dataEstados).reduce((a, b) => a + b, 0);
+
+           // Prepara las etiquetas con el porcentaje correspondiente
+           const labelsEstados = Object.keys(dataEstados).map(key => {
+               const porcentaje = ((dataEstados[key] / totalEstados) * 100).toFixed(1);
+               return `${key} (${porcentaje}%)`;
+           });
+
+           // Configura y renderiza el gráfico de torta
+           const ctx1 = document.getElementById('chartEstados').getContext('2d');
+           new Chart(ctx1, {
+               type: 'pie',
+               data: {
+                   labels: labelsEstados,
+                   datasets: [{
+                       data: Object.values(dataEstados),
+                       backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#F44336', '#9C27B0', '#607D8B']
+                   }]
+               },
+               options: {
+                   responsive: true,
+                   plugins: {
+                       legend: {
+                           position: 'bottom',
+                           labels: {
+                               font: {
+                                   size: 14 // tamaño de texto de la leyenda
+                               }
+                           }
+                       },
+                       title: {
+                           display: true,
+                           text: 'Distribución por Estado',
+                           font: {
+                               size: 16
+                           }
+                       }
+                   }
+               }
+           });
+
+           // ================================
+           //  GRÁFICO DE BARRAS (ESPECIALIDADES)
+           // ================================
+
+           // Calcula el total de turnos por especialidad
+           const totalEspecialidades = Object.values(dataEspecialidades).reduce((a, b) => a + b, 0);
+
+           // Calcula porcentajes y etiquetas
+           const etiquetasEspecialidades = Object.keys(dataEspecialidades).map(key => {
+               const porcentaje = ((dataEspecialidades[key] / totalEspecialidades) * 100).toFixed(1);
+               return `${key} (${porcentaje}%)`;
+           });
+
+           // Configurar y renderizar el gráfico de barras
+           const ctx2 = document.getElementById('chartEspecialidades').getContext('2d');
+           new Chart(ctx2, {
+               type: 'bar',
+               data: {
+                   labels: etiquetasEspecialidades,
+                   datasets: [{
+                       label: 'Turnos por Especialidad',
+                       data: Object.values(dataEspecialidades),
+                       backgroundColor: '#42A5F5'
+                   }]
+               },
+               options: {
+                   responsive: true,
+                   scales: {
+                       y: {
+                           beginAtZero: true,
+                           title: {
+                               display: true,
+                               text: 'Cantidad de Turnos'
+                           }
+                       },
+                       x: {
+                           ticks: {
+                               maxRotation: 45,
+                               minRotation: 45,
+                               font: { size: 14 }
+                           }
+                       }
+                   },
+                   plugins: {
+                       legend: {
+                           position: 'top',
+                           labels: {
+                               font: { size: 14 }
+                           }
+                       },
+                       title: {
+                           display: true,
+                           text: 'Turnos por Especialidad',
+                           font: { size: 16 }
+                       }
+                   }
+               }
+           });
+       };
+   </script>
 </asp:Content>

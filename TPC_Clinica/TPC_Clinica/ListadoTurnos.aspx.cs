@@ -16,19 +16,19 @@ namespace TPC_Clinica
             if (!IsPostBack)
             {
                 CargarFiltros();
-                // AplicarFiltros(); // 
+                // AplicarFiltros(); 
             }
         }
-       
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            AplicarFiltros(); 
+            AplicarFiltros();
         }
 
         private void CargarFiltros()
         {
             // Especialidades
-            var especialidades = new EspecialidadNegocio().Listar();
+            List<Especialidad> especialidades = new EspecialidadNegocio().Listar();
             ddlEspecialidad.DataSource = especialidades;
             ddlEspecialidad.DataTextField = "Descripcion";
             ddlEspecialidad.DataValueField = "Id";
@@ -36,22 +36,21 @@ namespace TPC_Clinica
             ddlEspecialidad.Items.Insert(0, new ListItem("-- Todas --", ""));
 
             // Médicos
-            var medicos = new MedicoNegocio().listar(); 
+            List<Medico> medicos = new MedicoNegocio().listar();
             ddlMedico.DataSource = medicos;
-            ddlMedico.DataTextField = "NombreCompleto"; 
+            ddlMedico.DataTextField = "NombreCompleto";
             ddlMedico.DataValueField = "IdMedico";
             ddlMedico.DataBind();
             ddlMedico.Items.Insert(0, new ListItem("-- Todos --", ""));
 
             // Estados
-            var estados = new EstadoNegocio().Listar(); 
+            List<Estado> estados = new EstadoNegocio().Listar();
             ddlEstado.DataSource = estados;
             ddlEstado.DataTextField = "Descripcion";
             ddlEstado.DataValueField = "Id";
             ddlEstado.DataBind();
             ddlEstado.Items.Insert(0, new ListItem("-- Todos --", ""));
         }
-
 
         private void AplicarFiltros()
         {
@@ -63,15 +62,15 @@ namespace TPC_Clinica
             TurnoNegocio negocio = new TurnoNegocio();
             List<Turno> lista = negocio.ListarTurnos(); // Trae todos los turnos activos
 
-            //  FILTRO por especialidad
+            // FILTRO por especialidad
             if (idEspecialidad != 0)
                 lista = lista.Where(t => t.Especialidad != null && t.Especialidad.Id == idEspecialidad).ToList();
 
-            //  FILTRO por médico
+            // FILTRO por médico
             if (idMedico != 0)
                 lista = lista.Where(t => t.Medico.IdMedico == idMedico).ToList();
 
-            //  FILTRO por estado
+            // FILTRO por estado
             if (idEstado != 0)
                 lista = lista.Where(t => t.Estado.Id == idEstado).ToList();
 
@@ -88,7 +87,7 @@ namespace TPC_Clinica
             if (idEspecialidad != 0 && idMedico != 0)
             {
                 MedicoNegocio medicoNegocio = new MedicoNegocio();
-                var especialidadesDelMedico = medicoNegocio.ListarEspecialidadesPorMedico(idMedico);
+                List<Especialidad> especialidadesDelMedico = medicoNegocio.ListarEspecialidadesPorMedico(idMedico);
                 bool tieneEspecialidad = especialidadesDelMedico.Any(e => e.Id == idEspecialidad);
 
                 if (!tieneEspecialidad)
@@ -109,7 +108,7 @@ namespace TPC_Clinica
                 return;
             }
 
-            // Resultado 
+            // Resultado
             if (lista.Count == 0)
             {
                 gvTurnos.DataSource = null;
@@ -118,18 +117,17 @@ namespace TPC_Clinica
                 return;
             }
 
-            //  Arma la vista para el GridView
-            var tabla = lista.Select(t => new TurnoVista
+            // Arma la vista para el GridView
+            List<TurnoVista> tabla = lista.Select(t => new TurnoVista
             {
-              
-    Fecha = t.Fecha.ToString("dd/MM/yyyy"),
+                Fecha = t.Fecha.ToString("dd/MM/yyyy"),
                 Hora = t.Hora.ToString(@"hh\:mm"),
                 NombrePaciente = t.Paciente != null ? $"{t.Paciente.Nombre} {t.Paciente.Apellido}" : "—",
-    DniPaciente = t.Paciente?.DNI ?? "—",
-    NombreMedico = t.Medico != null ? $"{t.Medico.Nombre} {t.Medico.Apellido}" : "—",
-    Especialidad = t.Especialidad?.Descripcion ?? "—",
-    Estado = t.Estado?.Descripcion ?? "—"
-}).ToList();
+                DniPaciente = t.Paciente?.DNI ?? "—",
+                NombreMedico = t.Medico != null ? $"{t.Medico.Nombre} {t.Medico.Apellido}" : "—",
+                Especialidad = t.Especialidad?.Descripcion ?? "—",
+                Estado = t.Estado?.Descripcion ?? "—"
+            }).ToList();
 
             gvTurnos.DataSource = tabla;
             gvTurnos.DataBind();
@@ -141,7 +139,5 @@ namespace TPC_Clinica
             lblMensaje.CssClass = "alert alert-warning";
             lblMensaje.Visible = true;
         }
-
-
     }
 }
