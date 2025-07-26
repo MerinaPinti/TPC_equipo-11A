@@ -31,7 +31,7 @@
                     OnRowDataBound="dgvTiposUsuario_RowDataBound"
                     runat="server" 
                     AutoGenerateColumns="false" 
-                    CssClass="table">
+                    CssClass="table mt-2">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" />
                         <asp:BoundField HeaderText="Tipo de Usuario" DataField="Descripcion" />

@@ -27,14 +27,14 @@
         <div class="row">
             <div class="col">
                 <asp:Button ID="btnAgregar" CssClass="btn btn-primary" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-                <%--<asp:GridView ID="dgvEspecialidad" runat="server" AutoGenerateColumns="false" CssClass="table mt-3">
+                <%--<asp:GridView ID="dgvEspecialidad" runat="server" AutoGenerateColumns="false" CssClass="table mt-2">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="ID" />
                         <asp:BoundField DataField="descripcion" HeaderText="Categoria" />
                     </Columns>
                 </asp:GridView>--%>
 
-                <asp:GridView ID="dgvUsuarios" DataKeyNames="Id" OnRowCommand="dgvUsuarios_RowCommand" runat="server" AutoGenerateColumns="false" CssClass="table">
+                <asp:GridView ID="dgvUsuarios" DataKeyNames="Id" OnRowCommand="dgvUsuarios_RowCommand" runat="server" AutoGenerateColumns="false" CssClass="table mt-2">
                     <columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" />
                         <asp:TemplateField HeaderText="Tipo de Usuario">

@@ -27,7 +27,7 @@
             <div class="col">
                 <asp:Button ID="btnAgregar" CssClass="btn btn-primary" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
 
-                <asp:GridView ID="gvMedico" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" OnRowCommand="GridView1_RowCommand" DataKeyNames="IdMedico" OnRowDataBound="gvMedico_RowDataBound">
+                <asp:GridView ID="gvMedico" runat="server" AutoGenerateColumns="false" CssClass="table mt-2" OnRowCommand="GridView1_RowCommand" DataKeyNames="IdMedico" OnRowDataBound="gvMedico_RowDataBound">
                     <Columns>
                         <asp:BoundField HeaderText="Matrícula" DataField="Matricula" />
                         <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" />

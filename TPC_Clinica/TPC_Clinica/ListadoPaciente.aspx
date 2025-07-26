@@ -33,7 +33,7 @@
                     OnRowCommand="dgvPacientes_RowCommand"
                     runat="server"
                     AutoGenerateColumns="false"
-                    CssClass="table mt-3">
+                    CssClass="table mt-2">
                     <Columns>
                         <asp:BoundField HeaderText="Id" DataField="idPaciente"/>
                         <asp:BoundField HeaderText="DNI" DataField="DNI" />
