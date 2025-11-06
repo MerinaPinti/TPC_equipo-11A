@@ -34,3 +34,12 @@ C:\Users\Johann\Desktop\TUP2\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio
 C:\Users\Johann\Desktop\TUP2\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.dll
 C:\Users\Johann\Desktop\TUP2\Programacion III\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.pdb
 C:\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Negocio.dll
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Dominio.dll
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\bin\Debug\Dominio.pdb
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.csproj.Up2Date
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.dll
+C:\Users\Johann\Desktop\Proyectos\TPC_equipo-11A\TPC_Clinica\Negocio\obj\Debug\Negocio.pdb
