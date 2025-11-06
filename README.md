@@ -13,6 +13,9 @@ Aplicación web desarrollada en C# con ASP.NET y SQL Server para la gestión int
 **Ejemplo de Estadística de Turnos**
 ![Ejemplo de Estadística de Turnos](https://github.com/MerinaPinti/TPC_equipo-11A/blob/main/TPC_Clinica/Screenshots/Stadistics.png?raw=true)
 
+**Ejemplo de ABML de Pacientes**
+![Ejemplo de ABML de Pacientes](https://github.com/MerinaPinti/TPC_equipo-11A/blob/main/TPC_Clinica/Screenshots/patients.png?raw=true)
+
 ## Características Principales
 
 * **Gestión de Pacientes:** Operaciones CRUD (Crear, Leer, Actualizar, Borrar) para pacientes.
